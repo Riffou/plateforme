@@ -5,7 +5,7 @@ stages:
   - push
   
 before_script:
-  - export PROJECT=express
+  - export PROJECT=Plateforme
 
 build_image:
   stage: build
@@ -14,7 +14,7 @@ build_image:
     - if [ -n "$(docker ps -a| grep $PROJECT)" ]; then docker rm -f $PROJECT; fi;  #Si le conteneur pour le projet est déjà present, on le supprime avant de le lancer
     - docker run -d -v $PWD/src:/usr/app/src -v $PWD/test:/usr/app/test --name $PROJECT -p 80:3000 $PROJECT:${CI_COMMIT_SHA:0:8}
   after_script:
-    - docker rm -f express
+    - docker rm -f Plateforme
 
 test_image:
   stage: test
@@ -29,8 +29,8 @@ test_image:
       - coverage/*
     expire_in: 1 week
   after_script:
-    - docker logs express
-    - docker rm -f express
+    - docker logs Plateforme
+    - docker rm -f Plateforme
 
 sonarqube:
   stage: qa  
@@ -44,7 +44,7 @@ build_push_image:
     stage: push
     script:
     - docker build -t $PROJECT:${CI_COMMIT_SHA:0:8} -f ./Dockerfile-prod .
-    - docker login -u admin  -p "$password" 10.1.48.103:18079
+    - docker login -u gitlab -p gitlab 10.1.48.103:18079
     - docker tag $PROJECT:${CI_COMMIT_SHA:0:8} 10.1.48.103:18079/$PROJECT:latest
     - docker tag $PROJECT:${CI_COMMIT_SHA:0:8} 10.1.48.103:18079/$PROJECT:${CI_COMMIT_SHA:0:8}
     - docker push 10.1.48.103:18079/$PROJECT:${CI_COMMIT_SHA:0:8}
