@@ -5,7 +5,7 @@ stages:
   - push
   
 before_script:
-  - export PROJECT=Plateforme
+  - export PROJECT=plateforme
 
 build_image:
   stage: build
@@ -14,7 +14,7 @@ build_image:
     - if [ -n "$(docker ps -a| grep $PROJECT)" ]; then docker rm -f $PROJECT; fi;  #Si le conteneur pour le projet est déjà present, on le supprime avant de le lancer
     - docker run -d -v $PWD/src:/usr/app/src -v $PWD/test:/usr/app/test --name $PROJECT -p 80:3000 $PROJECT:${CI_COMMIT_SHA:0:8}
   after_script:
-    - docker rm -f Plateforme
+    - docker rm -f plateforme
 
 test_image:
   stage: test
@@ -29,8 +29,8 @@ test_image:
       - coverage/*
     expire_in: 1 week
   after_script:
-    - docker logs Plateforme
-    - docker rm -f Plateforme
+    - docker logs plateforme
+    - docker rm -f plateforme
 
 sonarqube:
   stage: qa  
