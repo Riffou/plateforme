@@ -1,0 +1,52 @@
+stages:
+  - build
+  - test
+  - qa
+  - push
+  
+before_script:
+  - export PROJECT=express
+
+build_image:
+  stage: build
+  script:
+    - docker build -t $PROJECT:${CI_COMMIT_SHA:0:8} -f ./Dockerfile-dev .
+    - if [ -n "$(docker ps -a| grep $PROJECT)" ]; then docker rm -f $PROJECT; fi;  #Si le conteneur pour le projet est déjà present, on le supprime avant de le lancer
+    - docker run -d -v $PWD/src:/usr/app/src -v $PWD/test:/usr/app/test --name $PROJECT -p 80:3000 $PROJECT:${CI_COMMIT_SHA:0:8}
+  after_script:
+    - docker rm -f express
+
+test_image:
+  stage: test
+  script:
+    - docker run -d --name $PROJECT -p 80:3000 $PROJECT:${CI_COMMIT_SHA:0:8}
+    - docker exec $PROJECT sh -c /usr/app/test.sh
+    - docker exec -t $PROJECT sh -c "ls -la /usr/app/coverage"
+    - docker cp $PROJECT:/usr/app/coverage $PWD
+  artifacts:
+    name: "Coverage:${CI_COMMIT_SHA:0:8}"
+    paths:
+      - coverage/*
+    expire_in: 1 week
+  after_script:
+    - docker logs express
+    - docker rm -f express
+
+sonarqube:
+  stage: qa  
+  image: newtmitch/sonar-scanner:latest
+  script:
+    - sed -i 's|SF:/usr/app/|SF:|g' coverage/lcov.info #ugly patch to make the path relative
+    - sonar-scanner -Dsonar.projectName=JSNodeExpress  -Dsonar.exclusions=test/**/*,coverage/**/* -Dsonar.host.url=http://10.1.48.103:9000 -Dsonar.login=admin -Dsonar.password=admin -Dsonar.projectVersion=$CI_BUILD_ID -Dsonar.language=js -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info -Dsonar.projectBaseDir=$PWD -Dsonar.branch=$CI_BUILD_REF_NAME
+  
+ 
+build_push_image:
+    stage: push
+    script:
+    - docker build -t $PROJECT:${CI_COMMIT_SHA:0:8} -f ./Dockerfile-prod .
+    - docker login -u admin  -p "$password" 10.1.48.103:18079
+    - docker tag $PROJECT:${CI_COMMIT_SHA:0:8} 10.1.48.103:18079/$PROJECT:latest
+    - docker tag $PROJECT:${CI_COMMIT_SHA:0:8} 10.1.48.103:18079/$PROJECT:${CI_COMMIT_SHA:0:8}
+    - docker push 10.1.48.103:18079/$PROJECT:${CI_COMMIT_SHA:0:8}
+    - docker push 10.1.48.103:18079/$PROJECT:latest
+
