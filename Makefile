@@ -19,6 +19,7 @@ runDev:
 
 # Preferable to runDev during development, to start / stop the server when wanted
 bash:
+	-docker stop $(PROJECT)
 	-docker rm $(PROJECT)
 	docker run -it --entrypoint=bash \
 	-v $(PWD)/src:/usr/app/src \
