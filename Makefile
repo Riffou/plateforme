@@ -10,6 +10,8 @@ buildProd:
 
 # Start a dev environment with the react project
 runDev:
+	-docker stop $(PROJECT)
+	-docker rm $(PROJECT)
 	docker run -d \
 	-v $(PWD)/src:/usr/app/src \
 	-v $(PWD)/test:/usr/app/test \
@@ -34,6 +36,8 @@ test:
 
 # Start a production image
 runProd:
+	-docker stop $(PROJECT)
+	-docker rm $(PROJECT)
 	docker run -d -p 80:3000 --name $(PROJECT) $(PROJECT):prod
 
 
