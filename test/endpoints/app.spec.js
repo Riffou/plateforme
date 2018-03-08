@@ -1,4 +1,4 @@
-var chai = require('chai');
+/*var chai = require('chai');
 var chaiHttp = require('chai-http');
 //var app = require('../app');
 
@@ -36,4 +36,4 @@ describe('/calcul', function() {
     });
   });
 
-
+*/
