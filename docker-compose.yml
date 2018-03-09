@@ -1,0 +1,23 @@
+version: '3.5'
+
+services:
+
+  server:
+    image: ${PROJECT_NAME}:dev
+    container_name: ${PROJECT_NAME}_server
+    hostname: ${PROJECT_NAME}_server
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    ports:
+      - 80:3000
+    
+  db:
+    image: postgres:10.3
+    container_name: ${PROJECT_NAME}_db
+    hostname: ${PROJECT_NAME}_db
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: solutec
+      POSTGRES_USER: devops

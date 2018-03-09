@@ -23,4 +23,9 @@ router.get('/faq/', function(req, res) {
     res.render('faq.ejs');
 });
 
+router.get('/exemples/:nomExemple', function(req, res) {
+    var exemple = req.params.nomExemple + '.ejs';
+    res.render(exemple);
+});
+
 module.exports = router;
