@@ -42,7 +42,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error.ejs');
+  res.render('error.ejs', {erreurMessage:err.message});
 });
 
 module.exports = app;

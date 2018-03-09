@@ -25,7 +25,12 @@ router.get('/faq/', function(req, res) {
 
 router.get('/exemples/:nomExemple', function(req, res) {
     var exemple = req.params.nomExemple + '.ejs';
-    res.render(exemple);
+    res.render(exemple, {recherche: req.body.article});
+});
+
+router.post('/exemples/:nomExemple', function(req, res) {
+    var exemple = req.params.nomExemple + '.ejs';
+    res.render(exemple, {recherche: req.body.article});
 });
 
 module.exports = router;

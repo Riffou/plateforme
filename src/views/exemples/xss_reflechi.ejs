@@ -1,20 +1,26 @@
-<% include partials/head %>
-<% include partials/header %>
+<body>
+    <div class="container">
+        <br><br>
 
-<div class="container">
-    <br><br>
-    <p>Taper le nom de l'article à rechercher :</p>
-    <input type="text" name="articleRecherche">
-    <input type="submit" value="Rechercher">
+        <!-- <p>Tapez le nom de l'article à rechercher :</p>
+        <input type="text" name="articleRecherche">
+        <input type="submit" value="Rechercher"> -->
 
 
-    <form>
-        <div class="form-group">
-            <label for="exampleInputEmail1">Tapez le nom de l'article à rechercher :</label>
-            <input type="text" class="form-control" id="article" >
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
+        <form method="post">
+            <div class="form-group">
+                <label>Tapez le nom de l'article à rechercher :</label>
+                <input type="text" class="form-control" name="article" >
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
-<% include partials/footer %>
+        <br>
+
+    </div>
+
+    <% if (locals.recherche) { %>
+    Vous avez recherché : <%= recherche %>
+    <%} %>
+
+</body>
