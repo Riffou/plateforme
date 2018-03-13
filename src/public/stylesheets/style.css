@@ -6,3 +6,7 @@
 .table-borderless > thead > tr > th {
   border: none;
 }
+
+.space-left {
+  left: 3px;
+}

@@ -37,7 +37,7 @@ sonarqube:
   image: newtmitch/sonar-scanner:latest
   script:
   #  - sed -i 's|SF:/usr/app/|SF:|g' coverage/lcov.info #ugly patch to make the path relative
-    - sonar-scanner -Dsonar.projectName=plateforme  -Dsonar.exclusions=test/**/*,coverage/**/* -Dsonar.host.url=http://10.1.48.103:9000 -Dsonar.login=admin -Dsonar.password=admin -Dsonar.projectVersion=$CI_BUILD_ID -Dsonar.language=js -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info -Dsonar.projectBaseDir=$PWD -Dsonar.branch=$CI_BUILD_REF_NAME
+    - sonar-scanner -Dsonar.projectName=$PROJECT  -Dsonar.projectKey=$PROJECT   -Dsonar.exclusions=test/**/*,coverage/**/* -Dsonar.host.url=http://10.1.48.103:9000 -Dsonar.login=admin -Dsonar.password=admin -Dsonar.projectVersion=$CI_BUILD_ID -Dsonar.language=js -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info -Dsonar.projectBaseDir=$PWD -Dsonar.branch=$CI_BUILD_REF_NAME
   
  
 build_push_image:
