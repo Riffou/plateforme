@@ -44,7 +44,7 @@ build_push_image:
     stage: push
     script:
     - docker build -t $PROJECT:${CI_COMMIT_SHA:0:8} -f ./Dockerfile-prod .
-    - docker login -u gitlab --password-stdin gitlab 10.1.48.103:18079
+    - docker login -u gitlab -p gitlab 10.1.48.103:18079
     - docker tag $PROJECT:${CI_COMMIT_SHA:0:8} 10.1.48.103:18079/$PROJECT:latest
     - docker tag $PROJECT:${CI_COMMIT_SHA:0:8} 10.1.48.103:18079/$PROJECT:${CI_COMMIT_SHA:0:8}
     - docker push 10.1.48.103:18079/$PROJECT:${CI_COMMIT_SHA:0:8}
