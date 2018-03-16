@@ -7,7 +7,7 @@ router.get('/', function(req, res) {
 });
 
 router.get('/unites/', function(req, res) {
-    res.render('unites.ejs');
+    res.render('menuUnites.ejs');
 });
 
 router.get('/unites/:numeroUnite', function(req, res) {
@@ -16,8 +16,15 @@ router.get('/unites/:numeroUnite', function(req, res) {
 });
 
 router.get('/unites/:numeroUnite/partie/:numeroPartie', function(req, res) {
-    var unite = 'unite' + req.params.numeroUnite + '_' + req.params.numeroPartie + '.ejs';
-    res.render(unite);
+    var cours = 'unite' + req.params.numeroUnite + '_' + req.params.numeroPartie + '.ejs';
+    var precedent, suivant;
+
+    // Check if previous button to navigate between courses is needed
+    if (req.params.numeroPartie == 1) {
+        precedent = false;
+    }
+    // Check if next button to navigate between courses is needed
+    res.render(cours, {precedent: precedent, suivant: suivant});
 });
 
 router.get('/challenges/', function(req, res) {

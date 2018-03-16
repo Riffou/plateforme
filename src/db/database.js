@@ -1,5 +1,5 @@
 var pgp = require('pg-promise')(/*options*/)
-var dbconfig = require('../db/settings.js').settings
+var dbconfig = require('../config/settings.js').settings
 
 
 var db = pgp(dbconfig);
