@@ -6,7 +6,7 @@ var db = pgp(dbconfig);
 
 
 function getTest() {
-    db.any('SELECT * from public.playground', null)
+    db.any('SELECT nomUnites from public.unites', null)
         .then(function(data) {
             console.log(data);
         })

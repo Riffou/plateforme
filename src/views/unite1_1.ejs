@@ -3,15 +3,8 @@
 
 <br>
 <div class="container">
-    <%  %>
-    <button class="btn">
-        <span class="oi oi-chevron-left"></span>
-        Cours précédent
-    </button>
-    <button class="btn float-right">
-        Cours suivant
-        <span class="oi oi-chevron-right space-left"></span>
-    </button>
+    <%- precedent, suivant %>
+
     <br>
     <br>
     <p>Introduction</p>
@@ -40,26 +33,16 @@
         <br> <br>Pour illustrer la faille, j’ai créé une page URL vulnérable aux failles XSS qui simule une barre de recherche.
         <br> <br>Si un utilisateur s’amuse à taper la commande suivante dans la barre de recherche :
     </p>
-
     <br>
     <div class="row">
         <div class="col-sm-4">
-            <button class="btn">
-                <span class="oi oi-chevron-left"></span>
-                Cours précédent
-            </button>
+            <%- precedent %>
         </div>
         <div class="col-sm-4 text-center">
-            <button class="btn">
-                <span class="oi oi-check"></span>
-                J'ai lu ce cours
-            </button>
+            <%- lu %>
         </div>
         <div class="col-sm-4">
-            <button class="btn float-right">
-                Cours suivant
-                <span class="oi oi-chevron-right space-left"></span>
-            </button>
+            <%- suivant %>
         </div>
     </div>
 </div>

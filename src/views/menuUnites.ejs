@@ -5,46 +5,17 @@
   <br><br>
   <div class="container">
     <div class="row">
-
+      <%  for (var i = 0; i < data.length; i++) { %>
       <div class="col-sm-4 mb-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Unité 1</h5>
-            <p class="card-text">Description cours unité 1</p>
-            <a href="unites/1" class="btn btn-dark">Accéder</a>
+            <h5 class="card-title"><%= data[i]['nomunites']%></h5>
+            <p class="card-text">Description cours : <%= data[i]['nomunites']%></p>
+            <a href="unites/<%= i+1 %>" class="btn btn-dark">Accéder</a>
           </div>
         </div>
       </div>
-
-      <div class="col-sm-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Unité 2</h5>
-            <p class="card-text">Description cours unité 2</p>
-            <a href="unites/2" class="btn btn-dark">Accéder</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Unité 3</h5>
-            <p class="card-text">Description cours unité 3</p>
-            <a href="unites/3" class="btn btn-dark">Accéder</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-4 mb-4">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Unité 4</h5>
-            <p class="card-text">Description cours unité 4</p>
-            <a href="unites/4" class="btn btn-dark">Accéder</a>
-          </div>
-        </div>
-      </div>
+      <%}%>
 
     </div>
   </div>

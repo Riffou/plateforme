@@ -8,5 +8,5 @@ var settings = {
 };
 
 module.exports = {
-    settings
+    settings: settings
 }
