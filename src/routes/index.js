@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var menuUnites = require('../controllers/menuUnitesController');
-var menuParties = require('../controllers/menuCoursController');
-var partie = require('../controllers/coursController');
+var menuCours = require('../controllers/menuCoursController');
+var cours = require('../controllers/coursController');
 
 router.get('/', function(req, res) {
     res.render('home.ejs');
@@ -13,11 +13,11 @@ router.get('/unites/', function(req, res) {
 });
 
 router.get('/unites/:numeroUnite', function(req, res) {
-    menuParties.run(req, res);
+    menuCours.run(req, res);
 });
 
-router.get('/unites/:numeroUnite/partie/:numeroPartie', function(req, res) {
-    partie.run(req, res);
+router.get('/unites/:numeroUnite/partie/:numeroCours', function(req, res) {
+    cours.run(req, res);
 });
 
 router.get('/challenges/', function(req, res) {

@@ -1,0 +1,23 @@
+<% include partials/head %>
+<%- include('partials/header', {path: 'cours', unite: numeroUnite, partie: numeroCours}) %>
+
+<br>
+<div class="container">
+    <%- precedent, suivant %>
+    <br><br>
+    <p>Ceci est l'unité <%= numeroUnite %> sous partie <%= numeroCours %></p>
+    <br><br>
+    <div class="row">
+        <div class="col-sm-4">
+            <%- precedent %>
+        </div>
+        <div class="col-sm-4 text-center">
+            <%- lu %>
+        </div>
+        <div class="col-sm-4">
+            <%- suivant %>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>

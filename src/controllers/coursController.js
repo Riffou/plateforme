@@ -1,21 +1,16 @@
+var coursModel = require('../models/cours');
+
 module.exports = {
     run: function(req, res) {
-        var cours = 'unite' + req.params.numeroUnite + '_' + req.params.numeroPartie + '.ejs';
+        var numeroUnite = req.params.numeroUnite;
+        var numeroCours = req.params.numeroCours;
         var precedent = "", suivant = "", lu = "";
 
         // Check if previous button is needed
-        if (req.params.numeroPartie == 2) {
+        if (coursModel.hasPrevious(numeroCours)) {
             precedent = "<button class=\"btn\">\n" +
                 "        <span class=\"oi oi-chevron-left\"></span>\n" +
                 "        Cours précédent\n" +
-                "    </button>";
-        }
-
-        // Check if next button is needed
-        if (req.params.numeroPartie <= 2) {
-            suivant = "<button class=\"btn float-right\">\n" +
-                "        Cours suivant\n" +
-                "        <span class=\"oi oi-chevron-right space-left\"></span>\n" +
                 "    </button>";
         }
 
@@ -25,9 +20,23 @@ module.exports = {
             "        <span class=\"oi oi-check\"></span>\n" +
             "    </button>";
 
-        // render the view
-        res.render(cours, {precedent: precedent,
-                           suivant: suivant,
-                           lu: lu});
+        // Check if next button is needed
+        coursModel.hasNext(numeroUnite, numeroCours, function (data, error) {
+            if (data == true) {
+                console.log("Tu as un suivant !");
+                suivant = "<button class=\"btn float-right\">\n" +
+                    "        Cours suivant\n" +
+                    "        <span class=\"oi oi-chevron-right space-left\"></span>\n" +
+                    "    </button>";
+            }
+            // render the view
+            res.render('cours.ejs', {
+                precedent: precedent,
+                suivant: suivant,
+                lu: lu,
+                numeroUnite: numeroUnite,
+                numeroCours: numeroCours
+            });
+        });
     }
 }

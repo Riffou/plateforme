@@ -1,0 +1,13 @@
+<% include partials/head %>
+<%- include('partials/header', {path: 'unite', unite: numeroUnite}) %>
+
+<div class="container">
+    <br>
+    <br>
+    <%  for (var i = 0; i < data.length; i++) { %>
+        <p><a href="/unites/<%= numeroUnite %>/partie/<%= i+1%>"><%= i+1%>. Sous-partie <%= i+1%></a></p>
+    <% } %>
+    <br>
+</div>
+
+<% include partials/footer %>
