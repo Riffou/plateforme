@@ -35,19 +35,32 @@
             </button>
         </nav>
         <% }
-        else if (path == "cours" && typeof unite != "undefined" && typeof partie != "undefined") { %>
+        else if (path == "cours" && typeof unite != "undefined" && typeof cours != "undefined") { %>
           <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
             <a class="navbar-brand" href="/unites/1">
               <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
             </a>
             <a class="navbar-brand" href="/unites/<%= unite %>">
-              Unité <%= unite %> - Partie <%= partie %>
+              Unité <%= unite %> - Cours <%= cours %>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
           </nav>
         <% }
+        else if (path == "challenge") { %>
+          <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <a class="navbar-brand" href="/challenges">
+              <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
+            </a>
+            <a class="navbar-brand" href="/unites">
+                Challenges
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </nav>
+        <%}
         } %>
 
 </header>

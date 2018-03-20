@@ -1,0 +1,30 @@
+<% include partials/head %>
+<% include partials/header %>
+
+<body>
+<br>
+    <div class="container">
+        <h2>Challenges</h2>
+        <br>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>Nom du challenge</th>
+                    <th>Validé</th>
+                    <th>Solution</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%  for (var i = 0; i < data.length; i++) { %>
+                <tr>
+                    <td><a href="/challenges/<%= data[i].id %>">Challenge <%= i+1 %></a></td>
+                    <td>Oui</td>
+                    <td><a href="#">Voir</a></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+<% include partials/footer %>
