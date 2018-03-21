@@ -1,13 +1,13 @@
 <% include partials/head %>
-<%- include('partials/header', {path: 'unite', unite: idUnite}) %>
+<%- include('partials/header', {path: 'unite', unite: ordreUnite}) %>
 
-<div class="container">
-    <br>
-    <br>
-    <%  for (var i = 0; i < data.length; i++) { %>
-        <p><a href="/unites/<%= idUnite %>/cours/<%= i+1%>"><%= i+1%>. Sous-partie <%= i+1%></a></p>
-    <% } %>
-    <br>
-</div>
+    <div class="container">
+        <br>
+        <br>
+        <%  for (var i = 0; i < data.length; i++) { %>
+            <p><a href="/unites/<%= idUnite %>/<%= data[i].id %>"><%= ordreUnite %>. Sous-partie <%= i+1%></a></p>
+        <% } %>
+        <br>
+    </div>
 
 <% include partials/footer %>

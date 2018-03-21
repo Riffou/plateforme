@@ -1,11 +1,11 @@
 <% include partials/head %>
-<%- include('partials/header', {path: 'cours', unite: idUnite, cours: idCours}) %>
+<%- include('partials/header', {path: 'cours', idUnite: idUnite, ordreUnite: ordreUnite, ordreCours: ordreCours}) %>
 
 <br>
 <div class="container">
     <%- precedent, suivant %>
     <br><br>
-    <p>Ceci est l'unité <%= idUnite %> cours <%= idCours %></p>
+    <p>Ceci est l'unité <%= ordreUnite %> cours <%= ordreCours %></p>
     <br><br>
     <div class="row">
         <div class="col-sm-4">

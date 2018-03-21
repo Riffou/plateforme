@@ -9,7 +9,7 @@ module.exports = {
                 res.render('menuUnites.ejs', {data: data});
             }
             else {
-                res.render('error.ejs', {message : error, error:error});
+                res.render('error.ejs', {message: error, error: error});
             }
         });
     }

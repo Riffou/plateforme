@@ -1,6 +1,57 @@
 <% include partials/head %>
-<%- include('partials/header', {path: 'challenge'}) %>
+<%- include('partials/header', {path: 'challenge', ordreChallenge: ordreChallenge}) %>
 
+<div class="container">
+    <br>
+    <h3>Description</h3>
+    <p> Ceci est la description du challenge <%= ordreChallenge %></p>
+    <a class="btn btn-secondary" target="_blank" href="http://localhost:3001/<%= idChallenge %>" role="button">Démarrer le challenge</a>
 
+    <br><br><br>
+
+    <h3>Validation</h3>
+    <form action="/validation/<%= idChallenge %>" method="post">
+        <div class="form-group">
+            <label for="flagInput">Entrez le flag de validation</label>
+            <input type="text" class="form-control" name="flagInput" placeholder="flag">
+        </div>
+        <button type="submit" class="btn btn-secondary">Envoyer</button>
+    </form>
+
+    <br>
+    <% if (typeof valide != "undefined") {
+        if (valide) { %>
+        <div class="alert alert-success" role="alert">
+            Bravo vous avez trouvé le flag !
+        </div>
+        <%}
+        else { %>
+        <div class="alert alert-danger" role="alert">
+            Ce n'est pas le bon flag, accrochez-vous !
+        </div>
+        <%}
+    }%>
+
+    <br>
+    <h3>Solution</h3>
+    <p> Voir la solution du challenge <%= ordreChallenge %></p>
+    <a class="btn btn-secondary" id="voirSolution" href="#" role="button">Voir la solution</a>
+
+    <br>
+    <br>
+    <div style="visibility: hidden;" id="divSolution">
+        <p>Ceci est la solution du challenge <%= ordreChallenge %> !</p>
+    </div>
+
+    <script>
+        $("document").ready(function () {
+            $('#voirSolution').click(function () {
+                $('#divSolution').css("visibility", "visible");
+                console.log("bonjour");
+            })
+        })
+    </script>
+
+</div>
 
 <% include partials/footer %>

@@ -19,48 +19,49 @@
     </div>
   </nav>
 
-
-      <%
-      if (typeof path != "undefined") {
-        if (path == "unite") { %>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-          <a class="navbar-brand" href="/unites">
-            <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
-          </a>
-            <a class="navbar-brand" href="/unites">
-                Unité <%= unite %>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-        </nav>
-        <% }
-        else if (path == "cours" && typeof unite != "undefined" && typeof cours != "undefined") { %>
+      <%if (typeof path != "undefined") {
+          if (path == "unite") { %>
           <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-            <a class="navbar-brand" href="/unites/1">
+            <a class="navbar-brand" href="/unites">
               <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
             </a>
-            <a class="navbar-brand" href="/unites/<%= unite %>">
-              Unité <%= unite %> - Cours <%= cours %>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
+              <a class="navbar-brand" href="/unites">
+                  Unité <%= ordreUnite %>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
           </nav>
-        <% }
-        else if (path == "challenge") { %>
-          <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
-            <a class="navbar-brand" href="/challenges">
-              <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
-            </a>
-            <a class="navbar-brand" href="/unites">
-                Challenges
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          </nav>
-        <%}
+          <% }
+          else if (path == "cours"
+                  && typeof idUnite != "undefined"
+                  && typeof ordreUnite != "undefined"
+                  && typeof ordreCours != "undefined") { %>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+              <a class="navbar-brand" href="/unites/<%= idUnite %>">
+                <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
+              </a>
+              <a class="navbar-brand" href="/unites/<%= idUnite %>">
+                Unité <%= ordreUnite %> - Cours <%= ordreCours %>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </nav>
+          <% }
+          else if (path == "challenge"
+                  && typeof ordreChallenge != "undefined") { %>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+              <a class="navbar-brand" href="/challenges">
+                <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
+              </a>
+              <a class="navbar-brand" href="/challenges">
+                  Challenge <%= ordreChallenge %>
+              </a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            </nav>
+          <%}
         } %>
-
 </header>

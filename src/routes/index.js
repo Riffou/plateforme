@@ -5,6 +5,7 @@ var menuCours = require('../controllers/menuCoursController');
 var cours = require('../controllers/coursController');
 var menuChallenges = require('../controllers/menuChallengesController');
 var challenge = require('../controllers/challengeController');
+var validation = require('../controllers/validationController');
 
 router.get('/', function(req, res) {
     res.render('home.ejs');
@@ -18,7 +19,7 @@ router.get('/unites/:idUnite', function(req, res) {
     menuCours.run(req, res);
 });
 
-router.get('/unites/:idUnite/cours/:idCours', function(req, res) {
+router.get('/unites/:idUnite/:idCours', function(req, res) {
     cours.run(req, res);
 });
 
@@ -30,6 +31,10 @@ router.get('/challenges/', function(req, res) {
 router.get('/challenges/:idChallenge', function(req, res) {
 
     challenge.run(req, res);
+});
+
+router.post('/validation/:idChallenge', function(req, res) {
+     validation.run(req, res);
 });
 
 router.get('/faq/', function(req, res) {
