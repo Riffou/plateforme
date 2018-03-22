@@ -27,10 +27,10 @@ INSERT INTO Unites (nom, ordre) VALUES ('Unité 2', 2);
 INSERT INTO Unites (nom, ordre) VALUES ('Unité 3', 3);
 INSERT INTO Unites (nom, ordre) VALUES ('Unité 4', 4);
 
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (5, 'Partie 1', 1);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (5, 'Partie 2', 2);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (5, 'Partie 3', 3);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (5, 'Partie 4', 4);
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (1, 'Partie 1', 1);
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (1, 'Partie 2', 2);
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (1, 'Partie 3', 3);
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (1, 'Partie 4', 4);
 
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 1', 1);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 2', 2);
@@ -45,9 +45,9 @@ INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 3', 3);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 4', 4);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 5', 5);
 
-INSERT INTO Challenges (nom, ordre) VALUES ('Challenge 1', 1);
-INSERT INTO Challenges (nom, ordre) VALUES ('Challenge 2', 2);
-INSERT INTO Challenges (nom, ordre) VALUES ('Challenge 3', 3);
+INSERT INTO Challenges (nom, ordre, flag) VALUES ('Challenge 1', 1, 'easypass');
+INSERT INTO Challenges (nom, ordre, flag) VALUES ('Challenge 2', 2, 'middlepass');
+INSERT INTO Challenges (nom, ordre, flag) VALUES ('Challenge 3', 3, 'hardpass');
 
 ALTER TABLE nom_table ADD nom_colonne TYPE;
 UPDATE nom_table SET nom_colonne = value1 WHERE condition;
