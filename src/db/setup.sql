@@ -49,5 +49,3 @@ INSERT INTO Challenges (nom, ordre, flag) VALUES ('Challenge 1', 1, 'easypass');
 INSERT INTO Challenges (nom, ordre, flag) VALUES ('Challenge 2', 2, 'middlepass');
 INSERT INTO Challenges (nom, ordre, flag) VALUES ('Challenge 3', 3, 'hardpass');
 
-ALTER TABLE nom_table ADD nom_colonne TYPE;
-UPDATE nom_table SET nom_colonne = value1 WHERE condition;

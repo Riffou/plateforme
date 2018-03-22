@@ -15,9 +15,12 @@ services:
       - db
           
   db:
-    image: postgres:10.3
+    image: ${PROJECT_NAME}_db:dev
     container_name: ${PROJECT_NAME}_db
     hostname: ${PROJECT_NAME}_db
+    build:
+      context: .
+      dockerfile: Dockerfile-sql
     ports:
       - 5432:5432
     environment:
