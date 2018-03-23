@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node ./src/bin/www",
+    "preprod": "node ./src/bin/www preprod",
     "prod": "node ./src/bin/www",
     "test": "istanbul cover _mocha test/**/*.spec.js",
     "testlegacy": "nyc --reporter=lcov --reporter=text-lcov npm run mocha",

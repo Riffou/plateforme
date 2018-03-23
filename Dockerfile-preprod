@@ -10,6 +10,4 @@ EXPOSE 3000
 RUN npm config set proxy http://172.17.0.1:3128 && npm install
 COPY src/db/setup.sql /docker-entrypoint-initdb.d/
 
-ENTRYPOINT ["npm", "run", "start"]
-CMD["0", "preprod"]
-
+ENTRYPOINT ["npm", "run", "preprod"]
