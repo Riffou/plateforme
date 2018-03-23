@@ -5,7 +5,7 @@
     <br>
     <h3>Description</h3>
     <p> Ceci est la description du challenge <%= ordreChallenge %></p>
-    <a class="btn btn-secondary" target="_blank" href="http://localhost:3001/<%= idChallenge %>" role="button">Démarrer le challenge</a>
+    <a class="btn btn-secondary" target="_blank" href="http://<%= host %>/<%= idChallenge %>" role="button">Démarrer le challenge</a>
 
     <br><br><br>
 
@@ -47,7 +47,6 @@
         $("document").ready(function () {
             $('#voirSolution').click(function () {
                 $('#divSolution').css("visibility", "visible");
-                console.log("bonjour");
             })
         })
     </script>
