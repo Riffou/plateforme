@@ -15,6 +15,10 @@ buildProd:
 runDev:
 	docker-compose -f "docker-compose.yml" -f "docker-compose.dev.yml" up
 
+# Start a dev environment with the react project
+runPreprod:
+    docker-compose -f "docker-compose.yml" -f "docker-compose.preprod.yml" up
+
 runTest:
 	docker-compose -f "docker-compose.yml" up -d
 
