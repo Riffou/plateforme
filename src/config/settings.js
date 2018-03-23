@@ -4,6 +4,11 @@ var config = {
         hostURL: 'localhost:3000',
         hostURLChallenges: 'localhost:3001'
    },
+    localDocker: {
+        mode:  'local',
+        hostURL: 'localhost:3000',
+        hostURLChallenges: 'localhost:3001'
+    },
     preprod: {
         mode:  'preprod',
         hostURL: '10.1.48.112:3000',
@@ -18,6 +23,13 @@ var configdb = {
         database: 'ensimag',
         user: 'ensimag',
         password: 'ensimagdb'
+    },
+    localDocker: {
+        host: 'plateforme_db',
+        port: 5432,
+        database: 'devops',
+        user: 'devops',
+        password: 'solutec'
     },
     preprod: {
         host: 'plateforme_db',

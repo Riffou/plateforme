@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "node ./src/bin/www",
+    "start": "node ./src/bin/www localDocker",
     "preprod": "node ./src/bin/www preprod",
     "prod": "node ./src/bin/www",
     "test": "istanbul cover _mocha test/**/*.spec.js",
