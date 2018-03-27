@@ -1,0 +1,70 @@
+<% include partials/head %>
+<% include partials/header %>
+
+<body>
+    <div class="container">
+        <br><br>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-6">
+                <img src="images/securite.png" class="img-responsive" alt="securite" style="width: 100%;">
+                <br><br>
+                <p>Veuillez vous connecter ou vous inscrire pour accéder à la plateforme de formation à la sécurité web.</p>
+            </div>
+        </div>
+        <form method="post">
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-6">
+                    <input type="text" class="form-control" name="identifiantInput" id="identifiantInput"
+                    <% if (typeof identifiant != "undefined") { %>
+                       value="<%= identifiant %>"
+                    <% }
+                    else { %>
+                       placeholder="Identifiant"
+                    <% } %>
+                    >
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-6">
+                    <input type="password" class="form-control" name="passwordInput" id="passwordInput" placeholder="Mot de passe">
+                </div>
+            </div>
+
+            <!-- Alerte JS -->
+            <div class="row justify-content-center" id="champManquant" style="display: none">
+                <div class="col-sm-6">
+                    <div class="alert alert-danger" role="alert">
+                        Veuillez renseigner tous les champs !
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerte serveur -->
+            <% if (typeof erreur != "undefined") {%>
+            <div class="row justify-content-center" id="erreurServeur">
+                <div class="col-sm-6">
+                    <div class="alert alert-danger" role="alert">
+                        <%= erreur %>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+            <br>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-dark" id="connexion">Se connecter</button>
+            </div>
+            <br>
+            <div class="row justify-content-center">
+                <div class="col-2" style="text-align: center">
+                    <a href="inscription">Créer un compte</a>
+                </div>
+                <div class="col-2" style="text-align: center">
+                    <a href="oublie">Mot de passe oublié ?</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/js/connexion.js"></script>
+</body>
+<% include partials/footer %>

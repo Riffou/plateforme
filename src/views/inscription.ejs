@@ -1,0 +1,76 @@
+<% include partials/head %>
+<% include partials/header %>
+
+<body>
+    <div class="container">
+        <br><br>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-6">
+                <h3>Création de compte</h3>
+            </div>
+        </div>
+        <form method="post">
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-6">
+                    <input type="email" class="form-control" id="emailInput" name="emailInput" aria-describedby="emailHelp"
+                        <% if (typeof email != "undefined") { %>
+                           value="<%= email %>"
+                        <% }
+                        else { %>
+                           placeholder="Email"
+                        <% } %>
+                    >
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-6">
+                    <input type="text" class="form-control" id="identifiantInput" name="identifiantInput"
+                        <% if (typeof identifiant != "undefined") { %>
+                            value="<%= identifiant %>"
+                        <% }
+                        else { %>
+                            placeholder="Identifiant"
+                        <% } %>>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-6">
+                    <input type="password" class="form-control" id="passwordInput" name="passwordInput" placeholder="Mot de passe">
+                </div>
+            </div>
+
+            <!-- Alerte JS -->
+            <div class="row justify-content-center" id="champManquant" style="display: none">
+                <div class="col-sm-6">
+                    <div class="alert alert-danger" role="alert">
+                        Veuillez renseigner tous les champs !
+                    </div>
+                </div>
+            </div>
+
+            <!-- Alerte serveur -->
+            <% if (typeof erreur != "undefined") {%>
+            <div class="row justify-content-center" id="erreurServeur">
+                <div class="col-sm-6">
+                    <div class="alert alert-danger" role="alert">
+                        <%= erreur %>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+
+            <div class="row justify-content-center">
+                <button class="btn btn-dark" id="inscription">S'inscrire</button>
+            </div>
+            <br>
+
+            <div class="row justify-content-center">
+                <div style="text-align: center">
+                    <a href="connexion">Déjà un compte ?</a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="/js/inscription.js"></script>
+</body>
+<% include partials/footer %>

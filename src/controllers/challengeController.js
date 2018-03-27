@@ -12,5 +12,27 @@ module.exports = {
                 res.render('error.ejs', {message: error, error: error});
             }
         });
+    },
+    isFlagCorrect: function(req, res) {
+        var flag = req.body.flag;
+        var idChallenge = req.params.idChallenge;
+        challengesModel.validateFlag(idChallenge, flag, function (isFlagBoolean, error) {
+            if (error == null) {
+                if (isFlagBoolean) {
+                    res.status(200).json({
+                        flag: true
+                    });
+                }
+                else {
+                    res.status(200).json({
+                        flag: false
+                    });
+                }
+            }
+            else {
+                console.log("Erreur : " + error);
+                res.status(500).send(error);
+            }
+        });
     }
 }

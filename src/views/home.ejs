@@ -1,9 +1,14 @@
 <% include partials/head %>
-<% include partials/header %>
+<%- include('partials/header', {connected: 'ok'}) %>
 
 <body>
   <br><br>
   <div class="container">
+    <% if (typeof message != "undefined") { %>
+    <div class="alert alert-success" role="alert">
+      <%= message %>
+    </div>
+    <% } %>
     <div class="row">
       <div class="col-sm">
         <!-- Card Cours -->

@@ -5,39 +5,65 @@ var menuCours = require('../controllers/menuCoursController');
 var cours = require('../controllers/coursController');
 var menuChallenges = require('../controllers/menuChallengesController');
 var challenge = require('../controllers/challengeController');
-var validation = require('../controllers/validationController');
+var utilisateurs = require('../controllers/utilisateurController');
 
-router.get('/', function(req, res) {
-    res.render('home.ejs');
+function requireLogin (req, res, next) {
+    if (!req.user) {
+        res.redirect('/connexion');
+    } else {
+        next();
+    }
+};
+
+router.get('/', requireLogin, function(req, res) {
+    var inscription = req.query.inscription;
+    var connexion = req.query.connexion;
+;    if (inscription == "ok") {
+        res.render('home.ejs', {message: "Votre compte a bien été créé, bienvenue !"});
+    }
+    else if (connexion == "ok") {
+        res.render('home.ejs', {message: "Connexion réussie !"});
+    }
+    else {
+        res.render('home.ejs');
+    }
 });
 
-router.get('/unites/', function(req, res) {
-    menuUnites.run(req, res);
+router.get('/inscription/', function(req, res) {
+   res.render('inscription.ejs');
 });
 
-router.get('/unites/:idUnite', function(req, res) {
-    menuCours.run(req, res);
+router.post('/inscription/', utilisateurs.runInscription);
+
+router.get('/connexion/',  function(req, res) {
+    res.render('connexion.ejs');
 });
 
-router.get('/unites/:idUnite/:idCours', function(req, res) {
-    cours.run(req, res);
+router.post('/connexion/', utilisateurs.runConnexion);
+
+router.get('/deconnexion', requireLogin, function(req, res) {
+    req.session.destroy();
+    res.redirect('/');
 });
 
-router.get('/challenges/', function(req, res) {
-
-    menuChallenges.run(req, res);
+router.get('/oublie/', function(req, res) {
+    res.render('motDePasseOublie.ejs');
 });
 
-router.get('/challenges/:idChallenge', function(req, res) {
+router.get('/unites/', requireLogin, menuUnites.run);
 
-    challenge.run(req, res);
-});
+router.get('/unites/:idUnite', requireLogin, menuCours.run);
 
-router.post('/validation/:idChallenge', function(req, res) {
-     validation.run(req, res);
-});
+router.get('/unites/:idUnite/:idCours', requireLogin, cours.run);
 
-router.get('/faq/', function(req, res) {
+router.get('/challenges/', requireLogin, menuChallenges.run);
+
+router.get('/challenges/:idChallenge', requireLogin, challenge.run);
+
+// AJAX
+router.post('/api/challenges/:idChallenge', requireLogin, challenge.isFlagCorrect);
+
+router.get('/faq/', requireLogin, function(req, res) {
     res.render('faq.ejs');
 });
 

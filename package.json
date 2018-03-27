@@ -29,6 +29,8 @@
     "serve-favicon": "~2.4.5",
     "ejs": "~2.5.7",
     "pg" : "^7.4.1",
-    "pg-promise":"^8.2.2"
+    "pg-promise":"^8.2.2",
+    "bcrypt": "^1.0.3",
+    "express-session": "^1.15.6"
   }
 }
