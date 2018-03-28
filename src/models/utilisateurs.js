@@ -42,7 +42,7 @@ module.exports = {
     userExists: function(pseudo, callback) {
         db.one('SELECT COUNT(pseudo) FROM Utilisateurs WHERE pseudo = $1', [pseudo])
             .then(function(data) {
-                if (data.count == 1){
+                if (data.count == 1) {
                     callback(true, null);
                 }
                 else {
@@ -79,6 +79,24 @@ module.exports = {
             })
             .catch(function(error) {
                 callback(null, error);
+            })
+    },
+    getEmail: function(pseudo, callback) {
+        db.one('SELECT email FROM utilisateurs WHERE pseudo = $1', [pseudo])
+            .then(function(data) {
+                callback(data.email, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    changeMDP: function(pseudo, mdp, callback) {
+        db.none('UPDATE utilisateurs SET mdp = $1 WHERE pseudo = $2', [mdp, pseudo])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
             })
     }
 }

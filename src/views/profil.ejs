@@ -1,5 +1,89 @@
 <% include partials/head %>
-<%- include('partials/header', {connected: 'ok'}) %>
+<%- include('partials/header', {path: 'profil', connected: 'ok'}) %>
 <body>
+<br><br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <h5 class="border-bottom border-gray pb-2 mb-0">Mes informations</h5>
+            <br>
+            <label for="email">Adresse email :</label>
+            <p><%= email %></p>
+            <br>
+            <label for="email">Identifiant :</label>
+            <p><%= identifiant %></p>
+        </div>
+    </div>
+
+    <br>
+
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <h5 class="border-bottom border-gray pb-2 mb-0">Changer mon mot de passe</h5>
+        </div>
+    </div>
+    <br>
+    <form method="post">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <input type="password" class="form-control" id="ancienMDP" name="ancienMDP" placeholder="Ancien mot de passe">
+                <br>
+                <input type="password" class="form-control" id="nouveauMDP" name="nouveauMDP" placeholder="Nouveau mot de passe">
+                <br>
+                <input type="password" class="form-control" id="confirmationNouveauMDP" placeholder="Confirmation nouveau mot de passe">
+                <br>
+            </div>
+        </div>
+
+        <!-- Alerte JS -->
+        <div class="row justify-content-center" id="champManquant" style="display: none">
+            <div class="col-sm-6">
+                <div class="alert alert-danger" role="alert">
+                    Veuillez renseigner tous les champs !
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerte JS -->
+        <div class="row justify-content-center" id="champNonCorrespondant" style="display: none">
+            <div class="col-sm-6">
+                <div class="alert alert-danger" role="alert">
+                    Les mots de passe ne correspondent pas !
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Alerte serveur -->
+        <% if (typeof erreur != "undefined") {%>
+        <div class="row justify-content-center" id="erreurServeur">
+            <div class="col-sm-6">
+                <div class="alert alert-danger" role="alert">
+                    <%= erreur %>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+        <!-- Success serveur -->
+        <% if (typeof message != "undefined") { %>
+        <div class="row justify-content-center" id="erreurServeur">
+            <div class="col-sm-6">
+                <div class="alert alert-success" role="alert" id="alertSuccess">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <%= message %>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <button type="submit" class="btn btn-dark" id="envoiNouveauMDP">Confirmer</button>
+             </div>
+        </div>
+    </form>
+</div>
+<script src="/js/profil.js"></script>
 </body>
 <% include partials/footer %>

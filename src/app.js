@@ -40,7 +40,7 @@ app.use(
 
 app.use(function(req, res, next) {
     if (req.session && req.session.user) {
-        utilisateurModel.userExists(req.session.user, function(existsBoolean, error) {
+        utilisateurModel.userExists(req.session.user.identifiant, function(existsBoolean, error) {
             if (error == null) {
                 if (existsBoolean) {
                     req.user = req.session.user;

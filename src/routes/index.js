@@ -61,6 +61,9 @@ router.get('/oublie/', isAlreadyLogged, function(req, res) {
 
 router.post('/oublie/', isAlreadyLogged, utilisateurs.reinitialiseMDP);
 
+router.post('/profil/', requireLogin, utilisateurs.changeMDP);
+
+
 router.get('/profil/', requireLogin, utilisateurs.runProfil);
 
 router.get('/unites/', requireLogin, menuUnites.run);
