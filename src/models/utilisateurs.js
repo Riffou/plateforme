@@ -53,6 +53,20 @@ module.exports = {
                 callback(null, error)
             })
     },
+    emailExists: function(email, callback) {
+        db.one('SELECT COUNT(email) FROM Utilisateurs WHERE email = $1', [email])
+            .then(function(data) {
+                if (data.count == 1){
+                    callback(true, null);
+                }
+                else {
+                    callback(false, null);
+                }
+            })
+            .catch(function(error) {
+                callback(null, error)
+            })
+    },
     isPasswordCorrect: function(pseudo, passwordHash, callback) {
         db.one('SELECT mdp FROM Utilisateurs WHERE pseudo = $1', [pseudo])
             .then(function(data) {

@@ -6,7 +6,7 @@ function sha256(password, salt){
     hash.update(password);
     var value = hash.digest('hex');
     return value;
-};
+}
 
 function saltHashPassword(userpassword) {
     var salt = 'saltest';
@@ -88,6 +88,42 @@ module.exports = {
                else {
                    res.render('error.ejs', {message: error, error: error});
                }
+            });
+        }
+        else {
+            res.render('connexion.ejs', {
+                erreur: "Veuillez remplir tous les champs !",
+                identifiant: identifiant
+            });
+        }
+    },
+    runProfil: function(req, res) {
+        res.render('profil.ejs');
+    },
+    reinitialiseMDP: function(req, res) {
+        var email = req.body.emailInput;
+        if (email != "") {
+            utilisateursModel.emailExists(email, function (existsBoolean, error) {
+                if (error == null) {
+                    if (existsBoolean) {
+                        
+                    }
+                    else {
+                        res.render('motDePasseOublie.ejs', {
+                            erreur: "L'adresse email n'est pas enregistrée dans notre base de données, essayez avec une autre mail.",
+                            email: email
+                        });
+                    }
+                }
+                else {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+            });
+        }
+        else {
+            res.render('motDePasseOublie.ejs', {
+                erreur: "Veuillez remplir tous les champs !",
+                email: email
             });
         }
     }

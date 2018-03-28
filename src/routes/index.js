@@ -13,7 +13,16 @@ function requireLogin (req, res, next) {
     } else {
         next();
     }
-};
+}
+
+function isAlreadyLogged(req, res, next) {
+    if (req.user) {
+        res.redirect('/');
+    }
+    else {
+        next();
+    }
+}
 
 router.get('/', requireLogin, function(req, res) {
     var inscription = req.query.inscription;
@@ -29,26 +38,30 @@ router.get('/', requireLogin, function(req, res) {
     }
 });
 
-router.get('/inscription/', function(req, res) {
+router.get('/inscription/', isAlreadyLogged, function(req, res) {
    res.render('inscription.ejs');
 });
 
-router.post('/inscription/', utilisateurs.runInscription);
+router.post('/inscription/', isAlreadyLogged, utilisateurs.runInscription);
 
-router.get('/connexion/',  function(req, res) {
+router.get('/connexion/', isAlreadyLogged, function(req, res) {
     res.render('connexion.ejs');
 });
 
-router.post('/connexion/', utilisateurs.runConnexion);
+router.post('/connexion/', isAlreadyLogged, utilisateurs.runConnexion);
 
 router.get('/deconnexion', requireLogin, function(req, res) {
     req.session.destroy();
     res.redirect('/');
 });
 
-router.get('/oublie/', function(req, res) {
+router.get('/oublie/', isAlreadyLogged, function(req, res) {
     res.render('motDePasseOublie.ejs');
 });
+
+router.post('/oublie/', isAlreadyLogged, utilisateurs.reinitialiseMDP);
+
+router.get('/profil/', requireLogin, utilisateurs.runProfil);
 
 router.get('/unites/', requireLogin, menuUnites.run);
 

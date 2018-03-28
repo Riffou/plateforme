@@ -6,6 +6,7 @@
   <div class="container">
     <% if (typeof message != "undefined") { %>
     <div class="alert alert-success" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <%= message %>
     </div>
     <% } %>
@@ -34,6 +35,7 @@
       </div>
     </div>
   </div>
+  <script src="/js/alert.js"></script>
 </body>
 
 <% include partials/footer %>

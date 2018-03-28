@@ -39,13 +39,12 @@ app.use(
 }));
 
 app.use(function(req, res, next) {
-    console.log('session');
     if (req.session && req.session.user) {
         utilisateurModel.userExists(req.session.user, function(existsBoolean, error) {
             if (error == null) {
                 if (existsBoolean) {
                     req.user = req.session.user;
-                    //  delete req.user.password; // delete the password from the session
+                    //  delete req.user.password; 
                 }
                 next();
             }
