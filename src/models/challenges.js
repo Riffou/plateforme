@@ -33,5 +33,14 @@ module.exports = {
             .catch(function (error) {
                 callback(null, error);
             })
+    },
+    getSolutionOfChallenge: function(idChallenge, callback) {
+        db.one('SELECT solution FROM Challenges WHERE id = $1', [idChallenge])
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error)
+            })
     }
 }

@@ -77,7 +77,11 @@ router.get('/challenges/', requireLogin, menuChallenges.run);
 router.get('/challenges/:idChallenge', requireLogin, challenge.run);
 
 // AJAX
-router.post('/api/challenges/:idChallenge', requireLogin, challenge.isFlagCorrect);
+router.post('/api/challenges/:idChallenge', requireLogin, challenge.checkFlagAndInsert);
+
+router.post('/api/challenges/success/:idChallenge', requireLogin, challenge.isChallengeValidated);
+
+router.post('/api/challenges/solution/:idChallenge', requireLogin, challenge.validadateAndGetSolutionOfChallenge);
 
 router.get('/faq/', requireLogin, function(req, res) {
     res.render('faq.ejs');

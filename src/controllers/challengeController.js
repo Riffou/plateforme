@@ -1,4 +1,5 @@
 var challengesModel = require('../models/challenges');
+var utilisateursModel = require('../models/utilisateurs');
 var config = require('../config/settings').config();
 
 module.exports = {
@@ -13,14 +14,40 @@ module.exports = {
             }
         });
     },
-    isFlagCorrect: function(req, res) {
+    checkFlagAndInsert: function(req, res) {
         var flag = req.body.flag;
         var idChallenge = req.params.idChallenge;
+        var identifiant = req.user.identifiant;
         challengesModel.validateFlag(idChallenge, flag, function (isFlagBoolean, error) {
             if (error == null) {
                 if (isFlagBoolean) {
-                    res.status(200).json({
-                        flag: true
+                    // Le flag est le bon, on vérifie si c'est la première fois que l'utilisateur le valide, si oui on dit que l'utilisateur l'a validé à la bdd
+                    utilisateursModel.isChallengeValidated(identifiant, idChallenge, function(booleanValidated, error) {
+                        if (error == null) {
+                            if (booleanValidated) {
+                                res.status(200).json({
+                                    flag: true
+                                });
+                            }
+                            else {
+                                utilisateursModel.validateChallenge(identifiant, idChallenge, function(error) {
+                                    if (error == null) {
+                                        res.status(200).json({
+                                            flag: true
+                                        });
+                                    }
+                                    else {
+                                        console.log("Erreur : " + error);
+                                        res.status(500).send(error);
+                                    }
+                                })
+                            }
+                        }
+                        else {
+                            console.log("Erreur : " + error);
+                            res.status(500).send(error);
+                        }
+
                     });
                 }
                 else {
@@ -34,5 +61,57 @@ module.exports = {
                 res.status(500).send(error);
             }
         });
+    },
+    isChallengeValidated: function(req, res) {
+        var idChallenge = req.params.idChallenge;
+        var identifiant = req.user.identifiant;
+        utilisateursModel.isChallengeValidated(identifiant, idChallenge, function(booleanValidated, error) {
+            if (error == null) {
+                if (booleanValidated) {
+                    res.status(200).json({
+                        challengeValidated: true
+                    });
+                }
+                else {
+                    res.status(200).json({
+                        challengeValidated: false
+                    });
+                }
+            }
+            else {
+                console.log("Erreur : " + error);
+                res.status(500).send(error);
+            }
+        })
+    },
+    validadateAndGetSolutionOfChallenge: function(req, res) {
+        var idChallenge = req.params.idChallenge;
+        var identifiant = req.user.identifiant;
+        utilisateursModel.isChallengeValidated(identifiant, idChallenge, function(booleanValidated, error) {
+            if (error == null) {
+                if (booleanValidated) {
+                    challengesModel.getSolutionOfChallenge(idChallenge, function(data, error) {
+                        if (error == null) {
+                            res.status(200).json({
+                                solution: data.solution
+                            });
+                        }
+                        else {
+                            console.log("Erreur : " + error);
+                            res.status(500).send(error);
+                        }
+                    })
+                }
+                else {
+                    res.status(200).json({
+                        erreur: "Il faut d'abord valider le challenge pour avoir accès à la solution !"
+                    });
+                }
+            }
+            else {
+                console.log("Erreur : " + error);
+                res.status(500).send(error);
+            }
+        })
     }
 }

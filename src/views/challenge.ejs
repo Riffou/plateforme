@@ -31,13 +31,23 @@
         <br>
         <h3>Solution</h3>
         <p> Voir la solution du challenge <%= ordreChallenge %></p>
-        <a class="btn btn-secondary" id="voirSolution" href="#" role="button">Voir la solution</a>
+        <button class="btn btn-secondary" id="voirSolution" role="button">Voir la solution</button>
 
         <br>
         <br>
-        <div style="display: none;" id="divSolution">
-            <p>Ceci est la solution du challenge <%= ordreChallenge %> !</p>
+
+        <!-- Alerte JS -->
+        <div id="pasDroitAcces" style="display: none">
+            <div class="alert alert-danger" role="alert">
+                Il faut d'abord valider le challenge pour avoir accès à la solution !
+            </div>
         </div>
+
+
+        <div style="display: none;" id="divSolution">
+            <p id="solutionText"></p>
+        </div>
+
 
         <p style="display: none;" id="pId" ><%= idChallenge %></p>
         <script src="/js/challenge.js"></script>

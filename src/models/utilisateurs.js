@@ -98,5 +98,30 @@ module.exports = {
             .catch(function(error) {
                 callback(error);
             })
+    },
+    isChallengeValidated: function(pseudo, idChallenge, callback) {
+        db.one('SELECT COUNT(pseudo) FROM suiviUtilisateursChallenges WHERE idChallenge = $1 AND pseudo = $2', [idChallenge, pseudo])
+            .then(function (data) {
+                if (data.count == 1) {
+                    callback(true, null);
+                }
+                else {
+                    callback(false, null);
+                }
+            })
+            .catch(function (error) {
+                callback(null, error)
+            })
+    },
+    validateChallenge: function(pseudo, idChallenge, callback) {
+        db.none('INSERT INTO suiviUtilisateursChallenges (pseudo, idChallenge) VALUES ($1, $2)', [pseudo, idChallenge])
+            .then(function () {
+                    callback(null);
+                }
+            )
+            .catch(function(error) {
+                callback(error);
+            })
     }
+
 }

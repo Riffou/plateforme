@@ -1,24 +1,40 @@
 var nodemailer = require('nodemailer');
 
+/*
 var transporter = nodemailer.createTransport({
-    service: 'lab-solutec.fr',
+    /*
+    service: 'mail.solutec.fr',
+    port:465,
     auth: {
-        user: 'nicolas.riffard@lab-solutec.fr',
+        user: 'nriffard',
         pass: 'mL1Q6q20'
+    },
+    secure:true,
+    tls:{
+        rejectUnauthorized:false
+    },
+    proxy: 'http://localhost:3128/'
+    */
+
+
+/*
+var transport = nodemailer.createTransport({
+    service: "hotmail",
+    auth: {
+        user: "nicolas.riffard@hotmail.fr",
     },
     proxy: 'http://localhost:3128/'
 });
 
 var mailOptions = {
-    from: 'nicolas.riffard@lab-solutec.fr',
+    from: 'nicolas.riffard@hotmail.fr',
     to: 'nicolas.riffard@lab-solutec.fr',
     subject: 'Sending Email using Node.js',
     text: 'That was easy!'
 };
 
 console.log("Sending mail");
-transporter.sendMail(mailOptions, function(error, info){
-    console.log("test");
+transport.sendMail(mailOptions, function(error, info){
     if (error) {
         console.log(error);
     } else {
