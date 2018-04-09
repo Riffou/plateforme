@@ -122,6 +122,47 @@ module.exports = {
             .catch(function(error) {
                 callback(error);
             })
+    },
+    getArrayChallengeValidated: function(identifiant, callback) {
+        db.any('SELECT idChallenge FROM suiviUtilisateursChallenges WHERE pseudo = $1', [identifiant])
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getArrayCoursRead: function(identifiant, callback) {
+        db.any('SELECT idCours FROM suiviUtilisateursCours WHERE pseudo = $1', [identifiant])
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    isLessonValidated: function(idCours, identifiant, callback) {
+        db.one('SELECT COUNT(pseudo) FROM suiviUtilisateursCours WHERE idCours = $1 AND pseudo = $2', [idCours, identifiant])
+            .then(function (data) {
+                if (data.count == 1) {
+                    callback(true, null);
+                }
+                else {
+                    callback(false, null);
+                }
+            })
+            .catch(function (error) {
+                callback(null, error)
+            })
+    },
+    validateLesson: function(idCours, identifiant, callback) {
+        db.none('INSERT INTO suiviUtilisateursCours (pseudo, idCours) VALUES ($1, $2)', [identifiant, idCours])
+            .then(function () {
+                    callback(null);
+                }
+            )
+            .catch(function(error) {
+                callback(error);
+            })
     }
-
 }

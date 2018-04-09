@@ -11,15 +11,34 @@
                 <tr>
                     <th>Nom du challenge</th>
                     <th>Validé</th>
-                    <!-- <th>Solution</th> -->
+                    <th>Difficulté</th>
                 </tr>
             </thead>
             <tbody>
                 <%  for (var i = 0; i < data.length; i++) { %>
                 <tr>
                     <td><a href="/challenges/<%= data[i].id %>">Challenge <%= i+1 %></a></td>
-                    <td>Oui</td>
-                    <!-- <td><a href="#">Voir</a></td> -->
+                    <td><% if (challengeValideArray.indexOf(data[i].id) > -1) { %>
+                            <img class="checkIconsMenuChallenges" src="/images/green-check-circle.png" alt="" width="20px">
+                        <%}
+                        else {%>
+                            <img class="checkIconsMenuChallenges" src="/images/red-cross-circle.png" alt="" width="20px">
+                        <%}%>
+                    <td>
+                        <% switch (data[i].difficulte) {
+                            case 0:%>
+                            Facile
+                        <% break;
+                        case 1: %>
+                            Moyen
+                        <% break;
+                        case 2: %>
+                            Difficile
+                        <% break;
+                        default: %>
+                            Erreur
+                        <% } %>
+                    </td>
                 </tr>
                 <% } %>
             </tbody>

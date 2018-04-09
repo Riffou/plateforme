@@ -2,7 +2,7 @@ var db = require("../models/base").db;
 
 module.exports = {
     getMenu: function (callback) {
-        db.any('SELECT nom, id FROM public.challenges ORDER BY ordre', null)
+        db.any('SELECT nom, id, difficulte FROM public.challenges ORDER BY ordre', null)
             .then(function (data) {
                 callback(data, null);
             })

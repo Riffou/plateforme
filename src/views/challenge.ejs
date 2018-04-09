@@ -4,7 +4,12 @@
 <body>
     <div class="container">
         <br>
-        <h3>Description</h3>
+        <h3>Description  <% if (validate) { %>
+            <img src="/images/green-check-circle.png" alt="" width="20px">
+            <%}
+            else {%>
+            <img src="/images/red-cross-circle.png" alt="" width="20px">
+            <%}%></h3>
         <p> Ceci est la description du challenge <%= ordreChallenge %></p>
         <a class="btn btn-secondary" target="_blank" href="http://<%= host %>/<%= idChallenge %>" role="button">Démarrer le challenge</a>
 

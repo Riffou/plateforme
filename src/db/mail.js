@@ -1,4 +1,74 @@
-var nodemailer = require('nodemailer');
+const EWS = require('node-ews');
+
+// exchange server connection info
+const ewsConfig = {
+    username: 'nicolas.riffard@lab-solutec.fr',
+    password: 'mL1Q6q20',
+    host: 'https://mail.solutec.fr'
+};
+
+// initialize node-ews
+const ews = new EWS(ewsConfig);
+
+// define ews api function
+const ewsFunction = 'CreateItem';
+
+// define ews api function args
+const ewsArgs = {
+    "attributes" : {
+        "MessageDisposition" : "SendAndSaveCopy"
+    },
+    "SavedItemFolderId": {
+        "DistinguishedFolderId": {
+            "attributes": {
+                "Id": "sentitems"
+            }
+        }
+    },
+    "Items" : {
+        "Message" : {
+            "ItemClass": "IPM.Note",
+            "Subject" : "Test EWS Email",
+            "Body" : {
+                "attributes": {
+                    "BodyType" : "Text"
+                },
+                "$value": "This is a test email"
+            },
+            "ToRecipients" : {
+                "Mailbox" : {
+                    "EmailAddress" : "nicolas.riffard@lab-solutec.fr"
+                }
+            },
+            "IsRead": "false"
+        }
+    }
+};
+
+// query ews, print resulting JSON to console
+ews.run(ewsFunction, ewsArgs)
+    .then(result => {
+    console.log(JSON.stringify(result));
+})
+.catch(err => {
+    console.log(err.stack);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//var nodemailer = require('nodemailer');
 
 /*
 var transporter = nodemailer.createTransport({
@@ -7,7 +77,7 @@ var transporter = nodemailer.createTransport({
     port:465,
     auth: {
         user: 'nriffard',
-        pass: 'mL1Q6q20'
+        pass: ''
     },
     secure:true,
     tls:{

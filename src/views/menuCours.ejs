@@ -4,9 +4,44 @@
     <div class="container">
         <br>
         <br>
-        <%  for (var i = 0; i < data.length; i++) { %>
-            <p><a href="/unites/<%= idUnite %>/<%= data[i].id %>"><%= ordreUnite %>. Sous-partie <%= i+1%></a></p>
-        <% } %>
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>Nom du cours</th>
+                    <th>Lu</th>
+                    <th>Difficulté</th>
+                </tr>
+            </thead>
+            <tbody>
+            <%  for (var i = 0; i < data.length; i++) { %>
+            <tr>
+                <td><a href="/unites/<%= idUnite %>/<%= data[i].id %>"><%= ordreUnite %>. Sous-partie <%= i+1%></a></td>
+                <td><% if (coursReadArray.indexOf(data[i].id) > -1) { %>
+                        <img src="/images/green-check-circle.png" alt="" width="20px">
+                    <%}
+                    else {%>
+                        <img src="/images/red-cross-circle.png" alt="" width="20px">
+                    <%}%>
+                </td>
+                <td>
+                    <% switch (data[i].difficulte) {
+                    case 0:%>
+                    Facile
+                    <% break;
+                    case 1: %>
+                    Moyen
+                    <% break;
+                    case 2: %>
+                    Difficile
+                    <% break;
+                        default: %>
+                    Erreur
+                    <% } %>
+                </td>
+            </tr>
+            <% } %>
+            </tbody>
+        </table>
         <br>
     </div>
 

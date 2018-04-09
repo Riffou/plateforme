@@ -11,9 +11,6 @@ $("document").ready(function () {
             contentType: 'application/x-www-form-urlencoded',
             success: function (data) {
                 // afficher solution
-                console.log(data);
-                console.log(data.solution);
-                console.log(data.erreur);
                 if (data.solution) {
                     $('#solutionText').text(data.solution);
                     $('#divSolution').show();

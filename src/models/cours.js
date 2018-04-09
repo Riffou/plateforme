@@ -11,7 +11,16 @@ module.exports = {
             })
     },
     getMenuCours: function(idUnite, callback) {
-        db.any('SELECT nom, id from public.cours WHERE idunite = $1 ORDER BY ordre', [idUnite])
+        db.any('SELECT nom, id, difficulte from public.cours WHERE idunite = $1 ORDER BY ordre', [idUnite])
+            .then(function (data) {
+                callback(data, null);
+            })
+            .catch(function (error) {
+                callback(null, error);
+            })
+    },
+    getIdCoursAndIdUnites: function(callback) {
+        db.any('SELECT id, idunite from public.cours')
             .then(function (data) {
                 callback(data, null);
             })
@@ -105,10 +114,10 @@ module.exports = {
     },
     getIdFromOrdreCours: function(idUnite, ordreCours, callback) {
         db.one('SELECT id FROM cours WHERE ordre = $1 AND idUnite = $2', [ordreCours, idUnite])
-            .then(function(data) {
+            .then(function (data) {
                 callback(data.id, null);
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 callback(null, error);
             })
     }

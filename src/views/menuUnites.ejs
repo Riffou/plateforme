@@ -9,7 +9,14 @@
       <div class="col-sm-4 mb-4">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"><%= data[i].nom %></h5>
+            <h5 class="card-title"><%= data[i].nom %>
+              <% if (arrayUnitesLus[data[i].id]) { %>
+            <img class="checkIconsMenuUnites" src="/images/green-check-circle.png" alt="" width="20px">
+              <%}
+              else {%>
+            <img class="checkIconsMenuUnites" src="/images/red-cross-circle.png" alt="" width="20px">
+              <%}%>
+            </h5>
             <p class="card-text">Description cours : <%= data[i].nom %></p>
             <a href="unites/<%= data[i].id %>" class="btn btn-dark">Accéder</a>
           </div>

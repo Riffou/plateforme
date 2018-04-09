@@ -1,4 +1,5 @@
 var coursModel = require('../models/cours');
+var utilisateurModel = require('../models/utilisateurs');
 
 module.exports = {
     run: function (req, res) {
@@ -8,7 +9,24 @@ module.exports = {
             if (error == null) {
                 coursModel.getOrdreFromIdUnite(idUnite, function(ordreUnite, error) {
                     if (error == null) {
-                        res.render('menuCours.ejs', {data: data, idUnite: idUnite, ordreUnite: ordreUnite});
+                        utilisateurModel.getArrayCoursRead(req.user.identifiant, function(coursRead, error) {
+                            if (error == null) {
+                                // convert json in a array
+                                var coursReadArray = [];
+                                for (var i = 0; i < coursRead.length; i++) {
+                                    coursReadArray.push(coursRead[i].idcours);
+                                }
+                                res.render('menuCours.ejs', {
+                                    data: data,
+                                    idUnite: idUnite,
+                                    ordreUnite: ordreUnite,
+                                    coursReadArray: coursReadArray
+                                });
+                            }
+                            else {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                        });
                     }
                     else {
                         res.render('error.ejs', {message: error, error: error});

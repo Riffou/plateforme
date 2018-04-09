@@ -7,7 +7,13 @@ var menuChallenges = require('../controllers/menuChallengesController');
 var challenge = require('../controllers/challengeController');
 var utilisateurs = require('../controllers/utilisateurController');
 
+
 function requireLogin (req, res, next) {
+    // Lignes à retirer si connexion pas automatique
+    req.user = {};
+    req.user.identifiant = "nicolas";
+    req.user.email = "nicolas@hotmail.fr";
+
     if (!req.user) {
         res.redirect('/connexion');
     } else {
@@ -63,6 +69,7 @@ router.post('/oublie/', isAlreadyLogged, utilisateurs.reinitialiseMDP);
 
 router.post('/profil/', requireLogin, utilisateurs.changeMDP);
 
+router.post('/unites/:idUnite/:idCours', requireLogin, cours.validateReadLesson);
 
 router.get('/profil/', requireLogin, utilisateurs.runProfil);
 
@@ -81,7 +88,8 @@ router.post('/api/challenges/:idChallenge', requireLogin, challenge.checkFlagAnd
 
 router.post('/api/challenges/success/:idChallenge', requireLogin, challenge.isChallengeValidated);
 
-router.post('/api/challenges/solution/:idChallenge', requireLogin, challenge.validadateAndGetSolutionOfChallenge);
+router.post('/api/challenges/solution/:idChallenge', requireLogin, challenge.validateAndGetSolutionOfChallenge);
+
 
 router.get('/faq/', requireLogin, function(req, res) {
     res.render('faq.ejs');
