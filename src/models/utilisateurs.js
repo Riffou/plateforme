@@ -164,5 +164,60 @@ module.exports = {
             .catch(function(error) {
                 callback(error);
             })
+    },
+    setToken: function(resetToken, expiryDate, email, callback) {
+        db.none('UPDATE utilisateurs SET resetToken = $1, expiryDate = $2 WHERE email = $3', [resetToken, expiryDate, email])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    checkToken: function(token, email, callback) {
+        db.one('SELECT COUNT(email) FROM Utilisateurs WHERE resetToken = $1 AND email = $2', [token, email])
+            .then(function(data) {
+                if (data.count == 1) {
+                    // Check expiry date
+                    db.one('SELECT expiryDate FROM Utilisateurs WHERE email = $1', [email])
+                        .then(function(data) {
+                            if (Date.now() < data.expirydate) {
+                                callback(true, null);
+                            }
+                            else {
+                                callback(false, null);
+                            }
+                        })
+                        .catch(function(error) {
+                            callback(null, error);
+                        })
+                }
+                else {
+                    callback(false, null);
+                }
+            })
+            .catch(function (error) {
+                callback(null, error)
+            })
+    },
+    getPseudoFromEmail: function(email, callback) {
+        db.any('SELECT pseudo FROM Utilisateurs WHERE email = $1', [email])
+            .then(function (data) {
+                console.log(data);
+                console.log(data[0].pseudo);
+                callback(data[0].pseudo, null);
+            })
+            .catch(function (error) {
+                callback(null, error);
+            })
+    },
+    cleanResetPassword: function(pseudo, callback) {
+        db.none('UPDATE utilisateurs SET resetToken = null, expiryDate = null WHERE pseudo = $1', [pseudo])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
     }
 }

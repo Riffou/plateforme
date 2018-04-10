@@ -1,0 +1,53 @@
+<% include partials/head %>
+<% include partials/header %>
+<body>
+<br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <h5 class="border-bottom border-gray pb-2 mb-0">Réinitialisation de mot de passe</h5>
+            </div>
+        </div>
+        <% if (typeof email != "undefined") {%>
+        <br>
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <p><%= email %></p>
+                </div>
+            </div>
+            <form method="post">
+                <div class="row justify-content-center">
+                    <div class="col-sm-6">
+                        <input type="password" class="form-control" id="resetMDP" name="resetMDP" placeholder="Nouveau mot de passe">
+                        <br>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6">
+                        <button type="submit" class="btn btn-dark" id="reinitialiseMDP">Confirmer</button>
+                    </div>
+                </div>
+            </form>
+            <%} %>
+            <% if (typeof message != "undefined") {%>
+                <br>
+                <div class="row justify-content-center">
+                    <div class="col-sm-6">
+                        <p><%= message %></p>
+                    </div>
+                </div>
+            <%} %>
+
+        <!-- Alerte JS -->
+        <br>
+        <div class="row justify-content-center" id="champManquant" style="display: none">
+            <div class="col-sm-6">
+                <div class="alert alert-danger" role="alert">
+                    Veuillez renseigner le champ de mot de passe !
+                </div>
+            </div>
+        </div>
+        <script src="/js/reinitialiseMDP.js"></script>
+    </div>
+</body>
+<% include partials/footer %>

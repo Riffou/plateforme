@@ -10,6 +10,18 @@
                 <p>Veuillez vous connecter ou vous inscrire pour accéder à la plateforme de formation à la sécurité web.</p>
             </div>
         </div>
+
+        <!-- Alerte serveur -->
+        <% if (typeof message != "undefined") {%>
+            <div class="row justify-content-center">
+                <div class="col-sm-6">
+                    <div class="alert alert-info" role="alert">
+                        <%= message %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+
         <form method="post">
             <div class="row justify-content-center">
                 <div class="form-group col-sm-6">

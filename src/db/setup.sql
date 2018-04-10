@@ -29,6 +29,8 @@ CREATE TABLE Utilisateurs (
    pseudo VARCHAR(50) NOT NULL,
    email VARCHAR(50) NOT NULL UNIQUE,
    mdp VARCHAR(100) NOT NULL,
+   resetToken VARCHAR(100),
+   expiryDate BIGINT,
    PRIMARY KEY(pseudo)
 );
 

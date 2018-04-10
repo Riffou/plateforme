@@ -10,9 +10,9 @@ var utilisateurs = require('../controllers/utilisateurController');
 
 function requireLogin (req, res, next) {
     // Lignes à retirer si connexion pas automatique
-    req.user = {};
-    req.user.identifiant = "nicolas";
-    req.user.email = "nicolas@hotmail.fr";
+    //req.user = {};
+    //req.user.identifiant = "nicolas";
+    //req.user.email = "nicolas@hotmail.fr";
 
     if (!req.user) {
         res.redirect('/connexion');
@@ -62,10 +62,22 @@ router.get('/deconnexion', requireLogin, function(req, res) {
 });
 
 router.get('/oublie/', isAlreadyLogged, function(req, res) {
-    res.render('motDePasseOublie.ejs');
+    if (typeof req.query.token != "undefined" && typeof req.query.email != "undefined") {
+        utilisateurs.verifieToken(req, res);
+    }
+    else {
+        res.render('motDePasseOublie.ejs');
+    }
 });
 
-router.post('/oublie/', isAlreadyLogged, utilisateurs.reinitialiseMDP);
+router.post('/oublie/', isAlreadyLogged, function(req, res) {
+    if (typeof req.query.token != "undefined" && typeof req.query.email != "undefined") {
+        utilisateurs.setNouveauMDP(req, res);
+    }
+    else {
+        utilisateurs.reinitialiseMDP(req, res);
+    }
+});
 
 router.post('/profil/', requireLogin, utilisateurs.changeMDP);
 

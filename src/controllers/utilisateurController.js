@@ -14,6 +14,29 @@ function saltHashPassword(userpassword) {
     return passwordHash;
 }
 
+function resetPassword(res, email) {
+    // Génération token + date expiration
+    crypto.randomBytes(20, function(err, buffer) {
+        var token = buffer.toString('hex');
+        console.log(token);
+        // Ajout d'une heure
+        var expiryDate = Date.now() + 1000*(3600);
+        // Insertion BDD
+        utilisateursModel.setToken(token, expiryDate, email, function(error) {
+            if (error == null) {
+                // ENVOI EMAIL AVEC LIEN
+                // Affichage nouvelle vue
+                res.render('connexion.ejs', {message: 'Un email vous a été envoyé pour réinitialiser votre mot de passe.'});
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
+        })
+    });
+
+
+}
+
 module.exports = {
     runInscription: function (req, res) {
         var identifiant = req.body.identifiantInput;
@@ -117,11 +140,11 @@ module.exports = {
             utilisateursModel.emailExists(email, function (existsBoolean, error) {
                 if (error == null) {
                     if (existsBoolean) {
-                        
+                        resetPassword(res, email);
                     }
                     else {
                         res.render('motDePasseOublie.ejs', {
-                            erreur: "L'adresse email n'est pas enregistrée dans notre base de données, essayez avec une autre mail.",
+                            erreur: "L'adresse email n'est pas enregistrée dans notre base de données, essayez avec une autre adresse mail.",
                             email: email
                         });
                     }
@@ -169,5 +192,69 @@ module.exports = {
                 erreur: "Veuillez remplir tous les champs !", email: req.user.email, identifiant: req.user.identifiant
             });
         }
+    },
+    verifieToken: function(req, res) {
+        var token = req.query.token;
+        var email = req.query.email;
+        utilisateursModel.checkToken(token, email, function(checkBoolean, error) {
+           if (error == null) {
+               // Le token est valide
+               if (checkBoolean) {
+                   res.render('reinitialiseMDP.ejs', {email: email});
+               }
+               // Le token n'est pas valide ou la date a expiré ou l'email n'est pas bon
+               else {
+                   res.render('reinitialiseMDP.ejs', {message: 'Il y a eu un problème pour la réinitialisation de votre mot de passe, merci de refaire la procédure de réinitialisation pour accéder à votre compte.'});
+               }
+           }
+           else {
+               res.render('error.ejs', {message: error, error: error});
+           }
+        });
+    },
+    setNouveauMDP: function(req, res) {
+        var token = req.query.token;
+        var email = req.query.email;
+        var mdp = req.body.resetMDP;
+        utilisateursModel.checkToken(token, email, function(checkBoolean, error) {
+            if (error == null) {
+                // Le token est valide, on réinitialise le MDP
+                if (checkBoolean) {
+                    if (mdp != "") {
+                        utilisateursModel.getPseudoFromEmail(email, function(pseudo, error) {
+                           if (error == null) {
+                               utilisateursModel.changeMDP(pseudo, saltHashPassword(mdp), function (error) {
+                                   if (error == null) {
+                                       utilisateursModel.cleanResetPassword(pseudo, function(error) {
+                                          if (error == null) {
+                                              res.render('confirmationReinitialisation.ejs', {
+                                                  message: "Le mot de passe a bien été changé."
+                                              });
+                                          }
+                                          else {
+                                              res.render('error.ejs', {message: error, error: error});
+                                          }
+                                       });
+                                   }
+                                   else {
+                                       res.render('error.ejs', {message: error, error: error});
+                                   }
+                               })
+                           }
+                           else {
+                               res.render('error.ejs', {message: error, error: error});
+                           }
+                        });
+                    }
+                }
+                // Le token n'est pas valide ou la date a expiré ou l'email n'est pas bon
+                else {
+                    res.render('reinitialiseMDP.ejs', {message: 'Il y a eu un problème pour la réinitialisation de votre mot de passe, merci de refaire la procédure de réinitialisation pour accéder à votre compte.'});
+                }
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
+        });
     }
 }
