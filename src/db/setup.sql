@@ -55,10 +55,10 @@ INSERT INTO Unites (nom, ordre) VALUES ('Unité 2', 2);
 INSERT INTO Unites (nom, ordre) VALUES ('Unité 3', 3);
 INSERT INTO Unites (nom, ordre) VALUES ('Unité 4', 4);
 
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (5, 'Partie 1', 1, 0);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (5, 'Partie 2', 2, 1);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (5, 'Partie 3', 3, 1);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (5, 'Partie 4', 4, 2);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 1', 1, 0);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 2', 2, 1);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 3', 3, 1);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 4', 4, 2);
 
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 1', 1);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 2', 2);
@@ -83,10 +83,10 @@ INSERT INTO Utilisateurs (pseudo, mdp, email) VALUES ('nicolas', '1f0826184880fe
 INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 2);
 INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 3);
 INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 7);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 18);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 19);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 20);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 21);
+INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 1);
+INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 10);
+INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 11);
+INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 13);
 
 
 INSERT INTO SuiviUtilisateursChallenges(pseudo, idChallenge) VALUES ('nico', 2);
