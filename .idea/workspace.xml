@@ -40,8 +40,8 @@
       <file leaf-file-name="Makefile" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Makefile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="438">
-              <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+            <state relative-caret-position="420">
+              <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -227,6 +227,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -313,7 +326,7 @@
       <workItem from="1522396623996" duration="1054000" />
       <workItem from="1523002596860" duration="18828000" />
       <workItem from="1523258976340" duration="13184000" />
-      <workItem from="1523345743280" duration="529000" />
+      <workItem from="1523345743280" duration="779000" />
     </task>
     <task id="LOCAL-00001" summary="Test de commit par WebStorm">
       <created>1520518116546</created>
@@ -504,11 +517,25 @@
       <option name="project" value="LOCAL" />
       <updated>1523345824843</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="modificiation makeFile pour clean">
+      <created>1523346282213</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1523346282213</updated>
+    </task>
+    <task id="LOCAL-00029" summary="logo check">
+      <created>1523346367543</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1523346367543</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274765000" />
+    <option name="totallyTimeSpent" value="275015000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1922" height="915" extended-state="6" />
@@ -562,7 +589,9 @@
     <MESSAGE value="Ajout utilisateurs" />
     <MESSAGE value="Ajout utilisateurs et mail" />
     <MESSAGE value="Suivi Utilisateurs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Suivi Utilisateurs" />
+    <MESSAGE value="modificiation makeFile pour clean" />
+    <MESSAGE value="logo check" />
+    <option name="LAST_COMMIT_MESSAGE" value="logo check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -915,8 +944,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Makefile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="438">
-          <caret line="49" column="0" lean-forward="true" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+        <state relative-caret-position="420">
+          <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
           <folding />
         </state>
       </provider>
