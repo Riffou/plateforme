@@ -54,7 +54,8 @@ down:
 	-docker-compose -f "docker-compose.yml" down
 
 # Remove every containers and images (the '-' is to say : "ignore errors")
-clean: 
+clean:
+    -docker-compose -f "docker-compose.yml" -f "docker-compose.preprod.yml" down --rmi 'all'
 	-docker-compose -f "docker-compose.yml" -f "docker-compose.prod.yml" down --rmi 'all'
 	-docker-compose -f "docker-compose.yml" down --rmi 'all'
 
