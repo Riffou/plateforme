@@ -51,7 +51,12 @@ router.get('/inscription/', isAlreadyLogged, function(req, res) {
 router.post('/inscription/', isAlreadyLogged, utilisateurs.runInscription);
 
 router.get('/connexion/', isAlreadyLogged, function(req, res) {
-    res.render('connexion.ejs');
+    if (req.query.message == '1') {
+        res.render('connexion.ejs', {message: 'Un email vous a été envoyé pour la réinitialisation de votre mot de passe.'})
+    }
+    else {
+        res.render('connexion.ejs');
+    }
 });
 
 router.post('/connexion/', isAlreadyLogged, utilisateurs.runConnexion);

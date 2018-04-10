@@ -26,7 +26,7 @@ function resetPassword(res, email) {
             if (error == null) {
                 // ENVOI EMAIL AVEC LIEN
                 // Affichage nouvelle vue
-                res.render('connexion.ejs', {message: 'Un email vous a été envoyé pour réinitialiser votre mot de passe.'});
+                res.redirect('/connexion?message=1');
             }
             else {
                 res.render('error.ejs', {message: error, error: error});
