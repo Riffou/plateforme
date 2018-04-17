@@ -8,9 +8,9 @@ module.exports = {
         var identifiant = req.user.identifiant;
         challengesModel.getOrdreFromId(idChallenge, function(ordreChallenge, error) {
             if (error == null) {
-                utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(booleanValidated, error) {
+                utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(validatedBoolean, error) {
                    if (error == null) {
-                       res.render('challenge.ejs', {idChallenge: idChallenge, ordreChallenge: ordreChallenge, host: config.hostURLChallenges, validate:booleanValidated});
+                       res.render('challenge.ejs', {idChallenge: idChallenge, ordreChallenge: ordreChallenge, host: config.hostURLChallenges, validate:validatedBoolean});
                    }
                    else {
                        res.render('error.ejs', {message: error, error: error});
@@ -26,13 +26,13 @@ module.exports = {
         var flag = req.body.flag;
         var idChallenge = req.params.idChallenge;
         var identifiant = req.user.identifiant;
-        challengesModel.validateFlag(idChallenge, flag, function (isFlagBoolean, error) {
+        challengesModel.validateFlag(idChallenge, flag, function (flagBoolean, error) {
             if (error == null) {
-                if (isFlagBoolean) {
+                if (flagBoolean) {
                     // Le flag est le bon, on vérifie si c'est la première fois que l'utilisateur le valide, si oui on dit que l'utilisateur l'a validé à la bdd
-                    utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(booleanValidated, error) {
+                    utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(validatedBoolean, error) {
                         if (error == null) {
-                            if (booleanValidated) {
+                            if (validatedBoolean) {
                                 res.status(200).json({
                                     flag: true
                                 });
@@ -73,9 +73,9 @@ module.exports = {
     isChallengeValidated: function(req, res) {
         var idChallenge = req.params.idChallenge;
         var identifiant = req.user.identifiant;
-        utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(booleanValidated, error) {
+        utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(validatedBoolean, error) {
             if (error == null) {
-                if (booleanValidated) {
+                if (validatedBoolean) {
                     res.status(200).json({
                         challengeValidated: true
                     });
@@ -95,9 +95,9 @@ module.exports = {
     validateAndGetSolutionOfChallenge: function(req, res) {
         var idChallenge = req.params.idChallenge;
         var identifiant = req.user.identifiant;
-        utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(booleanValidated, error) {
+        utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(validatedBoolean, error) {
             if (error == null) {
-                if (booleanValidated) {
+                if (validatedBoolean) {
                     challengesModel.getSolutionOfChallenge(idChallenge, function(data, error) {
                         if (error == null) {
                             res.status(200).json({

@@ -26,29 +26,29 @@ CREATE TABLE Challenges (
 );
 
 CREATE TABLE Utilisateurs (
-   pseudo VARCHAR(50) NOT NULL,
+   identifiant VARCHAR(50) NOT NULL,
    email VARCHAR(50) NOT NULL UNIQUE,
    mdp VARCHAR(100) NOT NULL,
    resetToken VARCHAR(100),
    expiryDate BIGINT,
-   PRIMARY KEY(pseudo)
+   PRIMARY KEY(identifiant)
 );
 
 CREATE TABLE SuiviUtilisateursCours (
     id SERIAL NOT NULL CHECK (id >= 0),
-    pseudo VARCHAR(50) NOT NULL,
+    identifiant VARCHAR(50) NOT NULL,
     idCours INT NOT NULL CHECK (idCours >= 0),
     PRIMARY KEY(id),
-    FOREIGN KEY(pseudo) REFERENCES Utilisateurs(pseudo),
+    FOREIGN KEY(identifiant) REFERENCES Utilisateurs(identifiant),
     FOREIGN KEY (idCours) REFERENCES Cours(id)
 );
 
 CREATE TABLE SuiviUtilisateursChallenges (
     id SERIAL NOT NULL CHECK (id >= 0),
-    pseudo VARCHAR(50) NOT NULL,
+    identifiant VARCHAR(50) NOT NULL,
     idChallenge INT NOT NULL CHECK (idChallenge >= 0),
     PRIMARY KEY(id),
-    FOREIGN KEY(pseudo) REFERENCES Utilisateurs(pseudo),
+    FOREIGN KEY(identifiant) REFERENCES Utilisateurs(identifiant),
     FOREIGN KEY (idChallenge) REFERENCES Challenges(id)
 );
 
@@ -79,18 +79,18 @@ INSERT INTO Challenges (nom, ordre, flag, solution, difficulte) VALUES ('Challen
 INSERT INTO Challenges (nom, ordre, flag, solution, difficulte) VALUES ('Challenge 2', 2, 'middlepass', 'Ceci est la solution du challenge 2', 1);
 INSERT INTO Challenges (nom, ordre, flag, solution, difficulte) VALUES ('Challenge 3', 3, 'hardpass', 'Ceci est la solution du challenge 3', 2);
 
-INSERT INTO Utilisateurs (pseudo, mdp, email) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr');
-INSERT INTO Utilisateurs (pseudo, mdp, email) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr');
+INSERT INTO Utilisateurs (identifiant, mdp, email) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr');
+INSERT INTO Utilisateurs (identifiant, mdp, email) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr');
 
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 2);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 3);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 7);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 1);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 10);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 11);
-INSERT INTO SuiviUtilisateursCours(pseudo, idCours) VALUES ('nico', 13);
+INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 2);
+INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 3);
+INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 7);
+INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 1);
+INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 10);
+INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 11);
+INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 13);
 
 
-INSERT INTO SuiviUtilisateursChallenges(pseudo, idChallenge) VALUES ('nico', 2);
-INSERT INTO SuiviUtilisateursChallenges(pseudo, idChallenge) VALUES ('nico', 3);
-INSERT INTO SuiviUtilisateursChallenges(pseudo, idChallenge) VALUES ('nicolas', 2);
+INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nico', 2);
+INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nico', 3);
+INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nicolas', 2);

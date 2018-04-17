@@ -33,8 +33,6 @@ function resetPassword(res, email) {
             }
         })
     });
-
-
 }
 
 module.exports = {
@@ -47,9 +45,9 @@ module.exports = {
             utilisateursModel.isEmailAvailable(email, function (emailBoolean, error) {
                 if (error == null) {
                     if (emailBoolean) {
-                        utilisateursModel.isPseudoAvailable(identifiant, function (pseudoBoolean, error) {
+                        utilisateursModel.isIdentifiantAvailable(identifiant, function (identifiantBoolean, error) {
                             if (error == null) {
-                                if (pseudoBoolean) {
+                                if (identifiantBoolean) {
                                     utilisateursModel.inscription(email, identifiant, saltHashPassword(password), function (error) {
                                         if (error == null) {
                                             req.session.user = {};
@@ -134,33 +132,6 @@ module.exports = {
     runProfil: function(req, res) {
         res.render('profil.ejs', {email: req.user.email, identifiant: req.user.identifiant});
     },
-    reinitialiseMDP: function(req, res) {
-        var email = req.body.emailInput;
-        if (email != "") {
-            utilisateursModel.emailExists(email, function (existsBoolean, error) {
-                if (error == null) {
-                    if (existsBoolean) {
-                        resetPassword(res, email);
-                    }
-                    else {
-                        res.render('motDePasseOublie.ejs', {
-                            erreur: "L'adresse email n'est pas enregistrée dans notre base de données, essayez avec une autre adresse mail.",
-                            email: email
-                        });
-                    }
-                }
-                else {
-                    res.render('error.ejs', {message: error, error: error});
-                }
-            });
-        }
-        else {
-            res.render('motDePasseOublie.ejs', {
-                erreur: "Veuillez remplir tous les champs !",
-                email: email
-            });
-        }
-    },
     changeMDP: function(req, res) {
         var ancienMDP = req.body.ancienMDP;
         var nouveauMDP = req.body.nouveauMDP;
@@ -193,6 +164,33 @@ module.exports = {
             });
         }
     },
+    reinitialiseMDP: function(req, res) {
+        var email = req.body.emailInput;
+        if (email != "") {
+            utilisateursModel.emailExists(email, function (existsBoolean, error) {
+                if (error == null) {
+                    if (existsBoolean) {
+                        resetPassword(res, email);
+                    }
+                    else {
+                        res.render('motDePasseOublie.ejs', {
+                            erreur: "L'adresse email n'est pas enregistrée dans notre base de données, essayez avec une autre adresse mail.",
+                            email: email
+                        });
+                    }
+                }
+                else {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+            });
+        }
+        else {
+            res.render('motDePasseOublie.ejs', {
+                erreur: "Veuillez remplir tous les champs !",
+                email: email
+            });
+        }
+    },
     verifieToken: function(req, res) {
         var token = req.query.token;
         var email = req.query.email;
@@ -216,35 +214,38 @@ module.exports = {
         var token = req.query.token;
         var email = req.query.email;
         var mdp = req.body.resetMDP;
-        utilisateursModel.checkToken(token, email, function(checkBoolean, error) {
+        utilisateursModel.checkToken(token, email, function (checkBoolean, error) {
             if (error == null) {
                 // Le token est valide, on réinitialise le MDP
                 if (checkBoolean) {
                     if (mdp != "") {
-                        utilisateursModel.getPseudoFromEmail(email, function(pseudo, error) {
-                           if (error == null) {
-                               utilisateursModel.changeMDP(pseudo, saltHashPassword(mdp), function (error) {
-                                   if (error == null) {
-                                       utilisateursModel.cleanResetPassword(pseudo, function(error) {
-                                          if (error == null) {
-                                              res.render('confirmationReinitialisation.ejs', {
-                                                  message: "Le mot de passe a bien été changé."
-                                              });
-                                          }
-                                          else {
-                                              res.render('error.ejs', {message: error, error: error});
-                                          }
-                                       });
-                                   }
-                                   else {
-                                       res.render('error.ejs', {message: error, error: error});
-                                   }
-                               })
-                           }
-                           else {
-                               res.render('error.ejs', {message: error, error: error});
-                           }
+                        utilisateursModel.getIdentifiantFromEmail(email, function (identifiant, error) {
+                            if (error == null) {
+                                utilisateursModel.changeMDP(identifiant, saltHashPassword(mdp), function (error) {
+                                    if (error == null) {
+                                        utilisateursModel.cleanResetPassword(identifiant, function (error) {
+                                            if (error == null) {
+                                                res.render('confirmationReinitialisation.ejs', {
+                                                    message: "Le mot de passe a bien été changé."
+                                                });
+                                            }
+                                            else {
+                                                res.render('error.ejs', {message: error, error: error});
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        res.render('error.ejs', {message: error, error: error});
+                                    }
+                                })
+                            }
+                            else {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
                         });
+                    }
+                    else {
+                        res.render('reinitialiseMDP.ejs', {message: 'Merci de renseigner un mot de passe.'});
                     }
                 }
                 // Le token n'est pas valide ou la date a expiré ou l'email n'est pas bon

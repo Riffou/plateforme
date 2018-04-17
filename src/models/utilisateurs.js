@@ -15,8 +15,8 @@ module.exports = {
                 callback(null, error);
             })
     },
-    isPseudoAvailable: function(pseudo, callback) {
-        db.one('SELECT COUNT(pseudo) FROM utilisateurs WHERE pseudo = $1', [pseudo])
+    isIdentifiantAvailable: function(identifiant, callback) {
+        db.one('SELECT COUNT(identifiant) FROM utilisateurs WHERE identifiant = $1', [identifiant])
             .then(function(data) {
                 if (data.count == 0) {
                     callback(true, null);
@@ -29,8 +29,8 @@ module.exports = {
                 callback(null, error);
             })
     },
-    inscription: function(email, pseudo, passwordHash, callback) {
-        db.none('INSERT INTO utilisateurs (pseudo, email, mdp) VALUES ($1, $2, $3)', [pseudo, email, passwordHash])
+    inscription: function(email, identifiant, passwordHash, callback) {
+        db.none('INSERT INTO utilisateurs (identifiant, email, mdp) VALUES ($1, $2, $3)', [identifiant, email, passwordHash])
             .then(function () {
                     callback(null);
                 }
@@ -39,8 +39,8 @@ module.exports = {
                 callback(error);
             })
     },
-    userExists: function(pseudo, callback) {
-        db.one('SELECT COUNT(pseudo) FROM Utilisateurs WHERE pseudo = $1', [pseudo])
+    userExists: function(identifiant, callback) {
+        db.one('SELECT COUNT(identifiant) FROM Utilisateurs WHERE identifiant = $1', [identifiant])
             .then(function(data) {
                 if (data.count == 1) {
                     callback(true, null);
@@ -67,8 +67,8 @@ module.exports = {
                 callback(null, error)
             })
     },
-    isPasswordCorrect: function(pseudo, passwordHash, callback) {
-        db.one('SELECT mdp FROM Utilisateurs WHERE pseudo = $1', [pseudo])
+    isPasswordCorrect: function(identifiant, passwordHash, callback) {
+        db.one('SELECT mdp FROM Utilisateurs WHERE identifiant = $1', [identifiant])
             .then(function(data) {
                 if (passwordHash == data.mdp) {
                     callback(true, null);
@@ -81,8 +81,8 @@ module.exports = {
                 callback(null, error);
             })
     },
-    getEmail: function(pseudo, callback) {
-        db.one('SELECT email FROM utilisateurs WHERE pseudo = $1', [pseudo])
+    getEmail: function(identifiant, callback) {
+        db.one('SELECT email FROM utilisateurs WHERE identifiant = $1', [identifiant])
             .then(function(data) {
                 callback(data.email, null);
             })
@@ -90,8 +90,8 @@ module.exports = {
                 callback(null, error);
             })
     },
-    changeMDP: function(pseudo, mdp, callback) {
-        db.none('UPDATE utilisateurs SET mdp = $1 WHERE pseudo = $2', [mdp, pseudo])
+    changeMDP: function(identifiant, mdp, callback) {
+        db.none('UPDATE utilisateurs SET mdp = $1 WHERE identifiant = $2', [mdp, identifiant])
             .then(function() {
                 callback(null);
             })
@@ -99,8 +99,8 @@ module.exports = {
                 callback(error);
             })
     },
-    isChallengeValidated: function(pseudo, idChallenge, callback) {
-        db.one('SELECT COUNT(pseudo) FROM suiviUtilisateursChallenges WHERE idChallenge = $1 AND pseudo = $2', [idChallenge, pseudo])
+    isChallengeValidated: function(identifiant, idChallenge, callback) {
+        db.one('SELECT COUNT(identifiant) FROM suiviUtilisateursChallenges WHERE idChallenge = $1 AND identifiant = $2', [idChallenge, identifiant])
             .then(function (data) {
                 if (data.count == 1) {
                     callback(true, null);
@@ -113,8 +113,8 @@ module.exports = {
                 callback(null, error)
             })
     },
-    validateChallenge: function(pseudo, idChallenge, callback) {
-        db.none('INSERT INTO suiviUtilisateursChallenges (pseudo, idChallenge) VALUES ($1, $2)', [pseudo, idChallenge])
+    validateChallenge: function(identifiant, idChallenge, callback) {
+        db.none('INSERT INTO suiviUtilisateursChallenges (identifiant, idChallenge) VALUES ($1, $2)', [identifiant, idChallenge])
             .then(function () {
                     callback(null);
                 }
@@ -124,7 +124,7 @@ module.exports = {
             })
     },
     getArrayChallengeValidated: function(identifiant, callback) {
-        db.any('SELECT idChallenge FROM suiviUtilisateursChallenges WHERE pseudo = $1', [identifiant])
+        db.any('SELECT idChallenge FROM suiviUtilisateursChallenges WHERE identifiant = $1', [identifiant])
             .then(function(data) {
                 callback(data, null);
             })
@@ -133,7 +133,7 @@ module.exports = {
             })
     },
     getArrayCoursRead: function(identifiant, callback) {
-        db.any('SELECT idCours FROM suiviUtilisateursCours WHERE pseudo = $1', [identifiant])
+        db.any('SELECT idCours FROM suiviUtilisateursCours WHERE identifiant = $1', [identifiant])
             .then(function(data) {
                 callback(data, null);
             })
@@ -142,7 +142,7 @@ module.exports = {
             })
     },
     isLessonValidated: function(idCours, identifiant, callback) {
-        db.one('SELECT COUNT(pseudo) FROM suiviUtilisateursCours WHERE idCours = $1 AND pseudo = $2', [idCours, identifiant])
+        db.one('SELECT COUNT(identifiant) FROM suiviUtilisateursCours WHERE idCours = $1 AND identifiant = $2', [idCours, identifiant])
             .then(function (data) {
                 if (data.count == 1) {
                     callback(true, null);
@@ -156,13 +156,24 @@ module.exports = {
             })
     },
     validateLesson: function(idCours, identifiant, callback) {
-        db.none('INSERT INTO suiviUtilisateursCours (pseudo, idCours) VALUES ($1, $2)', [identifiant, idCours])
+        db.none('INSERT INTO suiviUtilisateursCours (identifiant, idCours) VALUES ($1, $2)', [identifiant, idCours])
             .then(function () {
                     callback(null);
                 }
             )
             .catch(function(error) {
                 callback(error);
+            })
+    },
+    getIdentifiantFromEmail: function(email, callback) {
+        db.any('SELECT identifiant FROM Utilisateurs WHERE email = $1', [email])
+            .then(function (data) {
+                console.log(data);
+                console.log(data[0].identifiant);
+                callback(data[0].identifiant, null);
+            })
+            .catch(function (error) {
+                callback(null, error);
             })
     },
     setToken: function(resetToken, expiryDate, email, callback) {
@@ -200,19 +211,8 @@ module.exports = {
                 callback(null, error)
             })
     },
-    getPseudoFromEmail: function(email, callback) {
-        db.any('SELECT pseudo FROM Utilisateurs WHERE email = $1', [email])
-            .then(function (data) {
-                console.log(data);
-                console.log(data[0].pseudo);
-                callback(data[0].pseudo, null);
-            })
-            .catch(function (error) {
-                callback(null, error);
-            })
-    },
-    cleanResetPassword: function(pseudo, callback) {
-        db.none('UPDATE utilisateurs SET resetToken = null, expiryDate = null WHERE pseudo = $1', [pseudo])
+    cleanResetPassword: function(identifiant, callback) {
+        db.none('UPDATE utilisateurs SET resetToken = null, expiryDate = null WHERE identifiant = $1', [identifiant])
             .then(function() {
                 callback(null);
             })

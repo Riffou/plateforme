@@ -1,39 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var menuUnites = require('../controllers/menuUnitesController');
-var menuCours = require('../controllers/menuCoursController');
-var cours = require('../controllers/coursController');
-var menuChallenges = require('../controllers/menuChallengesController');
-var challenge = require('../controllers/challengeController');
+var base = require('./base/base');
 var utilisateurs = require('../controllers/utilisateurController');
 
-
-function requireLogin (req, res, next) {
-    // Lignes à retirer si connexion pas automatique
-    //req.user = {};
-    //req.user.identifiant = "nicolas";
-    //req.user.email = "nicolas@hotmail.fr";
-
-    if (!req.user) {
-        res.redirect('/connexion');
-    } else {
-        next();
-    }
-}
-
-function isAlreadyLogged(req, res, next) {
-    if (req.user) {
-        res.redirect('/');
-    }
-    else {
-        next();
-    }
-}
-
-router.get('/', requireLogin, function(req, res) {
+router.get('/', base.requireLogin, function(req, res) {
     var inscription = req.query.inscription;
     var connexion = req.query.connexion;
-;    if (inscription == "ok") {
+    if (inscription == "ok") {
         res.render('home.ejs', {message: "Votre compte a bien été créé, bienvenue !"});
     }
     else if (connexion == "ok") {
@@ -44,13 +17,8 @@ router.get('/', requireLogin, function(req, res) {
     }
 });
 
-router.get('/inscription/', isAlreadyLogged, function(req, res) {
-   res.render('inscription.ejs');
-});
-
-router.post('/inscription/', isAlreadyLogged, utilisateurs.runInscription);
-
-router.get('/connexion/', isAlreadyLogged, function(req, res) {
+router.get('/connexion/', base.isAlreadyLogged, function(req, res) {
+    console.log("ok");
     if (req.query.message == '1') {
         res.render('connexion.ejs', {message: 'Un email vous a été envoyé pour la réinitialisation de votre mot de passe.'})
     }
@@ -59,14 +27,20 @@ router.get('/connexion/', isAlreadyLogged, function(req, res) {
     }
 });
 
-router.post('/connexion/', isAlreadyLogged, utilisateurs.runConnexion);
+router.post('/connexion/', base.isAlreadyLogged, utilisateurs.runConnexion);
 
-router.get('/deconnexion', requireLogin, function(req, res) {
+router.get('/inscription/', base.isAlreadyLogged, function(req, res) {
+    res.render('inscription.ejs');
+});
+
+router.post('/inscription/', base.isAlreadyLogged, utilisateurs.runInscription);
+
+router.get('/deconnexion', base.requireLogin, function(req, res) {
     req.session.destroy();
     res.redirect('/');
 });
 
-router.get('/oublie/', isAlreadyLogged, function(req, res) {
+router.get('/oublie/', base.isAlreadyLogged, function(req, res) {
     if (typeof req.query.token != "undefined" && typeof req.query.email != "undefined") {
         utilisateurs.verifieToken(req, res);
     }
@@ -75,7 +49,7 @@ router.get('/oublie/', isAlreadyLogged, function(req, res) {
     }
 });
 
-router.post('/oublie/', isAlreadyLogged, function(req, res) {
+router.post('/oublie/', base.isAlreadyLogged, function(req, res) {
     if (typeof req.query.token != "undefined" && typeof req.query.email != "undefined") {
         utilisateurs.setNouveauMDP(req, res);
     }
@@ -84,31 +58,7 @@ router.post('/oublie/', isAlreadyLogged, function(req, res) {
     }
 });
 
-router.post('/profil/', requireLogin, utilisateurs.changeMDP);
-
-router.post('/unites/:idUnite/:idCours', requireLogin, cours.validateReadLesson);
-
-router.get('/profil/', requireLogin, utilisateurs.runProfil);
-
-router.get('/unites/', requireLogin, menuUnites.run);
-
-router.get('/unites/:idUnite', requireLogin, menuCours.run);
-
-router.get('/unites/:idUnite/:idCours', requireLogin, cours.run);
-
-router.get('/challenges/', requireLogin, menuChallenges.run);
-
-router.get('/challenges/:idChallenge', requireLogin, challenge.run);
-
-// AJAX
-router.post('/api/challenges/:idChallenge', requireLogin, challenge.checkFlagAndInsert);
-
-router.post('/api/challenges/success/:idChallenge', requireLogin, challenge.isChallengeValidated);
-
-router.post('/api/challenges/solution/:idChallenge', requireLogin, challenge.validateAndGetSolutionOfChallenge);
-
-
-router.get('/faq/', requireLogin, function(req, res) {
+router.get('/faq/', base.requireLogin, function(req, res) {
     res.render('faq.ejs');
 });
 
