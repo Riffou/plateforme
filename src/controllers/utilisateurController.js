@@ -130,7 +130,29 @@ module.exports = {
         }
     },
     runProfil: function(req, res) {
-        res.render('profil.ejs', {email: req.user.email, identifiant: req.user.identifiant});
+        var identifiant = req.user.identifiant;
+        utilisateursModel.getPourcentageOfCoursLus(identifiant, function(pourcentCoursLus, error) {
+            if (error == null) {
+                utilisateursModel.getPourcentageOfValidatedChallenges(identifiant, function(pourcentChallengesReussis, error) {
+                    if (error == null) {
+                        utilisateursModel.hasCertificate(identifiant, function (booleanCertificate, error) {
+                            if (error == null) {
+                                res.render('profil.ejs', {email: req.user.email, identifiant: req.user.identifiant, pourcentCoursLus: pourcentCoursLus, pourcentChallengesReussis: pourcentChallengesReussis, booleanCertificate: booleanCertificate});
+                            }
+                            else {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                        })
+                    }
+                    else {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                })
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
+        });
     },
     changeMDP: function(req, res) {
         var ancienMDP = req.body.ancienMDP;

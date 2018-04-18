@@ -14,7 +14,40 @@
                 <p><%= identifiant %></p>
             </div>
         </div>
-
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <h5 class="border-bottom border-gray pb-2 mb-0">Mon avancement</h5>
+                <br>
+                <label>Cours</label>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: <%= pourcentCoursLus%>%" aria-valuenow="<%= pourcentCoursLus%>" aria-valuemin="0" aria-valuemax="100"><%= pourcentCoursLus%>%</div>
+                </div>
+                <br>
+                <label>Challenges</label>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: <%= pourcentChallengesReussis%>%" aria-valuenow="<%= pourcentChallengesReussis%>" aria-valuemin="0" aria-valuemax="100"><%= pourcentChallengesReussis%>%</div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <h5 class="border-bottom border-gray pb-2 mb-0">Mon certificat</h5>
+                <br>
+                <% if (booleanCertificate) {%>
+                <div class="alert alert-success" role="alert">
+                    Vous avez obtenu le certificat de réussite à la formation sur la sécurité web, félicitations !
+                </div>
+                <%}
+                else {%>
+                <div class="alert alert-warning" role="alert">
+                    Il faut lire tous les cours et valider les challenges pour obtenir le certificat de réussite à la formation sur la sécurité web.
+                </div>
+                <%}%>
+            </div>
+        </div>
         <br>
         <div class="row justify-content-center">
             <div class="col-sm-6">

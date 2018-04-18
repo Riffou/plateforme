@@ -1,6 +1,6 @@
 var db = require("../models/base").db;
 
-module.exports = {
+var self = module.exports = {
     isEmailAvailable: function(email, callback) {
         db.one('SELECT COUNT(email) FROM utilisateurs WHERE email = $1', [email])
             .then(function(data) {
@@ -208,7 +208,7 @@ module.exports = {
                 }
             })
             .catch(function (error) {
-                callback(null, error)
+                callback(null, error);
             })
     },
     cleanResetPassword: function(identifiant, callback) {
@@ -219,5 +219,57 @@ module.exports = {
             .catch(function(error) {
                 callback(error);
             })
+    },
+    getPourcentageOfValidatedChallenges: function(identifiant, callback) {
+        db.one('SELECT COUNT(id) FROM challenges')
+            .then(function (data1) {
+                db.one('SELECT COUNT(identifiant) FROM suiviUtilisateursChallenges WHERE identifiant = $1', [identifiant])
+                    .then(function (data2) {
+                        callback(Math.round(100*data2.count/data1.count), null);
+                    })
+                    .catch(function (error) {
+                        callback(null, error);
+                    })
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getPourcentageOfCoursLus: function(identifiant, callback) {
+        db.one('SELECT COUNT(id) FROM cours')
+            .then(function (data1) {
+                db.one('SELECT COUNT(identifiant) FROM suiviUtilisateursCours WHERE identifiant = $1', [identifiant])
+                    .then(function (data2) {
+                        callback(Math.round(100*data2.count/data1.count), null);
+                    })
+                    .catch(function (error) {
+                        callback(null, error);
+                    })
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    hasCertificate: function(identifiant, callback) {
+        self.getPourcentageOfCoursLus(identifiant, function(pourcentageCoursLus, error) {
+            if (error == null) {
+                self.getPourcentageOfValidatedChallenges(identifiant, function(pourcentageChallengesValidated, error) {
+                    if (error == null) {
+                        if (pourcentageCoursLus == 100 && pourcentageChallengesValidated == 100) {
+                            callback(true, null);
+                        }
+                        else {
+                            callback(false, null);
+                        }
+                    }
+                    else {
+                        callback(null, error);
+                    }
+                })
+            }
+            else {
+                callback(null, error);
+            }
+        })
     }
 }

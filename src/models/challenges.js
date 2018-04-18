@@ -42,5 +42,5 @@ module.exports = {
             .catch(function(error) {
                 callback(null, error)
             })
-    }
+    },
 }

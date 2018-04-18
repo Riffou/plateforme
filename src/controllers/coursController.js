@@ -130,7 +130,7 @@ var self = module.exports = {
                                         idCours = idNext;
                                     }
                                     req.params.idCours = idCours;
-                                    self.run(req, res);
+                                    res.redirect('/unites/' + idUnite + '/' + idCours);
                                 }
                                 else {
                                     res.render('error.ejs', {message: error, error: error});
