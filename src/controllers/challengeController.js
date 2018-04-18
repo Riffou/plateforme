@@ -10,7 +10,14 @@ module.exports = {
             if (error == null) {
                 utilisateurModel.isChallengeValidated(identifiant, idChallenge, function(validatedBoolean, error) {
                    if (error == null) {
-                       res.render('challenge.ejs', {idChallenge: idChallenge, ordreChallenge: ordreChallenge, host: config.hostURLChallenges, validate:validatedBoolean});
+                       challengesModel.getIndiceChallenge(idChallenge, function(indice, error) {
+                           if (error == null) {
+                               res.render('challenge.ejs', {idChallenge: idChallenge, ordreChallenge: ordreChallenge, host: config.hostURLChallenges, validate: validatedBoolean, indice: indice});
+                           }
+                           else {
+                               res.render('error.ejs', {message: error, error: error});
+                           }
+                       });
                    }
                    else {
                        res.render('error.ejs', {message: error, error: error});

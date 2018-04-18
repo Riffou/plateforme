@@ -43,4 +43,13 @@ module.exports = {
                 callback(null, error)
             })
     },
+    getIndiceChallenge: function(idChallenge, callback) {
+        db.one('SELECT indice FROM Challenges WHERE id = $1', [idChallenge])
+            .then(function(data) {
+                callback(data.indice, null);
+            })
+            .catch(function(error) {
+                callback(null, error)
+            })
+    }
 }

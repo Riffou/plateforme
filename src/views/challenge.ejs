@@ -5,11 +5,12 @@
     <div class="container">
         <br>
         <h3>Description  <% if (validate) { %>
-            <img src="/images/green-check-circle.png" alt="" width="20px">
+            <img id="img" src="/images/green-check-circle.png" alt="" width="20px">
             <%}
             else {%>
-            <img src="/images/red-cross-circle.png" alt="" width="20px">
+            <img id="img" src="/images/red-cross-circle.png" alt="" width="20px">
             <%}%></h3>
+
         <p> Ceci est la description du challenge <%= ordreChallenge %></p>
         <a class="btn btn-secondary" target="_blank" href="http://<%= host %>/<%= idChallenge %>" role="button">Démarrer le challenge</a>
 
@@ -21,6 +22,13 @@
             <input type="text" class="form-control" name="flagInput" id="flagInput" placeholder="flag">
         </div>
         <button type="button" id="flagSubmit" class="btn btn-secondary">Envoyer</button>
+        <br><br><br>
+        <h3>Aide</h3>
+        <button class="btn btn-secondary" id="voirIndice" role="button">Voir l'indice</button>
+        <div id="indiceDiv" style="display:none">
+            <p style="margin-bottom: -30px; margin-top:15px;"><%= indice %></p>
+        </div>
+
 
         <br><br>
         <div class="alert alert-success" role="alert" id="goodFlag" style="display: none;">

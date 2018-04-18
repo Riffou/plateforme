@@ -25,6 +25,10 @@ $("document").ready(function () {
         });
     });
 
+    $('#voirIndice').click(function () {
+        $('#indiceDiv').show();
+    });
+
     $('#flagSubmit').click(function () {
         // Réinitialisation
         $('#goodFlag').css("display", "none");
@@ -43,6 +47,7 @@ $("document").ready(function () {
                 success: function (data) {
                     if (data.flag) {
                         $('#goodFlag').show();
+                        $("#img").attr("src","/images/green-check-circle.png");
                     }
                     else {
                         $('#wrongFlag').show();

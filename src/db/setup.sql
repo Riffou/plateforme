@@ -21,6 +21,7 @@ CREATE TABLE Challenges (
     ordre INT CHECK (ordre >= 0),
     flag VARCHAR(50) NOT NULL,
     solution VARCHAR(10000),
+    indice VARCHAR(10000),
     difficulte INT CHECK (difficulte >= 0),
     PRIMARY KEY(id)
 );
@@ -75,9 +76,9 @@ INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 3', 3);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 4', 4);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 5', 5);
 
-INSERT INTO Challenges (nom, ordre, flag, solution, difficulte) VALUES ('Challenge 1', 1, 'easypass', 'Ceci est la solution du challenge 1', 0);
-INSERT INTO Challenges (nom, ordre, flag, solution, difficulte) VALUES ('Challenge 2', 2, 'middlepass', 'Ceci est la solution du challenge 2', 1);
-INSERT INTO Challenges (nom, ordre, flag, solution, difficulte) VALUES ('Challenge 3', 3, 'hardpass', 'Ceci est la solution du challenge 3', 2);
+INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte) VALUES ('Challenge 1', 1, 'easypass', 'Ceci est la solution du challenge 1', 'Ceci est un indice pour le challenge 1', 0);
+INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte) VALUES ('Challenge 2', 2, 'middlepass', 'Ceci est la solution du challenge 2', 'Ceci est un indice pour le challenge 2', 1);
+INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte) VALUES ('Challenge 3', 3, 'hardpass', 'Ceci est la solution du challenge 3', 'Ceci est un indice pour le challenge 3', 2);
 
 INSERT INTO Utilisateurs (identifiant, mdp, email) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr');
 INSERT INTO Utilisateurs (identifiant, mdp, email) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr');
