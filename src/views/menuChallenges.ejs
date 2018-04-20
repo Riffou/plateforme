@@ -10,6 +10,7 @@
             <thead>
                 <tr>
                     <th>Nom du challenge</th>
+                    <th style="text-align:center;">Nombre de validations</th>
                     <th>Validé</th>
                     <th>Difficulté</th>
                 </tr>
@@ -18,6 +19,7 @@
                 <%  for (var i = 0; i < data.length; i++) { %>
                 <tr>
                     <td><a href="/challenges/<%= data[i].id %>">Challenge <%= i+1 %></a></td>
+                    <td style="text-align:center;"><%= jsonNombreValidations[data[i].id] %></td>
                     <td><% if (challengeValideArray.indexOf(data[i].id) > -1) { %>
                             <img class="checkIconsMenuChallenges" src="/images/green-check-circle.png" alt="" width="20px">
                         <%}

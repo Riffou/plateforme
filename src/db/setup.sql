@@ -53,6 +53,16 @@ CREATE TABLE SuiviUtilisateursChallenges (
     FOREIGN KEY (idChallenge) REFERENCES Challenges(id)
 );
 
+CREATE TABLE solutionsChallengesUtilisateurs (
+    id SERIAL NOT NULL CHECK (id >= 0),
+    idChallenge INT NOT NULL CHECK (idChallenge >= 0),
+    identifiant VARCHAR(50) NOT NULL,
+    solution VARCHAR(10000),
+    PRIMARY KEY (id),
+    FOREIGN KEY(idChallenge) REFERENCES Challenges(id),
+    FOREIGN KEY(identifiant) REFERENCES Utilisateurs(identifiant)
+);
+
 INSERT INTO Unites (nom, ordre) VALUES ('Unité 1', 1);
 INSERT INTO Unites (nom, ordre) VALUES ('Unité 2', 2);
 INSERT INTO Unites (nom, ordre) VALUES ('Unité 3', 3);
@@ -91,7 +101,8 @@ INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 10);
 INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 11);
 INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 13);
 
-
 INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nico', 2);
 INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nico', 3);
 INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nicolas', 2);
+
+INSERT INTO solutionsChallengesUtilisateurs(idChallenge, identifiant, solution) VALUES(1, 'nicolas', 'Ceci est la solution que propose nicolas');

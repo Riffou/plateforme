@@ -271,5 +271,15 @@ var self = module.exports = {
                 callback(null, error);
             }
         })
+    },
+    setSolutionChallenge: function(identifiant, idChallenge, solution, callback) {
+        db.none('INSERT INTO solutionsChallengesUtilisateurs(idChallenge, identifiant, solution) VALUES ($1, $2, $3)', [idChallenge, identifiant, solution])
+            .then(function () {
+                    callback(null);
+                }
+            )
+            .catch(function(error) {
+                callback(error);
+            })
     }
 }

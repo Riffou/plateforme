@@ -22,13 +22,6 @@
             <input type="text" class="form-control" name="flagInput" id="flagInput" placeholder="flag">
         </div>
         <button type="button" id="flagSubmit" class="btn btn-secondary">Envoyer</button>
-        <br><br><br>
-        <h3>Aide</h3>
-        <button class="btn btn-secondary" id="voirIndice" role="button">Voir l'indice</button>
-        <div id="indiceDiv" style="display:none">
-            <p style="margin-bottom: -30px; margin-top:15px;"><%= indice %></p>
-        </div>
-
 
         <br><br>
         <div class="alert alert-success" role="alert" id="goodFlag" style="display: none;">
@@ -40,11 +33,18 @@
         <div class="alert alert-danger" role="alert" id="emptyFlag" style="display: none;">
             Veuillez renseigner un flag !
         </div>
-
         <br>
+
+        <h3>Aide</h3>
+        <button class="btn btn-secondary" id="voirIndice" role="button">Voir l'indice</button>
+        <div id="indiceDiv" style="display:none">
+            <p style="margin-bottom: -30px; margin-top:15px;"><%= indice %></p>
+        </div>
+
+        <br><br><br>
         <h3>Solution</h3>
-        <p> Voir la solution du challenge <%= ordreChallenge %></p>
-        <button class="btn btn-secondary" id="voirSolution" role="button">Voir la solution</button>
+        <p> Voir les solutions du challenge <%= ordreChallenge %></p>
+        <button class="btn btn-secondary" id="voirSolution" role="button">Voir les solutions</button>
 
         <br>
         <br>
@@ -56,11 +56,33 @@
             </div>
         </div>
 
-
         <div style="display: none;" id="divSolution">
             <p id="solutionText"></p>
         </div>
 
+        <div id="divProposer"<% if (!validate) {%> style="display:none;" <%}%>>
+            <br>
+            <h3>Proposer une solution</h3>
+            <button class="btn btn-secondary" id="proposerSolution" role="button">Proposer</button>
+            <textarea class="form-control" id="solutionTextArea" rows="3" style="display:none;"></textarea>
+            <br>
+            <button class="btn btn-secondary" id="envoyerSolution" role="button" style="display:none;">Envoyer</button>
+        </div>
+
+        <!-- Alerte JS -->
+        <div id="solutionProposeeSuccess" style="display: none">
+            <br>
+            <div class="alert alert-success" role="alert">
+                Merci d'avoir proposé une solution pour ce challenge !
+            </div>
+        </div>
+
+        <div id="solutionProposeeFail" style="display: none">
+            <br>
+            <div class="alert alert-danger" role="alert">
+                <label style="margin-bottom: 0px;" id="message"></label>
+            </div>
+        </div>
 
         <p style="display: none;" id="pId" ><%= idChallenge %></p>
         <script src="/js/challenge.js"></script>

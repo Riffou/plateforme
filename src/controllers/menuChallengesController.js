@@ -14,7 +14,22 @@ module.exports = {
                        for (var i = 0; i < challengeValide.length; i++) {
                            challengeValideArray.push(challengeValide[i].idchallenge);
                        }
-                       res.render('menuChallenges.ejs', {data: data, challengeValideArray: challengeValideArray});
+                       challengesModel.getNombreValidations(function(nombreValidationsArray, error) {
+                           if (error == null) {
+                               var jsonNombreValidations = {};
+                               for (var i = 0; i < nombreValidationsArray.length; i++) {
+                                   jsonNombreValidations[nombreValidationsArray[i].idchallenge] = nombreValidationsArray[i].count;
+                               }
+                               res.render('menuChallenges.ejs', {
+                                   data: data,
+                                   challengeValideArray: challengeValideArray,
+                                   jsonNombreValidations: jsonNombreValidations
+                               });
+                           }
+                           else {
+                               res.render('error.ejs', {message: error, error: error});
+                           }
+                       });
                    }
                    else {
                        res.render('error.ejs', {message: error, error: error});
