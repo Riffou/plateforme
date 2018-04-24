@@ -92,12 +92,19 @@ module.exports = {
                        utilisateursModel.isPasswordCorrect(identifiant, saltHashPassword(password), function(passwordBoolean, error) {
                            if (error == null) {
                                if (passwordBoolean) {
-                                   req.session.user = {};
-                                   req.session.user.identifiant = identifiant;
-                                   utilisateursModel.getEmail(identifiant, function(email, error) {
+                                   utilisateursModel.updateLastConnection(identifiant, Date.now(), function(error) {
                                        if (error == null) {
-                                           req.session.user.email = email;
-                                           res.redirect('/?connexion=ok');
+                                           req.session.user = {};
+                                           req.session.user.identifiant = identifiant;
+                                           utilisateursModel.getEmail(identifiant, function(email, error) {
+                                               if (error == null) {
+                                                   req.session.user.email = email;
+                                                   res.redirect('/?connexion=ok');
+                                               }
+                                               else {
+                                                   res.render('error.ejs', {message: error, error: error});
+                                               }
+                                           });
                                        }
                                        else {
                                            res.render('error.ejs', {message: error, error: error});
@@ -105,7 +112,14 @@ module.exports = {
                                    });
                                }
                                else {
-                                   res.render('connexion.ejs', {erreur: "L'identifiant ou le mot de passe sont incorrects.", identifiant: identifiant});
+                                   utilisateursModel.updateLastFailedConnection(identifiant, Date.now(), function(error) {
+                                       if (error == null) {
+                                           res.render('connexion.ejs', {erreur: "L'identifiant ou le mot de passe sont incorrects.", identifiant: identifiant});
+                                       }
+                                       else {
+                                           res.render('error.ejs', {message: error, error: error});
+                                       }
+                                   });
                                }
                            }
                            else {
@@ -131,13 +145,43 @@ module.exports = {
     },
     runProfil: function(req, res) {
         var identifiant = req.user.identifiant;
+        var message = req.query.message;
         utilisateursModel.getPourcentageOfCoursLus(identifiant, function(pourcentCoursLus, error) {
             if (error == null) {
                 utilisateursModel.getPourcentageOfValidatedChallenges(identifiant, function(pourcentChallengesReussis, error) {
                     if (error == null) {
                         utilisateursModel.hasCertificate(identifiant, function (booleanCertificate, error) {
                             if (error == null) {
-                                res.render('profil.ejs', {email: req.user.email, identifiant: req.user.identifiant, pourcentCoursLus: pourcentCoursLus, pourcentChallengesReussis: pourcentChallengesReussis, booleanCertificate: booleanCertificate});
+                                utilisateursModel.getDateInscription(identifiant, function(date, error) {
+                                   if (error == null) {
+                                       var theDate = new Date(parseInt(date));
+                                       var day = theDate.getDay();
+                                       var month = theDate.getMonth();
+                                       var year = theDate.getFullYear();
+                                       if (day < 10) {
+                                           day = '0' + day;
+                                       }
+                                       if(month < 10) {
+                                           month = '0' + month;
+                                       }
+                                       var date = day + '/' + month + '/' + year;
+                                       var dateInscription = date;
+                                       var argumentProfil = {
+                                           email: req.user.email,
+                                           identifiant: req.user.identifiant,
+                                           dateInscription: dateInscription,
+                                           pourcentCoursLus: pourcentCoursLus,
+                                           pourcentChallengesReussis: pourcentChallengesReussis,
+                                           booleanCertificate: booleanCertificate };
+                                       if (message == 1) {
+                                           argumentProfil['message'] = "Votre mot de passe a bien été changé.";
+                                       }
+                                       res.render('profil.ejs', argumentProfil);
+                                   }
+                                   else {
+                                       res.render('error.ejs', {message: error, error: error});
+                                   }
+                                });
                             }
                             else {
                                 res.render('error.ejs', {message: error, error: error});
@@ -164,7 +208,7 @@ module.exports = {
                     if (booleanPass) {
                         utilisateursModel.changeMDP(req.user.identifiant, saltHashPassword(nouveauMDP), function (error) {
                             if (error == null) {
-                                res.render('profil.ejs', {message: "Le mot de passe a bien été changé", email: req.user.email, identifiant: req.user.identifiant});
+                                res.redirect('/profil?message=1');
                             }
                             else {
                                 res.render('error.ejs', {message: error, error: error});

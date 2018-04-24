@@ -28,6 +28,15 @@ module.exports = {
                 callback(null, error);
             })
     },
+    getEverythingCours: function(callback) {
+        db.any('SELECT id, idunite, nom, difficulte from public.cours')
+            .then(function (data) {
+                callback(data, null);
+            })
+            .catch(function (error) {
+                callback(null, error);
+            })
+    },
     getPrevious: function(idUnite, idCours, callback) {
         var self = this;
         this.getOrdreFromIdCours(idCours, function(ordreCours, error) {
@@ -119,6 +128,51 @@ module.exports = {
             })
             .catch(function (error) {
                 callback(null, error);
+            })
+    },
+    getNumberOfCours: function(callback) {
+        db.one('SELECT count(id) FROM Cours')
+            .then(function(data) {
+                callback(data.count, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getNumberOfUnites: function(callback) {
+        db.one('SELECT count(id) FROM Unites')
+            .then(function(data) {
+                callback(data.count, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getNombreValidations: function(callback) {
+        db.any('SELECT COUNT(id), idCours FROM suiviUtilisateursCours GROUP BY idCours')
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error)
+            })
+    },
+    getNomOfUnites: function(callback) {
+        db.any('SELECT nom, id FROM Unites')
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error)
+            })
+    },
+    getOrderOfUnites: function(callback) {
+        db.any('SELECT id FROM Unites ORDER BY ordre')
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error)
             })
     }
 }

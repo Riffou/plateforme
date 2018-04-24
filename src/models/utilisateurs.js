@@ -30,7 +30,8 @@ var self = module.exports = {
             })
     },
     inscription: function(email, identifiant, passwordHash, callback) {
-        db.none('INSERT INTO utilisateurs (identifiant, email, mdp) VALUES ($1, $2, $3)', [identifiant, email, passwordHash])
+        var date = Date.now();
+        db.none('INSERT INTO utilisateurs (identifiant, email, mdp, dateInscription, lastConnection) VALUES ($1, $2, $3, $4, $5)', [identifiant, email, passwordHash, date, date])
             .then(function () {
                     callback(null);
                 }
@@ -88,6 +89,24 @@ var self = module.exports = {
             })
             .catch(function(error) {
                 callback(null, error);
+            })
+    },
+    updateLastConnection: function(identifiant, date, callback) {
+        db.none('UPDATE utilisateurs SET lastConnection = $1 WHERE identifiant = $2', [date, identifiant])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    updateLastFailedConnection: function(identifiant, date, callback) {
+        db.none('UPDATE utilisateurs SET lastFailedConnection = $1 WHERE identifiant = $2', [date, identifiant])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
             })
     },
     changeMDP: function(identifiant, mdp, callback) {
@@ -280,6 +299,24 @@ var self = module.exports = {
             )
             .catch(function(error) {
                 callback(error);
+            })
+    },
+    getDateInscription: function(identifiant, callback) {
+        db.one('SELECT dateInscription FROM utilisateurs WHERE identifiant = $1', [identifiant])
+            .then(function(data) {
+                callback(data.dateinscription, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getNumberOfUsers: function(callback) {
+        db.one('SELECT count(identifiant) FROM Utilisateurs')
+            .then(function(data) {
+                callback(data.count, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
             })
     }
 }

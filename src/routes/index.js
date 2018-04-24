@@ -18,7 +18,6 @@ router.get('/', base.requireLogin, function(req, res) {
 });
 
 router.get('/connexion/', base.isAlreadyLogged, function(req, res) {
-    console.log("ok");
     if (req.query.message == '1') {
         res.render('connexion.ejs', {message: 'Un email vous a été envoyé pour la réinitialisation de votre mot de passe.'})
     }

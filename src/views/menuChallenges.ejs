@@ -18,14 +18,21 @@
             <tbody>
                 <%  for (var i = 0; i < data.length; i++) { %>
                 <tr>
-                    <td><a href="/challenges/<%= data[i].id %>">Challenge <%= i+1 %></a></td>
-                    <td style="text-align:center;"><%= jsonNombreValidations[data[i].id] %></td>
+                    <td><a href="/challenges/<%= data[i].id %>"><%= data[i].nom %></a></td>
+                    <td style="text-align:center;">
+                        <% if (jsonNombreValidations[data[i].id] != null) { %>
+                        <%= jsonNombreValidations[data[i].id]; %>
+                        <% } else { %>
+                            0
+                        <%}%>
+                    </td>
                     <td><% if (challengeValideArray.indexOf(data[i].id) > -1) { %>
                             <img class="checkIconsMenuChallenges" src="/images/green-check-circle.png" alt="" width="20px">
                         <%}
                         else {%>
                             <img class="checkIconsMenuChallenges" src="/images/red-cross-circle.png" alt="" width="20px">
                         <%}%>
+                    </td>
                     <td>
                         <% switch (data[i].difficulte) {
                             case 0:%>

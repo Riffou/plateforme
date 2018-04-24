@@ -1,0 +1,57 @@
+<% include partials/head %>
+
+<body>
+<div class="container">
+    <br><br>
+    <form method="post">
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-4">
+                <br><br>
+                <h5 class="border-bottom border-gray pb-2 mb-0" style="text-align:center;">Panel administrateur</h5>
+                <br>
+                <input type="text" class="form-control" name="identifiantInput" id="identifiantInput"
+                        <% if (typeof identifiant != "undefined") { %>
+                       value="<%= identifiant %>"
+                        <% }
+                        else { %>
+                       placeholder="Identifiant"
+                        <% } %>
+                >
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-4">
+                <input type="password" class="form-control" name="passwordInput" id="passwordInput" placeholder="Mot de passe">
+            </div>
+        </div>
+
+        <!-- Alerte JS -->
+        <div class="row justify-content-center" id="champManquant" style="display: none">
+            <div class="col-sm-4">
+                <div class="alert alert-danger" role="alert">
+                    Veuillez renseigner tous les champs !
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerte serveur -->
+        <% if (typeof erreur != "undefined") {%>
+        <div class="row justify-content-center" id="erreurServeur">
+            <div class="col-sm-4">
+                <div class="alert alert-danger" role="alert">
+                    <%= erreur %>
+                </div>
+            </div>
+        </div>
+        <% } %>
+
+        <br>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-dark" id="connexion">Se connecter</button>
+        </div>
+        <br>
+    </form>
+</div>
+<script src="/js/connexion.js"></script>
+</body>
+<% include partials/footer %>

@@ -16,13 +16,13 @@ $("document").ready(function () {
                     contentType: 'application/x-www-form-urlencoded',
                     success: function (data) {
                         // afficher solution
-                        if (data) {
+                        if (data.erreur) {
+                            $('#pasDroitAcces').show();
+                        }
+                        else {
                             $('#solutionText').html(data);
                             $('#divSolution').show();
                             $('#voirSolution').text("Cacher les solutions");
-                        }
-                        else if (data.erreur) {
-                            $('#pasDroitAcces').show();
                         }
                     },
                     error: function (error) {

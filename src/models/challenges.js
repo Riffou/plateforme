@@ -62,11 +62,19 @@ module.exports = {
     getNombreValidations: function(callback) {
         db.any('SELECT COUNT(id), idChallenge FROM suiviUtilisateursChallenges GROUP BY idChallenge')
             .then(function(data) {
-                console.log(data);
                 callback(data, null);
             })
             .catch(function(error) {
                 callback(null, error)
+            })
+    },
+    getNumberOfChallenges: function(callback) {
+        db.one('SELECT count(id) FROM Challenges')
+            .then(function(data) {
+                callback(data.count, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
             })
     }
 }

@@ -11,10 +11,12 @@ var api = require('./routes/api');
 var challenges = require('./routes/challenges');
 var cours = require('./routes/cours');
 var profil = require('./routes/profil');
+var admin = require('./routes/admin');
 
 var app = express();
 
 var utilisateurModel = require('./models/utilisateurs');
+var administrateurModel = require('./models/administrateurs');
 
 // view engine setup
 app.set('views',  [path.join(__dirname, 'views'),
@@ -43,22 +45,38 @@ app.use(
 }));
 
 app.use(function(req, res, next) {
-    if (req.session && req.session.user) {
-        utilisateurModel.userExists(req.session.user.identifiant, function(existsBoolean, error) {
-            if (error == null) {
-                if (existsBoolean) {
-                    req.user = req.session.user;
-                    //  delete req.user.password; 
+    if (req.session) {
+        if (req.session.user) {
+            utilisateurModel.userExists(req.session.user.identifiant, function (existsBoolean, error) {
+                if (error == null) {
+                    if (existsBoolean) {
+                        req.user = req.session.user;
+                        //  delete req.user.password;
+                    }
+                    next();
                 }
-                next();
-            }
-            else {
-                res.render('error.ejs', {message: error, error: error});
-            }
-        });
-    }
-    else {
-        next();
+                else {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+            });
+        }
+        else if (req.session.admin) {
+            administrateurModel.userExists(req.session.admin.identifiant, function (existsBoolean, error) {
+                if (error == null) {
+                    if (existsBoolean) {
+                        req.admin = req.session.admin;
+                        //  delete req.user.password;
+                    }
+                    next();
+                }
+                else {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+            });
+        }
+        else {
+            next();
+        }
     }
 });
 
@@ -68,6 +86,7 @@ app.use('/api', api);
 app.use('/profil', profil);
 app.use('/challenges', challenges);
 app.use('/unites', cours);
+app.use('/admin', admin);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -118,7 +118,6 @@ module.exports = {
                 if (validatedBoolean) {
                     challengesModel.getSolutionsOfChallenge(idChallenge, function(data, error) {
                         if (error == null) {
-                            console.log(data);
                             // Mise en forme de la solution
                             var solution = "<div class=\"card\">\n" +
                                 "  <div class=\"card-body\">\n";
@@ -159,7 +158,7 @@ module.exports = {
     proposeSolution : function(req, res) {
         var idChallenge = req.params.idChallenge;
         var identifiant = req.user.identifiant;
-        var solution = req.body.solution;
+        var solution = escapeHtml(req.body.solution);
         if (solution != "") {
             utilisateurModel.isChallengeValidated(identifiant, idChallenge, function (validatedBoolean, error) {
                 if (error == null) {

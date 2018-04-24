@@ -30,8 +30,21 @@ CREATE TABLE Utilisateurs (
    identifiant VARCHAR(50) NOT NULL,
    email VARCHAR(50) NOT NULL UNIQUE,
    mdp VARCHAR(100) NOT NULL,
+   dateInscription BIGINT NOT NULL,
+   lastConnection BIGINT,
+   lastFailedConnection BIGINT,
    resetToken VARCHAR(100),
    expiryDate BIGINT,
+   PRIMARY KEY(identifiant)
+);
+
+CREATE TABLE Administrateurs (
+   identifiant VARCHAR(50) NOT NULL,
+   email VARCHAR(50) NOT NULL UNIQUE,
+   mdp VARCHAR(100) NOT NULL,
+   dateInscription BIGINT NOT NULL,
+   lastConnection BIGINT,
+   lastFailedConnection BIGINT,
    PRIMARY KEY(identifiant)
 );
 
@@ -90,8 +103,8 @@ INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte) VALUES (
 INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte) VALUES ('Challenge 2', 2, 'middlepass', 'Ceci est la solution du challenge 2', 'Ceci est un indice pour le challenge 2', 1);
 INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte) VALUES ('Challenge 3', 3, 'hardpass', 'Ceci est la solution du challenge 3', 'Ceci est un indice pour le challenge 3', 2);
 
-INSERT INTO Utilisateurs (identifiant, mdp, email) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr');
-INSERT INTO Utilisateurs (identifiant, mdp, email) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr');
+INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr', 1524237393762);
+INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr', 1524237440676);
 
 INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 2);
 INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 3);
@@ -106,3 +119,5 @@ INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nico'
 INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nicolas', 2);
 
 INSERT INTO solutionsChallengesUtilisateurs(idChallenge, identifiant, solution) VALUES(1, 'nicolas', 'Ceci est la solution que propose nicolas');
+
+INSERT INTO Administrateurs (identifiant, mdp, email, dateInscription) VALUES ('admin', 'e140b8f9a3f6235f1cc8f44b3204126078a5228385b244433737de635f4c79c3', 'admin@hotmail.fr', 1524237393762);
