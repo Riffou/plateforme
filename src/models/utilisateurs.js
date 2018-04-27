@@ -187,8 +187,6 @@ var self = module.exports = {
     getIdentifiantFromEmail: function(email, callback) {
         db.any('SELECT identifiant FROM Utilisateurs WHERE email = $1', [email])
             .then(function (data) {
-                console.log(data);
-                console.log(data[0].identifiant);
                 callback(data[0].identifiant, null);
             })
             .catch(function (error) {

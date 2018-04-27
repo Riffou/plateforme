@@ -1,0 +1,77 @@
+<% include partials/head %>
+<% include partials/headerAdmin %>
+
+<body>
+<br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-8">
+                <% if (typeof nom == "undefined") { %>
+                    <h5 class="border-bottom border-gray pb-2 mb-0">Ajouter une catégorie de cours</h5>
+                <%}
+                else { %>
+                <h5 class="border-bottom border-gray pb-2 mb-0">Modifier une catégorie de cours</h5>
+                <%}%>
+
+                <br>
+            </div>
+        </div>
+        <form method="post">
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-8">
+                    <input type="text" class="form-control" id="titleInput" name="titleInput" placeholder="Nom de la catégorie"
+                    <% if (typeof nom != "undefined") { %>
+                            value="<%= nom %>"
+                    <%}%>>
+                </div>
+            </div>
+            <% if (numberOfUnites > 0) {%>
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-8">
+                    <select class="custom-select mr-sm-2" id="ordreInput" name="ordreInput">
+                        <% if (typeof ordre == "undefined") { %>
+                            <option value="default" selected>Choisissez l'ordre...</option>
+                        <%}%>
+
+                        <% for (var i = 0; i <= numberOfUnites; i++) {%>
+                            <option value="<%= i+1 %>"
+                            <% if (typeof ordre != "undefined" && ordre == (i+1)) {%>
+                                selected
+                            <%}%>
+                            ><%= i+1 %></option>
+                        <%}%>
+                    </select>
+                </div>
+            </div>
+            <%}%>
+            <div class="row justify-content-center">
+                <div class="form-group col-sm-8">
+                    <textarea style="height: 120px;" class="form-control" id="descriptionInput" name="descriptionInput" placeholder="Description de la catégorie"><% if (typeof description != "undefined") { %><%= description %><%}%></textarea>
+                </div>
+            </div>
+
+            <!-- Alerte JS -->
+            <div class="row justify-content-center" id="error" style="display: none">
+                <div class="col-sm-8">
+                    <div class="alert alert-danger" role="alert">
+                        <p style="margin-bottom: 0px;" id="pError"></p>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+            <div class="row justify-content-center">
+                <% if (typeof nom == "undefined") { %>
+                    <button class="btn btn-info" type="submit" id="ajouterCategorie">Ajouter</button>
+                <%}
+                else {%>
+                <button class="btn btn-info" type="submit" id="modifierCategorie">Sauvegarder</button>
+                <%}%>
+            </div>
+            <br>
+        </form>
+    </div>
+    <script src="/js/ajoutCategorie.js"></script>
+</body>
+
+<% include partials/footer %>

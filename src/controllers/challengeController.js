@@ -165,7 +165,6 @@ module.exports = {
                     if (validatedBoolean) {
                         utilisateurModel.setSolutionChallenge(identifiant, idChallenge, solution, function (error) {
                             if (error == null) {
-                                console.log("success");
                                 res.status(200).json({});
                             }
                             else {

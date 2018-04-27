@@ -1,143 +1,157 @@
 <% include partials/head %>
 <% include partials/headerAdmin %>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <br>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="border-bottom border-gray pb-2 mb-0">Statistiques utilisateurs</h5>
+                        <br>
+                        <p>Nombre d'utilisateurs : <%= numberOfUsers %></p>
 
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-sm-10">
-            <br>
-            <h5 class="border-bottom border-gray pb-2 mb-0">Statistiques utilisateurs</h5>
-            <br>
-            <p>Nombre d'utilisateurs : <%= numberOfUsers %></p>
-            <br>
+                    </div>
+                </div>
+                <br>
+            </div>
         </div>
-    </div>
 
 
-    <div class="row justify-content-center">
-        <div class="col-sm-10">
-            <br>
-            <h5 class="border-bottom border-gray pb-2 mb-0">Statistiques cours</h5>
-            <br>
-            <p>Nombre de catégories de cours : <%= numberOfUnites %></p>
-            <p>Nombre de cours : <%= numberOfCours %></p>
-            <br>
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <br>
+                <div class="card">
+                    <div class="card-body">
+                         <h5 class="border-bottom border-gray pb-2 mb-0">Statistiques cours</h5>
+                         <br>
+                         <p>Nombre de catégories de cours : <%= numberOfUnites %></p>
+                         <p>Nombre de cours : <%= numberOfCours %></p>
+                         <br>
+                        <% for (var k = 0; k < arrayOrdre.length; k++) {
+                            var key = arrayOrdre[k];
+                        %>
+                        <br>
+                        <h5 class="border-bottom border-gray pb-2 mb-0">
+                            <%= nomOfUnites[key] %>
+                        </h5>
+                        <% if (menuCoursJson[key].length > 0) {%>
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th style="text-align:center;">Nom du cours</th>
+                                        <th style="text-align:center;">Nombre de lecteurs</th>
+                                        <th style="text-align:center;">Pourcentage d'utilisateurs qui ont lu</th>
+                                        <th style="text-align:center;">Difficulté</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <%  for (var i = 0; i < menuCoursJson[key].length; i++) { %>
+                                <tr>
+                                    <td style="text-align:center;"><a href="/cours/<%= menuCoursJson[key][i].id %>"><%= menuCoursJson[key][i].nom%></a></td>
+                                    <td style="text-align:center;">
+                                        <% if (jsonNombreValidationsCours[menuCoursJson[key][i].id] != null) { %>
+                                        <%= jsonNombreValidationsCours[menuCoursJson[key][i].id]; %>
+                                        <% } else { %>
+                                        0
+                                        <%}%>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <% if (jsonNombreValidationsCours[menuCoursJson[key][i].id] != null && numberOfUsers > 0) { %>
+                                        <%= 100 * jsonNombreValidationsCours[menuCoursJson[key][i].id] / numberOfUsers %>%
+                                        <% } else { %>
+                                        0%
+                                        <%}%>
+                                    </td>
+                                    <td style="text-align:center;">
+                                        <% switch (menuCoursJson[key][i].difficulte) {
+                                        case 0:%>
+                                        Facile
+                                        <% break;
+                                        case 1: %>
+                                        Moyen
+                                        <% break;
+                                        case 2: %>
+                                        Difficile
+                                        <% break;
+                                            default: %>
+                                        Erreur
+                                        <% } %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                </tbody>
+                            </table>
+                            <%}
+                            else {%>
+                              <p style="margin-top:20px;">Aucun cours n'est classé dans cette catégorie. </p>
+                            <%}%>
+                        <br>
+                        <%}%>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-10">
-            <% for (var k = 0; k < arrayOrdre.length; k++) {
-                var key = arrayOrdre[k];
-            %>
-            <br>
-            <h5 class="border-bottom border-gray pb-2 mb-0">
-                <%= nomOfUnites[key] %>
-            </h5>
-                <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th style="text-align:center;">Nom du cours</th>
-                            <th style="text-align:center;">Nombre de lecteurs</th>
-                            <th style="text-align:center;">Pourcentage d'utilisateurs qui ont lu</th>
-                            <th style="text-align:center;">Difficulté</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <%  for (var i = 0; i < menuCoursJson[key].length; i++) { %>
-                    <tr>
-                        <td style="text-align:center;"><a href="/cours/<%= menuCoursJson[key][i].id %>"><%= menuCoursJson[key][i].nom%></a></td>
-                        <td style="text-align:center;">
-                            <% if (jsonNombreValidationsCours[menuCoursJson[key][i].id] != null) { %>
-                            <%= jsonNombreValidationsCours[menuCoursJson[key][i].id]; %>
-                            <% } else { %>
-                            0
-                            <%}%>
-                        </td>
-                        <td style="text-align:center;">
-                            <% if (jsonNombreValidationsCours[menuCoursJson[key][i].id] != null && numberOfUsers > 0) { %>
-                            <%= 100 * jsonNombreValidationsCours[menuCoursJson[key][i].id] / numberOfUsers %>%
-                            <% } else { %>
-                            0%
-                            <%}%>
-                        </td>
-                        <td style="text-align:center;">
-                            <% switch (menuCoursJson[key][i].difficulte) {
-                            case 0:%>
-                            Facile
-                            <% break;
-                            case 1: %>
-                            Moyen
-                            <% break;
-                            case 2: %>
-                            Difficile
-                            <% break;
-                                default: %>
-                            Erreur
+        <div class="row justify-content-center">
+            <div class="col-sm-10">
+                <br>
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="border-bottom border-gray pb-2 mb-0">Statistiques challenges</h5>
+                        <br>
+                        <p>Nombre de challenges : <%= numberOfChallenges %></p>
+                        <br>
+
+                        <table class="table table-borderless">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center;">Nom du challenge</th>
+                                    <th style="text-align:center;">Nombre de validations</th>
+                                    <th style="text-align:center;">Pourcentage d'utilisateurs qui ont validé</th>
+                                    <th style="text-align:center;">Difficulté</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <%  for (var i = 0; i < menuChallenges.length; i++) { %>
+                            <tr>
+                                <td style="text-align:center;"><a href="/challenges/<%= menuChallenges[i].id %>"><%= menuChallenges[i].nom%></a></td>
+                                <td style="text-align:center;">
+                                    <% if (jsonNombreValidations[menuChallenges[i].id] != null) { %>
+                                    <%= jsonNombreValidations[menuChallenges[i].id]; %>
+                                    <% } else { %>
+                                    0
+                                    <%}%>
+                                </td>
+                                <td style="text-align:center;">
+                                    <% if (jsonNombreValidations[menuChallenges[i].id] != null && numberOfUsers > 0) { %>
+                                    <%= 100 * jsonNombreValidations[menuChallenges[i].id] / numberOfUsers %>%
+                                    <% } else { %>
+                                    0%
+                                    <%}%>
+                                </td>
+                                <td style="text-align:center;">
+                                    <% switch (menuChallenges[i].difficulte) {
+                                    case 0:%>
+                                    Facile
+                                    <% break;
+                                    case 1: %>
+                                    Moyen
+                                    <% break;
+                                    case 2: %>
+                                    Difficile
+                                    <% break;
+                                        default: %>
+                                    Erreur
+                                    <% } %>
+                                </td>
+                            </tr>
                             <% } %>
-                        </td>
-                    </tr>
-                    <% } %>
-                    </tbody>
-                </table>
-            <br>
-            <%}%>
-        </div>
-
-    </div>
-    <div class="row justify-content-center">
-        <div class="col-sm-10">
-            <br>
-            <h5 class="border-bottom border-gray pb-2 mb-0">Statistiques challenges</h5>
-            <br>
-            <p>Nombre de challenges : <%= numberOfChallenges %></p>
-            <br>
-
-            <table class="table table-borderless">
-                <thead>
-                    <tr>
-                        <th style="text-align:center;">Nom du challenge</th>
-                        <th style="text-align:center;">Nombre de validations</th>
-                        <th style="text-align:center;">Pourcentage d'utilisateurs qui ont validé</th>
-                        <th style="text-align:center;">Difficulté</th>
-                    </tr>
-                </thead>
-                <tbody>
-                <%  for (var i = 0; i < menuChallenges.length; i++) { %>
-                <tr>
-                    <td style="text-align:center;"><a href="/challenges/<%= menuChallenges[i].id %>"><%= menuChallenges[i].nom%></a></td>
-                    <td style="text-align:center;">
-                        <% if (jsonNombreValidations[menuChallenges[i].id] != null) { %>
-                        <%= jsonNombreValidations[menuChallenges[i].id]; %>
-                        <% } else { %>
-                        0
-                        <%}%>
-                    </td>
-                    <td style="text-align:center;">
-                        <% if (jsonNombreValidations[menuChallenges[i].id] != null && numberOfUsers > 0) { %>
-                        <%= 100 * jsonNombreValidations[menuChallenges[i].id] / numberOfUsers %>%
-                        <% } else { %>
-                        0%
-                        <%}%>
-                    </td>
-                    <td style="text-align:center;">
-                        <% switch (menuChallenges[i].difficulte) {
-                        case 0:%>
-                        Facile
-                        <% break;
-                        case 1: %>
-                        Moyen
-                        <% break;
-                        case 2: %>
-                        Difficile
-                        <% break;
-                            default: %>
-                        Erreur
-                        <% } %>
-                    </td>
-                </tr>
-                <% } %>
-                </tbody>
-            </table>
-
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
+</body>
 <% include partials/footer%>

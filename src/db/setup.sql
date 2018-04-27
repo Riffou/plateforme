@@ -1,13 +1,14 @@
 CREATE TABLE Unites (
    id SERIAL NOT NULL CHECK (id >= 0),
    nom VARCHAR(50) NOT NULL,
+   description VARCHAR(1000) NOT NULL,
    ordre INT CHECK (ordre >= 0),
    PRIMARY KEY(id)
 );
 
 CREATE TABLE Cours (
    id SERIAL NOT NULL CHECK (id >= 0),
-   idUnite INT NOT NULL CHECK (idUnite >= 0),
+   idUnite INT CHECK (idUnite >= 0),
    nom VARCHAR(50) NOT NULL,
    ordre INT CHECK (ordre >= 0),
    difficulte INT CHECK(difficulte >= 0) DEFAULT 0,
@@ -76,10 +77,10 @@ CREATE TABLE solutionsChallengesUtilisateurs (
     FOREIGN KEY(identifiant) REFERENCES Utilisateurs(identifiant)
 );
 
-INSERT INTO Unites (nom, ordre) VALUES ('Unité 1', 1);
-INSERT INTO Unites (nom, ordre) VALUES ('Unité 2', 2);
-INSERT INTO Unites (nom, ordre) VALUES ('Unité 3', 3);
-INSERT INTO Unites (nom, ordre) VALUES ('Unité 4', 4);
+INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 1', 1, 'Ceci est la description de l unité 1');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 2', 2, 'Ceci est la description de l unité 2');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 3', 3, 'Ceci est la description de l unité 3');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 4', 4, 'Ceci est la description de l unité 4');
 
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 1', 1, 0);
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 2', 2, 1);

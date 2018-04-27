@@ -1,8 +1,17 @@
 var db = require("../models/base").db;
 
-module.exports = {
+var self = module.exports = {
     getUnites: function(callback) {
         db.any('SELECT nom, id from public.unites ORDER BY ordre', null)
+            .then(function (data) {
+                callback(data, null);
+            })
+            .catch(function (error) {
+                callback(null, error);
+            })
+    },
+    getUnitesAll: function(callback) {
+        db.any('SELECT * FROM public.unites ORDER BY ordre', null)
             .then(function (data) {
                 callback(data, null);
             })
@@ -173,6 +182,67 @@ module.exports = {
             })
             .catch(function(error) {
                 callback(null, error)
+            })
+    },
+    updateCategories: function(id, ordre, nom, callback) {
+        db.none('UPDATE public.unites SET nom = $1, ordre = $2 WHERE id = $3', [nom, ordre, id])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    deleteCategorie: function(id, callback) {
+        self.deleteCategoriesFromCours(id, function(error) {
+            if (error == null) {
+                db.none('DELETE FROM public.unites WHERE id = $1', [id])
+                    .then(function() {
+                        callback(null);
+                    })
+                    .catch(function(error) {
+                        callback(error);
+                    })
+            }
+            else {
+                callback(error);
+            }
+        })
+    },
+    deleteCategoriesFromCours: function(idUnite, callback) {
+        db.none('UPDATE public.cours SET idUnite = null WHERE idUnite = $1', [idUnite])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    addCategorie: function(nomUnite, descriptionUnite, ordre, callback) {
+        db.none('INSERT INTO public.unites (nom, description, ordre) VALUES ($1, $2, $3)', [nomUnite, descriptionUnite, ordre])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    updateOrdreCategories: function(ordre, id, callback) {
+        db.none('UPDATE public.unites SET ordre = $1 WHERE id = $2', [ordre, id])
+            .then(function() {
+                    callback(null);
+                })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    getAllOfOneUnite: function(id, callback) {
+        db.one('SELECT * from public.unites WHERE id = $1', [id])
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
             })
     }
 }
