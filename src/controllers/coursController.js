@@ -1,5 +1,18 @@
+var fs = require('fs');
 var coursModel = require('../models/cours');
 var utilisateurModel = require('../models/utilisateurs');
+
+function getTexteCours (idCours, callback) {
+    fs.readFile('src/public/cours/' + idCours + '.html', function(err, data) {
+        console.log(data);
+        if (err == null) {
+            callback(data, null);
+        }
+        else {
+            callback(null, err);
+        }
+    });
+}
 
 var getButtons = function(idUnite, idCours, identifiant, callback) {
     var precedent = "", suivant = "", lu = "";
@@ -79,14 +92,38 @@ var self = module.exports = {
                             if (error == null) {
                                 coursModel.getOrdreFromIdCours(idCours, function (ordreCours, error) {
                                     if (error == null) {
-                                        // render the view
-                                        res.render('cours.ejs', {
-                                            precedent: precedent,
-                                            suivant: suivant,
-                                            lu: lu,
-                                            ordreUnite: ordreUnite,
-                                            idUnite: idUnite,
-                                            ordreCours: ordreCours
+                                        coursModel.getNomFromIdUnite(idUnite, function(nomUnite, error) {
+                                           if (error == null) {
+                                               coursModel.getNomFromIdCours(idCours, function(nomCours, error) {
+                                                   if (error == null) {
+                                                       getTexteCours(idCours, function(texte, error) {
+                                                           if (error == null) {
+                                                               // render the view
+                                                               res.render('cours.ejs', {
+                                                                   precedent: precedent,
+                                                                   suivant: suivant,
+                                                                   lu: lu,
+                                                                   ordreUnite: ordreUnite,
+                                                                   idUnite: idUnite,
+                                                                   ordreCours: ordreCours,
+                                                                   nomUnite: nomUnite,
+                                                                   nomCours: nomCours,
+                                                                   texte: texte
+                                                               });
+                                                           }
+                                                           else {
+                                                               res.render('error.ejs', {message: error, error: error});
+                                                           }
+                                                       });
+                                                   }
+                                                   else {
+                                                       res.render('error.ejs', {message: error, error: error});
+                                                   }
+                                               });
+                                           }
+                                           else {
+                                               res.render('error.ejs', {message: error, error: error});
+                                           }
                                         });
                                     }
                                     else {

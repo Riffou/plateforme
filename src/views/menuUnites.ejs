@@ -11,15 +11,17 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title"><%= data[i].nom %>
-                <% if (arrayUnitesLus[data[i].id]) { %>
-              <img class="checkIconsMenuUnites" src="/images/green-check-circle.png" alt="" width="20px">
-                <%}
-                else {%>
-              <img class="checkIconsMenuUnites" src="/images/red-cross-circle.png" alt="" width="20px">
+                <% if (arrayUnitesSize[data[i].id][0] > 0) {%>
+                  <% if (arrayUnitesLus[data[i].id]) { %>
+                <img class="checkIconsMenuUnites" src="/images/green-check-circle.png" alt="" width="20px">
+                  <%}
+                  else {%>
+                <img class="checkIconsMenuUnites" src="/images/red-cross-circle.png" alt="" width="20px">
+                  <%}%>
                 <%}%>
                 (<%= arrayUnitesSize[data[i].id][1] %>/<%= arrayUnitesSize[data[i].id][0]%>)
               </h5>
-              <p class="card-text">Description cours : <%= data[i].nom %></p>
+              <p class="card-text"><%= data[i].description %></p>
               <a href="unites/<%= data[i].id %>" class="btn btn-dark">Accéder</a>
             </div>
           </div>

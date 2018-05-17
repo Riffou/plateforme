@@ -1,0 +1,104 @@
+<% include partials/head %>
+<% include partials/headerAdmin %>
+
+<body>
+<br>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <% if (typeof nom == "undefined") { %>
+            <h5 class="border-bottom border-gray pb-2 mb-0">Ajouter un cours</h5>
+            <%}
+            else { %>
+            <h5 class="border-bottom border-gray pb-2 mb-0">Modifier un cours</h5>
+            <%}%>
+
+            <br>
+        </div>
+    </div>
+    <form method="post" action="/admin/dashboard/cours/form/<% if (typeof idCours != "undefined") {%>edit/<%= idCours%><%}%>">
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-8">
+                <input type="text" class="form-control" id="titleInput" name="titleInput" placeholder="Nom du cours"
+                        <% if (typeof nom != "undefined") { %>
+                       value="<%= nom %>"
+                        <%}%>>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-8">
+                <select class="custom-select mr-sm-2" id="nomCategorieInput" name="nomCategorieInput">
+                    <% for (var i = 0; i < dataCategories.length; i++) { %>
+                    <option value="<%= dataCategories[i].id %>"
+                        <% if (idUnite == dataCategories[i].id) {%>
+                        selected
+                        <%}%>
+                    ><%= dataCategories[i].nom %></option>
+                    <%}%>
+                </select>
+                <div id="ordreHTML">
+                    <% if (numberOfCours > 0) { %>
+                    <select class="custom-select mr-sm-2" id="ordreInput" name="ordreInput" style="margin-top: 10px;">
+                        <% if (typeof ordre == "undefined") { %>
+                        <option value="default" selected>Choisissez l'ordre...</option>
+                        <%}%>
+                        <% for (var i = 0; i <= numberOfCours; i++) {%>
+                        <option value="<%= i+1 %>"
+                                <% if (typeof ordre != "undefined" && ordre == (i+1)) {%>
+                                selected
+                                <%}%>
+                        ><%= i+1 %></option>
+                        <%} %>
+                    </select>
+                    <%} %>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-8">
+                <select class="custom-select mr-sm-2" id="difficulteCoursInput" name="difficulteCoursInput">
+                    <option value="0" <% if (typeof difficulte != "undefined") { if (difficulte == 0) {%>
+                            selected
+                            <%}}%>>Facile</option>
+                    <option value="1" <% if (typeof difficulte != "undefined") { if (difficulte == 1) {%>
+                            selected
+                            <%}}%>>Moyen</option>
+                    <option value="2" <% if (typeof difficulte != "undefined") { if (difficulte == 2) {%>
+                            selected
+                            <%}}%>>Difficile</option>
+                </select>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="form-group col-sm-10">
+                <textarea style="height: 500px;" class="form-control" id="texteInput" name="texteInput" placeholder="HTML du cours"><% if (typeof texteCours != "undefined") { %><%= texteCours %><%}%></textarea>
+            </div>
+        </div>
+
+        <!-- Alerte JS -->
+        <div class="row justify-content-center" id="error" style="display: none">
+            <div class="col-sm-8">
+                <div class="alert alert-danger" role="alert">
+                    <p style="margin-bottom: 0px;" id="pError"></p>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div class="row justify-content-center">
+            <a role="button" href="/admin/dashboard" class="btn btn-danger" style="margin-right:10px;">Annuler</a>
+            <% if (typeof nom == "undefined") { %>
+            <button class="btn btn-info" type="submit" id="ajouterCours">Ajouter</button>
+            <%}
+            else {%>
+            <button class="btn btn-info" type="submit" id="modifierCours">Sauvegarder</button>
+            <%}%>
+        </div>
+        <br>
+    </form>
+    <p style="display:none" id="idUniteOrigine"><% if (typeof idUnite != "undefined") {%> <%= idUnite %> <%}%></p>
+</div>
+<script src="/js/formCours.js"></script>
+</body>
+
+<% include partials/footer %>

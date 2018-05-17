@@ -9,23 +9,31 @@ module.exports = {
             if (error == null) {
                 coursModel.getOrdreFromIdUnite(idUnite, function(ordreUnite, error) {
                     if (error == null) {
-                        utilisateurModel.getArrayCoursRead(req.user.identifiant, function(coursRead, error) {
-                            if (error == null) {
-                                // convert json in a array
-                                var coursReadArray = [];
-                                for (var i = 0; i < coursRead.length; i++) {
-                                    coursReadArray.push(coursRead[i].idcours);
-                                }
-                                res.render('menuCours.ejs', {
-                                    data: data,
-                                    idUnite: idUnite,
-                                    ordreUnite: ordreUnite,
-                                    coursReadArray: coursReadArray
-                                });
-                            }
-                            else {
-                                res.render('error.ejs', {message: error, error: error});
-                            }
+                        coursModel.getNomFromIdUnite(idUnite, function(nomUnite, error) {
+                           if (error == null) {
+                               utilisateurModel.getArrayCoursRead(req.user.identifiant, function(coursRead, error) {
+                                   if (error == null) {
+                                       // convert json in a array
+                                       var coursReadArray = [];
+                                       for (var i = 0; i < coursRead.length; i++) {
+                                           coursReadArray.push(coursRead[i].idcours);
+                                       }
+                                       res.render('menuCours.ejs', {
+                                           data: data,
+                                           idUnite: idUnite,
+                                           ordreUnite: ordreUnite,
+                                           nomUnite: nomUnite,
+                                           coursReadArray: coursReadArray,
+                                       });
+                                   }
+                                   else {
+                                       res.render('error.ejs', {message: error, error: error});
+                                   }
+                               });
+                           }
+                           else {
+
+                           }
                         });
                     }
                     else {

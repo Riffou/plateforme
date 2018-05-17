@@ -1,5 +1,5 @@
 <% include partials/head %>
-<%- include('partials/header', {path: 'unite', unite: ordreUnite, connected: 'ok'}) %>
+<%- include('partials/header', {path: 'unite', nomUnite: nomUnite, connected: 'ok'}) %>
 
 <body>
     <div class="container">
@@ -16,7 +16,7 @@
             <tbody>
             <%  for (var i = 0; i < data.length; i++) { %>
             <tr>
-                <td><a href="/unites/<%= idUnite %>/<%= data[i].id %>"><%= ordreUnite %>. Sous-partie <%= i+1%></a></td>
+                <td><a href="/unites/<%= idUnite %>/<%= data[i].id %>"><%= i+1 %>. <%= data[i].nom %></a></td>
                 <td><% if (coursReadArray.indexOf(data[i].id) > -1) { %>
                         <img src="/images/green-check-circle.png" alt="" width="20px">
                     <%}

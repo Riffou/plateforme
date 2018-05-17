@@ -2,7 +2,7 @@ var db = require("../models/base").db;
 
 var self = module.exports = {
     getUnites: function(callback) {
-        db.any('SELECT nom, id from public.unites ORDER BY ordre', null)
+        db.any('SELECT nom, id, description from public.unites ORDER BY ordre', null)
             .then(function (data) {
                 callback(data, null);
             })
@@ -20,7 +20,7 @@ var self = module.exports = {
             })
     },
     getMenuCours: function(idUnite, callback) {
-        db.any('SELECT nom, id, difficulte from public.cours WHERE idunite = $1 ORDER BY ordre', [idUnite])
+        db.any('SELECT nom, id, difficulte, ordre from public.cours WHERE idunite = $1 ORDER BY ordre', [idUnite])
             .then(function (data) {
                 callback(data, null);
             })
@@ -193,6 +193,15 @@ var self = module.exports = {
                 callback(error);
             })
     },
+    updateCours: function(id, ordre, nom, callback) {
+        db.none('UPDATE public.cours SET nom = $1, ordre = $2 WHERE id = $3', [nom, ordre, id])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
     deleteCategorie: function(id, callback) {
         self.deleteCategoriesFromCours(id, function(error) {
             if (error == null) {
@@ -219,12 +228,12 @@ var self = module.exports = {
             })
     },
     addCategorie: function(nomUnite, descriptionUnite, ordre, callback) {
-        db.none('INSERT INTO public.unites (nom, description, ordre) VALUES ($1, $2, $3)', [nomUnite, descriptionUnite, ordre])
-            .then(function() {
-                callback(null);
+        db.one('INSERT INTO public.unites (nom, description, ordre) VALUES ($1, $2, $3) returning id', [nomUnite, descriptionUnite, ordre])
+            .then(function(data) {
+                callback(data.id, null);
             })
             .catch(function(error) {
-                callback(error);
+                callback(null, error);
             })
     },
     updateOrdreCategories: function(ordre, id, callback) {
@@ -242,6 +251,114 @@ var self = module.exports = {
                 callback(data, null);
             })
             .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    saveIdCours: function(idUnite, callback) {
+        db.any('SELECT id from public.cours WHERE idUnite = $1', [idUnite])
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    associateIdCours: function(idUnite, idCours, callback) {
+        db.none('UPDATE public.cours SET idUnite = $1 WHERE id = $2', [idUnite, idCours])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    getNomFromIdUnite: function(idUnite, callback) {
+        db.one('SELECT nom from public.unites WHERE id = $1', [idUnite])
+            .then(function(data) {
+                callback(data.nom, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getNomFromIdCours: function(idCours, callback) {
+        db.one('SELECT nom from public.cours WHERE id = $1', [idCours])
+            .then(function(data) {
+                callback(data.nom, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getIdFromOrdreUnite: function(ordreUnite, callback) {
+        db.one('SELECT id from public.unites WHERE ordre = $1', [ordreUnite])
+            .then(function(data) {
+                callback(data.id, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getNumberOfCoursInUnite: function(idUnite, callback) {
+        db.one('SELECT COUNT(id) from public.cours WHERE idUnite = $1', [idUnite])
+            .then(function(data) {
+                callback(data.count, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    addCours: function(nomCours, ordre, idUnite, difficulte, callback) {
+        db.one('INSERT INTO public.cours (nom, ordre, idUnite, difficulte) VALUES ($1, $2, $3, $4) returning id', [nomCours, ordre, idUnite, difficulte])
+            .then(function(data) {
+                callback(data.id, null);
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
+    getOrderOfCours: function(idUnite, callback) {
+        db.any('SELECT id FROM cours where idUnite = $1 ORDER BY ordre', [idUnite])
+            .then(function(data) {
+                callback(data, null);
+            })
+            .catch(function(error) {
+                callback(null, error)
+            })
+    },
+    updateOrdreCours: function(ordre, id, callback) {
+        db.none('UPDATE public.cours SET ordre = $1 WHERE id = $2', [ordre, id])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    deleteCours: function(id, callback) {
+        db.none('DELETE FROM public.cours WHERE id = $1', [id])
+            .then(function () {
+                callback(null);
+            })
+            .catch(function (error) {
+                callback(error);
+            })
+    },
+    getIdUniteFromIdCours: function(idCours, callback) {
+        db.one('SELECT idunite FROM public.cours where id = $1', [idCours])
+            .then(function (data) {
+                callback(data.idunite, null);
+            })
+            .catch(function (error) {
+                callback(null, error);
+            })
+    },
+    getEverythingCoursWithId: function(idCours, callback) {
+        db.one('SELECT * FROM public.cours where id = $1', [idCours])
+            .then(function (data) {
+                callback(data, null);
+            })
+            .catch(function (error) {
                 callback(null, error);
             })
     }
