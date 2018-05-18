@@ -6,22 +6,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/controllers/adminChallengesController.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/js/dashboardChallenges.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/js/formChallenge.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/formChallenge.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/adminController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/adminController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/setup.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/challenges.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/challenges.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/js/challenge.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/js/challenge.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/js/formCategorie.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/js/formCategorie.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/admin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/challenge.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challenge.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/partials/header.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/partials/header.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/partials/headerAdmin.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/partials/headerAdmin.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/dashboard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboard.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,7 +20,17 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="dashboard.ejs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/views/dashboard.ejs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="70" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -133,7 +129,6 @@
         <option value="$PROJECT_DIR$/src/views/suivi.ejs" />
         <option value="$PROJECT_DIR$/src/controllers/menuUnitesController.js" />
         <option value="$PROJECT_DIR$/src/controllers/menuCoursController.js" />
-        <option value="$PROJECT_DIR$/src/views/dashboard.ejs" />
         <option value="$PROJECT_DIR$/src/public/js/dashboard.js" />
         <option value="$PROJECT_DIR$/src/models/cours.js" />
         <option value="$PROJECT_DIR$/src/views/menuCours.ejs" />
@@ -162,6 +157,7 @@
         <option value="$PROJECT_DIR$/src/models/challenges.js" />
         <option value="$PROJECT_DIR$/src/routes/admin.js" />
         <option value="$PROJECT_DIR$/src/controllers/adminChallengesController.js" />
+        <option value="$PROJECT_DIR$/src/views/dashboard.ejs" />
       </list>
     </option>
   </component>
@@ -318,7 +314,7 @@
       <workItem from="1526369169043" duration="19243000" />
       <workItem from="1526455478482" duration="20738000" />
       <workItem from="1526548005651" duration="9363000" />
-      <workItem from="1526628334859" duration="8968000" />
+      <workItem from="1526628334859" duration="10665000" />
     </task>
     <task id="LOCAL-00001" summary="Test de commit par WebStorm">
       <created>1520518116546</created>
@@ -586,11 +582,18 @@
       <option name="project" value="LOCAL" />
       <updated>1526549603312</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="BackOffice done">
+      <created>1526637951122</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1526637951122</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="499265000" />
+    <option name="totallyTimeSpent" value="500962000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -603,6 +606,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1" y="28" width="1922" height="1019" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49893048" weight="0.32911393" />
       <window_info id="DB Browser" order="2" />
@@ -661,7 +665,8 @@
     <MESSAGE value="SPRINT 5 DONE" />
     <MESSAGE value="Suivi sprint 4 + suivi utilisateurs + début panel admin" />
     <MESSAGE value="BackOffice" />
-    <option name="LAST_COMMIT_MESSAGE" value="BackOffice" />
+    <MESSAGE value="BackOffice done" />
+    <option name="LAST_COMMIT_MESSAGE" value="BackOffice done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -836,13 +841,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/dashboard.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="48" lean-forward="true" selection-end-line="137" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/partials/headerAdmin.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -1011,6 +1009,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="70" column="64" lean-forward="true" selection-start-line="70" selection-start-column="64" selection-end-line="70" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/dashboard.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="60" column="17" selection-start-line="60" selection-start-column="17" selection-end-line="70" selection-end-column="33" />
         </state>
       </provider>
     </entry>

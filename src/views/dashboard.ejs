@@ -53,9 +53,13 @@
         <div class="row justify-content-center">
             <div class="col-sm-10">
                 <br>
-                <div class="row justify-content-center">
-                    <select class="custom-select mr-sm-2" id="nomCategorieInput" name="nomCategorieInput">
-                        <% for (var i = 0; i < dataCategories.length; i++) { %>
+                <h5 class="border-bottom border-gray pb-2 mb-0">Cours<a style="margin-left: 15px; padding-bottom: 2px !important;" role="button" class="addButton" href="#" id="addButtonCours"><img src="/images/add.png" alt="" width="30px"></a></h5>
+                <br>
+                <div class="form-group row justify-content-center">
+                    <label for="nomCategorieInput" class="col-sm-2 col-form-label">Catégorie :</label>
+                    <div class="col-sm-10">
+                        <select class="custom-select mr-sm-2" id="nomCategorieInput" name="nomCategorieInput">
+                            <% for (var i = 0; i < dataCategories.length; i++) { %>
                             <option value="<%= dataCategories[i].id %>"
                                     <% if (typeof idUnite != "undefined") {%>
                                     <% if (dataCategories[i].id == idUnite) {%>
@@ -63,12 +67,10 @@
                                     <%}%>
                                     <% } %>><%= dataCategories[i].nom %>
                             </option>
-                        <%}%>
-                    </select>
+                            <%}%>
+                        </select>
+                    </div>
                 </div>
-                <br>
-                <h5 class="border-bottom border-gray pb-2 mb-0">Cours<a style="margin-left: 15px; padding-bottom: 2px !important;" role="button" class="addButton" href="#" id="addButtonCours"><img src="/images/add.png" alt="" width="30px"></a></h5>
-                <br>
                 <div id="formCours">
                     <table class="table table-borderless">
                         <colgroup>
