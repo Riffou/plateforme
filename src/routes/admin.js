@@ -2,10 +2,12 @@ var express = require('express');
 var router = express.Router();
 var base = require('./base/base');
 var administrateurs = require('../controllers/adminController');
+var adminChallenges = require('../controllers/adminChallengesController');
 
 router.get('/', base.isAlreadyLoggedAdmin, function(req, res) {
     res.render('admin.ejs');
 });
+
 
 router.post('/', base.isAlreadyLoggedAdmin, administrateurs.runConnexion);
 
@@ -24,6 +26,7 @@ router.get('/dashboard/categories/form/', base.requireLoginAdmin, administrateur
 
 router.get('/dashboard/categories/form/:idUnite', base.requireLoginAdmin, administrateurs.runCategorie);
 
+// Sauvegarde d'une nouvelle catégorie
 router.post('/dashboard/categories/form/', base.requireLoginAdmin, administrateurs.addCategorie);
 
 // Sauvegarde des modifications faites dans la vue formCategorie
@@ -52,6 +55,24 @@ router.post('/dashboard/cours/form/', base.requireLoginAdmin, administrateurs.ad
 router.post('/dashboard/cours/form/edit/:idCours', base.requireLoginAdmin, administrateurs.saveModifiedCours);
 
 router.post('/dashboard/cours/form/ordre/:idUnite', base.requireLoginAdmin, administrateurs.getSelectOrdreFromCategorie);
+
+// Partie challenges
+router.get('/challenges/', base.requireLoginAdmin, adminChallenges.runChallenges);
+router.get('/challenges/form/', base.requireLoginAdmin, adminChallenges.runFormChallenges);
+// Ouverture du formulaire pour modifier un challenge
+router.get('/challenges/form/:idChallenge', base.requireLoginAdmin, adminChallenges.runFormChallenges);
+
+// Ouverture du formulaire pour ajouter un challenge
+router.post('/challenges/form/', base.requireLoginAdmin, adminChallenges.addChallenge);
+
+// Sauvegarde des modifications faites dans la vue dashboard challenge
+router.post('/challenges/update/', base.requireLoginAdmin, adminChallenges.updateChallenges);
+
+// Sauvegarde des modifications faites dans la vue formChallenge
+router.post('/challenges/form/:idChallenge', base.requireLoginAdmin, adminChallenges.saveModifiedChallenge);
+
+// Suppression challenge
+router.get('/challenges/delete/:idChallenge', base.requireLoginAdmin, adminChallenges.deleteChallenge);
 
 router.get('/deconnexion', base.requireLoginAdmin, function(req, res) {
     req.session.destroy();

@@ -215,17 +215,17 @@ function updateIdUnite(idUnite, idCoursArray, callback) {
 }
 
 var self = module.exports = {
-    runConnexion: function(req, res) {
+    runConnexion: function (req, res) {
         var identifiant = req.body.identifiantInput;
         var password = req.body.passwordInput;
         if (identifiant != "" && password != "") {
-            administrateursModel.userExists(identifiant, function(existsBoolean, error) {
+            administrateursModel.userExists(identifiant, function (existsBoolean, error) {
                 if (error == null) {
                     if (existsBoolean) {
-                        administrateursModel.isPasswordCorrect(identifiant, saltHashPassword(password), function(passwordBoolean, error) {
+                        administrateursModel.isPasswordCorrect(identifiant, saltHashPassword(password), function (passwordBoolean, error) {
                             if (error == null) {
                                 if (passwordBoolean) {
-                                    administrateursModel.updateLastConnection(identifiant, Date.now(), function(error) {
+                                    administrateursModel.updateLastConnection(identifiant, Date.now(), function (error) {
                                         if (error == null) {
                                             req.session.admin = {};
                                             req.session.admin.identifiant = identifiant;
@@ -237,9 +237,12 @@ var self = module.exports = {
                                     });
                                 }
                                 else {
-                                    administrateursModel.updateLastFailedConnection(identifiant, Date.now(), function(error) {
+                                    administrateursModel.updateLastFailedConnection(identifiant, Date.now(), function (error) {
                                         if (error == null) {
-                                            res.render('admin.ejs', {erreur: "L'identifiant ou le mot de passe sont incorrects.", identifiant: identifiant});
+                                            res.render('admin.ejs', {
+                                                erreur: "L'identifiant ou le mot de passe sont incorrects.",
+                                                identifiant: identifiant
+                                            });
                                         }
                                         else {
                                             res.render('error.ejs', {message: error, error: error});
@@ -253,7 +256,10 @@ var self = module.exports = {
                         });
                     }
                     else {
-                        res.render('admin.ejs', {erreur: "L'identifiant ou le mot de passe sont incorrects.", identifiant: identifiant});
+                        res.render('admin.ejs', {
+                            erreur: "L'identifiant ou le mot de passe sont incorrects.",
+                            identifiant: identifiant
+                        });
                     }
                 }
                 else {
@@ -268,141 +274,133 @@ var self = module.exports = {
             });
         }
     },
-    runSuivi: function(req, res) {
-        utilisateursModel.getNumberOfUsers(function(numberOfUsers, error) {
-           if (error == null) {
-               var data = {numberOfUsers: numberOfUsers};
-               coursModel.getNumberOfCours(function(numberOfCours, error) {
-                  if (error == null) {
-                      data.numberOfCours = numberOfCours;
-                      challengesModel.getNumberOfChallenges(function(numberOfChallenges, error) {
-                          if (error == null) {
-                              data.numberOfChallenges = numberOfChallenges;
-                              coursModel.getNumberOfUnites(function(numberOfUnites, error) {
-                                  if (error == null) {
-                                      data.numberOfUnites = numberOfUnites;
-                                      challengesModel.getMenu(function(menuChallenges, error) {
-                                         if (error == null) {
-                                             data.menuChallenges = menuChallenges;
-                                             challengesModel.getNombreValidations(function(nombreValidationsArray, error) {
-                                                 if (error == null) {
-                                                     var jsonNombreValidations = {};
-                                                     for (var i = 0; i < nombreValidationsArray.length; i++) {
-                                                         jsonNombreValidations[nombreValidationsArray[i].idchallenge] = nombreValidationsArray[i].count;
-                                                     }
-                                                     data.jsonNombreValidations = jsonNombreValidations;
-                                                     coursModel.getEverythingCours(function(dataEverythingCours, error) {
-                                                        if (error == null) {
-                                                            coursModel.getUnites(function(menuUnites, error) {
-                                                               if (error == null) {
-                                                                   var menuCoursJson = {};
-                                                                   // Pas sûr que cette initialisation soit nécessaire
-                                                                   for (var i = 0; i < menuUnites.length; i++) {
-                                                                       menuCoursJson[menuUnites[i].id] = [];
-                                                                   }
-                                                                   console.log(menuCoursJson);
-                                                                   console.log(dataEverythingCours);
-                                                                   for (var i = 0; i < dataEverythingCours.length; i++) {
-                                                                       if (dataEverythingCours[i].idunite) {
-                                                                           menuCoursJson[dataEverythingCours[i].idunite].push({
-                                                                               id: dataEverythingCours[i].id,
-                                                                               nom: dataEverythingCours[i].nom,
-                                                                               difficulte: dataEverythingCours[i].difficulte
-                                                                           });
-                                                                       }
-                                                                   }
-                                                                   data.menuCoursJson = menuCoursJson;
-                                                                   coursModel.getNombreValidations(function(nombreValidationsCours, error) {
-                                                                      if (error == null) {
-                                                                          var jsonNombreValidationsCours = {};
-                                                                          for (var i = 0; i < nombreValidationsCours.length; i++) {
-                                                                              jsonNombreValidationsCours[nombreValidationsCours[i].idcours] = nombreValidationsCours[i].count;
-                                                                          }
-                                                                          data.jsonNombreValidationsCours = jsonNombreValidationsCours;
-                                                                          coursModel.getNomOfUnites(function(nomOfUnites, error) {
-                                                                              if (error == null) {
-                                                                                  var jsonNomOfUnites = {};
-                                                                                  for (var i = 0; i < nomOfUnites.length; i++) {
-                                                                                      jsonNomOfUnites[nomOfUnites[i].id] = nomOfUnites[i].nom;
-                                                                                  }
-                                                                                  data.nomOfUnites = jsonNomOfUnites;
-                                                                                  coursModel.getOrderOfUnites(function(ordreUnites, error) {
-                                                                                     if (error == null) {
-                                                                                         var arrayOrdre = [];
-                                                                                         for (var i = 0; i < ordreUnites.length; i++) {
-                                                                                             arrayOrdre[i] = ordreUnites[i].id;
-                                                                                         }
-                                                                                         data.arrayOrdre = arrayOrdre;
-                                                                                         res.render('suivi.ejs', data);
-                                                                                     }
-                                                                                     else {
-                                                                                         res.render('error.ejs', {message: error, error: error});
-                                                                                     }
-                                                                                  });
-                                                                              }
-                                                                              else {
-                                                                                  res.render('error.ejs', {message: error, error: error});
-                                                                              }
-                                                                          });
-                                                                      }
-                                                                      else {
-                                                                          res.render('error.ejs', {message: error, error: error});
-                                                                      }
-                                                                   });
-                                                               }
-                                                               else {
-                                                                   res.render('error.ejs', {message: error, error: error});
-                                                               }
-                                                            });
-                                                        }
-                                                        else {
-                                                            res.render('error.ejs', {message: error, error: error});
-                                                        }
-                                                     });
-                                                 }
-                                                 else {
-                                                     res.render('error.ejs', {message: error, error: error});
-                                                 }
-                                             });
-                                         }
-                                         else {
-                                             res.render('error.ejs', {message: error, error: error});
-                                         }
-                                      });
-                                  }
-                                  else {
-                                      res.render('error.ejs', {message: error, error: error});
-                                  }
-                              })
-                          }
-                          else {
-                              res.render('error.ejs', {message: error, error: error});
-                          }
-                      })
-                  }
-                  else {
-                      res.render('error.ejs', {message: error, error: error});
-                  }
-               });
-           }
-           else {
-               res.render('error.ejs', {message: error, error: error});
-           }
-        });
-    },
-    runDashboard: function(req, res) {
-        var data = {};
-        getCategories(function(dataCategories, error) {
+    runSuivi: function (req, res) {
+        utilisateursModel.getNumberOfUsers(function (numberOfUsers, error) {
             if (error == null) {
-                getCours(null, function(dataCours, error) {
-                   if (error == null) {
-                       data.dataCategories = dataCategories;
-                       data.dataCours = dataCours;
-                       res.render('dashboard.ejs', data);
-                   }
-                   else {
-                       res.render('error.ejs', {message: error, error: error});
-                   }
+                var data = {numberOfUsers: numberOfUsers};
+                coursModel.getNumberOfCours(function (numberOfCours, error) {
+                    if (error == null) {
+                        data.numberOfCours = numberOfCours;
+                        challengesModel.getNumberOfChallenges(function (numberOfChallenges, error) {
+                            if (error == null) {
+                                data.numberOfChallenges = numberOfChallenges;
+                                coursModel.getNumberOfUnites(function (numberOfUnites, error) {
+                                    if (error == null) {
+                                        data.numberOfUnites = numberOfUnites;
+                                        challengesModel.getMenu(function (menuChallenges, error) {
+                                            if (error == null) {
+                                                data.menuChallenges = menuChallenges;
+                                                challengesModel.getNombreValidations(function (nombreValidationsArray, error) {
+                                                    if (error == null) {
+                                                        var jsonNombreValidations = {};
+                                                        for (var i = 0; i < nombreValidationsArray.length; i++) {
+                                                            jsonNombreValidations[nombreValidationsArray[i].idchallenge] = nombreValidationsArray[i].count;
+                                                        }
+                                                        data.jsonNombreValidations = jsonNombreValidations;
+                                                        coursModel.getEverythingCours(function (dataEverythingCours, error) {
+                                                            if (error == null) {
+                                                                coursModel.getUnites(function (menuUnites, error) {
+                                                                    if (error == null) {
+                                                                        var menuCoursJson = {};
+                                                                        // Pas sûr que cette initialisation soit nécessaire
+                                                                        for (var i = 0; i < menuUnites.length; i++) {
+                                                                            menuCoursJson[menuUnites[i].id] = [];
+                                                                        }
+                                                                        console.log(menuCoursJson);
+                                                                        console.log(dataEverythingCours);
+                                                                        for (var i = 0; i < dataEverythingCours.length; i++) {
+                                                                            if (dataEverythingCours[i].idunite) {
+                                                                                menuCoursJson[dataEverythingCours[i].idunite].push({
+                                                                                    id: dataEverythingCours[i].id,
+                                                                                    nom: dataEverythingCours[i].nom,
+                                                                                    difficulte: dataEverythingCours[i].difficulte
+                                                                                });
+                                                                            }
+                                                                        }
+                                                                        data.menuCoursJson = menuCoursJson;
+                                                                        coursModel.getNombreValidations(function (nombreValidationsCours, error) {
+                                                                            if (error == null) {
+                                                                                var jsonNombreValidationsCours = {};
+                                                                                for (var i = 0; i < nombreValidationsCours.length; i++) {
+                                                                                    jsonNombreValidationsCours[nombreValidationsCours[i].idcours] = nombreValidationsCours[i].count;
+                                                                                }
+                                                                                data.jsonNombreValidationsCours = jsonNombreValidationsCours;
+                                                                                coursModel.getNomOfUnites(function (nomOfUnites, error) {
+                                                                                    if (error == null) {
+                                                                                        var jsonNomOfUnites = {};
+                                                                                        for (var i = 0; i < nomOfUnites.length; i++) {
+                                                                                            jsonNomOfUnites[nomOfUnites[i].id] = nomOfUnites[i].nom;
+                                                                                        }
+                                                                                        data.nomOfUnites = jsonNomOfUnites;
+                                                                                        coursModel.getOrderOfUnites(function (ordreUnites, error) {
+                                                                                            if (error == null) {
+                                                                                                var arrayOrdre = [];
+                                                                                                for (var i = 0; i < ordreUnites.length; i++) {
+                                                                                                    arrayOrdre[i] = ordreUnites[i].id;
+                                                                                                }
+                                                                                                data.arrayOrdre = arrayOrdre;
+                                                                                                res.render('suivi.ejs', data);
+                                                                                            }
+                                                                                            else {
+                                                                                                res.render('error.ejs', {
+                                                                                                    message: error,
+                                                                                                    error: error
+                                                                                                });
+                                                                                            }
+                                                                                        });
+                                                                                    }
+                                                                                    else {
+                                                                                        res.render('error.ejs', {
+                                                                                            message: error,
+                                                                                            error: error
+                                                                                        });
+                                                                                    }
+                                                                                });
+                                                                            }
+                                                                            else {
+                                                                                res.render('error.ejs', {
+                                                                                    message: error,
+                                                                                    error: error
+                                                                                });
+                                                                            }
+                                                                        });
+                                                                    }
+                                                                    else {
+                                                                        res.render('error.ejs', {
+                                                                            message: error,
+                                                                            error: error
+                                                                        });
+                                                                    }
+                                                                });
+                                                            }
+                                                            else {
+                                                                res.render('error.ejs', {message: error, error: error});
+                                                            }
+                                                        });
+                                                    }
+                                                    else {
+                                                        res.render('error.ejs', {message: error, error: error});
+                                                    }
+                                                });
+                                            }
+                                            else {
+                                                res.render('error.ejs', {message: error, error: error});
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        res.render('error.ejs', {message: error, error: error});
+                                    }
+                                })
+                            }
+                            else {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                        })
+                    }
+                    else {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
                 });
             }
             else {
@@ -410,12 +408,32 @@ var self = module.exports = {
             }
         });
     },
-    runDashboardUnite: function(req, res) {
+    runDashboard: function (req, res) {
+        var data = {};
+        getCategories(function (dataCategories, error) {
+            if (error == null) {
+                getCours(null, function (dataCours, error) {
+                    if (error == null) {
+                        data.dataCategories = dataCategories;
+                        data.dataCours = dataCours;
+                        res.render('dashboard.ejs', data);
+                    }
+                    else {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                });
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
+        });
+    },
+    runDashboardUnite: function (req, res) {
         var idUnite = req.params.idUnite;
         var data = {};
-        getCategories(function(dataCategories, error) {
+        getCategories(function (dataCategories, error) {
             if (error == null) {
-                getCours(idUnite, function(dataCours, error) {
+                getCours(idUnite, function (dataCours, error) {
                     if (error == null) {
                         data.dataCategories = dataCategories;
                         data.dataCours = dataCours;
@@ -432,14 +450,14 @@ var self = module.exports = {
             }
         });
     },
-    saveDashboard: function(req, res) {
+    saveDashboard: function (req, res) {
         // update infos
         self.runDashboard(req, res);
     },
-    updateCategories: function(req, res) {
+    updateCategories: function (req, res) {
         var data = JSON.parse(req.body.json);
-        async.forEachOf(data, function(item, key, callback) {
-                coursModel.updateCategories(key, item[0], item[1], function(error) {
+        async.forEachOf(data, function (item, key, callback) {
+                coursModel.updateCategories(key, item[0], item[1], function (error) {
                     if (error == null) {
                         callback();
                     }
@@ -448,9 +466,9 @@ var self = module.exports = {
                     }
                 });
             },
-            function(error){
+            function (error) {
                 // All tasks are done now
-                if(error == null) {
+                if (error == null) {
                     res.status(200).json({});
                 }
                 else {
@@ -460,52 +478,57 @@ var self = module.exports = {
             }
         );
     },
-    deleteCategorie: function(req, res) {
+    deleteCategorie: function (req, res) {
         var idUnite = req.params.idUnite;
         console.log(idUnite);
-        coursModel.deleteCategorie(idUnite, function(error) {
-           if (error == null) {
-               reorderCategories(0, function(error) {
-                   if (error == null) {
-                       res.redirect('/admin/dashboard');
-                   }
-                   else {
-                       res.render('error.ejs', {message: error, error: error});
-                   }
-               });
-           }
-           else {
-               res.render('error.ejs', {message: error, error: error});
-           }
+        coursModel.deleteCategorie(idUnite, function (error) {
+            if (error == null) {
+                reorderCategories(0, function (error) {
+                    if (error == null) {
+                        res.redirect('/admin/dashboard');
+                    }
+                    else {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                });
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
         });
     },
-    runCategorie: function(req, res) {
+    runCategorie: function (req, res) {
         var idUnite = req.params.idUnite;
-        coursModel.getNumberOfUnites(function(numberOfUnites, error) {
-           if (error == null) {
-               // Si on modifie une catégorie déjà existante
-               if (idUnite != null) {
-                   coursModel.getAllOfOneUnite(idUnite, function(data, error) {
-                       if (error == null) {
-                           console.log(data);
-                           res.render('formCategorie.ejs', {numberOfUnites: numberOfUnites - 1, nom: data.nom, ordre: data.ordre, description: data.description});
-                       }
-                       else {
-                           res.render('error.ejs', {message: error, error: error});
-                       }
-                   });
-               }
-               // Si on ajoute une catégorie
-               else {
-                   res.render('formCategorie.ejs', {numberOfUnites: numberOfUnites});
-               }
-           }
-           else {
-               res.render('error.ejs', {message: error, error: error});
-           }
+        coursModel.getNumberOfUnites(function (numberOfUnites, error) {
+            if (error == null) {
+                // Si on modifie une catégorie déjà existante
+                if (idUnite != null) {
+                    coursModel.getAllOfOneUnite(idUnite, function (data, error) {
+                        if (error == null) {
+                            console.log(data);
+                            res.render('formCategorie.ejs', {
+                                numberOfUnites: numberOfUnites - 1,
+                                nom: data.nom,
+                                ordre: data.ordre,
+                                description: data.description
+                            });
+                        }
+                        else {
+                            res.render('error.ejs', {message: error, error: error});
+                        }
+                    });
+                }
+                // Si on ajoute une catégorie
+                else {
+                    res.render('formCategorie.ejs', {numberOfUnites: numberOfUnites});
+                }
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
         });
     },
-    addCategorie: function(req, res) {
+    addCategorie: function (req, res) {
         var nomUnite = req.body.titleInput;
         var descriptionUnite = req.body.descriptionInput;
         var ordreInput = req.body.ordreInput;
@@ -530,7 +553,7 @@ var self = module.exports = {
             });
         }
     },
-    saveModifiedCategorie: function(req, res) {
+    saveModifiedCategorie: function (req, res) {
         var nomUnite = req.body.titleInput;
         var descriptionUnite = req.body.descriptionInput;
         var ordreInput = req.body.ordreInput;
@@ -542,7 +565,7 @@ var self = module.exports = {
             }
             // Attention : avant de supprimer la catégorie, il faut sauvegarder les ids des cours qui sont attachés à cette catégorie
             // et ensuite les remettre à jour avec le même id de cours
-            coursModel.saveIdCours(idUnite, function(data, error) {
+            coursModel.saveIdCours(idUnite, function (data, error) {
                 if (error == null) {
                     // convert json to array
                     var idCoursArray = [];
@@ -556,7 +579,7 @@ var self = module.exports = {
                                     coursModel.addCategorie(nomUnite, descriptionUnite, ordre, function (idUnite, error) {
                                         if (error == null) {
                                             // On associe les ids des cours à l'id de l'unité créée
-                                            updateIdUnite(idUnite, idCoursArray, function(error) {
+                                            updateIdUnite(idUnite, idCoursArray, function (error) {
                                                 if (error == null) {
                                                     res.redirect('/admin/dashboard');
                                                 }
@@ -583,31 +606,35 @@ var self = module.exports = {
             });
         }
     },
-    getCoursFromCategorie: function(req, res) {
+    getCoursFromCategorie: function (req, res) {
         var idUnite = req.body.idUnite;
         if (idUnite != null) {
-            coursModel.getMenuCours(idUnite, function(data, error) {
-               if (error == null) {
-                   res.status(200).send(data);
-               }
-               else {
-                   console.log("Erreur : " + error);
-                   res.status(500).send(error);
-               }
+            coursModel.getMenuCours(idUnite, function (data, error) {
+                if (error == null) {
+                    res.status(200).send(data);
+                }
+                else {
+                    console.log("Erreur : " + error);
+                    res.status(500).send(error);
+                }
             });
         }
     },
-    runCours: function(req, res) {
+    runCours: function (req, res) {
         var idUnite = req.params.idUnite;
-        coursModel.getNumberOfCoursInUnite(idUnite, function(numberOfCours, error) {
+        coursModel.getNumberOfCoursInUnite(idUnite, function (numberOfCours, error) {
             if (error == null) {
-                getCategories(function(dataCategories, error) {
-                   if (error == null) {
-                       res.render('formCours.ejs', {numberOfCours: numberOfCours, dataCategories: dataCategories, idUnite: idUnite});
-                   }
-                   else {
-                       res.render('error.ejs', {message: error, error: error});
-                   }
+                getCategories(function (dataCategories, error) {
+                    if (error == null) {
+                        res.render('formCours.ejs', {
+                            numberOfCours: numberOfCours,
+                            dataCategories: dataCategories,
+                            idUnite: idUnite
+                        });
+                    }
+                    else {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
                 });
             }
             else {
@@ -615,47 +642,56 @@ var self = module.exports = {
             }
         });
     },
-    editCours: function(req, res) {
+    editCours: function (req, res) {
         var idCours = req.params.idCours;
-        coursModel.getIdUniteFromIdCours(idCours, function(idUnite, error) {
-           if (error == null) {
-               coursModel.getNumberOfCoursInUnite(idUnite, function(numberOfCours, error) {
-                   if (error == null) {
-                       getCategories(function(dataCategories, error) {
-                           if (error == null) {
-                               coursModel.getEverythingCoursWithId(idCours, function(dataCours, error) {
-                                  if (error == null) {
-                                      // récupère le texte du cours
-                                      getTexteCours(idCours, function(texte, error) {
-                                         if (error == null) {
-                                             res.render('formCours.ejs', {numberOfCours: numberOfCours - 1, dataCategories: dataCategories, idUnite: idUnite, nom: dataCours.nom, ordre: dataCours.ordre, difficulte: dataCours.difficulte, idCours: dataCours.id, texteCours: texte});
-                                         }
-                                         else {
-                                             res.render('error.ejs', {message: error, error: error});
-                                         }
-                                      });
-                                  }
-                                  else {
-                                      res.render('error.ejs', {message: error, error: error});
-                                  }
-                               });
-                           }
-                           else {
-                               res.render('error.ejs', {message: error, error: error});
-                           }
-                       });
-                   }
-                   else {
-                       res.render('error.ejs', {message: error, error: error});
-                   }
-               });
-           }
-           else {
-               res.render('error.ejs', {message: error, error: error});
-           }
+        coursModel.getIdUniteFromIdCours(idCours, function (idUnite, error) {
+            if (error == null) {
+                coursModel.getNumberOfCoursInUnite(idUnite, function (numberOfCours, error) {
+                    if (error == null) {
+                        getCategories(function (dataCategories, error) {
+                            if (error == null) {
+                                coursModel.getEverythingCoursWithId(idCours, function (dataCours, error) {
+                                    if (error == null) {
+                                        // récupère le texte du cours
+                                        getTexteCours(idCours, function (texte, error) {
+                                            if (error == null) {
+                                                res.render('formCours.ejs', {
+                                                    numberOfCours: numberOfCours - 1,
+                                                    dataCategories: dataCategories,
+                                                    idUnite: idUnite,
+                                                    nom: dataCours.nom,
+                                                    ordre: dataCours.ordre,
+                                                    difficulte: dataCours.difficulte,
+                                                    idCours: dataCours.id,
+                                                    texteCours: texte
+                                                });
+                                            }
+                                            else {
+                                                res.render('error.ejs', {message: error, error: error});
+                                            }
+                                        });
+                                    }
+                                    else {
+                                        res.render('error.ejs', {message: error, error: error});
+                                    }
+                                });
+                            }
+                            else {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                        });
+                    }
+                    else {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                });
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
         });
     },
-    saveModifiedCours: function(req, res) {
+    saveModifiedCours: function (req, res) {
         var nomCours = req.body.titleInput;
         var ordreInput = req.body.ordreInput;
         var idCours = parseInt(req.params.idCours);
@@ -669,66 +705,66 @@ var self = module.exports = {
             }
             var difficulte = parseInt(difficulteInput);
             // suppression du cours
-            coursModel.getIdUniteFromIdCours(idCours, function(idUniteOrigine, error) {
-               if (error == null) {
-                   coursModel.deleteCours(idCours, function(error) {
-                      if (error == null) {
-                          // réorganisation de l'unité qui a perdu un élément
-                          reorderCours(idUniteOrigine, 0, function(error) {
-                              if (error == null) {
-                                  // on réorganise aussi l'unité qui va avoir un élément à ajouter
-                                  reorderCours(idUnite, ordre, function (error) {
-                                      if (error == null) {
-                                          // ajout du cours
-                                          coursModel.addCours(nomCours, ordre, idUnite, difficulte, function (id, error) {
-                                              if (error == null) {
-                                                  saveTexteCours(id, texteCours, function(error) {
-                                                     if (error == null) {
-                                                         res.redirect('/admin/dashboard/' + idUnite);
-                                                     }
-                                                     else {
-                                                         res.render('error.ejs', {message: error, error: error});
-                                                     }
-                                                  });
-                                              }
-                                              else {
-                                                  res.render('error.ejs', {message: error, error: error});
-                                              }
-                                          });
-                                      }
-                                      else {
-                                          res.render('error.ejs', {message: error, error: error});
-                                      }
-                                  });
-                              }
-                              else {
-                                  res.render('error.ejs', {message: error, error: error});
-                              }
-                          });
-                      }
-                      else {
-                          res.render('error.ejs', {message: error, error: error});
-                      }
-                   });
-               }
-               else {
-                   res.render('error.ejs', {message: error, error: error});
-               }
+            coursModel.getIdUniteFromIdCours(idCours, function (idUniteOrigine, error) {
+                if (error == null) {
+                    coursModel.deleteCours(idCours, function (error) {
+                        if (error == null) {
+                            // réorganisation de l'unité qui a perdu un élément
+                            reorderCours(idUniteOrigine, 0, function (error) {
+                                if (error == null) {
+                                    // on réorganise aussi l'unité qui va avoir un élément à ajouter
+                                    reorderCours(idUnite, ordre, function (error) {
+                                        if (error == null) {
+                                            // ajout du cours
+                                            coursModel.addCours(nomCours, ordre, idUnite, difficulte, function (id, error) {
+                                                if (error == null) {
+                                                    saveTexteCours(id, texteCours, function (error) {
+                                                        if (error == null) {
+                                                            res.redirect('/admin/dashboard/' + idUnite);
+                                                        }
+                                                        else {
+                                                            res.render('error.ejs', {message: error, error: error});
+                                                        }
+                                                    });
+                                                }
+                                                else {
+                                                    res.render('error.ejs', {message: error, error: error});
+                                                }
+                                            });
+                                        }
+                                        else {
+                                            res.render('error.ejs', {message: error, error: error});
+                                        }
+                                    });
+                                }
+                                else {
+                                    res.render('error.ejs', {message: error, error: error});
+                                }
+                            });
+                        }
+                        else {
+                            res.render('error.ejs', {message: error, error: error});
+                        }
+                    });
+                }
+                else {
+                    res.render('error.ejs', {message: error, error: error});
+                }
             });
         }
     },
-    getSelectOrdreFromCategorie: function(req, res) {
+    getSelectOrdreFromCategorie: function (req, res) {
         var idUnite = req.params.idUnite;
-        coursModel.getNumberOfCoursInUnite(idUnite, function(numberOfCours, error) {
-           if (error == null) {
-               res.status(200).send(numberOfCours);
-           }
-           else {
-               res.status(500).send(error);
-           }
+        coursModel.getNumberOfCoursInUnite(idUnite, function (numberOfCours, error) {
+            if (error == null) {
+                res.status(200).send(numberOfCours);
+            }
+            else {
+                res.status(500).send(error);
+            }
         });
     },
-    addCours: function(req, res) {
+    addCours: function (req, res) {
         var nomCours = req.body.titleInput;
         var ordreInput = req.body.ordreInput;
         var difficulteInput = req.body.difficulteCoursInput;
@@ -753,7 +789,7 @@ var self = module.exports = {
                     coursModel.addCours(nomCours, ordre, idUnite, difficulte, function (id, error) {
                         if (error == null) {
                             // Création d'un fichier pour le texte du cours
-                            createFile(id, texteCours, function(error) {
+                            createFile(id, texteCours, function (error) {
                                 if (error == null) {
                                     res.redirect('/admin/dashboard/' + idUnite);
                                 }
@@ -777,10 +813,10 @@ var self = module.exports = {
             res.render('error.ejs', {message: error, error: error});
         }
     },
-    updateCours: function(req, res) {
+    updateCours: function (req, res) {
         var data = JSON.parse(req.body.json);
-        async.forEachOf(data, function(item, key, callback) {
-                coursModel.updateCours(key, item[0], item[1], function(error) {
+        async.forEachOf(data, function (item, key, callback) {
+                coursModel.updateCours(key, item[0], item[1], function (error) {
                     if (error == null) {
                         callback();
                     }
@@ -789,9 +825,9 @@ var self = module.exports = {
                     }
                 });
             },
-            function(error){
+            function (error) {
                 // All tasks are done now
-                if(error == null) {
+                if (error == null) {
                     res.status(200).json({});
                 }
                 else {
@@ -801,32 +837,31 @@ var self = module.exports = {
             }
         );
     },
-    deleteCours: function(req, res) {
+    deleteCours: function (req, res) {
         var idUnite = req.params.idUnite;
         var idCours = req.params.idCours;
-        deleteTexteCours(idCours, function(error){
-           if (error == null) {
-               coursModel.deleteCours(idCours, function(error) {
-                   if (error == null) {
-                       reorderCours(idUnite, 0, function(error) {
-                           if (error == null) {
-                               var idUniteInt = parseInt(idUnite);
-                               res.redirect('/admin/dashboard/' + idUniteInt);
-                           }
-                           else {
-                               res.render('error.ejs', {message: error, error: error});
-                           }
-                       });
-                   }
-                   else {
-                       res.render('error.ejs', {message: error, error: error});
-                   }
-               });
-           }
-           else {
-               res.render('error.ejs', {message: error, error: error});
-           }
+        deleteTexteCours(idCours, function (error) {
+            if (error == null) {
+                coursModel.deleteCours(idCours, function (error) {
+                    if (error == null) {
+                        reorderCours(idUnite, 0, function (error) {
+                            if (error == null) {
+                                var idUniteInt = parseInt(idUnite);
+                                res.redirect('/admin/dashboard/' + idUniteInt);
+                            }
+                            else {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                        });
+                    }
+                    else {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                });
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
         });
-
     }
 }

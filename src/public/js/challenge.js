@@ -1,7 +1,4 @@
 $("document").ready(function () {
-
-
-
     $('#voirSolution').click(function () {
         var idChallenge = $('#pId').text();
         $('#pasDroitAcces').css("display", "none");

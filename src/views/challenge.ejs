@@ -1,5 +1,5 @@
 <% include partials/head %>
-<%- include('partials/header', {path: 'challenge', ordreChallenge: ordreChallenge, connected: 'ok'}) %>
+<%- include('partials/header', {path: 'challenge', nomChallenge: nomChallenge, connected: 'ok'}) %>
 
 <body>
     <div class="container">
@@ -11,7 +11,7 @@
             <img id="img" src="/images/red-cross-circle.png" alt="" width="20px">
             <%}%></h3>
 
-        <p> Ceci est la description du challenge <%= ordreChallenge %></p>
+        <p><%= description %></p>
         <a class="btn btn-secondary" target="_blank" href="http://<%= host %>/<%= idChallenge %>" role="button">Démarrer le challenge</a>
 
         <br><br><br>
@@ -35,15 +35,18 @@
         </div>
         <br>
 
-        <h3>Aide</h3>
-        <button class="btn btn-secondary" id="voirIndice" role="button">Voir l'indice</button>
-        <div id="indiceDiv" style="display:none">
-            <p style="margin-bottom: -30px; margin-top:15px;"><%= indice %></p>
-        </div>
-
+        <% if (indice != "") {%>
+            <h3>Aide</h3>
+            <button class="btn btn-secondary" id="voirIndice" role="button">Voir l'indice</button>
+            <div id="indiceDiv" style="display:none">
+                <p style="margin-bottom: -30px; margin-top:15px;"><%= indice %></p>
+            </div>
         <br><br><br>
+        <%}%>
+
+
         <h3>Solution</h3>
-        <p> Voir les solutions du challenge <%= ordreChallenge %></p>
+        <p> Voir les solutions du challenge</p>
         <button class="btn btn-secondary" id="voirSolution" role="button">Voir les solutions</button>
 
         <br>

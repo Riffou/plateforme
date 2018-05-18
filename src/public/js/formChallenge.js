@@ -1,7 +1,10 @@
 $("document").ready(function () {
-    $('#ajouterCategorie').click(function (e) {
+    $('#ajouterChallenge').click(function (e) {
         $('#error').css("display", "none");
-        if ($('#titleInput').val() == "" || $('#descriptionInput').val() == "") {
+        if ($('#titleInput').val() == ""
+            || $('#descriptionInput').val() == ""
+            || $('#flagInput').val() == ""
+            || $('#solutionInput').val() == "") {
             e.preventDefault();
             $("#pError").text('Veuillez renseigner tous les champs !');
             $('#error').show();
@@ -13,9 +16,12 @@ $("document").ready(function () {
         }
     });
 
-    $('#modifierCategorie').click(function (e) {
+    $('#modifierChallenge').click(function (e) {
         $('#error').css("display", "none");
-        if ($('#titleInput').val() == "" || $('#descriptionInput').val() == "") {
+        if ($('#titleInput').val() == ""
+            || $('#descriptionInput').val() == ""
+            || $('#flagInput').val() == ""
+            || $('#solutionInput').val() == "") {
             e.preventDefault();
             $("#pError").text('Veuillez renseigner tous les champs !');
             $('#error').show();

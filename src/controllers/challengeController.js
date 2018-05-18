@@ -24,7 +24,21 @@ module.exports = {
                    if (error == null) {
                        challengesModel.getIndiceChallenge(idChallenge, function(indice, error) {
                            if (error == null) {
-                               res.render('challenge.ejs', {idChallenge: idChallenge, ordreChallenge: ordreChallenge, host: config.hostURLChallenges, validate: validatedBoolean, indice: indice});
+                               challengesModel.getNomChallenge(idChallenge, function(nom, error) {
+                                  if (error == null) {
+                                      challengesModel.getDescription(idChallenge, function(description, error) {
+                                         if (error == null) {
+                                             res.render('challenge.ejs', {idChallenge: idChallenge, nomChallenge: nom, host: config.hostURLChallenges, validate: validatedBoolean, indice: indice, description: description});
+                                         }
+                                         else {
+                                             res.render('error.ejs', {message: error, error: error});
+                                         }
+                                      });
+                                  }
+                                  else {
+                                      res.render('error.ejs', {message: error, error: error});
+                                  }
+                               });
                            }
                            else {
                                res.render('error.ejs', {message: error, error: error});
