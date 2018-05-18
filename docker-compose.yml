@@ -10,7 +10,7 @@ services:
       context: .
       dockerfile: Dockerfile-dev
     ports:
-      - 3001:3000
+      - 90:3000
     depends_on:
       - db
           
