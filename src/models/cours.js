@@ -219,7 +219,7 @@ var self = module.exports = {
         })
     },
     deleteCategoriesFromCours: function(idUnite, callback) {
-        db.none('UPDATE public.cours SET idUnite = null WHERE idUnite = $1', [idUnite])
+        db.none('UPDATE public.cours SET idUnite = null WHERE idUnite = ' + idUnite)
             .then(function() {
                 callback(null);
             })
