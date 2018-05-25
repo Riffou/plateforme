@@ -127,7 +127,7 @@ $("document").ready(function () {
     $('.supprimerButton').click(function () {
         var targetURL = $(this).attr('href');
         var nomCategorie = $(this).attr('name');
-        $('#messageModal').text("Souhaitez vous vraiment supprimer la catégorie : " + nomCategorie + "  ?");
+        $('#messageModal').text("Souhaitez vous vraiment supprimer la catégorie ainsi que les cours associés à : " + nomCategorie + "  ?");
         $('#confirmerModal').click(function () {
             window.location.href = targetURL;
         });

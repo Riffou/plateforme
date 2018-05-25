@@ -78,10 +78,10 @@ CREATE TABLE solutionsChallengesUtilisateurs (
     FOREIGN KEY(identifiant) REFERENCES Utilisateurs(identifiant)
 );
 
-INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 1', 1, 'Ceci est la description de l unité 1');
-INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 2', 2, 'Ceci est la description de l unité 2');
-INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 3', 3, 'Ceci est la description de l unité 3');
-INSERT INTO Unites (nom, ordre, description) VALUES ('Unité 4', 4, 'Ceci est la description de l unité 4');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Failles web et bonnes pratiques', 1, 'Présentation des failles les plus connues et des bonnes pratiques de développement.');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Revue de code', 2, 'Utilisation de SonarQube pour de la revue de code statique sur la sécurité des applications web.');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Pentesting', 3, 'Attaques de sites web avec ZAP.');
+
 
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 1', 1, 0);
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 2', 2, 1);
@@ -89,37 +89,9 @@ INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 3', 3, 1)
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 4', 4, 2);
 
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 1', 1);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 2', 2);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 3', 3);
-
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (3, 'Partie 1', 1);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (3, 'Partie 2', 2);
-
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 1', 1);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 2', 2);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 3', 3);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 4', 4);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 5', 5);
-
-INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte, description) VALUES ('Challenge 1', 1, 'easypass', 'Ceci est la solution du challenge 1', 'Ceci est un indice pour le challenge 1', 0, 'Basique description challenge 1');
-INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte, description) VALUES ('Challenge 2', 2, 'middlepass', 'Ceci est la solution du challenge 2', 'Ceci est un indice pour le challenge 2', 1, 'Basique description challenge 2');
-INSERT INTO Challenges (nom, ordre, flag, solution, indice, difficulte, description) VALUES ('Challenge 3', 3, 'hardpass', 'Ceci est la solution du challenge 3', 'Ceci est un indice pour le challenge 3', 2, 'Basique description challenge 3');
 
 INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr', 1524237393762);
 INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr', 1524237440676);
-
-INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 2);
-INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 3);
-INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 7);
-INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 1);
-INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 10);
-INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 11);
-INSERT INTO SuiviUtilisateursCours(identifiant, idCours) VALUES ('nico', 13);
-
-INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nico', 2);
-INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nico', 3);
-INSERT INTO SuiviUtilisateursChallenges(identifiant, idChallenge) VALUES ('nicolas', 2);
-
-INSERT INTO solutionsChallengesUtilisateurs(idChallenge, identifiant, solution) VALUES(1, 'nicolas', 'Ceci est la solution que propose nicolas');
 
 INSERT INTO Administrateurs (identifiant, mdp, email, dateInscription) VALUES ('admin', 'e140b8f9a3f6235f1cc8f44b3204126078a5228385b244433737de635f4c79c3', 'admin@hotmail.fr', 1524237393762);

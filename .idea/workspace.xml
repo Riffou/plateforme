@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/adminChallengesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/adminChallengesController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/adminController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/adminController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/cours/86.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/db/setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/setup.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/public/cours/98.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/cours/98.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/dashboard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboard.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/js/dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/js/dashboard.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,11 +19,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="98.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="98.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/cours/98.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1134">
               <caret line="72" column="4" lean-forward="true" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adminController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controllers/adminController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="716" column="35" lean-forward="true" selection-start-line="716" selection-start-column="35" selection-end-line="716" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="utile.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/db/utile.sql">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file leaf-file-name="setup.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/db/setup.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-181">
+              <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dashboard.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/public/js/dashboard.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-32">
+              <caret line="129" column="111" selection-start-line="129" selection-start-column="111" selection-end-line="129" selection-end-column="111" />
+              <folding>
+                <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-216">
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -42,8 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>delete</find>
-      <find>challenge.ejs</find>
       <find>indice</find>
       <find>difficulteIn</find>
       <find>updateCa</find>
@@ -72,6 +113,8 @@
       <find>dataCate</find>
       <find>addCategorie</find>
       <find>SELECT id from public.unites</find>
+      <find>Lignes à</find>
+      <find>Souhaitez</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -126,7 +169,6 @@
         <option value="$PROJECT_DIR$/src/views/suivi.ejs" />
         <option value="$PROJECT_DIR$/src/controllers/menuUnitesController.js" />
         <option value="$PROJECT_DIR$/src/controllers/menuCoursController.js" />
-        <option value="$PROJECT_DIR$/src/public/js/dashboard.js" />
         <option value="$PROJECT_DIR$/src/views/menuCours.ejs" />
         <option value="$PROJECT_DIR$/src/views/menuUnites.ejs" />
         <option value="$PROJECT_DIR$/src/public/js/formCours.js" />
@@ -140,7 +182,6 @@
         <option value="$PROJECT_DIR$/src/views/partials/headerAdmin.ejs" />
         <option value="$PROJECT_DIR$/src/public/js/formCategorie.js" />
         <option value="$PROJECT_DIR$/src/public/js/formChallenge.js" />
-        <option value="$PROJECT_DIR$/src/db/setup.sql" />
         <option value="$PROJECT_DIR$/src/views/partials/header.ejs" />
         <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
         <option value="$PROJECT_DIR$/src/public/js/challenge.js" />
@@ -155,11 +196,13 @@
         <option value="$PROJECT_DIR$/src/views/cours.ejs" />
         <option value="$PROJECT_DIR$/src/public/cours/94.html" />
         <option value="$PROJECT_DIR$/src/public/cours/98.html" />
-        <option value="$PROJECT_DIR$/src/routes/base/base.js" />
         <option value="$PROJECT_DIR$/src/views/dashboard.ejs" />
         <option value="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" />
         <option value="$PROJECT_DIR$/src/controllers/adminChallengesController.js" />
         <option value="$PROJECT_DIR$/src/controllers/adminController.js" />
+        <option value="$PROJECT_DIR$/src/routes/base/base.js" />
+        <option value="$PROJECT_DIR$/src/db/setup.sql" />
+        <option value="$PROJECT_DIR$/src/public/js/dashboard.js" />
       </list>
     </option>
   </component>
@@ -204,38 +247,7 @@
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="cours" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -351,14 +363,7 @@
       <workItem from="1526995731648" duration="1307000" />
       <workItem from="1527175195238" duration="3072000" />
       <workItem from="1527236982093" duration="2000" />
-      <workItem from="1527237015490" duration="6135000" />
-    </task>
-    <task id="LOCAL-00002" summary="Commit exemple cours">
-      <created>1520601292978</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1520601292978</updated>
+      <workItem from="1527237015490" duration="7667000" />
     </task>
     <task id="LOCAL-00003" summary="Commit exemple cours">
       <created>1520613157810</created>
@@ -696,11 +701,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527239999281</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="1er cours">
+      <created>1527252858407</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1527252858407</updated>
+    </task>
+    <option name="localTasksCounter" value="52" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="514473000" />
+    <option name="totallyTimeSpent" value="516005000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -720,9 +732,9 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5561497" side_tool="true" weight="0.32379863" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44385028" visible="true" weight="0.32220945" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44385028" weight="0.32220945" />
       <window_info id="npm" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.32911393" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" visible="true" weight="0.32911393" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16684492" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
@@ -906,13 +918,6 @@
         <state relative-caret-position="-486" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="499">
-          <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/administrateurs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-395">
@@ -941,13 +946,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/js/formCategorie.js">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/adminController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="544" column="18" lean-forward="true" selection-start-line="544" selection-start-column="18" selection-end-line="544" selection-end-column="18" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/adminChallengesController.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1002,6 +1000,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1134">
           <caret line="72" column="4" lean-forward="true" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-216">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/utile.sql">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/adminController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="716" column="35" lean-forward="true" selection-start-line="716" selection-start-column="35" selection-end-line="716" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/js/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-32">
+          <caret line="129" column="111" selection-start-line="129" selection-start-column="111" selection-end-line="129" selection-end-column="111" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/setup.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-181">
+          <caret line="16" column="2" lean-forward="true" selection-start-line="16" selection-start-column="2" selection-end-line="16" selection-end-column="2" />
         </state>
       </provider>
     </entry>
