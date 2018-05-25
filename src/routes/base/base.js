@@ -15,8 +15,8 @@ module.exports = {
     },
     requireLoginAdmin: function (req, res, next) {
         // Lignes à retirer si connexion pas automatique
-     //   req.admin = {};
-     //   req.admin.identifiant = "admin";
+        req.admin = {};
+        req.admin.identifiant = "admin";
         if (!req.admin) {
             res.redirect('/admin');
         } else {
@@ -37,8 +37,8 @@ module.exports = {
     },
     isAlreadyLoggedAdmin(req, res, next) {
         // Lignes à retirer si connexion pas automatique
-     //   req.admin = {};
-     //   req.admin.identifiant = "admin";
+        req.admin = {};
+        req.admin.identifiant = "admin";
         if (req.admin) {
             res.redirect('/admin/dashboard');
         }
