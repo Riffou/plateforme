@@ -32,7 +32,7 @@ function getCategories(callback) {
 
 function getCours(idUnite, callback) {
     var ordre = 1;
-    if (idUnite == null) {
+    if (idUnite == 0) {
         coursModel.getIdFromOrdreUnite(ordre, function (id, error) {
             if (error == null) {
                 coursModel.getMenuCours(id, function (menuCours, error) {
@@ -49,7 +49,7 @@ function getCours(idUnite, callback) {
             }
         });
     }
-    else {
+    else if (idUnite > 0) {
         coursModel.getMenuCours(idUnite, function (menuCours, error) {
             if (error == null) {
                 callback(menuCours, null);
@@ -412,7 +412,7 @@ var self = module.exports = {
         var data = {};
         getCategories(function (dataCategories, error) {
             if (error == null) {
-                getCours(null, function (dataCours, error) {
+                getCours(0, function (dataCours, error) {
                     if (error == null) {
                         data.dataCategories = dataCategories;
                         data.dataCours = dataCours;
