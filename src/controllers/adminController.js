@@ -707,20 +707,30 @@ var self = module.exports = {
             // suppression du cours
             coursModel.getIdUniteFromIdCours(idCours, function (idUniteOrigine, error) {
                 if (error == null) {
-                    coursModel.deleteCours(idCours, function (error) {
+                    deleteTexteCours(idCours, function(error) {
                         if (error == null) {
-                            // réorganisation de l'unité qui a perdu un élément
-                            reorderCours(idUniteOrigine, 0, function (error) {
+                            coursModel.deleteCours(idCours, function (error) {
                                 if (error == null) {
-                                    // on réorganise aussi l'unité qui va avoir un élément à ajouter
-                                    reorderCours(idUnite, ordre, function (error) {
+                                    // réorganisation de l'unité qui a perdu un élément
+                                    reorderCours(idUniteOrigine, 0, function (error) {
                                         if (error == null) {
-                                            // ajout du cours
-                                            coursModel.addCours(nomCours, ordre, idUnite, difficulte, function (id, error) {
+                                            // on réorganise aussi l'unité qui va avoir un élément à ajouter
+                                            reorderCours(idUnite, ordre, function (error) {
                                                 if (error == null) {
-                                                    saveTexteCours(id, texteCours, function (error) {
+                                                    // ajout du cours
+                                                    coursModel.addCours(nomCours, ordre, idUnite, difficulte, function (id, error) {
                                                         if (error == null) {
-                                                            res.redirect('/admin/dashboard/' + idUnite);
+                                                            saveTexteCours(id, texteCours, function (error) {
+                                                                if (error == null) {
+                                                                    res.redirect('/admin/dashboard/' + idUnite);
+                                                                }
+                                                                else {
+                                                                    res.render('error.ejs', {
+                                                                        message: error,
+                                                                        error: error
+                                                                    });
+                                                                }
+                                                            });
                                                         }
                                                         else {
                                                             res.render('error.ejs', {message: error, error: error});
