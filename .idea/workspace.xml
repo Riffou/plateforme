@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/adminChallengesController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/adminChallengesController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/adminController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/adminController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/cours/86.html" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/public/cours/98.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/cours/98.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/base/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/base/base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/dashboard.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboard.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,18 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/app.js">
+      <file leaf-file-name="98.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/public/cours/98.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-486" />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+            <state relative-caret-position="-1134">
+              <caret line="72" column="4" lean-forward="true" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -45,15 +42,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addC</find>
-      <find>ordreInput</find>
-      <find>reorderCategories</find>
-      <find>ordreChallenge</find>
-      <find>getOrderOfUnite</find>
-      <find>difficulte</find>
-      <find>reorderChallenges</find>
-      <find>deleteCatego</find>
-      <find>supprimer</find>
       <find>delete</find>
       <find>challenge.ejs</find>
       <find>indice</find>
@@ -75,6 +63,15 @@
       <find>&lt;img</find>
       <find>commentaire</find>
       <find>.user</find>
+      <find>runatego</find>
+      <find>getCategories</find>
+      <find>SELECT id FROM</find>
+      <find>SELECT id FROM public.unites</find>
+      <find>getCours(</find>
+      <find>data</find>
+      <find>dataCate</find>
+      <find>addCategorie</find>
+      <find>SELECT id from public.unites</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -149,20 +146,20 @@
         <option value="$PROJECT_DIR$/src/public/js/challenge.js" />
         <option value="$PROJECT_DIR$/src/views/formChallenge.ejs" />
         <option value="$PROJECT_DIR$/src/views/challenge.ejs" />
-        <option value="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" />
         <option value="$PROJECT_DIR$/src/public/js/dashboardChallenges.js" />
         <option value="$PROJECT_DIR$/src/models/challenges.js" />
         <option value="$PROJECT_DIR$/src/routes/admin.js" />
-        <option value="$PROJECT_DIR$/src/controllers/adminChallengesController.js" />
-        <option value="$PROJECT_DIR$/src/views/dashboard.ejs" />
         <option value="$PROJECT_DIR$/docker-compose.yml" />
         <option value="$PROJECT_DIR$/src/models/cours.js" />
         <option value="$PROJECT_DIR$/src/public/cours/90.html" />
         <option value="$PROJECT_DIR$/src/views/cours.ejs" />
-        <option value="$PROJECT_DIR$/src/controllers/adminController.js" />
         <option value="$PROJECT_DIR$/src/public/cours/94.html" />
         <option value="$PROJECT_DIR$/src/public/cours/98.html" />
         <option value="$PROJECT_DIR$/src/routes/base/base.js" />
+        <option value="$PROJECT_DIR$/src/views/dashboard.ejs" />
+        <option value="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" />
+        <option value="$PROJECT_DIR$/src/controllers/adminChallengesController.js" />
+        <option value="$PROJECT_DIR$/src/controllers/adminController.js" />
       </list>
     </option>
   </component>
@@ -207,14 +204,38 @@
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="cours" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
-              <item name="base" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -330,14 +351,7 @@
       <workItem from="1526995731648" duration="1307000" />
       <workItem from="1527175195238" duration="3072000" />
       <workItem from="1527236982093" duration="2000" />
-      <workItem from="1527237015490" duration="2497000" />
-    </task>
-    <task id="LOCAL-00001" summary="Test de commit par WebStorm">
-      <created>1520518116546</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1520518116546</updated>
+      <workItem from="1527237015490" duration="6135000" />
     </task>
     <task id="LOCAL-00002" summary="Commit exemple cours">
       <created>1520601292978</created>
@@ -668,11 +682,25 @@
       <option name="project" value="LOCAL" />
       <updated>1527239073320</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="1er cours">
+      <created>1527239521016</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1527239521016</updated>
+    </task>
+    <task id="LOCAL-00050" summary="1er cours">
+      <created>1527239999276</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1527239999281</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="510835000" />
+    <option name="totallyTimeSpent" value="514473000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -684,7 +712,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="28" width="1922" height="915" extended-state="6" />
+    <frame x="-1" y="28" width="1922" height="1019" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49893048" weight="0.32911393" />
@@ -692,11 +720,11 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5561497" side_tool="true" weight="0.32379863" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.44385028" visible="true" weight="0.36601308" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.44385028" visible="true" weight="0.32220945" />
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.32911393" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16684492" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16684492" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -849,30 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/cours/98.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="44" selection-start-line="12" selection-start-column="44" selection-end-line="12" selection-end-column="44" />
-          <folding>
-            <element signature="e#2555#2575#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/cours.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/adminController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="139" column="21" selection-start-line="139" selection-start-column="21" selection-end-line="139" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/partials/head.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -904,8 +908,100 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
+        <state relative-caret-position="499">
           <caret line="40" column="40" lean-forward="true" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/administrateurs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-395">
+          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/challenges.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-271">
+          <caret line="108" column="32" selection-start-line="108" selection-start-column="32" selection-end-line="108" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/admin.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-324" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/js/formCategorie.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/adminController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="544" column="18" lean-forward="true" selection-start-line="544" selection-start-column="18" selection-end-line="544" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/adminChallengesController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="127" column="18" lean-forward="true" selection-start-line="127" selection-start-column="18" selection-end-line="127" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/dashboardChallenges.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="34" column="25" lean-forward="true" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/dashboard.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="37" column="31" lean-forward="true" selection-start-line="37" selection-start-column="31" selection-end-line="37" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/formCategorie.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-963" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/models/cours.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="293" column="45" selection-start-line="293" selection-start-column="16" selection-end-line="293" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/cours/100.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/cours/86.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/cours/102.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/cours/98.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1134">
+          <caret line="72" column="4" lean-forward="true" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
         </state>
       </provider>
     </entry>

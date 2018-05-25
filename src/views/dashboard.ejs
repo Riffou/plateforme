@@ -23,22 +23,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for (var i = 0; i < dataCategories.length; i++) { %>
-                            <p style="display:none" id="pCategories<%= i %>" class="p-categories"><%= dataCategories[i].id %></p>
-                            <tr>
-                                <td><input class="form-control col-sm-6" style="text-align: center;" value="<%= dataCategories[i].ordre %>"></td>
-                                <td><input class="form-control col-sm-12" value="<%= dataCategories[i].nom %>"></td>
-                                <td style="text-align: center;">
-                                    <a role="button" class="editButton" href="/admin/dashboard/categories/form/<%= dataCategories[i].id %>"><img src="/images/edit.png" alt="" width="30px"></a>
-                                    <a role="button" class="supprimerButton" data-toggle="modal" name="<%= dataCategories[i].nom %>" data-target="#confirmModal" href="/admin/dashboard/categories/delete/<%= dataCategories[i].id %>"><img src="/images/bin.png" alt="" width="30px"></a>
-                                </td>
-                            </tr>
-                            <%}%>
+                            <% if (typeof dataCategories != "undefined") {
+                                for (var i = 0; i < dataCategories.length; i++) { %>
+                                <p style="display:none" id="pCategories<%= i %>" class="p-categories"><%= dataCategories[i].id %></p>
+                                <tr>
+                                    <td><input class="form-control col-sm-6" style="text-align: center;" value="<%= dataCategories[i].ordre %>"></td>
+                                    <td><input class="form-control col-sm-12" value="<%= dataCategories[i].nom %>"></td>
+                                    <td style="text-align: center;">
+                                        <a role="button" class="editButton" href="/admin/dashboard/categories/form/<%= dataCategories[i].id %>"><img src="/images/edit.png" alt="" width="30px"></a>
+                                        <a role="button" class="supprimerButton" data-toggle="modal" name="<%= dataCategories[i].nom %>" data-target="#confirmModal" href="/admin/dashboard/categories/delete/<%= dataCategories[i].id %>"><img src="/images/bin.png" alt="" width="30px"></a>
+                                    </td>
+                                </tr>
+                                <%}
+                            }%>
                         </tbody>
                     </table>
-                    <div style="text-align: center;">
-                        <button class="btn btn-info" id="sauvegarderCategories">Sauvegarder</button>
-                    </div>
+                    <% if (typeof dataCategories != "undefined") {%>
+                        <div style="text-align: center;">
+                            <button class="btn btn-info" id="sauvegarderCategories">Sauvegarder</button>
+                        </div>
+                    <%}%>
                 </div>
                 <div class="row justify-content-center" id="error" style="display: none">
                     <div class="col-sm-12">
@@ -50,68 +54,70 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center">
-            <div class="col-sm-10">
-                <br>
-                <h5 class="border-bottom border-gray pb-2 mb-0">Cours<a style="margin-left: 15px; padding-bottom: 2px !important;" role="button" class="addButton" href="#" id="addButtonCours"><img src="/images/add.png" alt="" width="30px"></a></h5>
-                <br>
-                <div class="form-group row justify-content-center">
-                    <label for="nomCategorieInput" class="col-sm-2 col-form-label">Catégorie :</label>
-                    <div class="col-sm-10">
-                        <select class="custom-select mr-sm-2" id="nomCategorieInput" name="nomCategorieInput">
-                            <% for (var i = 0; i < dataCategories.length; i++) { %>
-                            <option value="<%= dataCategories[i].id %>"
-                                    <% if (typeof idUnite != "undefined") {%>
-                                    <% if (dataCategories[i].id == idUnite) {%>
-                                    selected
-                                    <%}%>
-                                    <% } %>><%= dataCategories[i].nom %>
-                            </option>
+        <% if (typeof dataCategories != "undefined") { %>
+            <div class="row justify-content-center">
+                <div class="col-sm-10">
+                    <br>
+                    <h5 class="border-bottom border-gray pb-2 mb-0">Cours<a style="margin-left: 15px; padding-bottom: 2px !important;" role="button" class="addButton" href="#" id="addButtonCours"><img src="/images/add.png" alt="" width="30px"></a></h5>
+                    <br>
+                    <div class="form-group row justify-content-center">
+                        <label for="nomCategorieInput" class="col-sm-2 col-form-label">Catégorie :</label>
+                        <div class="col-sm-10">
+                            <select class="custom-select mr-sm-2" id="nomCategorieInput" name="nomCategorieInput">
+                                <% for (var i = 0; i < dataCategories.length; i++) { %>
+                                <option value="<%= dataCategories[i].id %>"
+                                        <% if (typeof idUnite != "undefined") {%>
+                                        <% if (dataCategories[i].id == idUnite) {%>
+                                        selected
+                                        <%}%>
+                                        <% } %>><%= dataCategories[i].nom %>
+                                </option>
+                                <%}%>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="formCours">
+                        <table class="table table-borderless">
+                            <colgroup>
+                                <col span="1" style="width: 15%;">
+                                <col span="1" style="width: 70%;">
+                                <col span="1" style="width: 15%;">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>Ordre</th>
+                                <th>Nom</th>
+                                <th style="text-align: center;" >Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody id="coursHTML">
+                            <% for (var i = 0; i < dataCours.length; i++) { %>
+                            <tr>
+                                <td><p style="display:none" id="pCours<%= i %>" class="p-cours"><%= dataCours[i].id %></p><input class="form-control col-sm-6" style="text-align: center;" value="<%= dataCours[i].ordre %>"></td>
+                                <td><input class="form-control col-sm-12" value="<%= dataCours[i].nom %>"></td>
+                                <td style="text-align: center;">
+                                    <a role="button" class="editButton" href="/admin/dashboard/cours/form/modify/<%= dataCours[i].id %>"><img src="/images/edit.png" alt="" width="30px"></a>
+                                    <a role="button" class="supprimerButtonCours" data-toggle="modal" name="<%= dataCours[i].nom %>" data-target="#confirmModal" href="/admin/dashboard/cours/delete/<% if (typeof idUnite != "undefined") {%> <%= idUnite %> <%} else {%> <%= dataCategories[0].id %> <%}%>/<%= dataCours[i].id %>"><img src="/images/bin.png" alt="" width="30px"></a>
+                                </td>
+                            </tr>
                             <%}%>
-                        </select>
+                            </tbody>
+                        </table>
+                        <div style="text-align: center;">
+                            <button class="btn btn-info" id="sauvegarderCours">Sauvegarder</button>
+                        </div>
                     </div>
-                </div>
-                <div id="formCours">
-                    <table class="table table-borderless">
-                        <colgroup>
-                            <col span="1" style="width: 15%;">
-                            <col span="1" style="width: 70%;">
-                            <col span="1" style="width: 15%;">
-                        </colgroup>
-                        <thead>
-                        <tr>
-                            <th>Ordre</th>
-                            <th>Nom</th>
-                            <th style="text-align: center;" >Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody id="coursHTML">
-                        <% for (var i = 0; i < dataCours.length; i++) { %>
-                        <tr>
-                            <td><p style="display:none" id="pCours<%= i %>" class="p-cours"><%= dataCours[i].id %></p><input class="form-control col-sm-6" style="text-align: center;" value="<%= dataCours[i].ordre %>"></td>
-                            <td><input class="form-control col-sm-12" value="<%= dataCours[i].nom %>"></td>
-                            <td style="text-align: center;">
-                                <a role="button" class="editButton" href="/admin/dashboard/cours/form/modify/<%= dataCours[i].id %>"><img src="/images/edit.png" alt="" width="30px"></a>
-                                <a role="button" class="supprimerButtonCours" data-toggle="modal" name="<%= dataCours[i].nom %>" data-target="#confirmModal" href="/admin/dashboard/cours/delete/<% if (typeof idUnite != "undefined") {%> <%= idUnite %> <%} else {%> <%= dataCategories[0].id %> <%}%>/<%= dataCours[i].id %>"><img src="/images/bin.png" alt="" width="30px"></a>
-                            </td>
-                        </tr>
-                        <%}%>
-                        </tbody>
-                    </table>
-                    <div style="text-align: center;">
-                        <button class="btn btn-info" id="sauvegarderCours">Sauvegarder</button>
-                    </div>
-                </div>
-                <div class="row justify-content-center" id="errorCours" style="display: none">
-                    <div class="col-sm-12">
-                        <br>
-                        <div class="alert alert-danger" role="alert">
-                            <p style="margin-bottom: 0px;" id="pErrorCours"></p>
+                    <div class="row justify-content-center" id="errorCours" style="display: none">
+                        <div class="col-sm-12">
+                            <br>
+                            <div class="alert alert-danger" role="alert">
+                                <p style="margin-bottom: 0px;" id="pErrorCours"></p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        <%}%>
     </div>
     <script src="/js/dashboard.js"></script>
 </body>

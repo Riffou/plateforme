@@ -32,7 +32,7 @@ function getCategories(callback) {
 
 function getCours(idUnite, callback) {
     var ordre = 1;
-    if (idUnite == 0) {
+    if (idUnite == null) {
         coursModel.getIdFromOrdreUnite(ordre, function (id, error) {
             if (error == null) {
                 coursModel.getMenuCours(id, function (menuCours, error) {
@@ -49,7 +49,7 @@ function getCours(idUnite, callback) {
             }
         });
     }
-    else if (idUnite > 0) {
+    else {
         coursModel.getMenuCours(idUnite, function (menuCours, error) {
             if (error == null) {
                 callback(menuCours, null);
@@ -412,16 +412,21 @@ var self = module.exports = {
         var data = {};
         getCategories(function (dataCategories, error) {
             if (error == null) {
-                getCours(0, function (dataCours, error) {
-                    if (error == null) {
-                        data.dataCategories = dataCategories;
-                        data.dataCours = dataCours;
-                        res.render('dashboard.ejs', data);
-                    }
-                    else {
-                        res.render('error.ejs', {message: error, error: error});
-                    }
-                });
+                if (dataCategories.length > 0) {
+                    getCours(null, function (dataCours, error) {
+                        if (error == null) {
+                            data.dataCategories = dataCategories;
+                            data.dataCours = dataCours;
+                            res.render('dashboard.ejs', data);
+                        }
+                        else {
+                            res.render('error.ejs', {message: error, error: error});
+                        }
+                    });
+                }
+                else {
+                    res.render('dashboard.ejs');
+                }
             }
             else {
                 res.render('error.ejs', {message: error, error: error});
@@ -532,9 +537,14 @@ var self = module.exports = {
         var nomUnite = req.body.titleInput;
         var descriptionUnite = req.body.descriptionInput;
         var ordreInput = req.body.ordreInput;
-
-        if (nomUnite != "" && descriptionUnite != "" && ordreInput != "") {
-            var ordre = parseInt(ordreInput);
+        var ordre;
+        if (nomUnite != "" && descriptionUnite != "") {
+            if (typeof ordreInput == "string") {
+                ordre = parseInt(ordreInput);
+            }
+            else {
+                ordre = 1;
+            }
             // re-order categories
             reorderCategories(ordre, function (error) {
                 if (error == null) {

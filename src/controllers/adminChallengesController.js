@@ -115,14 +115,19 @@ var self = module.exports = {
         var solution = req.body.solutionInput;
 
         var description = req.body.descriptionInput;
-
+        var ordre;
+        console.log(typeof ordreString);
         if (nom != ""
-            && ordreString != ""
             && difficulteInput != ""
             && flag != ""
             && solution != ""
             && description != "") {
-            var ordre = parseInt(ordreString);
+            if (typeof ordreString == "string") {
+                ordre = parseInt(ordreString);
+            }
+            else {
+                ordre = 1;
+            }
             var difficulte = parseInt(difficulteInput);
             // re-order categories
             reorderChallenges(ordre, function (error) {
