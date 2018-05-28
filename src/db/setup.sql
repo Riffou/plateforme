@@ -91,6 +91,8 @@ INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 1', 1, 0)
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 2', 2, 1);
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 3', 3, 1);
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 4', 4, 2);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 5', 5, 2);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 6', 6, 2);
 
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (3, 'Partie 1', 1);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 1', 1);
