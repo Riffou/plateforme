@@ -78,18 +78,22 @@ CREATE TABLE solutionsChallengesUtilisateurs (
     FOREIGN KEY(identifiant) REFERENCES Utilisateurs(identifiant)
 );
 
-INSERT INTO Unites (nom, ordre, description) VALUES ('Failles web et bonnes pratiques', 1, 'Présentation des failles les plus connues et des bonnes pratiques de développement.');
-INSERT INTO Unites (nom, ordre, description) VALUES ('Revue de code', 2, 'Utilisation de SonarQube pour de la revue de code statique sur la sécurité des applications web.');
-INSERT INTO Unites (nom, ordre, description) VALUES ('Pentesting', 3, 'Attaques de sites web avec ZAP.');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Introduction', 1, 'Introduction au web et à la sécurité web.');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Failles web et bonnes pratiques', 2, 'Présentation des failles les plus connues et des bonnes pratiques de développement.');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Revue de code', 3, 'Utilisation de SonarQube pour de la revue de code statique sur la sécurité des applications web.');
+INSERT INTO Unites (nom, ordre, description) VALUES ('Pentesting', 4, 'Attaques de sites web avec ZAP.');
 
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Le web', 1, 0);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'La sécurité web', 2, 1);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Top 10 des failles web', 3, 1);
 
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 1', 1, 0);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 2', 2, 1);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 3', 3, 1);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Partie 4', 4, 2);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 1', 1, 0);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 2', 2, 1);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 3', 3, 1);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 4', 4, 2);
 
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (2, 'Partie 1', 1);
 INSERT INTO Cours (idUnite, nom, ordre) VALUES (3, 'Partie 1', 1);
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 1', 1);
 
 INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr', 1524237393762);
 INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr', 1524237440676);

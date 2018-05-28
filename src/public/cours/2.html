@@ -1,0 +1,60 @@
+<h4>La sécurité web</h4>
+<p style="text-align: justify">La sécurité web est la pratique de protéger les sites web contre l'accès, l'utilisation, la modification, la destruction ou la perturbation non autorisés.
+    La sécurité ne s’arrête pas à la prévention mais aussi à la réaction de la victime en cas d’attaque.</p>
+
+<h4>1.	Prévention</h4>
+<p style="text-align: justify">De nombreux acteurs comme l’OWASP ou l’ANSSI ont rédigé des documents pour prévenir les attaques web. Ces préventions se font au niveau du développement et du système hébergeant le service.</p>
+
+<h5>Développement</h5>
+<p style="text-align: justify">L’OWASP a dressé une liste des bonnes pratiques de développement rassemblées dans un livret de 17 pages.
+    Ce guide doit permettre aux développeurs de produire du code qui n’est pas vulnérable aux attaques les plus courantes.
+    L’ANSSI a également rédigé une note technique de bonnes pratiques de développement.
+    Ce document est plus complet que celui de l’OWASP dans le sens où il couvre à la fois la prévention pour la sécurité web mais aussi les bons réflexes à avoir en cas d’attaques.
+</p>
+
+<h5>Tests</h5>
+<p style="text-align: justify">Tout développement se fait en parallèle avec des tests. Encore faut-il savoir quoi, pourquoi, comment, quand et où tester les applications web.
+    L’OWASP a rédigé un guide de tests qui permet de répondre à ces questions.
+    Ce guide propose même une structure complète de tests pour que le lecteur puisse créer son propre programme de tests.
+    L’objectif de ce document est de guider le lecteur dans ses choix de techniques de tests afin de produire des applications web fiables et sécurisées.
+</p>
+
+<h5>Infrastructure</h5>
+<p style="text-align: justify">Un travail est aussi à faire au niveau de l’architecture et de la configuration du système qui héberge le service.
+    La note technique de l’ANSSI traite de ce sujet en expliquant les principes de base à suivre.</p>
+
+<h5>Scanners et logiciels préventifs</h5>
+<p style="text-align: justify">Un grand nombre de logiciels de scan de sites web sont disponibles.
+    Ces logiciels permettent de détecter les vulnérabilités des applications web. Le WASC a rédigé un guide, le WASSEC, pour évaluer les scanners d’application web en fonction de leur efficacité à tester les applications web et à trouver leur vulnérabilité.
+    Le lecteur peut alors évaluer les différents scans proposés en fonction des critères du guide pour choisir le scanner qui répond le mieux à ses attentes.</p>
+
+<p style="text-align: justify">Le WASC a également listé les scans payants et gratuits les plus utilisés.
+    Plusieurs logiciels de l’OWASP y figurent.
+    L’un des plus connus est le logiciel ZAP pour Zed Attack Proxy qui automatise la détection des failles et propose de nombreuses fonctionnalités telles que l’interception d’un serveur proxy, le scan actif ou passif d’un site web. </p>
+<p style="text-align: justify">D’autres logiciels, qui ne sont pas des scanners, permettent aussi de faire de la prévention contre des attaques web. Webscarab par exemple, développé par l’OWASP, agit comme un serveur proxy et permet de modifier les requêtes HTTP avant qu’elles ne soient envoyées au serveur.</p>
+
+<h5>Audits de sécurité</h5>
+<p style="text-align: justify">
+    Un audit de sécurité informatique est une expertise qui permet de relever les failles d’un système informatique. Un plan d’action pour contrer ces failles est ensuite établi.
+    Des sociétés comme Vaadata ou le groupe GTS proposent de réaliser des audits de sécurité d’application web.
+    Les tests d’intrusion sont la méthode la plus utilisée pour réaliser des audits de sécurité des applications web. </p>
+
+<p style="text-align: justify">Ils sont classés en trois catégories : </p>
+<ul>
+    <li>Boîte noire : Les tests d’intrusion sont effectués en conditions réelles. L’auditeur réalise les tests de l’extérieur et ne possède pas d’informations supplémentaires sur le système testé.
+    </li>
+    <li>Boîte grise : L’auditeur possède quelques informations sur le système, généralement un compte utilisateur lui est donné.
+    </li>
+    <li>Boîte blanche : Les réglages mis en place sont connus par l’auditeur.
+    </li>
+</ul>
+<p style="text-align: justify">
+    La deuxième étape des tests d’intrusion consiste à essayer d’utiliser les failles découvertes pour compromettre le système. Cette phase est appelée « l’exploit ».
+    On retrouve aussi l’audit de code qui consiste à lire le code source d’une application web pour rechercher les failles.</p>
+
+<h4>2.	Réaction</h4>
+<p style="text-align: justify">En cas d’attaque, l’organisme touché doit être capable de réagir rapidement et en conséquence. La note technique de l’ANSSI couvre ce point.
+    Elle conseille d’avoir un point de contact associé au site facilement identifiable pour être prévenu rapidement en cas d’attaque. </p>
+<p style="text-align: justify">De plus, pour réagir rapidement, l’attaque doit être détectée rapidement. L’ANSSI conseille de faire un travail de journalisation en sauvegardant par exemple le dernier échec de connexion des utilisateurs.
+    La surveillance est également primordiale dans la sécurité web, parcourir son site à la recherche d’anomalie permet de détecter des attaques.</p>
+<p style="text-align: justify">En cas d’incident, il est primordial de regrouper toutes les informations possibles pour permettre d’investiguer. Il est également indispensable de corriger les vulnérabilités du site avant de le remettre en service.</p>
