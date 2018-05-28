@@ -75,7 +75,13 @@ router.post('/challenges/form/:idChallenge', base.requireLoginAdmin, adminChalle
 router.get('/challenges/delete/:idChallenge', base.requireLoginAdmin, adminChallenges.deleteChallenge);
 
 router.get('/deconnexion', base.requireLoginAdmin, function(req, res) {
-    req.session.destroy();
+    console.log(req.session.user);
+    if (req.session.user == null) {
+        req.session.destroy();
+    }
+    else {
+        req.session.admin = null;
+    }
     res.redirect('/admin');
 });
 

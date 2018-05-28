@@ -35,7 +35,12 @@ router.get('/inscription/', base.isAlreadyLogged, function(req, res) {
 router.post('/inscription/', base.isAlreadyLogged, utilisateurs.runInscription);
 
 router.get('/deconnexion', base.requireLogin, function(req, res) {
-    req.session.destroy();
+    if (req.session.admin == null) {
+        req.session.destroy();
+    }
+    else {
+        req.session.user = null;
+    }
     res.redirect('/');
 });
 

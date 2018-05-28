@@ -44,15 +44,56 @@ app.use(
         saveUninitialized: false
 }));
 
+function userSession(req, callback) {
+    utilisateurModel.userExists(req.session.user.identifiant, function (existsBoolean, error) {
+        if (error == null) {
+            if (existsBoolean) {
+                req.user = req.session.user;
+                callback(null);
+            }
+        }
+        else {
+            callback(error);
+        }
+    });
+}
+
+function adminSession(req, callback) {
+    administrateurModel.userExists(req.session.admin.identifiant, function (existsBoolean, error) {
+        if (error == null) {
+            if (existsBoolean) {
+                req.admin = req.session.admin;
+                callback(null);
+            }
+        }
+        else {
+            callback(error);
+        }
+    });
+}
+
 app.use(function(req, res, next) {
     if (req.session) {
-        if (req.session.user) {
-            utilisateurModel.userExists(req.session.user.identifiant, function (existsBoolean, error) {
+        if (req.session.user && req.session.admin) {
+            userSession(req, function(error) {
                 if (error == null) {
-                    if (existsBoolean) {
-                        req.user = req.session.user;
-                        //  delete req.user.password;
-                    }
+                    adminSession(req, function(error) {
+                        if (error == null) {
+                            next();
+                        }
+                        else {
+                            res.render('error.ejs', {message: error, error: error});
+                        }
+                    });
+                }
+                else {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+            });
+        }
+        else if (req.session.user) {
+            userSession(req, function(error) {
+                if (error == null) {
                     next();
                 }
                 else {
@@ -61,12 +102,8 @@ app.use(function(req, res, next) {
             });
         }
         else if (req.session.admin) {
-            administrateurModel.userExists(req.session.admin.identifiant, function (existsBoolean, error) {
+            adminSession(req, function(error) {
                 if (error == null) {
-                    if (existsBoolean) {
-                        req.admin = req.session.admin;
-                        //  delete req.user.password;
-                    }
                     next();
                 }
                 else {
