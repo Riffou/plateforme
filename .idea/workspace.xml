@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/public/cours/10.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/cours/11.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/cours/8.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/db/setup.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/db/setup.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/stylesheets/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/stylesheets/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/cours/11.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/cours/11.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -72,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="11.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="11.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/public/cours/11.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="119" column="60" selection-start-line="119" selection-start-column="60" selection-end-line="119" selection-end-column="60" />
+            <state relative-caret-position="196">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="41" selection-end-column="5" />
               <folding>
                 <element signature="e#247#251#0" expanded="true" />
                 <element signature="e#267#271#0" expanded="true" />
@@ -93,6 +91,15 @@
                 <element signature="e#6822#6826#0" expanded="true" />
                 <element signature="e#6829#6833#1" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="8.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/public/cours/8.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="304">
+              <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -141,8 +148,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>add-cir</find>
-      <find>getTexteC</find>
       <find>deleteTexteC</find>
       <find>saveModifiedC</find>
       <find>&lt;img</find>
@@ -171,6 +176,8 @@
       <find>&gt;</find>
       <find>&lt;</find>
       <find>On a dé</find>
+      <find>Configuration de SonarQube</find>
+      <find>sachez qu</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -211,7 +218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/public/js/ajoutCategorie.js" />
         <option value="$PROJECT_DIR$/src/views/ajoutCategorie.ejs" />
         <option value="$PROJECT_DIR$/src/views/suivi.ejs" />
@@ -262,6 +268,7 @@
         <option value="$PROJECT_DIR$/src/db/setup.sql" />
         <option value="$PROJECT_DIR$/src/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/src/public/cours/11.html" />
+        <option value="$PROJECT_DIR$/src/public/cours/8.html" />
       </list>
     </option>
   </component>
@@ -443,14 +450,7 @@
       <workItem from="1527175195238" duration="3072000" />
       <workItem from="1527236982093" duration="2000" />
       <workItem from="1527237015490" duration="9118000" />
-      <workItem from="1527493278082" duration="16341000" />
-    </task>
-    <task id="LOCAL-00007" summary="DataBase">
-      <created>1521124055413</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1521124055413</updated>
+      <workItem from="1527493278082" duration="18042000" />
     </task>
     <task id="LOCAL-00008" summary="DataBase">
       <created>1521124081191</created>
@@ -788,11 +788,18 @@
       <option name="project" value="LOCAL" />
       <updated>1527515163614</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Cours !">
+      <created>1527519158374</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1527519158374</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="533797000" />
+    <option name="totallyTimeSpent" value="535498000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1228,8 +1235,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/public/cours/11.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="119" column="60" selection-start-line="119" selection-start-column="60" selection-end-line="119" selection-end-column="60" />
+        <state relative-caret-position="196">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="41" selection-end-column="5" />
           <folding>
             <element signature="e#247#251#0" expanded="true" />
             <element signature="e#267#271#0" expanded="true" />
@@ -1246,6 +1253,13 @@
             <element signature="e#6822#6826#0" expanded="true" />
             <element signature="e#6829#6833#1" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/cours/8.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="55" column="8" lean-forward="true" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
         </state>
       </provider>
     </entry>
