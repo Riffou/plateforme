@@ -1,0 +1,197 @@
+<h4>La CSRF</h4>
+<p style="text-align: justify">Explication</p>
+
+<p style="text-align: justify">
+La faille CSRF ("Cross site request forgery") est très souvent assimilée à la XSS alors que ces deux failles sont diamétralement opposées.
+Quand la XSS cherche à dérober des informations personnelles de l'utilisateur, la CSRF cherche à lui faire exécuter des actions à son insu directement
+sur son ordinateur. Dans le cours sur les failles XSS, on a vu comment le pirate utilisait la XSS pour voler les cookies d’autres utilisateurs.
+    Si un hacker décidait d'utiliser la CSRF, il ferait exécuter des actions directement sur l'ordinateur de la victime.</p>
+<p style="text-align: justify">
+    Un petit exemple pour clarifier tout ça :</p>
+
+<p style="text-align: justify">
+    Je suis membre d'un forum et il y a une personne que je veux bannir du forum. Je sais que pour supprimer un profil, l'administrateur se rend sur l'URL suivante :</p>
+<code>www.monsite.com/index.php?profile=mon_ennemi&action=supprimer</code>
+<br><br>
+<p style="text-align: justify">Évidemment le script qui se trouve derrière vérifie que la personne qui se rend sur l'URL est bien administrateur.
+    Je dois donc trouver un moyen pour me rendre sur cette URL en étant administrateur. Deux choix s'offrent alors à moi. </p>
+<p style="text-align: justify">Soit j'utilise une faille XSS pour subtiliser les cookies de l'administrateur et me connecter ultérieurement, tranquillement de chez moi. </p>
+<p style="text-align: justify">Soit j'utilise une CSRF pour le rediriger vers cette page, et ainsi lui faire supprimer mon ennemi sans qu'il ne le sache.</p>
+<p style="text-align: justify">Et cette faille peut être appliquée à n’importe quel site.
+Si vous êtes connecté à votre compte Facebook, le hacker peut se servir d'une CSRF pour vous faire aimer une page, publier un message, etc...
+    Si les banques n'étaient pas protégées contre ce type d'attaque, un hacker pourrait sans problème rédiger un script qui vous fait envoyer de l'argent à quelqu'un.</p>
+<p style="text-align: justify">Comme vous le voyez, il est compliqué de se concentrer sur un seul exemple, étant donné que les applications de cette faille sont presque infinies.
+    Et vous allez voir qu'il est également compliqué de s'en protéger complètement.</p>
+
+<h4>Comment s'en protéger ?</h4>
+<h4>Authentification par jeton (token)</h4>
+<p style="text-align: justify">Comme je l'ai dit précédemment, il n'existe malheureusement pas de protection parfaite contre la CSRF. La façon la plus répandue étant l'utilisation d'un jeton unique qui sera vérifié à chaque modification.
+    Pour générer le token, utilisez une fonction de génération aléatoire de caractères hexadécimaux. En PHP, on procédera de la façon suivante :</p>
+
+<code>&lt;?php $token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM)); ?&gt;</code>
+<br><br>
+<p style="text-align: justify">D'après la documentation PHP :
+    mcrypt_create_iv() crée un IV (vecteur d'initialisation) à partir d'une source aléatoire.</p>
+
+<p style="text-align: justify">Le vecteur d'initialisation est le seul moyen de fournir une initialisation de remplacement aux méthodes d'initialisation.
+Ce vecteur n'a pas besoin d'être particulièrement secret, même si c'est mieux. Vous pouvez l'envoyer avec vos documents chiffrés sans perdre en sécurité.
+    Voilà un exemple de formulaire protégé par token :</p>
+
+<code>
+&lt;?php<br>
+// On démarre la session en début de chaque page<br>
+session_start();<br>
+//On enregistre notre token<br>
+$token = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));<br>
+$_SESSION['token'] = $token;<br>
+?&gt;<br>
+    <br>
+&lt;!DOCTYPE html&gt;<br>
+&lt;html&gt;<br>
+&lt;head&gt;<br>
+    <p class="tabulation">&lt;meta charset="utf-8"/&gt;</p>
+    <p class="tabulation">&lt;title&gt;Mon Site&lt;/title&gt;</p>
+&lt;/head&gt;<br>
+&lt;body&gt;<br>
+&lt;form&gt;<br>
+    <p class="tabulation">&lt;!-- Pseudo de la personne à supprimer --&gt;</p>
+    <p class="tabulation">&lt;input type="text" name="pseudo" id="pseudo" /&gt;</p>
+    <p class="tabulation">&lt;input type="submit" value="valider" /&gt;</p>
+    <p class="tabulation">&lt;!-- Notre token de vérification, bien caché --&gt;</p>
+    <p class="tabulation">&lt;input type="hidden" name="token" id="token" value="&lt;?php echo $token; ?&gt;" /&gt;</p>
+&lt;/form&gt;<br>
+&lt;/body&gt;<br>
+&lt;/html&gt;<br>
+</code>
+<br>
+<p style="text-align: justify">Si on voulait bien faire les choses, on mettrait en place une page PHP qui se chargerait de générer le token s’il n'existe pas déjà.
+Voilà, on a plus qu'à vérifier lors du traitement de la demande :</p>
+
+<code>
+&lt;?php<br>
+
+session_start();<br>
+
+//On vérifie que tous les jetons sont là<br>
+if (isset($_SESSION['token']) <br>AND isset($_POST['token'])<br> AND !empty($_SESSION['token'])<br> AND !empty($_POST['token'])) {<br>
+
+    <p class="tabulation">// On vérifie que les deux correspondent</p>
+    <p class="tabulation">if ($_SESSION['token'] == $_POST['token']) {</p>
+
+    <p class="tabulation"> // Vérification terminée</p>
+    <p class="tabulation">// On peut supprimer l'utilisateur</p>
+
+    <p class="tabulation">}</p>
+}
+<br>
+else {
+
+    <p class="tabulation">// Les token ne correspondent pas</p>
+    <p class="tabulation"> // On ne supprime pas</p>
+
+    <p class="tabulation">echo "Erreur de vérification";</p>
+}
+
+?&gt;
+</code>
+
+<br><br>
+<p style="text-align: justify">Si on voulait faire encore mieux, on pourrait rajouter une variable de session qui enregistre l'heure de la création du token.
+    On met ensuite en place un système qui vérifie que le token n'a pas été créé il y a trop longtemps.
+    En général le délai d'expiration des token est de 10 minutes.
+    Il est également possible d'utiliser les jetons hors formulaire en les faisant passer dans l'URL.</p>
+
+<code>www.monsite.com/index.php?profile=mon_ennemi&action=supprimer&token22f2f68d45fe0baea8d064bdd4604391ba95752b4df6c85f478c56207addebb9</code>
+<br><br>
+<p style="text-align: justify">Bon voilà en gros ce type de protection devrait en décourager plus d'un, et on pourrait s'arrêter là.
+    Mais il existe d'autres petites techniques qui complètent bien l'utilisation d'un token.</p>
+
+<h5>Demande de confirmation</h5>
+<p style="text-align: justify">Bon pour cette technique pas besoin d'épiloguer.
+Il s'agit simplement de demander à l'administrateur de confirmer l'action avec un pop-up de confirmation ou même mieux, une confirmation par mot de passe.
+    Ainsi, on réduit encore plus le risque de suppression involontaire.</p>
+
+<h5>Un captcha</h5>
+<p style="text-align: justify">Une autre technique consiste à demander à l'administrateur de valider l'action en remplissant un captcha.
+    C'est tout bête et très efficace, mais pas très adapté si l'action est répétitive...</p>
+
+<h5>Vérifier le Referer Header (Controversé)</h5>
+<p style="text-align: justify">Cette protection est très connue et recommandée par de nombreux sites.
+    Il est vrai qu'il est toujours bon d'ajouter une vérification complémentaire, mais vous devez savoir qu'il est possible de contourner cette vérification en modifiant le HTTP_REFERER.</p>
+
+<p style="text-align: justify">Le terme anglais utilisé pour "modifier" est "spoof".
+    C'est un terme très utilisé, particulièrement en sécurité informatique, je vous conseille donc vivement de le retenir.</p>
+
+<p style="text-align: justify">Dans notre cas "modifier le HTTP_REFERER" se traduit par "spoof the referer header".
+    Ainsi vous pouvez l'utiliser comme protection supplémentaire, mais n'ayez pas trop confiance en cette technique. Voilà malgré tout un petit code :</p>
+
+<code>
+&lt;?php<br>
+if($_SERVER['HTTP_REFERER'] == 'http://www.monsite.com/formulaire_suppression.php') {<br>
+
+    <p class="tabulation">// On a vérifié la provenance de la requête</p>
+    <p class="tabulation">// On passe à la suite</p>
+
+}<br>
+
+?&gt;
+</code>
+<p style="text-align: justify">
+    Donc si on reprend notre formulaire de tout à l'heure :</p>
+
+<code>
+&lt;?php<br>
+
+session_start();<br>
+
+//On vérifie que tous les jetons sont là<br>
+
+if (isset($_SESSION['token']) <br>AND isset($_POST['token']) <br>AND !empty($_SESSION['token']) <br>AND !empty($_POST['token']))<br>
+
+{<br>
+
+    <p class="tabulation">// On vérifie que les deux correspondent</p>
+    <p class="tabulation">if ($_SESSION['token'] == $_POST['token']) {</p>
+
+
+    <p class="tabulation2">// On vérifie que la requête vient bien du formulaire</p>
+    <p class="tabulation2">if ($_SERVER['HTTP_REFERER'] == 'http://www.monsite.com/formulaire_suppression.php') {</p>
+
+    <p class="tabulation2">// On a vérifié la provenance de la requête</p>
+    <p class="tabulation2">    // On peut supprimer</p>
+
+    <p class="tabulation2">}</p>
+
+    <p class="tabulation2"> // La requête vient d'autre part, on bloque</p>
+    <p class="tabulation2"> else {</p>
+    <p class="tabulation2">  echo "La requête ne provient pas du formulaire";</p>
+    <p class="tabulation2">  }</p>
+    <p class="tabulation">  }</p>
+}
+<br>
+else {<br>
+
+    <p class="tabulation">// Les token ne correspondent pas</p>
+    <p class="tabulation">// On ne supprime pas</p>
+
+    <p class="tabulation">echo "Erreur de vérification";</p>
+
+}
+
+?&gt;
+</code>
+<br><br>
+<h5>Idées reçues sur la protection</h5>
+<p style="text-align: justify">
+Beaucoup de gens rivalisent d'ingéniosité pour contrer cette faille. Mais bien souvent, les petites bidouilles ne protègent rien du tout.
+    Voilà ce qui, contrairement aux idées reçues, ne vous protègera pas :</p>
+
+<ul>
+    <li>Vérification par cookie ultra secret</li>
+    <li>Oublier la méthode GET et n'utiliser que POST</li>
+    <li>Ajouter plein d'étapes</li>
+    <li>Utiliser de l'URL rewriting</li>
+</ul>
+
+
+

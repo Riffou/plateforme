@@ -1,0 +1,60 @@
+<h4>La CRLF</h4>
+
+<h5>Explication</h5>
+
+<p style="text-align: justify">La faille CRLF (Carriage Return Line Feed) permet - comme son nom l'indique - d'effectuer un retour chariot dans un champ du type input ou textarea. 
+Elle est le plus souvent utilisée pour récupérer le mot de passe de quelqu'un, grâce à la fonction mail() de la page "mot de passe oublié" présent 
+sur un très grand nombre de sites. Il nous suffit de connaitre l'adresse mail de la victime et d'utiliser la faille pour nous mettre en copie de ce mail.
+    Prenons un cas concret. Ce formulaire est présent sur la page "mot de passe oublié" :</p>
+
+<code>
+&lt;form action="password_oublie.php" method="POST"&gt;<br>
+    &lt;input type="text" name="mail"&gt;<br>
+    &lt;input type="submit" value="Envoyer"&gt;<br>
+&lt;/form&gt;<br>
+</code>
+<br>
+<p style="text-align: justify">
+Le hacker va alors essayer de se mettre en copie du mail. 
+Pour cela il lui suffit d'insérer un retour à la ligne dans le champ input en utilisant la chaine "%0A". 
+    On obtient quelque chose comme ça :</p>
+
+<code>
+victime@service.com%0Apirate@service.com
+</code>
+<br><br>
+
+<h5>Comment s'en protéger ?</h5>
+<p style="text-align: justify">
+    Pas de grande surprise pour cette partie, le moyen le plus efficace pour s'en protéger est tout simplement de supprimer les retours à la ligne lors du traitement.</p>
+
+<code>
+&lt;?php<br>
+// On récupère la valeur du input<br>
+$chaine_utilisateur = $_POST['mail'];<br>
+// On supprime les retour à la ligne<br>
+$chaine_secure = str_replace(array("\n","\r",PHP_EOL),'',$chaine_utilisateur);<br>
+?&gt;
+</code>
+<br><br>
+<p style="text-align: justify">
+Vous pouvez également vérifier que la chaine de caractères entrée par l'utilisateur est bien une adresse mail. Utilisez par exemple un filtre :
+</p>
+
+<code>
+&lt;?php<br>
+
+$email = $_POST['mail'];<br>
+
+if(filter_var($email, FILTER_VALIDATE_EMAIL)){<br>
+    <p class="tabulation">// Valide</p>
+}<br>
+
+else {<br>
+    <p class="tabulation">// Non valide</p>
+}<br>
+
+?&gt;
+</code><br>
+Il est également possible de vérifier la forme de l'adresse grâce à une expression régulière.
+Voilà ce type de vérification paraît anodin, mais vous évitera beaucoup de problèmes par la suite.
