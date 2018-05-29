@@ -1,149 +1,62 @@
-<h4>La faille upload</h4>
-<p style="text-align: justify">Explication</p>
-<p style="text-align: justify">La faille upload est une des failles les plus dangereuses. Vous connaissez sûrement la balise HTML qui permet l'upload de fichier :</p>
-
-<code>
-&lt;input type="file" /&gt;
-</code>
-<br><br>
-<p style="text-align: justify">Cette balise est utilisée sur de nombreux sites qui proposent à leurs utilisateurs d'avoir une photo de profil ou d'inclure une image dans un message sur le forum.
-    Le problème, c'est que la balise upload permet d'uploader n'importe quel fichier. </p>
-<p style="text-align: justify">Un utilisateur malintentionné pourrait sans problème s'amuser à uploader un fichier PHP malveillant (web shell par exemple) 
-qui lui permettrait de prendre le contrôle total de votre site, et même par rebond, de prendre la main sur le serveur en backoffice ! 
-    Et même si vous avez fait les quelques vérifications réglementaires, il est possible qu'il y ait malgré tout des faiblesses exploitables.</p>
-
-
-<h5>La double extension</h5>
-
-<p style="text-align: justify">Vous avez peut-être pensé à limiter l'upload à certains types de fichier et c'est tout à votre honneur.
-Imaginons un site qui autorise uniquement les fichiers .jpg. Qu'est-ce qui m'empêche de renommer mon fichier en "backdoor.php.jpg" et de l'envoyer ? 
-    Et bien c'est là tout le problème : rien ! </p>
-<p style="text-align: justify">Il est également possible de renommer son fichier en tant que "backdoor.php\0.jpg". Le "\0" indique au serveur qu'il arrive en bout de chaine. 
-    Tout ce qui suit ne sera donc pas interprété. Le fichier sera enregistré en tant que "backdoor.php" et aura passé haut la main le test d'extension.</p>
-
-<h5>Le content-type</h5>
-
-<p style="text-align: justify">Cette technique consiste à utiliser une extension sur le navigateur pour altérer les données envoyées au serveur. 
-    Il sera alors enfantin de faire croire au serveur que notre fichier est un fichier image et non un fichier PHP.</p>
-
-<h5>Comment s'en protéger</h5>
-
-<p style="text-align: justify">Bon tout d'abord, sachez qu'il est très difficile de créer un filtre complètement fiable. Voici les 8 règles basiques pour implémenter un système d'upload sécurisé : </p>
-
-<ul>
-    <li>1. Renommez le fichier</li>
-    <li>2. N'enregistrez pas vos fichiers à la racine de votre site</li>
-    <li>3. Vérifiez la taille du fichier</li>
-    <li>4. Ne vous fiez pas aux extensions</li>
-    <li>5. Effectuez un scan anti-malware</li>
-    <li>6. Gardez le contrôle des permissions (CHMOD)</li>
-    <li>7. N’autorisez l'upload qu'aux utilisateurs inscrits et authentifiés</li>
-    <li>8. Limitez le nombre de fichiers qu'un utilisateurs peut mettre en ligne</li>
-</ul>
+<h4>Introduction</h4>
+<p style="text-align: justify">
+    Le pentesting ou tests de pénétration est une étape importante dans la sécurisation d’une application web.
+    Elle consiste à effectuer des tests d’intrusion pour détecter des vulnérabilités web. </p>
+<p style="text-align: justify">
+    Cette étape intervient dans la dernière phase du cycle de développement d’une application après la revue de code statique.
+    De nombreux logiciels d’automatisation de tests de pénétration existent.
+    L’OWASP tient à jour une page qui liste les logiciels de scan web les plus utilisés.
+    Le WASC a également sa propre liste de logiciels de scan web mais la page n’a pas été mise à jour depuis 2010.</p>
 
 <p style="text-align: justify">
-Attaquons nous donc à ce script !
-    Tout d'abord, il nous faut renommer le fichier en question. Un hash généré (pseudo) aléatoirement fera particulièrement bien l'affaire :</p>
-<code>
-&lt;?php<br>
-$file = $_FILES["MY_FILE"];<br>
-$actualName = $file['tmp_name'];<br>
-$newName = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));<br>
-?&gt;
-</code><br><br>
+    Dans ce cours, nous nous intéresserons au logiciel ZAP (Zed Attack Proxy) développé par l’OWASP.
+    Ce logiciel agit comme un proxy.
+    Il se situe entre le navigateur de l’utilisateur et le web et permet d’intercepter toutes les requêtes http.
+    Ce logiciel est disponible pour Windows, Mac et Linux.</p>
+
+<h5>Configuration du logiciel ZAP (Zed Attack Proxy)</h5>
+
+<p style="text-align: justify">Lien de téléchargement :<br>
+    <a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project</a></p>
+
+<h5>Configuration des réglages :</h5>
+
+<p style="text-align: justify">1. Ouvrez votre navigateur préféré (Chrome) et ouvrez les préférences du proxy local :</p>
+
+<p style="text-align: justify">Désactivez « utilisez un script de configuration automatique ».<br>
+    Tapez :<br>
+    IP : 127.0.0.1<br>
+    Port : 8085</p>
+
+<p style="text-align: justify">2. Ouvrez le logiciel ZAP :<br>
+    a. Configuration du proxy local :</p>
+<p style="text-align: justify">Allez dans options puis « Local Proxies » <br>
+    Tapez :<br>
+    Adresse : localhost<br>
+    Port : 8085</p>
 
 <p style="text-align: justify">
-Il nous faut maintenant choisir un répertoire d'upload cohérent avec notre situation. 
-Ce sera donc à vous de déterminer où vous souhaitez que les fichiers atterrissent. 
-Il faudra penser à bien définir les droits lecture/écriture, ainsi que mettre en place un solide htaccess qui interdirait de voir 
-    l’index of du répertoire en question. Dans mon cas, je me contenterais d'un répertoire "upload" qui convient parfaitement à un cas général.</p>
-
-<code>
-&lt;?php<br>
-$file = $_FILES["MY_FILE"];<br>
-$actualName = $file['tmp_name'];<br>
-$newName = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));<br>
-$path = "/upload"<br>
-?&gt;
-</code>
+    b. Configuration du proxy sortant :</p>
+<p style="text-align: justify">
+    Enfin, toujours dans les options de ZAP allez dans « Connexion » et cochez la case « Utilisez un serveur proxy sortant ».<br><br>
+    Tapez : <br>
+    Adresse :  10.1.4.2 (adresse actuelle du Proxy, pour la trouver, téléchargez le script de configuration automatique du proxy disponible à cette adresse :
+    <a href="http://wpad.solutec.lan:8080/wpad.dat">http://wpad.solutec.lan:8080/wpad.dat</a>)<br>
+    Port : 8080<br><br>
+    Dans la case « Authentification Proxy », cochez « Le serveur proxy sortant requiert une authentification ».<br>
+    Renseignez votre nom d’utilisateur et mot de passe SOLUTEC et cliquez sur OK.</p>
 
 <p style="text-align: justify">
-On va ensuite vérifier l'extension proposée, et voir si elle nous convient.
-    Si tout va bien, il nous suiffera de la rajouter après notre nouveau nom de fichier.</p>
-
-<code>
-&lt;?php<br>
-$file = $_FILES["MY_FILE"];<br>
-$actualName = $file['tmp_name'];<br>
-$newName = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));<br>
-$path = "/upload"<br>
-// On crée un tableau avec les extensions autorisées<br>
-$legalExtensions = array("JPG", "PNG", "GIF", "TXT");<br>
-// On récupère l'extension du fichier soumis et on vérifie qu'elle soit dans notre tableau<br>
-$extension = pathinfo($file['MY_FILE'], PATHINFO_EXTENSION);<br>
-if (in_array($extension, $legalExtensions)) {<br>
-    <p class="tabulation">move_uploaded_file($actualName, $path.'/'.$newName.'.'.$extension);</p>
-}
-
-?&gt;
-</code>
-<br><br>
+    3. Générer un certificat</p>
 <p style="text-align: justify">
-    On a déjà un bon début ! On va ajouter quelques vérifications d'usage pour mettre un peu tout ça en forme :</p>
+    Dans les options de ZAP, allez dans « Certificats SSL dynamique »<br>
+    Cliquez sur « Générer » puis sur « Sauvegarder ».<br><br>
+    Allez dans les paramètres de votre navigateur préféré (Chrome) puis dans « Gérer les certificats ».<br>
+    Dans la nouvelle fenêtre, cliquez sur « Importer », sélectionnez le certificat préalablement enregistré et importez-le dans la catégorie :
+    « Autorités de certification racines de confiance ».<br><br>
+    ZAP est maintenant prêt à être utilisé sur votre machine.<br>
 
-<code>
-&lt;?php<br>
-$error = false;<br><br>
-// On définit nos constantes<br>
-$newName = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));<br>
-$path = "/upload"<br>
-$legalExtensions = array("JPG", "PNG", "GIF", "TXT");<br>
-$legalSize = "10000000" // 10000000 Octets = 10 MO<br><br>
-// On récupère les infos<br>
-$file = $_FILES["MY_FILE"];<br>
-$actualName = $file['tmp_name'];<br>
-$actualSize = $file['size'];<br>
-$extension = pathinfo($file['MY_FILE'], PATHINFO_EXTENSION);<br><br>
-// On s'assure que le fichier n'est pas vide<br>
-if ($actualName == 0 || $actualSize == 0) {<br>
-    <p class="tabulation">$error = true;</p>
-}<br><br>
-// On vérifie qu'un fichier portant le même nom n'est pas présent sur le serveur<br>
-if (file_exists($path.'/'.$newName.'.'.$extension)) {<br>
-    <p class="tabulation">$error = true;</p>
-}<br><br>
-// On effectue nos vérifications réglementaires<br>
-if (!$error) {<br>
-    <p class="tabulation">if ($actualSize < $legalSize) {</p>
-    <p class="tabulation2">if (in_array($extension, $legalExtensions)) {</p>
-    <p class="tabulation3">move_uploaded_file($actualName, $path.'/'.$newName.'.'.$extension);</p>
-    <p class="tabulation2">}</p>
-    <p class="tabulation">}</p>
-}<br>
+</p>
 
-else {<br>
-
-    <p class="tabulation">// On supprime le fichier du serveur</p>
-    <p class="tabulation">@unlink($path.'/'.$newName.'.'.$extension);</p>
-
-    <p class="tabulation">echo "Une erreur s'est produite";</p>
-    
-}<br>
-
-?&gt;
-
-</code>
-<br><br>
-<p style="text-align: justify">
-Voilà ça me semble plutôt bien tout ça.
-L'idéal serait de coupler tout ça à un solide htaccess.
-    On pourrait imaginer quelque chose comme ceci :</p>
-
-<code>
-deny from all<br>
-&lt;Files ~ “^w+.(gif|jpg|png|txt)$”&lt;<br>
-    <p class="tabulation">order deny,allow</p>
-    <p class="tabulation">allow from all</p>
-&lt;/Files&gt;<br>
-Bas du formulaire
-</code>
+<h5>Références</h5>
+<a href="https://github.com/zaproxy/zap-core-help/wiki">Wiki ZAP par OWASP</a>

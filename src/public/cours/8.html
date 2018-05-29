@@ -1,107 +1,52 @@
-<h4>Revue de code statique</h4>
-
+<h4>La faille XXE (XML eXternal Entities)</h4>
+<p style="text-align: justify">Pour bien comprendre le fonctionnement et l’exploitation de cette faille, il convient de revenir sur la notion de document XML
+    et du fichier DTD (Document Type Definition).</p>
 <p style="text-align: justify">
-La revue ou l’audit sécurité de code est probablement la technique la plus efficace pour identifier les failles de sécurité dès le début du cycle de développement.
-    Mettre en place une revue de code efficace demande du temps et une bonne méthode.</p>
-<p style="text-align: justify">Dans ce cours, seule l’utilisation d’un logiciel de revue de code statique sera détaillée.
-    Si vous souhaitez vous informer sur la revue de code statique manuelle, vous pouvez vous référer au <a href="https://www.owasp.org/images/5/53/OWASP_Code_Review_Guide_v2.pdf">guide de revue de code</a> de l’OWASP qui est très complet.</p>
-
-
-
-<p style="text-align: justify">
-Le logiciel de revue de code choisi pour ce cours est SonarQube. Il est considéré comme l’un des logiciels libres les plus complets.
-    Il permet d’analyser 25 langages dont le Java, C, C++, Objective-C, C#, PHP, JavaScript et le Python.</p>
-<p style="text-align: justify">
-    SonarQube permet de faire du reporting sur :</p>
-
-
-<ul>
-    <li>La duplication de code</li>
-    <li>La mesure du niveau de documentation</li>
-    <li>Le respect des règles de programmation</li>
-    <li>La détection des bugs potentiels</li>
-    <li>L’évaluation de la couverture de code par les tests unitaires</li>
-    <li>La détection de vulnérabilités</li>
-</ul>
-
-<p style="text-align: justify">
-C’est cette dernière fonctionnalité qui nous intéresse dans ce cours.
-    SonarQube est capable de détecter des potentielles failles de sécurité telles que les failles d’injection si par exemple les requêtes SQL ne sont pas préparées.</p>
-
-<h5>Configuration de SonarQube</h5>
-<a href="https://www.sonarqube.org/downloads/">Lien de téléchargement</a><br><br>
-
-<h5>Configuration :</h5>
-<p style="text-align: justify">La configuration sera détaillée pour un ordinateur du réseau interne de SOLUTEC.
-    SonarQube peut être également installé sur un serveur et être intégré dans une pipeline de développement.</p>
-
-<h5>1. SonarQube</h5>
-
-<p style="text-align: justify">Après avoir téléchargé sonarqube, dézippez l’archive et naviguez dans le dossier bin/windows-x84-64/. Lancez le fichier StartSonar.bat.
-    Vous pouvez maintenant accéder à l’interface de SonarQube en ouvrant votre navigateur et en tapant l’adresse suivante : http://localhost:9000/</p>
-<p style="text-align: justify">Vous pouvez vous connecter grâce à ce compte : <br>nom d’utilisateur : admin<br>
-Mot de passe : admin
-<br>
-<h5>2. Plugins et SonarQube Scanner</h5>
-
-<p style="text-align: justify">La deuxième étape consiste à installer un plugin pour le langage dans lequel votre projet est codé.
-Accéder à l’UI de SonarQube (http://localhost:9000), dans l’onglet administration vous pouvez installer les plugins qui vous intéressent.
-    Sinon, l’installation manuelle consiste à télécharger et à installer vous-même les plugins disponibles à cette <a href="https://docs.sonarqube.org/display/PLUG/Plugin+Library">page</a>.</p>
-
-
-
-<p style="text-align: justify">
-    Enfin, téléchargez le scanner SonarQube approprié à vos besoins, ils sont tous disponibles à cette adresse :</p>
-<a href="https://docs.sonarqube.org/display/SCAN">https://docs.sonarqube.org/display/SCAN</a>
-<br><br>
-<p style="text-align: justify">
-    Je ne détaillerai que l’installation de SonarQube Scanner dans cette documentation. Faîtes bien attention à choisir le scanner qui correspond à vos besoins !</p>
-<p style="text-align: justify">Téléchargez SonarQube Scanner : </p>
-
-<a href="https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner">https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner</a>
-
-<br><br>
-<p style="text-align: justify">Ajoutez le chemin d’accès à l’exécutable SonarQube à votre Path. Pour cela, ouvrez votre commande windows et tapez l’instruction suivante :
-    (à adapter en fonction du chemin où vous avez enregistré SonarQube Scanner et de votre nom d’utilisateur !)</p>
+    Le langage XML (eXtensible Markup Language) est un langage qui permet de décrire des données à l'aide de balises et
+    de règles que l'on peut personnaliser.
+    Par exemple, ces règles peuvent imposer la présence d'un attribut ou d'une balise,
+    imposer l'ordre d'apparition des balises dans le document ou encore imposer le type d'une donnée.</p>
 
 <code>
-setx path "%path%;C:\Users\nriffard\Documents\Sonar_Scanner\bin”
-</code><br><br>
-<p style="text-align: justify">
-Relancez votre invite de commande.
-    Vous pouvez maintenant vérifier que l’installation s’est bien déroulée en tapant dans l’invite de commande :</p>
-<code>
-sonar-scanner –h
-</code><br><br>
-
-<h5>3. Configurez votre projet pour SonarQube</h5>
-<p style="text-align: justify">
-Naviguez maintenant dans le dossier du projet que vous voulez scanner.
-    Créez un fichier : sonar-project.properties et copiez-collez le code suivant en l’adaptant à votre projet !</p>
-
-<code>
-# Choisissez un nom de clé<br>
-sonar.projectKey=nom:de:votre:clé:de:projet<br>
-# Mettez un nom de projet, c’est sous ce nom qu’il apparaîtra dans l’interface de SonarQube<br>
-sonar.projectName=name<br>
-sonar.projectVersion=1.0<br><br>
-# Path is relative to the sonar-project.properties file. Replace "\" by "/" on Windows.<br>
-# This property is optional if sonar.modules is set. <br>
-sonar.sources=.<br><br>
-# Encoding of the source code. Default is default system encoding<br>
-#sonar.sourceEncoding=UTF-8
+    &lt;?xml version = "1.0" encoding="UTF-8" standalone="yes" ?&gt;<br>
+    &lt;repertoire&gt;<br>
+    <p class="tabulation">  &lt;personne&gt;Bernard&lt;/personne&gt;</p>
+    <p class="tabulation">&lt;personne&gt;Patrick&lt;/personne&gt;</p>
+    &lt;/repertoire&gt;<br>
 </code>
-<br><br>
+<br>
 <p style="text-align: justify">
-Ouvrez de nouveau l’invite de commande et placez-vous à la racine du répertoire de votre projet.
-Lancez la commande suivante : sonar-scanner
-Vous pouvez maintenant voir l’analyse que SonarQube a faite de votre projet en vous rendant sur l’interface web de SonarQube.</p>
-<p align="center">
-    <img src="/images/sonarqube1.png" alt="coucou" style="width: 100%;"><br><br>
-</p>
+    Une Document Type Definition ou en français une Définition de Type de Document, souvent abrégé DTD,
+    est une technologie pour écrire les définitions de nos documents XML.</p>
+<p style="text-align: justify">
+    Tout comme les fichiers XML, les DTD s'écrivent dans des fichiers. Il existe 2 types de DTD : les DTD externes et les DTD internes.</p>
+<p style="text-align: justify">
+    Les règles des DTD internes s'écrivent directement dans le fichier XML qu'elles définissent tandis que les règles des DTD externes sont écrites
+    dans un fichier séparé portant l’extension .dtd.</p>
+<p style="text-align: justify">
+    Maintenant que vous en savez un peu plus, je vous propose de rentrer dans le vif du sujet.
+    Des entités peuvent être déclarées dans le DTD pour définir des variables. Elles peuvent être internes pour définir des règles de substitution d’un élément par un autre dans le document XML.
+    Ces entités peuvent aussi être externes et dans ce cas faire référence à des ressources qui peuvent être le système de fichier local ou un ordinateur distant.</p>
+<p style="text-align: justify">Si le parser XML est vulnérable, en définissant les bonnes entités on peut accéder à des ressources protégées.
+    Par exemple, en modifiant le fichier XML de cette manière, on peut accéder au fichier d’identification du système /etc/passwd.</p>
 
-<p style="text-align: justify">
-SonarQube ne demande pas d’explications supplémentaires, l’interface est simple d’utilisation et les vulnérabilités sont explicites.</p>
-<p align="center">
-    <img src="/images/sonarqube2.png" alt="coucou" style="width: 100%;"><br><br>
-</p>
+<code>
+    &lt;?xml version='1.0' encoding="UTF-8"?&gt;<br>
+    &lt;!DOCTYPE x [<br>
+    &lt;!ENTITY passwd SYSTEM 'file:/etc/passwd'&gt;<br>
+    ]&gt;<br>
+    &lt;repertoire&gt;<br>
+    <p class="tabulation">&lt;personne&gt;&passwd ;&lt;/personne&gt;</p>
+    <p class="tabulation">&lt;personne&gt;Patrick&lt;/personne&gt;</p>
+    &lt;/repertoire&gt;<br>
+</code>
+<br>
+<h5>Comment s’en prémunir ?</h5>
+<p style="text-align: justify">L’utilisation d’entité externe n’est à activer qu’en cas de réelle nécessité au niveau de l’analyseur syntaxique, et leur valeur doit être vérifiée.</p>
+
+
+<h5>Références :</h5>
+<a href="https://www.synetis.com/2014/02/13/les-attaques-xxe-des-protocoles-dauthentification-oauth-openid/">https://www.synetis.com/2014/02/13/les-attaques-xxe-des-protocoles-dauthentification-oauth-openid/</a>
+<a href="https://openclassrooms.com/courses/structurez-vos-donnees-avec-xml">https://openclassrooms.com/courses/structurez-vos-donnees-avec-xml</a>
+<a href="https://www.synetis.com/2014/02/13/les-attaques-xxe-des-protocoles-dauthentification-oauth-openid/">https://www.synetis.com/2014/02/13/les-attaques-xxe-des-protocoles-dauthentification-oauth-openid/</a>
+
