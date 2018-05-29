@@ -1,0 +1,62 @@
+<h4>Introduction</h4>
+<p style="text-align: justify">
+Le pentesting ou tests de pénétration est une étape importante dans la sécurisation d’une application web.
+    Elle consiste à effectuer des tests d’intrusion pour détecter des vulnérabilités web. </p>
+<p style="text-align: justify">
+Cette étape intervient dans la dernière phase du cycle de développement d’une application après la revue de code statique.
+De nombreux logiciels d’automatisation de tests de pénétration existent.
+L’OWASP tient à jour une page qui liste les logiciels de scan web les plus utilisés.
+    Le WASC a également sa propre liste de logiciels de scan web mais la page n’a pas été mise à jour depuis 2010.</p>
+
+<p style="text-align: justify">
+Dans ce cours, nous nous intéresserons au logiciel ZAP (Zed Attack Proxy) développé par l’OWASP.
+Ce logiciel agit comme un proxy.
+Il se situe entre le navigateur de l’utilisateur et le web et permet d’intercepter toutes les requêtes http.
+    Ce logiciel est disponible pour Windows, Mac et Linux.</p>
+
+<h5>Configuration du logiciel ZAP (Zed Attack Proxy)</h5>
+
+<p style="text-align: justify">Lien de téléchargement :<br>
+    <a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project</a></p>
+
+<h5>Configuration des réglages :</h5>
+
+<p style="text-align: justify">1. Ouvrez votre navigateur préféré (Chrome) et ouvrez les préférences du proxy local :</p>
+
+<p style="text-align: justify">Désactivez « utilisez un script de configuration automatique ».<br>
+Tapez :<br>
+IP : 127.0.0.1<br>
+Port : 8085</p>
+
+<p style="text-align: justify">2. Ouvrez le logiciel ZAP :<br>
+a. Configuration du proxy local :</p>
+<p style="text-align: justify">Allez dans options puis « Local Proxies » <br>
+Tapez :<br>
+Adresse : localhost<br>
+    Port : 8085</p>
+
+<p style="text-align: justify">
+    b. Configuration du proxy sortant :</p>
+<p style="text-align: justify">
+Enfin, toujours dans les options de ZAP allez dans « Connexion » et cochez la case « Utilisez un serveur proxy sortant ».<br><br>
+    Tapez : <br>
+Adresse :  10.1.4.2 (adresse actuelle du Proxy, pour la trouver, téléchargez le script de configuration automatique du proxy disponible à cette adresse :
+<a href="http://wpad.solutec.lan:8080/wpad.dat">http://wpad.solutec.lan:8080/wpad.dat</a>)<br>
+Port : 8080<br><br>
+Dans la case « Authentification Proxy », cochez « Le serveur proxy sortant requiert une authentification ».<br>
+    Renseignez votre nom d’utilisateur et mot de passe SOLUTEC et cliquez sur OK.</p>
+
+<p style="text-align: justify">
+    3. Générer un certificat</p>
+<p style="text-align: justify">
+Dans les options de ZAP, allez dans « Certificats SSL dynamique »<br>
+Cliquez sur « Générer » puis sur « Sauvegarder ».<br><br>
+Allez dans les paramètres de votre navigateur préféré (Chrome) puis dans « Gérer les certificats ».<br>
+Dans la nouvelle fenêtre, cliquez sur « Importer », sélectionnez le certificat préalablement enregistré et importez-le dans la catégorie :
+« Autorités de certification racines de confiance ».<br><br>
+ZAP est maintenant prêt à être utilisé sur votre machine.<br>
+
+</p>
+
+<h5>Références</h5>
+<a href="https://github.com/zaproxy/zap-core-help/wiki">Wiki ZAP par OWASP</a>

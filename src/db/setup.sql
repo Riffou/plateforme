@@ -87,15 +87,17 @@ INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Le web', 1, 0);
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'La sécurité web', 2, 1);
 INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (1, 'Top 10 des failles web', 3, 1);
 
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 1', 1, 0);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 2', 2, 1);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 3', 3, 1);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 4', 4, 2);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 5', 5, 2);
-INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Partie 6', 6, 2);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'XSS', 1, 0);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Injections SQL', 2, 1);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'CSRF', 3, 1);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'CRLF', 4, 2);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'XXE', 5, 2);
+INSERT INTO Cours (idUnite, nom, ordre, difficulte) VALUES (2, 'Upload', 6, 2);
 
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (3, 'Partie 1', 1);
-INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Partie 1', 1);
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (3, 'SonarQube', 1);
+
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Configuration de ZAP', 1);
+INSERT INTO Cours (idUnite, nom, ordre) VALUES (4, 'Pentesting', 2);
 
 INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nico', 'a2fc0754adb89e0b268fcaa6e1438c85906a37a883b639b2ae1878622f72ffb2', 'nico@hotmail.fr', 1524237393762);
 INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr', 1524237440676);

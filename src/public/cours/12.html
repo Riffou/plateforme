@@ -1,0 +1,198 @@
+<h5>Pentesting</h5>
+<p style="text-align: justify">
+    Maintenant que ZAP est configuré, vous pouvez lancer l'application.
+    A l’ouverture, ZAP vous demandera si vous souhaitez sauvegarder les résultats de la session que vous êtes sur le point de lancer.
+    Choisissez l’option qui vous convient le mieux.</p>
+
+<p align="center">
+    <img src="/images/zap1.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+<p style="text-align: justify">
+    L’interface de ZAP se compose de 6 éléments :</p>
+
+<ul>
+    <li>1. La barre de menu : donne accès aux outils de tests manuels ou automatiques.</li>
+    <li>2. La barre d’outils : propose des boutons pour un accès facile aux fonctionnalités.</li>
+    <li>3. La fenêtre d’arbres : affiche les sites et les scripts sous forme d’arborescence.</li>
+    <li>4. La fenêtre de travail : affiche les requêtes, les réponses, les scripts et permet de les éditer.</li>
+    <li>5. La fenêtre d’information : affiche les détails des outils.</li>
+    <li>6. Le footer : affiche un résumé des alertes trouvées.</li>
+</ul>
+
+<p align="center">
+    <img src="/images/zap2.png" alt="coucou" style="width: 70%;"><br><br>
+</p>
+
+<p style="text-align: justify">
+    Avant de commencer à attaquer un site web, attardons-nous sur les différents modes de scan proposés par ZAP.<br><br>
+    4 modes sont proposés dans la barre d’outils :</p>
+
+<ul>
+    <li>Mode sécurisé : Aucune action potentiellement dangereuse n’est autorisée.</li>
+    <li>Mode protégé : Des actions potentiellement dangereuses ne se font que dans un périmètre d’URL défini par l’utilisateur.</li>
+    <li>Mode standard : l’utilisateur peut faire ce qu’il veut.</li>
+    <li>Mode d’attaque : Les nouveaux nœuds qui sont détectés sont scannés activement.</li>
+</ul>
+
+<p style="text-align: justify">
+    Pour ce cours, activez le mode standard ou le mode d’attaque.</p>
+
+<h5>Une première attaque</h5>
+<p style="text-align: justify">
+    Lancer l’attaque :</p>
+<p style="text-align: justify">
+    Dans la fenêtre de travail, tapez l’adresse du site que vous souhaitez attaquer. ZAP va utiliser son outil de scan automatique.<br>
+    Il va alors explorer le site web à l’aide de son outil « spider » qui scanne passivement toutes les pages (1) qu’il trouve puis
+    il utilise le scanner actif pour attaquer les pages découvertes (2).</p>
+
+<p align="center">
+    <img src="/images/zap3.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+
+<h5>Interpréter les résultats</h5>
+<p style="text-align: justify">
+    Lorsque ZAP attaque un site web, il construit une carte des pages de l’application web dans la fenêtre d’arbres.
+    Il enregistre également toutes les requêtes et réponses faites sur chaque page et crée des alertes si une potentielle vulnérabilité est détectée.<br>
+    Les requêtes et réponses peuvent être observées grâce à l’onglet historique de la fenêtre d’information.
+    Les alertes sont accessibles par l’onglet « Alertes » de la fenêtre d’information. Vous pouvez ainsi voir les potentielles vulnérabilités d’un site web.</p>
+
+<h5>Plus en détail</h5>
+
+<p style="text-align: justify">1. Configurer et lancer un Spider</p>
+
+<p style="text-align: justify">La première étape de l’attaque consiste à scanner passivement toutes les pages web trouvées.<br>
+    Le spider par défaut de ZAP explore les URLs qu’il trouve dans les réponses des requêtes http.
+    Cette méthode est efficace mais elle ne prend pas en compte les URLs générées par du Javascript.</p>
+<p style="text-align: justify">Pour pouvoir explorer en profondeur une application web, vous pouvez en plus d’utiliser le spider par défaut, le spider AJAX.<br><br>
+    Dans la fenêtre d’information, cliquez sur le signe + vert. Cliquez sur « Spider » puis sur « Ajax Spider ».
+    Vous pouvez ensuite démarrer un scan sur l’application web de votre choix.</p>
+
+<p style="text-align: justify">2. Lancez un scan actif</p>
+<p style="text-align: justify">
+    La deuxième étape de l’attaque est l’utilisation du scan actif.
+    Alors qu’un scan passif consiste simplement à détecter des vulnérabilités, le scan actif cherche à les exploiter en utilisant des attaques connues.<br><br>
+    Pour pouvoir lancer un scan actif, vous avez 3 possibilités :</p>
+
+
+<ul>
+    <li>Faire comme dans la première attaque en utilisant l’outil de scan rapide.</li>
+    <li>Utilisez la fenêtre d’arborescence, sélectionnez le site à attaquer en faisant un clic droit puis en choisissant « Scan actif ».</li>
+    <li>Utilisez la fenêtre d‘information en sélectionnant le « scan actif » et en cliquant sur « nouveau scan ».</li>
+</ul>
+
+<p style="text-align: justify">
+Utiliser la fonction de scan automatique est intéressant mais peu complet.
+Par exemple, toutes les pages protégées par une page de connexion ne sont pas scannées.
+De même, bien que le spider par défaut de ZAP soit puissant, il ne trouve pas toutes les pages d’un site web.
+Enfin, vous avez très peu de contrôle sur la séquence d’exploration avec le scan passif de l’outil automatique.
+</p>
+
+
+<h4>Fonctionnalités intéressantes</h4>
+<h5>Exploration passive</h5>
+<p style="text-align: justify">
+Une méthode d’exploration efficace mais manuelle est l’exploration d’un site par l’utilisateur.
+Lorsque l’utilisateur configure son navigateur pour envoyer les requêtes vers ZAP,
+le logiciel enregistre toutes les requêtes qui passent par le navigateur.
+Il construit également une arborescence du site au fur et à mesure de la navigation de l’utilisateur.
+Ainsi, en cliquant sur tous les liens possibles, en remplissant tous les formulaires d’un site,
+l’utilisateur peut déjà construire une bonne base de la cartographie du site.
+</p>
+
+<h5>Définition du périmètre</h5>
+<p style="text-align: justify">
+Pour pouvoir faire un tri efficace dans l’ensemble des requêtes interceptées par ZAP, il existe une fonctionnalité : les contextes.<br><br>
+Visitez avec votre navigateur web le site que vous souhaitez attaquer.
+Il apparaît ainsi dans la liste des sites de la fenêtre d’arbres.
+Faîtes un clic droit sur le site, puis cliquez sur « inclure dans le contexte » et enfin « Nouveau contexte ».
+Une fenêtre s’ouvre, cliquez sur « OK ».
+</p>
+
+<p align="center">
+    <img src="/images/zap4.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+<p align="center">
+    <img src="/images/zap5.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+<p style="text-align: justify">
+Vous avez maintenant la possibilité de ne voir que les résultats qui correspondent au site que vous avez marqué comme contexte. <br>
+Par exemple, pour l’historique des requêtes http, il vous suffit de cliquer sur le bouton en forme de cible comme montré sur la capture d’écran.
+    Ce bouton est applicable pour les autres fonctionnalités : Spider, Spider AJAX, Alertes... </p>
+
+<p align="center">
+    <img src="/images/zap6.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+
+<h4>Rejeu de requêtes HTTP</h4>
+<p style="text-align: justify">
+    ZAP propose de rejouer des requêtes http. L’intérêt est de pouvoir modifier l’en-tête de la requête ou les paramètres envoyés.</p>
+<p style="text-align: justify">
+    Voyons un exemple concret avec une page d’authentification. Dans notre cas, on essaye de se connecter au site Openclassrooms.</p>
+<p style="text-align: justify">
+    La première étape consiste à utiliser le formulaire de connexion sur son navigateur.</p>
+<p style="text-align: justify">
+    Dans mon cas j’ai rentré comme adresse email : test@hotmail.fr et comme mot de passe test.
+    Il suffit ensuite de retrouver la requête dans le logiciel ZAP. Avec la fonctionnalité des contextes, il est facile de retrouver la requête correspondante.</p>
+<p style="text-align: justify">
+La requête est une requête POST. Elle envoie un paramètre 6 arguments dont le nom d’utilisateur (username) et le mot de passe (password).
+    Ce sont les données qui nous intéressent ici. Il suffit alors de faire un clique droit sur la fenêtre d’information de la requête puis de cliquer sur renvoyer.
+    Une fenêtre pop-up s’ouvre et il est alors possible de modifier les données en entrée.</p>
+<p align="center">
+    <img src="/images/zap15.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+<h4>Aller plus loin et générer du bruit</h4>
+<p style="text-align: justify">
+Une fonctionnalité intéressante pour l’injection de code est la génération de bruit appelée Fuzzing en anglais.
+    Cela consiste à envoyer beaucoup de données valides ou invalides à une cible.</p>
+<p style="text-align: justify">
+Reprenons le cas précédent pour tenter de se connecter au site OpenClassRooms par injection SQL.
+Reprenons la requête POST qui correspond à l’authentification.
+    Cette fois-ci, nous allons faire un clic droit sur la fenêtre d’informations mais au lieu de choisir « Renvoyer », on sélectionnera « Générer du bruit ».</p>
+
+<p align="center">
+    <img src="/images/zap161.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+<p style="text-align: justify">
+La première étape consiste à choisir la ou les valeurs qu’on voudra remplacer par du code SQL.
+Dans notre cas, on essaiera simplement d’injecter du code SQL au niveau du champ du nom d’utilisateur.
+Pour cela, il suffit de surligner le nom d’utilisateur puis de cliquer sur « Ajouter » comme montré ci-dessous.
+</p>
+
+<p align="center">
+    <img src="/images/zap16.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+<p style="text-align: justify">
+Une fenêtre pop-up s’ouvre, cliquez de nouveau sur ajouter. Cela va nous permettre de choisir un fichier de commandes SQL.
+</p>
+<p align="center">
+    <img src="/images/zap17.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+<p style="text-align: justify">
+Dans la nouvelle fenêtre pop-up, changez le type et choisissez : « File fuzzers ».
+Cliquez sur jbrofuzz puis sur SQL injection. Enfin cliquez sur « Ajouter » puis « OK » puis « Démarrer le fuzzer » dans la fenêtre principale.
+</p>
+<p align="center">
+    <img src="/images/zap12.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+<p align="center">
+    <img src="/images/zap13.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+<p style="text-align: justify">
+ZAP va alors renvoyer la requête http de connexion en remplaçant le nom d’utilisateur par des commandes d’injection SQL.
+    Il nous affichera ensuite le résultat de chaque requête et nous pourrons alors observer si le site est vulnérable aux injections SQL.</p>
+
+<p align="center">
+    <img src="/images/zap14.png" alt="coucou" style="width: 100%;"><br><br>
+</p>
+
+<p style="text-align: justify">
+Dans notre cas, openclassrooms a mis en place une protection contre le bruteforce.
+    Le site a renvoyé une erreur 429 « Too Many Requests » ce qui a empêché l’attaque SQL.<br>
+Cependant, beaucoup de sites ne mettent pas en place cette protection. Il est alors plus simple de  détecter des failles.</p>
