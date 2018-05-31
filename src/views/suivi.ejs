@@ -48,7 +48,7 @@
                                 <tbody>
                                 <%  for (var i = 0; i < menuCoursJson[key].length; i++) { %>
                                 <tr>
-                                    <td style="text-align:center;"><a href="/cours/<%= menuCoursJson[key][i].id %>"><%= menuCoursJson[key][i].nom%></a></td>
+                                    <td style="text-align:center;"><a href="/unites/<%= arrayOrdre[k] %>/<%= menuCoursJson[key][i].id %>"><%= menuCoursJson[key][i].nom%></a></td>
                                     <td style="text-align:center;">
                                         <% if (jsonNombreValidationsCours[menuCoursJson[key][i].id] != null) { %>
                                         <%= jsonNombreValidationsCours[menuCoursJson[key][i].id]; %>

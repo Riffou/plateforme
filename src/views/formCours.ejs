@@ -1,11 +1,11 @@
-<% include partials/head %>
+<% include partials/headEditor %>
 <% include partials/headerAdmin %>
 
 <body>
 <br>
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-sm-8">
+        <div class="col-sm-10">
             <% if (typeof nom == "undefined") { %>
             <h5 class="border-bottom border-gray pb-2 mb-0">Ajouter un cours</h5>
             <%}
@@ -18,7 +18,7 @@
     </div>
     <form method="post" action="/admin/dashboard/cours/form/<% if (typeof idCours != "undefined") {%>edit/<%= idCours%><%}%>">
         <div class="row justify-content-center">
-            <div class="form-group col-sm-8">
+            <div class="form-group col-sm-10">
                 <input type="text" class="form-control" id="titleInput" name="titleInput" placeholder="Nom du cours"
                         <% if (typeof nom != "undefined") { %>
                        value="<%= nom %>"
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="form-group col-sm-8">
+            <div class="form-group col-sm-10">
                 <select class="custom-select mr-sm-2" id="nomCategorieInput" name="nomCategorieInput">
                     <% for (var i = 0; i < dataCategories.length; i++) { %>
                     <option value="<%= dataCategories[i].id %>"
@@ -55,7 +55,7 @@
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="form-group col-sm-8">
+            <div class="form-group col-sm-10">
                 <select class="custom-select mr-sm-2" id="difficulteCoursInput" name="difficulteCoursInput">
                     <option value="0" <% if (typeof difficulte != "undefined") { if (difficulte == 0) {%>
                             selected
@@ -99,6 +99,16 @@
     <p style="display:none" id="idUniteOrigine"><% if (typeof idUnite != "undefined") {%> <%= idUnite %> <%}%></p>
 </div>
 <script src="/js/formCours.js"></script>
+<!-- Include external JS libs. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/codemirror.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.0/mode/xml/xml.min.js"></script>
+
+<!-- Include Editor JS files. -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/froala-editor/2.8.1/js/froala_editor.pkgd.min.js"></script>
+
+<!-- Initialize the editor. -->
+<script> $(function() { $('textarea').froalaEditor() }); </script>
 </body>
 
 <% include partials/footer %>
