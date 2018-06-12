@@ -1,6 +1,6 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Accueil</a>
+  <nav class="navbar navbar-expand-sm navbar-dark" style="background-color:#042945;">
+    <a class="navbar-brand" href="/"><span class="oi oi-home"></span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -14,7 +14,7 @@
           <a class="nav-link" href="/challenges">Challenges</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/faq">F.A.Q</a>
+          <a class="nav-link" href="/questionnaire">Questionnaire</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -31,7 +31,7 @@
 
       <%if (typeof path != "undefined") {
           if (path == "unite") { %>
-          <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+          <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#12446a;">
             <a class="navbar-brand" href="/unites">
               <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
             </a>
@@ -47,7 +47,7 @@
                   && typeof idUnite != "undefined"
                   && typeof nomUnite != "undefined"
                   && typeof nomCours != "undefined") { %>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#12446a;">
               <a class="navbar-brand" href="/unites/<%= idUnite %>">
                 <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
               </a>
@@ -61,7 +61,7 @@
           <% }
           else if (path == "challenge"
                   && typeof nomChallenge != "undefined") { %>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#12446a;">
               <a class="navbar-brand" href="/challenges">
                 <img src="/open-iconic/png/chevron-left-white-3x.png" alt="">
               </a>
@@ -74,7 +74,7 @@
             </nav>
           <%}
           else if (path == "profil") { %>
-            <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#12446a;">
               <a class="navbar-brand" href="/profil">
                 Mon profil
               </a>

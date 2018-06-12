@@ -13,7 +13,7 @@ services:
       - 90:3000
     depends_on:
       - db
-          
+
   db:
     image: ${PROJECT_NAME}_db:dev
     container_name: ${PROJECT_NAME}_db
@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile-sql
     ports:
-      - 5432:5432
+      - 5433:5432
     environment:
       POSTGRES_PASSWORD: solutec
       POSTGRES_USER: devops

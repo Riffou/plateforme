@@ -12,7 +12,10 @@
             <%}%></h3>
 
         <p><%= description %></p>
+        <!--
         <a class="btn btn-secondary" target="_blank" href="http://<%= host %>/<%= idChallenge %>" role="button">Démarrer le challenge</a>
+        -->
+        <a class="btn btn-custom" href="/testChallenge1" role="button">Démarrer le challenge</a>
 
         <br><br><br>
 
@@ -21,7 +24,7 @@
             <label for="flagInput">Entrez le flag de validation</label>
             <input type="text" class="form-control" name="flagInput" id="flagInput" placeholder="flag">
         </div>
-        <button type="button" id="flagSubmit" class="btn btn-secondary">Envoyer</button>
+        <button type="button" id="flagSubmit" class="btn btn-custom">Envoyer</button>
 
         <br><br>
         <div class="alert alert-success" role="alert" id="goodFlag" style="display: none;">
@@ -37,7 +40,7 @@
 
         <% if (indice != "") {%>
             <h3>Aide</h3>
-            <button class="btn btn-secondary" id="voirIndice" role="button">Voir l'indice</button>
+            <button class="btn btn-custom" id="voirIndice" role="button">Voir l'indice</button>
             <div id="indiceDiv" style="display:none">
                 <p style="margin-bottom: -30px; margin-top:15px;"><%= indice %></p>
             </div>
@@ -47,7 +50,7 @@
 
         <h3>Solution</h3>
         <p> Voir les solutions du challenge</p>
-        <button class="btn btn-secondary" id="voirSolution" role="button">Voir les solutions</button>
+        <button class="btn btn-custom" id="voirSolution" role="button">Voir les solutions</button>
 
         <br>
         <br>
@@ -66,10 +69,10 @@
         <div id="divProposer"<% if (!validate) {%> style="display:none;" <%}%>>
             <br>
             <h3>Proposer une solution</h3>
-            <button class="btn btn-secondary" id="proposerSolution" role="button">Proposer</button>
+            <button class="btn btn-custom" id="proposerSolution" role="button">Proposer</button>
             <textarea class="form-control" id="solutionTextArea" rows="3" style="display:none;"></textarea>
             <br>
-            <button class="btn btn-secondary" id="envoyerSolution" role="button" style="display:none;">Envoyer</button>
+            <button class="btn btn-custom" id="envoyerSolution" role="button" style="display:none;">Envoyer</button>
         </div>
 
         <!-- Alerte JS -->

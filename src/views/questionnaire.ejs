@@ -1,0 +1,52 @@
+<% include partials/head %>
+<%- include('partials/header', {connected: 'ok'}) %>
+
+<body>
+    <div class="container">
+        <form method="post">
+            <% for (var i = 0; i < Object.keys(globalJSON).length; i++) {
+                var idUnite = unitesArray[i][0];
+                var nomUnite = unitesArray[i][1];
+            %>
+            <br>
+            <div class="card">
+                <div class="card-body">
+            <h4><%= nomUnite %></h4>
+                <% for (var j = 0; j < globalJSON[idUnite].length; j++) {
+                    var nomCours = globalJSON[idUnite][j][1];
+                    var idCours = globalJSON[idUnite][j][0];
+                %>
+                    <h5 style="margin-top: 20px;"><%= nomCours %></h5>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label">Niveau de difficulté : </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radio<%= idCours %>" value="facile">
+                        <label class="form-check-label" for="inlineRadio1">Facile</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radio<%= idCours %>" value="moyen">
+                        <label class="form-check-label" for="inlineRadio2">Moyen</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radio<%= idCours %>" value="difficile">
+                        <label class="form-check-label" for="inlineRadio3">Difficile</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radio<%= idCours %>" value="pasLu" checked>
+                        <label class="form-check-label" for="inlineRadio3" >Pas lu</label>
+                    </div>
+                    <textarea class="form-control" name="textArea<%= idCours %>" rows="3" style="margin-top: 10px;" placeholder="Remarques : points d'amélioration ? Cours utile ? Besoin de plus d'exemples ? "></textarea>
+                <%}%>
+                </div>
+            </div>
+           <%}%>
+            <br>
+            <div style="text-align: center;">
+                <button class="btn btn-custom" type="submit" id="sauvegarder">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+<% include partials/footer %>

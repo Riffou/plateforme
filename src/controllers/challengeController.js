@@ -198,5 +198,46 @@ module.exports = {
             console.log("Solution vide");
             res.status(500).send(error);
         }
+    },
+    runChallenge1 : function(req, res) {
+        console.log("Run Challenge 1");
+        const { exec } = require('child_process');
+
+        /*
+        exec('pwd', (err, stdout, stderr) => {
+            if (err) {
+                // node couldn't execute the command
+                return;
+            }
+            // the *entire* stdout and stderr (buffered)
+            console.log(`stdout: ${stdout}`);
+        console.log(`stderr: ${stderr}`);
+    });
+    */
+
+        /*
+        // run the image already created
+        exec('docker run -P --name test1 -t challenge1_image', (err, stdout, stderr) => {
+            if (err) {
+                // node couldn't execute the command
+                return;
+            }
+            // the *entire* stdout and stderr (buffered)
+            console.log(`stdout: ${stdout}`);
+            console.log(`stderr: ${stderr}`);
+        });
+        // get the port of the running container
+        exec('docker inspect test1 | grep "HostPort"', (err, stdout, stderr) => {
+            if (err) {
+                // node couldn't execute the command
+                return;
+            }
+            console.log(stdout);
+            var port = stdout.match(/\d+/)[0];
+        // redirect to the container
+        res.redirect('http://localhost:' + port);
+        });
+        */
+
     }
 }

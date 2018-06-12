@@ -26,6 +26,31 @@
   box-shadow: none;
 }
 
+.btn-custom {
+  color:#fff;
+  background-color:#12446a;
+  border-color:#12446a;
+}
+.btn-custom:hover {
+  background: #042945;
+  color:#fff;
+}
+
+.btn-outline-custom {
+  color: #12446a;
+  background-color: transparent;
+  background-image: none;
+  border-color: #12446a;
+}
+
+.btn-outline-custom:hover {
+  color: #fff;
+  background-color: #12446a;
+  border-color: #12446a;
+}
+
+
+
 .tabulation { margin: 0 0 0 40px; }
 
 .tabulation2 { margin: 0 0 0 80px; }

@@ -20,7 +20,7 @@ var getButtons = function(idUnite, idCours, identifiant, callback) {
     coursModel.getPrevious(idUnite, idCours, function(idPrevious, error) {
         if (error == null) {
             if (idPrevious) {
-                precedent = "<a class=\"btn btn-outline-secondary\" href=\"/unites/" +
+                precedent = "<a class=\"btn btn-outline-custom\" href=\"/unites/" +
                     idUnite + "/" + idPrevious + "\">" +
                     "        <span class=\"oi oi-chevron-left\"></span>\n" +
                     "        Cours précédent\n" +
@@ -30,7 +30,7 @@ var getButtons = function(idUnite, idCours, identifiant, callback) {
             coursModel.getNext(idUnite, idCours, function (idNext, error) {
                 if (error == null) {
                     if (idNext) {
-                        suivant = "<a class=\"btn btn-outline-secondary float-right\" href=\"/unites/" +
+                        suivant = "<a class=\"btn btn-outline-custom float-right\" href=\"/unites/" +
                             idUnite + "/" + idNext + "\">" +
                             "        <span class=\"oi oi-chevron-right\"></span>\n" +
                             "        Cours suivant\n" +
@@ -43,7 +43,7 @@ var getButtons = function(idUnite, idCours, identifiant, callback) {
                                // Check if it's the last lesson of the unit
                                if (suivant != "") {
                                    lu = "<form method=\"POST\">\n" +
-                                       "<button type=\"submit\" class=\"btn btn-outline-secondary\">\n" +
+                                       "<button type=\"submit\" class=\"btn btn-outline-custom\">\n" +
                                        "        J'ai lu ce cours, je passe au suivant\n" +
                                        "        <span class=\"oi oi-check\"></span>\n" +
                                        "</button>\n" +
@@ -51,7 +51,7 @@ var getButtons = function(idUnite, idCours, identifiant, callback) {
                                }
                                else {
                                    lu = "<form method=\"POST\">\n" +
-                                       "<button type=\"submit\" class=\"btn btn-outline-secondary\">\n" +
+                                       "<button type=\"submit\" class=\"btn btn-outline-custom\">\n" +
                                        "        J'ai lu ce cours\n" +
                                        "        <span class=\"oi oi-check\"></span>\n" +
                                        "</button>\n" +

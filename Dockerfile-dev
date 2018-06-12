@@ -1,13 +1,10 @@
 FROM node:9
-ENV http_proxy http://172.17.0.1:3128
-ENV https_proxy https://172.17.0.1:3128
 
 WORKDIR /usr/app
 
 COPY . .
-RUN chmod +x test.sh 
-EXPOSE 3000
-RUN npm config set proxy http://172.17.0.1:3128 && npm install
+RUN chmod +x test.sh
+RUN npm install
 COPY src/db/setup.sql /docker-entrypoint-initdb.d/
 
 ENTRYPOINT ["npm", "run", "start"]
