@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -57,7 +57,7 @@
         <entry file="file://$PROJECT_DIR$/src/views/chall4Success.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
-              <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -75,16 +75,25 @@
         <entry file="file://$PROJECT_DIR$/src/views/chall2.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
-              <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+              <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
         </entry>
@@ -94,15 +103,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
               <caret line="25" column="18" selection-end-line="55" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="challenge.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/challenge.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1440">
-              <caret line="80" column="18" lean-forward="true" selection-start-line="80" selection-start-column="18" selection-end-line="80" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -191,7 +191,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/public/cours/11.html" />
         <option value="$PROJECT_DIR$/src/public/cours/6.html" />
         <option value="$PROJECT_DIR$/src/public/cours/12.html" />
         <option value="$PROJECT_DIR$/src/public/cours/temp.html" />
@@ -242,6 +241,7 @@
         <option value="$PROJECT_DIR$/src/views/chall4.ejs" />
         <option value="$PROJECT_DIR$/src/views/chall4Success.ejs" />
         <option value="$PROJECT_DIR$/src/views/chall2.ejs" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -412,21 +412,7 @@
       <workItem from="1528960189080" duration="17649000" />
       <workItem from="1529048526745" duration="11333000" />
       <workItem from="1529307831571" duration="13227000" />
-      <workItem from="1529402085527" duration="1050000" />
-    </task>
-    <task id="LOCAL-00013" summary="Menu challenges">
-      <created>1521645198920</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1521645198924</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Menu challenges">
-      <created>1521724486582</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1521724486582</updated>
+      <workItem from="1529402085527" duration="2012000" />
     </task>
     <task id="LOCAL-00015" summary="Menu challenges">
       <created>1521725192867</created>
@@ -757,11 +743,25 @@
       <option name="project" value="LOCAL" />
       <updated>1529402306708</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Docker">
+      <created>1529409531624</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1529409531624</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Node Modules">
+      <created>1529409759520</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1529409759520</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="665867000" />
+    <option name="totallyTimeSpent" value="666829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -785,6 +785,7 @@
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.21568628" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
+      <window_info anchor="bottom" id="TypeScript" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20320855" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
@@ -812,7 +813,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Menu unités DB" />
     <MESSAGE value="Menu challenges" />
     <MESSAGE value="Modification package json pour variable" />
     <MESSAGE value="Modification makefile pour paramètres d'application" />
@@ -837,7 +837,8 @@
     <MESSAGE value="Rédaction de tous les cours" />
     <MESSAGE value="Beautiful HTML Editor" />
     <MESSAGE value="Docker" />
-    <option name="LAST_COMMIT_MESSAGE" value="Docker" />
+    <MESSAGE value="Node Modules" />
+    <option name="LAST_COMMIT_MESSAGE" value="Node Modules" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -845,13 +846,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/views/menuUnites.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="25" column="105" selection-start-line="25" selection-start-column="105" selection-end-line="25" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/home.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -1173,7 +1167,7 @@
     <entry file="file://$PROJECT_DIR$/src/views/chall4Success.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
-          <caret line="8" column="29" lean-forward="true" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1194,14 +1188,21 @@
     <entry file="file://$PROJECT_DIR$/src/views/chall2.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="10" column="29" lean-forward="true" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="25" column="30" lean-forward="true" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
