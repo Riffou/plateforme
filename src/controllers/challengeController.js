@@ -1,6 +1,9 @@
 var challengesModel = require('../models/challenges');
 var utilisateurModel = require('../models/utilisateurs');
 var config = require('../config/settings').config();
+var exec = require('child_process').exec;
+var async = require('async');
+var request = require('request');
 
 function escapeHtml(text) {
     var map = {
@@ -12,6 +15,219 @@ function escapeHtml(text) {
     };
 
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+}
+
+function inspect(callback, nomConteneur, object, whichServer) {
+    console.log("Docker inspect");
+    exec('docker inspect -f {{.State.Running}} ' + nomConteneur, function(error, stdout, stderr) {
+        // Docker a trouvé un conteneur associé
+        if (error == null) {
+            // On vérifie qu'il est lancé
+            if (stdout.includes("true")) {
+                if (whichServer === 0) {
+                    object.containerServerAlreadyRunning = true;
+                    object.containerServerAlreadyCreated = true;
+                }
+                else {
+                    object.containerBDDAlreadyCreated = true;
+                    object.containerBDDAlreadyRunning = true;
+                }
+            }
+            // S'il n'est pas lancé : on va supprimer le conteneur
+            else {
+                if (whichServer === 0) {
+                    object.containerServerAlreadyCreated = true;
+                }
+                else {
+                    object.containerBDDAlreadyCreated = true;
+                }
+            }
+            callback();
+        }
+        // Docker n'a pas trouvé de conteneur associé, il renvoie une erreur
+        else {
+            callback();
+        }
+    });
+}
+
+function removeContainer(callback, nomConteneur, res, object, whichServer) {
+    console.log("removeContainer");
+    var containerAlreadyCreated, containerAlreadyRunning;
+    // Serveur web
+    if (whichServer === 0) {
+        containerAlreadyCreated = object.containerServerAlreadyCreated;
+        containerAlreadyRunning = object.containerServerAlreadyRunning;
+    }
+    // Serveur BDD
+    else {
+        containerAlreadyCreated = object.containerBDDAlreadyCreated;
+        containerAlreadyRunning = object.containerBDDAlreadyRunning;
+    }
+
+    if (containerAlreadyCreated === true && containerAlreadyRunning === false) {
+        exec('docker rm ' + nomConteneur, function (error, stdout, stderr) {
+            if (error == null) {
+                if (whichServer === 0) {
+                    object.containerServerAlreadyCreated = false;
+                }
+                else {
+                    object.containerBDDAlreadyCreated = false;
+                }
+                callback();
+            }
+            else {
+                console.log("Erreur : " + error);
+                res.status(500).send(error);
+            }
+        });
+    }
+    else {
+        callback();
+    }
+}
+
+function runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object) {
+    if (object.containerBDDAlreadyRunning === false) {
+        exec('docker run -d -p 5432 --name ' + nomConteneurBDD + ' -e POSTGRES_PASSWORD=postgres ' + nomImageBDD
+            , function (error, stdout, stderr) {
+                if (error != null) {
+                    console.log("Erreur : " + error);
+                    res.status(500).send(error);
+                }
+                callback();
+            });
+    }
+    else {
+        callback();
+    }
+}
+
+function runContainerServeur(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object) {
+    console.log(object);
+    if (object.containerServerAlreadyRunning === false) {
+        exec('docker run -d -P --name ' + nomConteneurServeur + ' --link ' + nomConteneurBDD + ':alias -e NOM_CONTENEUR_BDD=' + nomConteneurBDD + ' ' + nomImageServeur
+    , function (error, stdout, stderr) {
+            if (error != null) {
+                console.log("Erreur : " + error);
+                res.status(500).send(error);
+            }
+            callback();
+        });
+    }
+    else {
+        callback();
+    }
+}
+
+function getPortContainer(callback, nomConteneur, res, object) {
+    exec('docker inspect ' + nomConteneur + ' | grep "HostPort"', function(error, stdout, stderr) {
+        if (error == null) {
+            object.portServeur = stdout.match(/\d+/)[0];
+        }
+        else {
+            console.log("Erreur : " + error);
+            res.status(500).send(error);
+        }
+        callback();
+    });
+}
+
+function waitForContainerServeur(callback, portServeur) {
+    var isAlreadyPassed = false;
+    var interval = setInterval(function () {
+        request('http://localhost:' + portServeur, function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Si c'est la première fois qu'il passe dans la boucle
+                if (isAlreadyPassed == false) {
+                    callback();
+                }
+                // Sinon on clear l'intervalle
+                isAlreadyPassed = true;
+                clearInterval(interval);
+            }
+        })
+    }, 100);
+}
+
+function waitForContainerBDD(callback, nomConteneurBDD, res) {
+    exec('until docker run --rm --link ' + nomConteneurBDD + ':pg postgres pg_isready -U postgres -h pg; do sleep 1; done', function(error, stdout, stderr) {
+        if (error == null) {
+            callback();
+        }
+        else {
+            console.log("Erreur : " + error);
+            res.status(500).send(error);
+        }
+    });
+}
+
+
+function loadChallenge1(req, res) {
+    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
+    var idChallenge = req.params.idChallenge;
+    var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
+    var nomConteneurBDD = nomConteneurServeur + '_db';
+    var nomImageServeur = "challenge1_image";
+    var nomImageBDD = "challenge1_db_image";
+
+    async.series([
+        // Vérification que le conteneur n'a pas déjà été lancé (Serveur Web)
+        function(callback) {
+            console.log(object);
+            inspect(callback, nomConteneurServeur, object, 0);
+        },
+        // Vérification que le conteneur n'a pas déjà été lancé (BDD)
+        function(callback) {
+            inspect(callback, nomConteneurBDD, object, 1);
+        },
+        // Si le conteneur a déjà été créé mais est stoppé (Serveur)
+        function(callback) {
+            removeContainer(callback, nomConteneurServeur, res, object, 0);
+        },
+        // Si le conteneur a déjà été créé mais est stoppé (BDD)
+        function(callback) {
+            removeContainer(callback, nomConteneurBDD, res, object, 1);
+        },
+        // Lancement conteneur si le conteneur n'a pas été créé (BDD)
+        function(callback) {
+           runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object);
+        },
+        // Lancement conteneur si le conteneur n'a pas été créé (Serveur)
+        function(callback) {
+           runContainerServeur(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object);
+        },
+        // Récupération du port où le conteneur tourne (Serveur)
+        function(callback) {
+            getPortContainer(callback, nomConteneurServeur, res, object);
+        },
+        // Attente que le conteneur (Serveur) soit prêt
+        function(callback) {
+            waitForContainerServeur(callback, object.portServeur);
+        },
+        // Attente que le conteneur (BDD) soit prêt
+        function(callback) {
+            waitForContainerBDD(callback, nomConteneurBDD, res);
+        }
+    ], function(err) { //This function gets called after all the tasks have called their "task callbacks"
+        if (err) {
+            return next(err);
+        }
+        console.log(object.portServeur);
+        res.status(200).send(object.portServeur);
+    });
+}
+
+function loadChallenge2(req, res) {
+    res.render('chall2.ejs');
+}
+
+function loadChallenge3(req, res) {
+    res.render('chall3.ejs');
+}
+
+function loadChallenge4(req, res) {
+    res.render('chall4.ejs');
 }
 
 module.exports = {
@@ -199,45 +415,31 @@ module.exports = {
             res.status(500).send(error);
         }
     },
-    runChallenge1 : function(req, res) {
-        console.log("Run Challenge 1");
-        const { exec } = require('child_process');
-
-        /*
-        exec('pwd', (err, stdout, stderr) => {
-            if (err) {
-                // node couldn't execute the command
-                return;
-            }
-            // the *entire* stdout and stderr (buffered)
-            console.log(`stdout: ${stdout}`);
-        console.log(`stderr: ${stderr}`);
-    });
-    */
-
-        /*
-        // run the image already created
-        exec('docker run -P --name test1 -t challenge1_image', (err, stdout, stderr) => {
-            if (err) {
-                // node couldn't execute the command
-                return;
-            }
-            // the *entire* stdout and stderr (buffered)
-            console.log(`stdout: ${stdout}`);
-            console.log(`stderr: ${stderr}`);
-        });
-        // get the port of the running container
-        exec('docker inspect test1 | grep "HostPort"', (err, stdout, stderr) => {
-            if (err) {
-                // node couldn't execute the command
-                return;
-            }
-            console.log(stdout);
-            var port = stdout.match(/\d+/)[0];
-        // redirect to the container
-        res.redirect('http://localhost:' + port);
-        });
-        */
-
+    loadingPageChallenge : function(req, res) {
+        var idChallenge = req.params.idChallenge;
+        // Challenges qui nécessitent Docker
+        if (idChallenge == 4) {
+            res.render('loading.ejs', {idChallenge: idChallenge});
+        }
+        // Offuscation
+        if (idChallenge == 7) {
+            loadChallenge2(req, res);
+        }
+        // Formulaire bloqué : champs vides
+        if (idChallenge == 5) {
+            loadChallenge3(req, res);
+        }
+        // Formulaire bloqué : bouton désactivé
+        if (idChallenge == 8) {
+            loadChallenge4(req, res);
+        }
+    },
+    // Redirection vers la bonne fonction de chargement du challenge
+    loadChallenge : function(req, res) {
+        var idChallenge = req.params.idChallenge;
+        // Become an admin
+        if (idChallenge == 4) {
+            loadChallenge1(req, res);
+        }
     }
 }

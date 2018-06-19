@@ -90,6 +90,5 @@ router.post('/exemples/:nomExemple', function(req, res) {
     res.render(exemple, {recherche: req.body.article});
 });
 
-router.get('/testChallenge1/', base.requireLogin, challenge.runChallenge1);
 
 module.exports = router;

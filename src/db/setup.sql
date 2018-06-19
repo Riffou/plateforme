@@ -103,3 +103,12 @@ INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nic
 INSERT INTO Utilisateurs (identifiant, mdp, email, dateInscription) VALUES ('nicolas', '1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb3424a1d088f', 'nicolas@hotmail.fr', 1524237440676);
 
 INSERT INTO Administrateurs (identifiant, mdp, email, dateInscription) VALUES ('admin', 'e140b8f9a3f6235f1cc8f44b3204126078a5228385b244433737de635f4c79c3', 'admin@hotmail.fr', 1524237393762);
+
+INSERT INTO Challenges (nom, ordre, flag, indice, difficulte) VALUES ('Become an admin', 1, 'lh456regjduiz', 'Les injections SQL vous disent quelque chose ?', 1);
+INSERT INTO Challenges (nom, ordre, flag, indice, difficulte) VALUES ('Formulaire à contourner', 2, 'totalaccess', 'Never Trust User Inputs', 1);
+INSERT INTO Challenges (nom, ordre, flag, indice, description, difficulte) VALUES ('XSS réfléchi', 3, 'masterzap', 'Utilisez ZAP pour trouver le champ vulnérable !', 'Un des champs est vulnérable, à vous de le trouver !', 1);
+INSERT INTO Challenges (nom, ordre, flag, indice, difficulte, description) VALUES ('Offuscation', 4, 'facileadecoder', 'Analysez le code javascript !', 0, 'Essayez de vous connecter !')
+INSERT INTO Challenges (nom, ordre, flag, indice, difficulte) VALUES ('Formulaire bloqué...', 2, 'donottrustanybody', 'Utilisez Google Chrome et son outil inspecteur.', 0);
+
+Trouvez un moyen de vous connecter au portail en tant qu'administrateur !
+Il suffit de trouver la bonne injection SQL à saisir pour pouvoir s'authentifier en tant qu'administrateur.

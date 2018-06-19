@@ -5,7 +5,6 @@ WORKDIR /usr/app
 COPY . .
 RUN chmod +x test.sh
 RUN npm install
-COPY src/db/setup.sql /docker-entrypoint-initdb.d/
 
 ENTRYPOINT ["npm", "run", "start"]
 
