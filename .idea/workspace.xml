@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/www" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/base/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/base/base.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -35,38 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="challenges.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/routes/challenges.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="challengeHelperController.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/challengeHelperController.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="chall4Success.ejs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/views/chall4Success.ejs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="144">
               <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chall3Success.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/chall3Success.ejs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="29" selection-end-line="7" selection-end-column="29" />
             </state>
           </provider>
         </entry>
@@ -83,16 +57,43 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="252">
+              <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="www" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/bin/www">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="342">
+              <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
+            <state relative-caret-position="720">
               <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
             </state>
           </provider>
@@ -118,9 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.env</find>
-      <find>Docker r</find>
-      <find>idConteneur</find>
       <find>var self</find>
       <find>docker run</find>
       <find>portBDD</find>
@@ -136,7 +134,6 @@
       <find>pId</find>
       <find>loading.ejs</find>
       <find>href=</find>
-      <find>Lignes à retirer</find>
       <find>load/</find>
       <find>target</find>
       <find>challenge.ejs</find>
@@ -148,6 +145,10 @@
       <find>loadingPage</find>
       <find>containerServerAlreadyRunning</find>
       <find>loadChallenge2</find>
+      <find>Lignes à retirer</find>
+      <find>createServ</find>
+      <find>http</find>
+      <find>fs.re</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -222,11 +223,9 @@
         <option value="$PROJECT_DIR$/src/routes/index.js" />
         <option value="$PROJECT_DIR$/Dockerfile-dev" />
         <option value="$PROJECT_DIR$/src/public/stylesheets/style.css" />
-        <option value="$PROJECT_DIR$/src/bin/www" />
         <option value="$PROJECT_DIR$/src/controllers/questionnaireController.js" />
         <option value="$PROJECT_DIR$/src/views/questionnaire.ejs" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/src/routes/base/base.js" />
         <option value="$PROJECT_DIR$/src/views/challenge.ejs" />
         <option value="$PROJECT_DIR$/src/views/loading.ejs" />
         <option value="$PROJECT_DIR$/src/public/js/loading.js" />
@@ -242,6 +241,8 @@
         <option value="$PROJECT_DIR$/src/views/chall4Success.ejs" />
         <option value="$PROJECT_DIR$/src/views/chall2.ejs" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/routes/base/base.js" />
+        <option value="$PROJECT_DIR$/src/bin/www" />
       </list>
     </option>
   </component>
@@ -276,6 +277,23 @@
             <path>
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -412,14 +430,9 @@
       <workItem from="1528960189080" duration="17649000" />
       <workItem from="1529048526745" duration="11333000" />
       <workItem from="1529307831571" duration="13227000" />
-      <workItem from="1529402085527" duration="2012000" />
-    </task>
-    <task id="LOCAL-00015" summary="Menu challenges">
-      <created>1521725192867</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1521725192867</updated>
+      <workItem from="1529402085527" duration="2309000" />
+      <workItem from="1529479773488" duration="2111000" />
+      <workItem from="1529915049159" duration="1310000" />
     </task>
     <task id="LOCAL-00016" summary="Menu challenges">
       <created>1521736134671</created>
@@ -757,11 +770,18 @@
       <option name="project" value="LOCAL" />
       <updated>1529409759520</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Node Modules">
+      <created>1529412007521</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1529412007521</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="666829000" />
+    <option name="totallyTimeSpent" value="670547000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -773,7 +793,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="28" width="1922" height="915" extended-state="6" />
+    <frame x="-1" y="28" width="1922" height="1019" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49893048" weight="0.32911393" />
@@ -781,26 +801,26 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5593583" side_tool="true" weight="0.5163399" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.2509804" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.28423476" />
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.21568628" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
-      <window_info anchor="bottom" id="TypeScript" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20320855" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20855615" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Console" order="8" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49375" weight="0.39700806" />
+      <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -972,24 +992,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/administrateurs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="38" lean-forward="true" selection-start-column="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="91" selection-start-line="91" selection-end-line="91" />
         </state>
       </provider>
     </entry>
@@ -1035,22 +1041,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="4" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/loading.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-          <folding>
-            <element signature="e#96#118#0#HTML" expanded="true" />
-            <element signature="e#159#179#0#HTML" expanded="true" />
-            <element signature="e#187#259#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1192,17 +1186,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+        <state relative-caret-position="720">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+        <state relative-caret-position="252">
+          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
         </state>
       </provider>
     </entry>
