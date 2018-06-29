@@ -103,7 +103,7 @@ function runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object) {
     }
 }
 
-function runContainerServeur(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object) {
+function runContainerServeurLinkedBDD(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object) {
     console.log(object);
     if (object.containerServerAlreadyRunning === false) {
         exec('docker run -d -P --name ' + nomConteneurServeur + ' --link ' + nomConteneurBDD + ':alias -e NOM_CONTENEUR_BDD=' + nomConteneurBDD + ' ' + nomImageServeur
@@ -114,6 +114,23 @@ function runContainerServeur(callback, nomConteneurServeur, nomConteneurBDD, nom
             }
             callback();
         });
+    }
+    else {
+        callback();
+    }
+}
+
+function runContainerServeur(callback, nomConteneurServeur, nomImageServeur, res, object) {
+    console.log(object);
+    if (object.containerServerAlreadyRunning === false) {
+        exec('docker run -d -P --name '+ nomConteneurServeur + ' ' + nomImageServeur
+            , function (error, stdout, stderr) {
+                if (error != null) {
+                    console.log("Erreur : " + error);
+                    res.status(500).send(error);
+                }
+                callback();
+            });
     }
     else {
         callback();
@@ -162,7 +179,6 @@ function waitForContainerBDD(callback, nomConteneurBDD, res) {
     });
 }
 
-
 function loadChallenge1(req, res) {
     var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
     var idChallenge = req.params.idChallenge;
@@ -195,7 +211,7 @@ function loadChallenge1(req, res) {
         },
         // Lancement conteneur si le conteneur n'a pas été créé (Serveur)
         function(callback) {
-           runContainerServeur(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object);
+           runContainerServeurLinkedBDD(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object);
         },
         // Récupération du port où le conteneur tourne (Serveur)
         function(callback) {
@@ -228,6 +244,41 @@ function loadChallenge3(req, res) {
 
 function loadChallenge4(req, res) {
     res.render('chall4.ejs');
+}
+
+function loadChallengeXSSReflechi(req, res) {
+    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
+    var idChallenge = req.params.idChallenge;
+    var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
+    var nomImageServeur = "challengexssreflechi_image";
+
+    async.series([
+        // Vérification que le conteneur n'a pas déjà été lancé (Serveur Web)
+        function(callback) {
+            inspect(callback, nomConteneurServeur, object, 0);
+        },
+        // Si le conteneur a déjà été créé mais est stoppé (Serveur)
+        function(callback) {
+            removeContainer(callback, nomConteneurServeur, res, object, 0);
+        },
+        // Lancement conteneur si le conteneur n'a pas été créé (Serveur)
+        function(callback) {
+            runContainerServeur(callback, nomConteneurServeur, nomImageServeur, res, object);
+        },
+        // Récupération du port où le conteneur tourne (Serveur)
+        function(callback) {
+            getPortContainer(callback, nomConteneurServeur, res, object);
+        },
+        // Attente que le conteneur (Serveur) soit prêt
+        function(callback) {
+            waitForContainerServeur(callback, object.portServeur);
+        }
+    ], function(err) { //This function gets called after all the tasks have called their "task callbacks"
+        if (err) {
+            return next(err);
+        }
+        res.status(200).send(object.portServeur);
+    });
 }
 
 module.exports = {
@@ -433,6 +484,10 @@ module.exports = {
         if (idChallenge == 8) {
             loadChallenge4(req, res);
         }
+        // XSS offusqué
+        if (idChallenge == 6) {
+            res.render('loading.ejs', {idChallenge: idChallenge});
+        }
     },
     // Redirection vers la bonne fonction de chargement du challenge
     loadChallenge : function(req, res) {
@@ -440,6 +495,10 @@ module.exports = {
         // Become an admin
         if (idChallenge == 4) {
             loadChallenge1(req, res);
+        }
+        // XSS réfléchi
+        if (idChallenge == 6) {
+            loadChallengeXSSReflechi(req, res)
         }
     }
 }

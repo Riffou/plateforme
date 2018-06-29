@@ -149,4 +149,13 @@ module.exports = {
                 callback(error);
             })
     },
+    updateInfosChallenge: function(id, nom, flag, indice, solution, difficulte, description, callback) {
+        db.none('UPDATE public.challenges SET nom = $1, flag = $2, indice = $3, solution = $4, difficulte = $5, description = $6 WHERE id = $7', [nom, flag, indice, solution, difficulte, description, id])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    }
 }

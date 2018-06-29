@@ -26,7 +26,6 @@ function reorderChallenges(ordreChallengeToAdd, callback) {
             }
             async.each(ordreArray, function(id, callbackAsync) {
                     if (id > 0) {
-                        console.log(id);
                         challengesModel.updateOrdreChallenges((ordreArray.indexOf(id) + 1), id, function (error) {
                             if (error == null) {
                                 callbackAsync();
@@ -56,6 +55,64 @@ function reorderChallenges(ordreChallengeToAdd, callback) {
     });
 }
 
+function reorderChallengesOnUpdate (ordre, idChallenge, callback) {
+    // Modifier l'ordre des autres challenges si l'ordre du challenge a été modifié
+    challengesModel.getOrdreFromId(idChallenge, function(ordreAvant, error) {
+        if (error == null) {
+            if (ordreAvant != ordre) {
+                // on met à jour l'ordre des challenges :
+                challengesModel.getOrderOfChallenges(function(data, error) {
+                    if (error == null) {
+                        // convert json to array
+                        var ordreArray = [];
+                        for (var i = 0; i < data.length; i++) {
+                            // Endroit à insérer le challenge
+                            // Si ce n'est pas le challenge concerné
+                            if (data[i].id != idChallenge) {
+                                ordreArray.push(data[i].id);
+                            }
+                        }
+                        ordreArray.splice((ordre - 1), 0, parseInt(idChallenge));
+                        async.each(ordreArray, function(id, callbackAsync) {
+                                if (id > 0) {
+                                    challengesModel.updateOrdreChallenges((ordreArray.indexOf(id) + 1), id, function (error) {
+                                        if (error == null) {
+                                            callbackAsync();
+                                        }
+                                        else {
+                                            console.log(error);
+                                            callbackAsync();
+                                        }
+                                    });
+                                }
+                                else {
+                                    callbackAsync();
+                                }
+                            },
+                            function(error) {
+                                if(error == null) {
+                                    callback(null);
+                                }
+                                else {
+                                    callback(error);
+                                }
+                            });
+                    }
+                    else {
+                        callback(error);
+                    }
+                });
+            }
+            else {
+                callback(null);
+            }
+        }
+        else {
+            callback(error);
+        }
+    });
+}
+
 var self = module.exports = {
     runChallenges: function(req, res) {
         var data = {};
@@ -71,13 +128,11 @@ var self = module.exports = {
     },
     runFormChallenges: function(req, res) {
         var idChallenge = req.params.idChallenge;
-        console.log("Id Challenge: " + idChallenge);
         challengesModel.getNumberOfChallenges(function (numberOfChallenges, error) {
             if (error == null) {
                 if (idChallenge != null) {
                     challengesModel.getAllOfOneChallenge(idChallenge, function (data, error) {
                         if (error == null) {
-                            console.log(data);
                             res.render('formChallenge.ejs', {
                                 numberOfChallenges: numberOfChallenges - 1,
                                 nom: data.nom,
@@ -116,7 +171,6 @@ var self = module.exports = {
 
         var description = req.body.descriptionInput;
         var ordre;
-        console.log(typeof ordreString);
         if (nom != ""
             && difficulteInput != ""
             && flag != ""
@@ -169,34 +223,25 @@ var self = module.exports = {
             && flag != ""
             && solution != ""
             && description != "") {
+
             var ordre = parseInt(ordreString);
             var difficulte = parseInt(difficulteInput);
-            // delete challenge
-            challengesModel.deleteChallenge(idChallenge, function(error) {
-                if (error == null) {
-                    // re-order challenges
-                    reorderChallenges(ordre, function (error) {
-                        if (error == null) {
-                            if (typeof indice == "undefined") {
-                                indice = null;
-                            }
-                            challengesModel.addChallenge(nom, ordre, difficulte, flag, indice, solution, description, function (idChallenge, error) {
-                                if (error == null) {
-                                    res.redirect('/admin/challenges/');
-                                }
-                                else {
-                                    res.render('error.ejs', {message: error, error: error});
-                                }
-                            });
-                        }
-                        else {
-                            res.render('error.ejs', {message: error, error: error});
-                        }
-                    });
-                }
-                else {
-                    res.render('error.ejs', {message: error, error: error});
-                }
+
+            reorderChallengesOnUpdate(ordre, idChallenge, function(error) {
+               if (error == null) {
+                   // on met à jour le challenge
+                   challengesModel.updateInfosChallenge(idChallenge, nom, flag, indice, solution, difficulte, description, function(error) {
+                       if (error == null) {
+                           res.redirect('/admin/challenges/');
+                       }
+                       else {
+                           res.render('error.ejs', {message: error, error: error});
+                       }
+                   });
+               }
+               else {
+                   res.render('error.ejs', {message: error, error: error});
+               }
             });
         }
     },

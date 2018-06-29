@@ -6,11 +6,9 @@
 
 var app = require('../app');
 var debug = require('debug')('plateforme:server');
-// var http = require('http');
-var fs = require('fs');
-var https = require('https');
- //   express = require('express'),
-//    app = express();
+var http = require('http');
+//var fs = require('fs');
+//var https = require('https');
 
 
 
@@ -25,12 +23,12 @@ app.set('port', port);
  * Create HTTP server.
  */
 
-var server = https.createServer({
+/*var server = https.createServer({
     key: fs.readFileSync('src/bin/key.pem'),
     cert: fs.readFileSync('src/bin/cert.pem')
 }, app);
-
-// var server = http.createServer(app);
+*/
+ var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.

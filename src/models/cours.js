@@ -193,6 +193,24 @@ var self = module.exports = {
                 callback(error);
             })
     },
+    updateInfosCategorie: function(id, nom, description, callback) {
+        db.none('UPDATE public.unites SET nom = $1, description = $2 WHERE id = $3', [nom, description, id])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    updateInfosCours: function(id, nom, difficulte, callback) {
+        db.none('UPDATE public.cours SET nom = $1, difficulte = $2 WHERE id = $3', [nom, difficulte, id])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
     updateCours: function(id, ordre, nom, callback) {
         db.none('UPDATE public.cours SET nom = $1, ordre = $2 WHERE id = $3', [nom, ordre, id])
             .then(function() {
@@ -360,6 +378,24 @@ var self = module.exports = {
             })
             .catch(function (error) {
                 callback(null, error);
+            })
+    },
+    removeCoursFromUnite: function(idCours, callback) {
+        db.none('UPDATE public.cours SET idUnite = null WHERE id = $1', [idCours])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
+            })
+    },
+    updateUniteOfCours: function(idCours, idUnite, callback) {
+        db.none('UPDATE public.cours SET idUnite = $1 WHERE id = $2', [idUnite, idCours])
+            .then(function() {
+                callback(null);
+            })
+            .catch(function(error) {
+                callback(error);
             })
     }
 }

@@ -162,7 +162,6 @@ function reorderCours(idUnite, ordreCoursToAdd, callback) {
             }
             async.each(ordreArray, function(id, callbackAsync) {
                     if (id > 0) {
-                        console.log(id);
                         coursModel.updateOrdreCours((ordreArray.indexOf(id) + 1), id, function (error) {
                             if (error == null) {
                                 callbackAsync();
@@ -192,26 +191,263 @@ function reorderCours(idUnite, ordreCoursToAdd, callback) {
     });
 }
 
-function updateIdUnite(idUnite, idCoursArray, callback) {
-    async.each(idCoursArray, function(idCours, callbackAsync) {
-            coursModel.associateIdCours(idUnite, idCours, function (error) {
-                if (error == null) {
-                    callbackAsync();
-                }
-                else {
-                    console.log(error);
-                    callbackAsync();
-                }
-            });
-        },
-        function(error) {
-            if(error == null) {
-                callback(null);
+function reorderCategoriesOnUpdate (ordre, idUnite, callback) {
+    // Modifier l'ordre des autres catégories si l'ordre de la catégorie a été modifié
+    coursModel.getOrdreFromIdUnite(idUnite, function(ordreAvant, error) {
+        if (error == null) {
+            if (ordreAvant != ordre) {
+                // on met à jour l'ordre des catégories :
+                coursModel.getOrderOfUnites(function(data, error) {
+                    if (error == null) {
+                        // convert json to array
+                        var ordreArray = [];
+                        for (var i = 0; i < data.length; i++) {
+                            // Si ce n'est pas la catégorie concernée
+                            if (data[i].id != idUnite) {
+                                ordreArray.push(data[i].id);
+                            }
+                        }
+
+                        ordreArray.splice((ordre - 1), 0, parseInt(idUnite));
+                        // Endroit à insérer la catégorie
+                        //console.log(ordreArray);
+                        //console.log(idUnite);
+                        async.each(ordreArray, function(id, callbackAsync) {
+                                if (id > 0) {
+                                    coursModel.updateOrdreCategories((ordreArray.indexOf(id) + 1), id, function (error) {
+                                        if (error == null) {
+                                            console.log(id);
+                                            callbackAsync();
+                                        }
+                                        else {
+                                            console.log(error);
+                                            callbackAsync();
+                                        }
+                                    });
+                                }
+                                else {
+                                    callbackAsync();
+                                }
+                            },
+                            function(error) {
+                                if(error == null) {
+                                    callback(null);
+                                }
+                                else {
+                                    callback(error);
+                                }
+                            });
+                    }
+                    else {
+                        callback(error);
+                    }
+                });
             }
             else {
-                callback(error);
+                callback(null);
             }
-        });
+        }
+        else {
+            callback(error);
+        }
+    });
+}
+
+function reorderCoursOnUpdate (ordre, idCours, idUnite, callback) {
+    // Modifier l'ordre des autres cours si l'ordre du cours a été modifié
+    coursModel.getOrdreFromIdCours(idCours, function(ordreAvant, error) {
+        if (error == null) {
+            if (ordreAvant != ordre) {
+                // on met à jour l'ordre des cours :
+                coursModel.getOrderOfCours(idUnite, function(data, error) {
+                    if (error == null) {
+                        // convert json to array
+                        var ordreArray = [];
+                        for (var i = 0; i < data.length; i++) {
+                            if (data[i].id != idCours) {
+                                ordreArray.push(data[i].id);
+                            }
+                        }
+                        // Endroit à insérer la catégorie
+                        ordreArray.splice((ordre - 1), 0, parseInt(idCours));
+
+                        for (var i = 0; i < data.length; i++) {
+                            console.log(data[i].id);
+                        }
+                        async.each(ordreArray, function(id, callbackAsync) {
+                                if (id > 0) {
+                                    coursModel.updateOrdreCours((ordreArray.indexOf(id) + 1), id, function (error) {
+                                        if (error == null) {
+                                            callbackAsync();
+                                        }
+                                        else {
+                                            console.log(error);
+                                            callbackAsync();
+                                        }
+                                    });
+                                }
+                                else {
+                                    callbackAsync();
+                                }
+                            },
+                            function(error) {
+                                if(error == null) {
+                                    callback(null);
+                                }
+                                else {
+                                    callback(error);
+                                }
+                            });
+                    }
+                    else {
+                        callback(error);
+                    }
+                });
+            }
+            else {
+                callback(null);
+            }
+        }
+        else {
+            callback(error);
+        }
+    });
+}
+
+function changeCoursOfUnite (ordre, idCours, idUniteOrigine, idUniteArrivee, callback) {
+    // retire le cours de la catégorie précédente
+    coursModel.removeCoursFromUnite(idCours, function(error) {
+        if (error == null) {
+            // reforme bien l'ancienne catégorie
+            reorderCours(idUniteOrigine, 0, function(error) {
+                if (error == null) {
+                    // reformation de la nouvelle catégorie
+                    coursModel.getOrderOfCours(idUniteArrivee, function(data, error) {
+                        if (error == null) {
+                            // convert json to array
+                            var ordreArray = [];
+                            for (var i = 0; i < data.length; i++) {
+                                ordreArray.push(data[i].id);
+                            }
+                            // Endroit à insérer la catégorie
+                            ordreArray.splice((ordre - 1), 0, parseInt(idCours));
+                            // Mise à jour de la catégorie du cours
+                            coursModel.updateUniteOfCours(idCours, idUniteArrivee, function(error) {
+                               if (error == null) {
+                                   async.each(ordreArray, function(id, callbackAsync) {
+                                           if (id > 0) {
+                                               coursModel.updateOrdreCours((ordreArray.indexOf(id) + 1), id, function (error) {
+                                                   if (error == null) {
+                                                       callbackAsync();
+                                                   }
+                                                   else {
+                                                       console.log(error);
+                                                       callbackAsync();
+                                                   }
+                                               });
+                                           }
+                                           else {
+                                               callbackAsync();
+                                           }
+                                       },
+                                       function(error) {
+                                           if(error == null) {
+                                               callback(null);
+                                           }
+                                           else {
+                                               callback(error);
+                                           }
+                                       });
+                               }
+                               else {
+                                   callback(error);
+                               }
+                            });
+                        }
+                        else {
+                            callback(error);
+                        }
+                    });
+                }
+                else {
+                    callback(error);
+                }
+            });
+        }
+        else {
+            callback(error);
+        }
+    });
+}
+
+function reorderCoursGlobal(ordre, idCours, idUniteArrivee, nomCours, difficulte, texteCours, callback) {
+    coursModel.getIdUniteFromIdCours(idCours, function (idUniteOrigine, error) {
+        if (error == null) {
+            coursModel.getOrdreFromIdCours(idCours, function(ordreOrigine, error) {
+                if (error == null) {
+                    coursModel.updateInfosCours(idCours, nomCours, difficulte, function (error) {
+                        if (error == null) {
+                            saveTexteCours(idCours, texteCours, function(error) {
+                                if (error == null) {
+                                    // S'il y a une modification de l'ordre du cours ou un changement de catégorie
+                                    if (idUniteArrivee != idUniteOrigine || ordre != ordreOrigine) {
+                                        // Si c'est juste un changement d'ordre mais pas de catégorie
+                                        if (idUniteArrivee == idUniteOrigine) {
+                                            reorderCoursOnUpdate(ordre, idCours, idUniteOrigine, function (error) {
+                                                if (error == null) {
+                                                    callback(null);
+                                                }
+                                                else {
+                                                    callback(error);
+                                                }
+                                            });
+                                        }
+                                        // Si c'est un changement de catégorie
+                                        else {
+                                            // on supprime le cours de la catégorie
+                                            // On réorganise les cours de la catégorie d'origine
+                                            changeCoursOfUnite(ordre, idCours, idUniteOrigine, idUniteArrivee, function(error) {
+                                               if (error == null) {
+                                                   reorderCours(idUniteOrigine, 0, function (error) {
+                                                       if (error == null) {
+                                                           // Puis on réorganise les cours de la catégorie d'arrivée
+                                                           reorderCoursOnUpdate(ordre, idCours, idUniteArrivee, function (error) {
+                                                               if (error == null) {
+                                                                   callback(null);
+                                                               }
+                                                               else {
+                                                                   callback(error);
+                                                               }
+                                                           });
+                                                       }
+                                                   });
+                                               }
+                                               else {
+                                                   callback(error);
+                                               }
+                                            });
+                                        }
+                                    }
+                                    else {
+                                        callback(null);
+                                    }
+                                }
+                                else {
+                                    callback(error);
+                                }
+                            });
+                        }
+                        else {
+                            callback(error);
+                        }
+                    });
+                }
+                else {
+                    callback(error);
+                }
+            });
+        }
+    });
 }
 
 var self = module.exports = {
@@ -575,43 +811,20 @@ var self = module.exports = {
             }
             // Attention : avant de supprimer la catégorie, il faut sauvegarder les ids des cours qui sont attachés à cette catégorie
             // et ensuite les remettre à jour avec le même id de cours
-            coursModel.saveIdCours(idUnite, function (data, error) {
+            reorderCategoriesOnUpdate(ordre, idUnite, function(error) {
                 if (error == null) {
-                    // convert json to array
-                    var idCoursArray = [];
-                    for (var i = 0; i < data.length; i++) {
-                        idCoursArray.push(data[i].id);
-                    }
-                    coursModel.deleteCategorie(idUnite, function (error) {
+                    // on met à jour la catégorie
+                    coursModel.updateInfosCategorie(idUnite, nomUnite, descriptionUnite, function(error) {
                         if (error == null) {
-                            reorderCategories(ordre, function (error) {
-                                if (error == null) {
-                                    coursModel.addCategorie(nomUnite, descriptionUnite, ordre, function (idUnite, error) {
-                                        if (error == null) {
-                                            // On associe les ids des cours à l'id de l'unité créée
-                                            updateIdUnite(idUnite, idCoursArray, function (error) {
-                                                if (error == null) {
-                                                    res.redirect('/admin/dashboard');
-                                                }
-                                                else {
-                                                    res.render('error.ejs', {message: error, error: error});
-                                                }
-                                            });
-                                        }
-                                        else {
-                                            res.render('error.ejs', {message: error, error: error});
-                                        }
-                                    });
-                                }
-                                else {
-                                    res.render('error.ejs', {message: error, error: error});
-                                }
-                            });
+                            res.redirect('/admin/dashboard/');
                         }
                         else {
                             res.render('error.ejs', {message: error, error: error});
                         }
                     });
+                }
+                else {
+                    res.render('error.ejs', {message: error, error: error});
                 }
             });
         }
@@ -706,70 +919,23 @@ var self = module.exports = {
         var ordreInput = req.body.ordreInput;
         var idCours = parseInt(req.params.idCours);
         var difficulteInput = req.body.difficulteCoursInput;
-        var idUnite = parseInt(req.body.nomCategorieInput);
+        var idUniteArrivee = parseInt(req.body.nomCategorieInput);
         var ordre = 1;
         var texteCours = req.body.texteInput;
+
         if (nomCours != "" && difficulteInput != "") {
             if (typeof ordreInput != "undefined") {
                 ordre = parseInt(ordreInput);
             }
             var difficulte = parseInt(difficulteInput);
-            // suppression du cours
-            coursModel.getIdUniteFromIdCours(idCours, function (idUniteOrigine, error) {
-                if (error == null) {
-                    deleteTexteCours(idCours, function(error) {
-                        if (error == null) {
-                            coursModel.deleteCours(idCours, function (error) {
-                                if (error == null) {
-                                    // réorganisation de l'unité qui a perdu un élément
-                                    reorderCours(idUniteOrigine, 0, function (error) {
-                                        if (error == null) {
-                                            // on réorganise aussi l'unité qui va avoir un élément à ajouter
-                                            reorderCours(idUnite, ordre, function (error) {
-                                                if (error == null) {
-                                                    // ajout du cours
-                                                    coursModel.addCours(nomCours, ordre, idUnite, difficulte, function (id, error) {
-                                                        if (error == null) {
-                                                            saveTexteCours(id, texteCours, function (error) {
-                                                                if (error == null) {
-                                                                    res.redirect('/admin/dashboard/' + idUnite);
-                                                                }
-                                                                else {
-                                                                    res.render('error.ejs', {
-                                                                        message: error,
-                                                                        error: error
-                                                                    });
-                                                                }
-                                                            });
-                                                        }
-                                                        else {
-                                                            res.render('error.ejs', {message: error, error: error});
-                                                        }
-                                                    });
-                                                }
-                                                else {
-                                                    res.render('error.ejs', {message: error, error: error});
-                                                }
-                                            });
-                                        }
-                                        else {
-                                            res.render('error.ejs', {message: error, error: error});
-                                        }
-                                    });
-                                }
-                                else {
-                                    res.render('error.ejs', {message: error, error: error});
-                                }
-                            });
-                        }
-                        else {
-                            res.render('error.ejs', {message: error, error: error});
-                        }
-                    });
-                }
-                else {
-                    res.render('error.ejs', {message: error, error: error});
-                }
+            // reorder cours
+            reorderCoursGlobal(ordre, idCours, idUniteArrivee, nomCours, difficulte, texteCours, function(error) {
+               if (error == null) {
+                   res.redirect('/admin/dashboard/' + idUniteArrivee);
+               }
+               else {
+                   res.render('error.ejs', {message: error, error: error});
+               }
             });
         }
     },
@@ -853,7 +1019,6 @@ var self = module.exports = {
                 else {
                     res.status(500).send(error);
                 }
-
             }
         );
     },
