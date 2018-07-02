@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="Docker images challenges">
-      <change afterPath="$PROJECT_DIR$/src/public/cours/17.html" afterDir="false" />
+    <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
     </list>
@@ -21,8 +20,8 @@
       <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="53" column="68" selection-start-line="53" selection-start-column="68" selection-end-line="53" selection-end-column="68" />
+            <state relative-caret-position="216">
+              <caret line="158" column="58" lean-forward="true" selection-start-line="158" selection-start-column="58" selection-end-line="158" selection-end-column="58" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
                 <element signature="n#!!block;n#inspect#0" />
@@ -31,8 +30,8 @@
                 <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
                 <element signature="n#!!block;n#runContainerServeur#0" />
                 <element signature="n#!!block;n#getPortContainer#0" />
-                <element signature="n#!!block;n#waitForContainerServeur#0" />
                 <element signature="n#!!block;n#waitForContainerBDD#0" />
+                <element signature="n#!!block;n#loadChallenge1#0" />
                 <element signature="n#!!block;n#loadChallenge2#0" />
                 <element signature="n#!!block;n#loadChallenge3#0" />
                 <element signature="n#!!block;n#loadChallenge4#0" />
@@ -49,6 +48,24 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="database.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/db/database.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="33" column="6" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/config/settings.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-108">
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -60,10 +77,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>updateC</find>
-      <find>reorderCategoriesOn</find>
-      <find>reorderCategoriesOnUpd</find>
-      <find>updateInfo</find>
       <find>Info</find>
       <find>saveModifi</find>
       <find>saveModifiedCours</find>
@@ -85,11 +98,15 @@
       <find>lignes à re</find>
       <find>host</find>
       <find>hostURL</find>
-      <find>config</find>
       <find>challenge1_db</find>
       <find>challenge1</find>
       <find>loadChallenge</find>
       <find>challengesql</find>
+      <find>localhost</find>
+      <find>config.</find>
+      <find>config</find>
+      <find>dbconfig</find>
+      <find>db</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -181,8 +198,8 @@
         <option value="$PROJECT_DIR$/src/views/formCours.ejs" />
         <option value="$PROJECT_DIR$/src/routes/base/base.js" />
         <option value="$PROJECT_DIR$/src/views/home.ejs" />
-        <option value="$PROJECT_DIR$/src/config/settings.js" />
         <option value="$PROJECT_DIR$/src/bin/www" />
+        <option value="$PROJECT_DIR$/src/config/settings.js" />
         <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
       </list>
     </option>
@@ -223,6 +240,12 @@
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
@@ -381,21 +404,7 @@
       <workItem from="1530171954888" duration="10911000" />
       <workItem from="1530277971601" duration="916000" />
       <workItem from="1530519415222" duration="3431000" />
-      <workItem from="1530524874589" duration="2272000" />
-    </task>
-    <task id="LOCAL-00023" summary="Ajout utilisateurs">
-      <created>1522155103158</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1522155103158</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Ajout utilisateurs et mail">
-      <created>1522222087647</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1522222087647</updated>
+      <workItem from="1530524874589" duration="3667000" />
     </task>
     <task id="LOCAL-00025" summary="Ajout utilisateurs et mail">
       <created>1522251681457</created>
@@ -726,11 +735,25 @@
       <option name="project" value="LOCAL" />
       <updated>1530524706146</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Docker images challenges">
+      <created>1530537284480</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1530537284481</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Docker images challenges">
+      <created>1530538120368</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1530538120368</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="723341000" />
+    <option name="totallyTimeSpent" value="724736000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -750,11 +773,11 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5593583" side_tool="true" weight="0.5163399" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4406417" weight="0.47189543" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.47189543" />
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.21568628" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22727273" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22727273" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -811,7 +834,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="14" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -827,8 +850,8 @@
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#waitForContainerServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
+            <element signature="n#!!block;n#loadChallenge1#0" />
             <element signature="n#!!block;n#loadChallenge2#0" />
             <element signature="n#!!block;n#loadChallenge3#0" />
             <element signature="n#!!block;n#loadChallenge4#0" />
@@ -1166,13 +1189,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="40" column="64" selection-start-line="40" selection-start-column="64" selection-end-line="40" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/home.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -1180,10 +1196,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="33" column="6" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="53" column="68" selection-start-line="53" selection-start-column="68" selection-end-line="53" selection-end-column="68" />
+        <state relative-caret-position="216">
+          <caret line="158" column="58" lean-forward="true" selection-start-line="158" selection-start-column="58" selection-end-line="158" selection-end-column="58" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
             <element signature="n#!!block;n#inspect#0" />
@@ -1192,8 +1222,8 @@
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#waitForContainerServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
+            <element signature="n#!!block;n#loadChallenge1#0" />
             <element signature="n#!!block;n#loadChallenge2#0" />
             <element signature="n#!!block;n#loadChallenge3#0" />
             <element signature="n#!!block;n#loadChallenge4#0" />
