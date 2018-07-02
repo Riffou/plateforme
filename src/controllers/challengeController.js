@@ -179,13 +179,13 @@ function waitForContainerBDD(callback, nomConteneurBDD, res) {
     });
 }
 
-function loadChallenge1(req, res) {
+function loadChallengeSQL(req, res) {
     var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
     var idChallenge = req.params.idChallenge;
     var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
     var nomConteneurBDD = nomConteneurServeur + '_db';
-    var nomImageServeur = "challenge1_image";
-    var nomImageBDD = "challenge1_db_image";
+    var nomImageServeur = "challengesql_image";
+    var nomImageBDD = "challengesql_db_image";
 
     async.series([
         // Vérification que le conteneur n'a pas déjà été lancé (Serveur Web)
@@ -494,7 +494,7 @@ module.exports = {
         var idChallenge = req.params.idChallenge;
         // Become an admin
         if (idChallenge == 4) {
-            loadChallenge1(req, res);
+            loadChallengeSQL(req, res);
         }
         // XSS réfléchi
         if (idChallenge == 6) {
