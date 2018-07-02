@@ -4,10 +4,10 @@ $("document").ready(function () {
         url: '/challenges/start/' + idChallenge,
         type: 'POST',
         contentType: 'application/x-www-form-urlencoded',
-        success: function (port) {
+        success: function (data) {
             // afficher solution
-            if (port) {
-                window.location.replace("http://localhost:" + port);
+            if (data.port) {
+                window.location.replace('http://' + data.adresse + ':' + data.port);
             }
         },
         error: function (error) {

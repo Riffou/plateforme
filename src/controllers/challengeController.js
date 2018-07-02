@@ -231,7 +231,7 @@ function loadChallengeSQL(req, res) {
             return next(err);
         }
         console.log(object.portServeur);
-        res.status(200).send(object.portServeur);
+        res.status(200).send({port: object.portServeur, adresse: config.host});
     });
 }
 
