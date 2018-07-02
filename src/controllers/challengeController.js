@@ -278,7 +278,7 @@ function loadChallengeXSSReflechi(req, res) {
         if (err) {
             return next(err);
         }
-        res.status(200).send(object.portServeur);
+        res.status(200).send({port: object.portServeur, adresse: config.host});
     });
 }
 
