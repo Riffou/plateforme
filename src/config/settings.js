@@ -3,12 +3,13 @@ var config = {
         mode: 'local',
         hostURL: 'localhost:3000',
         hostURLChallenges: 'localhost:3001',
-        port: '3000'
+        port: '3000',
+        host: 'localhost'
     },
     preprod: {
-        mode:  'preprod',
-        hostURL: '10.1.48.114:80',
-        port:'80'
+        mode: 'preprod',
+        host: '10.1.48.114',
+        port: '80'
     }
 };
 

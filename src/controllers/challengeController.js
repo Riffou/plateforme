@@ -153,7 +153,8 @@ function getPortContainer(callback, nomConteneur, res, object) {
 function waitForContainerServeur(callback, portServeur) {
     var isAlreadyPassed = false;
     var interval = setInterval(function () {
-        request('http://localhost:' + portServeur, function (error, response, body) {
+        var adresse = config.host;
+        request('http:// +' + adresse + ':' + portServeur, function (error, response, body) {
             if (!error && response.statusCode == 200) {
                 // Si c'est la première fois qu'il passe dans la boucle
                 if (isAlreadyPassed == false) {
