@@ -295,7 +295,7 @@ module.exports = {
                                   if (error == null) {
                                       challengesModel.getDescription(idChallenge, function(description, error) {
                                          if (error == null) {
-                                             res.render('challenge.ejs', {idChallenge: idChallenge, nomChallenge: nom, host: config.hostURLChallenges, validate: validatedBoolean, indice: indice, description: description});
+                                             res.render('challenge.ejs', {idChallenge: idChallenge, nomChallenge: nom, validate: validatedBoolean, indice: indice, description: description});
                                          }
                                          else {
                                              res.render('error.ejs', {message: error, error: error});

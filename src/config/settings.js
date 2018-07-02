@@ -1,18 +1,14 @@
 var config = {
     local: {
-        mode:  'local',
+        mode: 'local',
         hostURL: 'localhost:3000',
-        hostURLChallenges: 'localhost:3001'
-   },
-    localDocker: {
-        mode:  'local',
-        hostURL: 'localhost:3000',
-        hostURLChallenges: 'localhost:3001'
+        hostURLChallenges: 'localhost:3001',
+        port: '3000'
     },
     preprod: {
         mode:  'preprod',
-        hostURL: '10.1.48.112:3000',
-        hostURLChallenges: '10.1.48.112:3001'
+        hostURL: '10.1.48.114:80',
+        port:'80'
     }
 };
 
@@ -32,10 +28,10 @@ var configdb = {
         password: 'solutec'
     },
     preprod: {
-        host: 'plateforme_db',
+        host: 'localhost',
         port: 5432,
-        database: 'devops',
-        user: 'devops',
+        database: 'nicolas',
+        user: 'nicolas',
         password: 'solutec'
     }
 };
