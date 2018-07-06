@@ -3,24 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
       <change afterPath="$PROJECT_DIR$/src/bin/selenium.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/public/js/challCRLF.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/challCRLF.ejs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/views/challCRLFSuccess.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile-dev" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile-dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ensimag.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ensimag.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/challengeHelperController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeHelperController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/js/chall2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/js/challOffuscation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/public/js/chall3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/js/challFormulaireBloque.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/challenges.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/challenges.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/chall2.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challOffuscation.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/chall3.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireBloque.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/chall3Success.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireBloqueSuccess.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/chall4.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireDesactive.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/chall4Success.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireDesactiveSuccess.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -77,12 +60,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="selenium.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="selenium.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bin/selenium.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
               <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ensimag.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ensimag.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-864" />
           </provider>
         </entry>
       </file>
@@ -271,18 +261,6 @@
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="db" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -430,14 +408,7 @@
       <workItem from="1530622607740" duration="5918000" />
       <workItem from="1530690592246" duration="3693000" />
       <workItem from="1530775821808" duration="3230000" />
-      <workItem from="1530862953445" duration="3612000" />
-    </task>
-    <task id="LOCAL-00028" summary="modificiation makeFile pour clean">
-      <created>1523346282213</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1523346282213</updated>
+      <workItem from="1530862953445" duration="3900000" />
     </task>
     <task id="LOCAL-00029" summary="logo check">
       <created>1523346367543</created>
@@ -775,11 +746,18 @@
       <option name="project" value="LOCAL" />
       <updated>1530540494823</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Docker images challenges">
+      <created>1530879309694</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1530879309696</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="743718000" />
+    <option name="totallyTimeSpent" value="744006000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -864,13 +842,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/public/stylesheets/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="66" column="17" lean-forward="true" selection-start-line="66" selection-start-column="17" selection-end-line="66" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/questionnaire.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1244,6 +1215,11 @@
         <state relative-caret-position="234">
           <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ensimag.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-864" />
       </provider>
     </entry>
   </component>

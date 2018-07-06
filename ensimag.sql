@@ -143,7 +143,7 @@ CREATE TABLE public.playground (
     color character varying(25) NOT NULL,
     location character varying(25),
     install_date date,
-    CONSTRAINT playground_location_check CHECK (((location)::text = ANY ((ARRAY['north'::character varying, 'south'::character varying, 'west'::character varying, 'east'::character varying, 'northeast'::character varying, 'southeast'::character varying, 'southwest'::character varying, 'northwest'::character varying])::text[])))
+    CONSTRAINT playground_location_check CHECK (((location)::text = ANY (ARRAY[('north'::character varying)::text, ('south'::character varying)::text, ('west'::character varying)::text, ('east'::character varying)::text, ('northeast'::character varying)::text, ('southeast'::character varying)::text, ('southwest'::character varying)::text, ('northwest'::character varying)::text])))
 );
 
 
@@ -402,11 +402,13 @@ admin	admin@hotmail.fr	e140b8f9a3f6235f1cc8f44b3204126078a5228385b244433737de635
 --
 
 COPY public.challenges (id, nom, ordre, flag, solution, indice, difficulte, description) FROM stdin;
-6	XSS réfléchi	2	masterzap	Il suffit de taper dans le champ un script Javascript quelconque. Voici une possibilité : \r\n<script>alert("Bonjour")</script>	La réponse est dans le cours !	1	Essayez d'executer du Javascript sur cette page !
+7	Offuscation	4	facileadecoder	Le tableau définit en début de code [si:facileadecoder] permet de déterminer le nom d'utilisateur valide et le mot de passe. Le nom d'utilisateur est "si", le mot de passe "facileadecoder".	Analysez le code javascript du fichier "chall2.js" grâce à l'outil inspecteur de Google Chrome (Ctrl + Maj + i)	1	Essayez de vous connecter !
 4	Become an admin	1	lh456regjduiz	Il suffit de trouver la bonne injection SQL à saisir pour pouvoir s'authentifier en tant qu'administrateur. \r\nDans notre cas, une solution est : ' or '1' = '1.\r\nEn effet, voici à quoi ressemble la requête SQL côté serveur :\r\n"SELECT COUNT(identifiant) FROM Administrateurs WHERE identifiant = '" + identifiant + "' AND mdp = '" + password + "'".\r\nAvec l’injection SQL précédente, cela donne :\r\n"SELECT COUNT(identifiant) FROM Administrateurs WHERE identifiant = 'admin' AND mdp = '' or '1' = '1'"	Les injections SQL vous disent quelque chose ? 	1	Trouvez un moyen de vous connecter au portail en tant qu'administrateur !
-7	Offuscation	4	facileadecoder	Le tableau définit en début de code [si:facileadecoder] permet de déterminer le nom d'utilisateur valide et le mot de passe. Le nom d'utilisateur est "si", le mot de passe "facileadecoder".	Analysez le code javascript du fichier "challOffuscation.js" grâce à l'outil inspecteur de Google Chrome (Ctrl + Maj + i)	1	Essayez de vous connecter !
-8	Formulaire bloqué...	5	inspectorIsCool	Il suffit de modifier le code source de la page HTML à l'aide de l'outil inspecteur de Google Chrome (Ctrl + Maj + I). \r\nChercher le bouton "S'inscrire" dans le code et supprimer sa balise "disabled". Vous pouvez alors utiliser le formulaire ! 	Utilisez Google Chrome et son outil inspecteur.	0	Essayez d'utiliser ce challenge même s'il semble bloqué...
+6	XSS réfléchi	2	masterzap	Il suffit de taper dans le champ un script Javascript quelconque. Voici une possibilité : \r\n<script>alert("Bonjour")</script>	La réponse est dans le cours !	1	Essayez d'executer du Javascript sur cette page !
 5	Formulaire à contourner	3	totalaccess	Utilisez un logiciel tel que ZAP ou WebScarab pour faire des rejeux de requête. (l'outil cURL peut très bien faire l'affaire).\r\nAvec ZAP, effectuez une première requête en remplissant tous les champs du formulaire. \r\nComme expliqué dans le cours, renvoyez la requête HTTP en modifiant les champs de la requête.	Never Trust User Inputs	1	Apprenez à manipuler les requêtes HTTP sans votre navigateur ! 
+8	Formulaire bloqué...	5	inspectorIsCool	Il suffit de modifier le code source de la page HTML à l'aide de l'outil inspecteur de Google Chrome (Ctrl + Maj + I). \r\nChercher le bouton "S'inscrire" dans le code et supprimer sa balise "disabled". Vous pouvez alors utiliser le formulaire ! 	Utilisez Google Chrome et son outil inspecteur.	0	Essayez d'utiliser ce challenge même s'il semble bloqué...
+9	CRLF	6	encode	Il suffit d'écrire les adresses emails séparées des caractères %0A. \r\nEn hexadécimal 0A vaut 10 et le code ASCII du retour à la ligne est 10. Ainsi le mail de réinitialisation de mot de passe sera envoyé aux deux adresses emails. 	La réponse est dans le cours CRLF !	0	Mettez-vous en copie du mail de réinitialisation de l'utilisateur nicolas@lab-solutec.fr.
+10	Upload	7	filterYourUploads	Il suffit de faire un fichier PHP pour récupérer le contenu du fichier flag.txt.\r\nLa première étape consiste à localiser le fichier ciblé. On peut procéder en faisant un locate, find ou en affichant les fichiers d'un dossier à l'aide de la commande ls.\r\nLe script PHP suivant fait l'affaire : \r\n<?php \r\n\t$output = shell_exec('ls ../');\r\n\techo "<pre>$output</pre>";\r\n?>\r\nPuis pour récupérer le fichier il suffit de faire : \r\n<?php \r\n\t$output = shell_exec('cat ../flag.txt');\r\n\techo "<pre>$output</pre>";\r\n?>\r\n	Uploader un fichier PHP pour récupérer le contenu de flag.txt.	1	Essayez de récupérer le contenu du fichier flag.txt pour valider le challenge !
 \.
 
 
@@ -497,7 +499,7 @@ nicolas	nicolas@hotmail.fr	1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb
 -- Name: challenges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ensimag
 --
 
-SELECT pg_catalog.setval('public.challenges_id_seq', 8, true);
+SELECT pg_catalog.setval('public.challenges_id_seq', 10, true);
 
 
 --
