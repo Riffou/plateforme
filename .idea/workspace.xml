@@ -2,8 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/bin/selenium.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/public/js/challCRLF.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/challCRLF.ejs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/challCRLFSuccess.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile-dev" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile-dev" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ensimag.sql" beforeDir="false" afterPath="$PROJECT_DIR$/ensimag.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/challengeHelperController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeHelperController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/js/chall2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/js/challOffuscation.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/public/js/chall3.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/public/js/challFormulaireBloque.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/challenges.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/challenges.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/chall2.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challOffuscation.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/chall3.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireBloque.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/chall3Success.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireBloqueSuccess.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/chall4.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireDesactive.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/chall4Success.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challFormulaireDesactiveSuccess.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="280" column="79" selection-start-line="280" selection-start-column="79" selection-end-line="280" selection-end-column="79" />
+            <state relative-caret-position="810">
+              <caret line="508" column="46" selection-start-line="508" selection-start-column="46" selection-end-line="508" selection-end-column="46" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
                 <element signature="n#!!block;n#inspect#0" />
@@ -30,54 +47,50 @@
                 <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
                 <element signature="n#!!block;n#runContainerServeur#0" />
                 <element signature="n#!!block;n#getPortContainer#0" />
+                <element signature="n#!!block;n#waitForContainerServeur#0" />
                 <element signature="n#!!block;n#waitForContainerBDD#0" />
-                <element signature="n#!!block;n#loadChallenge1#0" />
-                <element signature="n#!!block;n#loadChallenge2#0" />
-                <element signature="n#!!block;n#loadChallenge3#0" />
-                <element signature="n#!!block;n#loadChallenge4#0" />
-                <element signature="e#10332#12405#0" />
-                <element signature="e#12450#14525#0" />
-                <element signature="e#14572#15303#0" />
-                <element signature="e#15353#17440#0" />
-                <element signature="e#17483#18658#0" />
-                <element signature="e#18706#19405#0" />
+                <element signature="n#!!block;n#loadChallengeSQL#0" />
+                <element signature="n#!!block;n#loadChallengeOffuscation#0" />
+                <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
+                <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
+                <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
+                <element signature="n#!!block;n#loadChallengeCRLF#0" />
+                <element signature="n#!!block;n#loadChallengeCRLF#1" />
+                <element signature="e#10600#12673#0" />
+                <element signature="e#12718#14793#0" />
+                <element signature="e#14840#15571#0" />
+                <element signature="e#15621#17708#0" />
+                <element signature="e#17751#18926#0" />
+                <element signature="e#18974#19815#0" />
+                <element signature="e#19925#20204#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loading.ejs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/loading.ejs">
+      <file leaf-file-name="mail.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/db/mail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="13" lean-forward="true" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+            <state relative-caret-position="18">
+              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="loading.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/public/js/loading.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="database.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/db/database.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/config/settings.js">
+      <file leaf-file-name="selenium.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/bin/selenium.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="234">
-              <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+              <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Dockerfile-dev" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dockerfile-dev">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -93,9 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>saveModifi</find>
-      <find>saveModifiedCours</find>
-      <find>reorderCat</find>
       <find>reorderCoursGlo</find>
       <find>idUniteArrivee</find>
       <find>reorderCoursGlobal</find>
@@ -123,6 +133,9 @@
       <find>config.hos</find>
       <find>config</find>
       <find>db</find>
+      <find>action=&quot;</find>
+      <find>&lt;form</find>
+      <find>chmod</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -166,15 +179,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/public/cours/8.html" />
-        <option value="$PROJECT_DIR$/src/public/cours/9.html" />
-        <option value="$PROJECT_DIR$/src/views/partials/headEditor.ejs" />
-        <option value="$PROJECT_DIR$/src/views/suivi.ejs" />
-        <option value="$PROJECT_DIR$/src/views/faq.ejs" />
-        <option value="$PROJECT_DIR$/src/models/questionnaire.js" />
-        <option value="$PROJECT_DIR$/src/public/questionnaire/questionnaire.txt" />
-        <option value="$PROJECT_DIR$/docker-compose.yml" />
-        <option value="$PROJECT_DIR$/src/views/partials/header.ejs" />
         <option value="$PROJECT_DIR$/src/views/menuUnites.ejs" />
         <option value="$PROJECT_DIR$/src/views/connexion.ejs" />
         <option value="$PROJECT_DIR$/src/views/motDePasseOublie.ejs" />
@@ -186,11 +190,9 @@
         <option value="$PROJECT_DIR$/src/views/profil.ejs" />
         <option value="$PROJECT_DIR$/src/views/partials/headerAdmin.ejs" />
         <option value="$PROJECT_DIR$/src/routes/index.js" />
-        <option value="$PROJECT_DIR$/Dockerfile-dev" />
         <option value="$PROJECT_DIR$/src/public/stylesheets/style.css" />
         <option value="$PROJECT_DIR$/src/controllers/questionnaireController.js" />
         <option value="$PROJECT_DIR$/src/views/questionnaire.ejs" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/src/views/challenge.ejs" />
         <option value="$PROJECT_DIR$/src/views/loading.ejs" />
         <option value="$PROJECT_DIR$/src/public/js/chall2.js" />
@@ -198,8 +200,6 @@
         <option value="$PROJECT_DIR$/src/views/chall3.ejs" />
         <option value="$PROJECT_DIR$/src/views/chall3Success.ejs" />
         <option value="$PROJECT_DIR$/src/db/setup.sql" />
-        <option value="$PROJECT_DIR$/src/routes/challenges.js" />
-        <option value="$PROJECT_DIR$/src/controllers/challengeHelperController.js" />
         <option value="$PROJECT_DIR$/src/views/chall4.ejs" />
         <option value="$PROJECT_DIR$/src/views/chall4Success.ejs" />
         <option value="$PROJECT_DIR$/src/views/chall2.ejs" />
@@ -216,7 +216,20 @@
         <option value="$PROJECT_DIR$/src/bin/www" />
         <option value="$PROJECT_DIR$/src/config/settings.js" />
         <option value="$PROJECT_DIR$/src/public/js/loading.js" />
+        <option value="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" />
+        <option value="$PROJECT_DIR$/src/views/challFormulaireBloque.ejs" />
+        <option value="$PROJECT_DIR$/src/views/challFormulaireBloqueSuccess.ejs" />
+        <option value="$PROJECT_DIR$/src/views/challFormulaireDesactive.ejs" />
+        <option value="$PROJECT_DIR$/src/views/challOffuscation.ejs" />
+        <option value="$PROJECT_DIR$/src/public/js/challCRLF.js" />
+        <option value="$PROJECT_DIR$/src/routes/challenges.js" />
+        <option value="$PROJECT_DIR$/src/views/challCRLFSuccess.ejs" />
+        <option value="$PROJECT_DIR$/src/controllers/challengeHelperController.js" />
+        <option value="$PROJECT_DIR$/src/views/challCRLF.ejs" />
+        <option value="$PROJECT_DIR$/Dockerfile-dev" />
         <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
+        <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/src/bin/selenium.js" />
       </list>
     </option>
   </component>
@@ -235,16 +248,17 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="867" />
-    <option name="y" value="108" />
-    <option name="width" value="1018" />
-    <option name="height" value="421" />
+    <option name="x" value="-1" />
+    <option name="y" value="19" />
+    <option name="width" value="1026" />
+    <option name="height" value="411" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -261,45 +275,24 @@
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="cours" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/challengeXSSReflechi" />
+    <property name="last_opened_file_path" value="$USER_HOME$/challengeSQL" />
     <property name="node.js.detected.package.prettier" value="true" />
     <property name="node.js.path.for.package.prettier" value="project" />
     <property name="node.js.selected.package.prettier" value="" />
@@ -327,7 +320,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Node.js.Plateforme">
+  <component name="RunManager" selected="Node.js.Mail">
     <configuration name="Mail" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="src/db/mail.js" working-dir="$PROJECT_DIR$" />
     <configuration name="Plateforme" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="local" path-to-js-file="src/bin/www" working-dir="$PROJECT_DIR$" />
     <configuration name="PlateformeDB" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="src/db/database.js" working-dir="$PROJECT_DIR$" />
@@ -433,14 +426,11 @@
       <workItem from="1530171954888" duration="10911000" />
       <workItem from="1530277971601" duration="916000" />
       <workItem from="1530519415222" duration="3431000" />
-      <workItem from="1530524874589" duration="5192000" />
-    </task>
-    <task id="LOCAL-00027" summary="Suivi Utilisateurs">
-      <created>1523345824843</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1523345824843</updated>
+      <workItem from="1530524874589" duration="6196000" />
+      <workItem from="1530622607740" duration="5918000" />
+      <workItem from="1530690592246" duration="3693000" />
+      <workItem from="1530775821808" duration="3230000" />
+      <workItem from="1530862953445" duration="3612000" />
     </task>
     <task id="LOCAL-00028" summary="modificiation makeFile pour clean">
       <created>1523346282213</created>
@@ -778,11 +768,18 @@
       <option name="project" value="LOCAL" />
       <updated>1530539573327</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Docker images challenges">
+      <created>1530540494822</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1530540494823</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="726261000" />
+    <option name="totallyTimeSpent" value="743718000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -798,20 +795,19 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49893048" weight="0.32911393" />
-      <window_info id="DB Browser" order="2" />
+      <window_info id="DB Browser" order="2" weight="0.32994652" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5593583" side_tool="true" weight="0.5163399" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.47189543" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4406417" weight="0.3620915" />
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.21568628" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22727273" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23796791" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Console" order="8" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49375" weight="0.39700806" />
@@ -822,6 +818,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -863,93 +860,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="15" />
+      <option name="time" value="18" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2934">
-          <caret line="163" column="40" lean-forward="true" selection-start-line="163" selection-start-column="40" selection-end-line="163" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#inspect#0" />
-            <element signature="n#!!block;n#removeContainer#0" />
-            <element signature="n#!!block;n#runContainerBDD#0" />
-            <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
-            <element signature="n#!!block;n#runContainerServeur#0" />
-            <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#waitForContainerBDD#0" />
-            <element signature="n#!!block;n#loadChallenge1#0" />
-            <element signature="n#!!block;n#loadChallenge2#0" />
-            <element signature="n#!!block;n#loadChallenge3#0" />
-            <element signature="n#!!block;n#loadChallenge4#0" />
-            <element signature="e#10332#12405#0" />
-            <element signature="e#12450#14525#0" />
-            <element signature="e#14572#15303#0" />
-            <element signature="e#15353#17440#0" />
-            <element signature="e#17483#18658#0" />
-            <element signature="e#18706#19405#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/home.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile-prod">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile-sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="1" column="50" selection-start-line="1" selection-start-column="50" selection-end-line="1" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.env">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile-dev">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/administrateurs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="38" lean-forward="true" selection-start-column="38" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="24" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="410">
@@ -985,20 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/js/chall3.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="9" lean-forward="true" selection-start-line="6" selection-start-column="9" selection-end-line="6" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/js/chall2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/inscription.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-342">
@@ -1020,59 +920,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/chall3Success.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="29" selection-end-line="7" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/challenges.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="14" column="22" lean-forward="true" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/chall2.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/chall4Success.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/chall4.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="556">
           <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/chall3.ejs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="25" column="18" selection-end-line="55" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1118,24 +969,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/public/js/challenge.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="27" column="19" lean-forward="true" selection-end-line="122" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/exemples/xss_reflechi.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
           <caret line="18" column="14" lean-forward="true" selection-start-line="18" selection-start-column="14" selection-end-line="18" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/challengeHelperController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="17" column="1" lean-forward="true" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1153,13 +990,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docker-compose.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1171,13 +1001,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1782">
-          <caret line="12" column="40" lean-forward="true" selection-start-line="12" selection-start-column="40" selection-end-line="12" selection-end-column="40" />
         </state>
       </provider>
     </entry>
@@ -1195,24 +1018,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="3" lean-forward="true" selection-start-line="4" selection-start-column="3" selection-end-line="4" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/home.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
           <caret line="23" column="12" lean-forward="true" selection-start-line="23" selection-start-column="12" selection-end-line="23" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="13" column="1" lean-forward="true" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1223,13 +1032,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/db/database.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/public/js/loading.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1237,10 +1039,171 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/database.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/dashboardChallenges.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="20" column="32" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/challFormulaireDesactiveSuccess.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/challFormulaireDesactive.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="2" selection-start-line="1" selection-start-column="2" selection-end-line="1" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/challOffuscation.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="5" selection-start-column="8" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/js/challenge.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="32" column="13" lean-forward="true" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/js/challFormulaireBloque.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="12" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/reinitialiseMDP.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/motDePasseOublie.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="581">
+          <caret line="54" column="15" lean-forward="true" selection-start-line="10" selection-start-column="8" selection-end-line="54" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/challengeHelperController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="42" column="1" lean-forward="true" selection-start-line="42" selection-start-column="1" selection-end-line="42" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/challenges.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="19" column="69" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/challCRLFSuccess.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="29" lean-forward="true" selection-start-line="7" selection-start-column="29" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/challCRLF.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1188">
+          <caret line="66" column="10" lean-forward="true" selection-start-line="66" selection-start-column="10" selection-end-line="66" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/js/challCRLF.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/challFormulaireBloqueSuccess.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="28" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/public/js/challOffuscation.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="31" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/challFormulaireBloque.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile-dev">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="76" column="11" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1476">
+          <caret line="102" column="9" selection-start-line="102" selection-start-column="9" selection-end-line="102" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="117">
+          <caret line="20" column="4" lean-forward="true" selection-start-line="20" selection-start-column="4" selection-end-line="20" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="280" column="79" selection-start-line="280" selection-start-column="79" selection-end-line="280" selection-end-column="79" />
+        <state relative-caret-position="810">
+          <caret line="508" column="46" selection-start-line="508" selection-start-column="46" selection-end-line="508" selection-end-column="46" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
             <element signature="n#!!block;n#inspect#0" />
@@ -1249,18 +1212,37 @@
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
+            <element signature="n#!!block;n#waitForContainerServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
-            <element signature="n#!!block;n#loadChallenge1#0" />
-            <element signature="n#!!block;n#loadChallenge2#0" />
-            <element signature="n#!!block;n#loadChallenge3#0" />
-            <element signature="n#!!block;n#loadChallenge4#0" />
-            <element signature="e#10332#12405#0" />
-            <element signature="e#12450#14525#0" />
-            <element signature="e#14572#15303#0" />
-            <element signature="e#15353#17440#0" />
-            <element signature="e#17483#18658#0" />
-            <element signature="e#18706#19405#0" />
+            <element signature="n#!!block;n#loadChallengeSQL#0" />
+            <element signature="n#!!block;n#loadChallengeOffuscation#0" />
+            <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
+            <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
+            <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
+            <element signature="n#!!block;n#loadChallengeCRLF#0" />
+            <element signature="n#!!block;n#loadChallengeCRLF#1" />
+            <element signature="e#10600#12673#0" />
+            <element signature="e#12718#14793#0" />
+            <element signature="e#14840#15571#0" />
+            <element signature="e#15621#17708#0" />
+            <element signature="e#17751#18926#0" />
+            <element signature="e#18974#19815#0" />
+            <element signature="e#19925#20204#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/db/mail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bin/selenium.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
         </state>
       </provider>
     </entry>

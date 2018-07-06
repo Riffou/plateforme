@@ -17,4 +17,6 @@ router.post('/load/5', base.requireLogin, challengeHelper.checkEmptyInputs);
 
 router.post('/load/8', base.requireLogin, challengeHelper.successDisabledButton);
 
+router.post('/load/9', base.requireLogin, challengeHelper.checkEmails);
+
 module.exports = router;

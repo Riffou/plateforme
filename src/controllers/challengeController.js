@@ -235,16 +235,16 @@ function loadChallengeSQL(req, res) {
     });
 }
 
-function loadChallenge2(req, res) {
-    res.render('chall2.ejs');
+function loadChallengeOffuscation(req, res) {
+    res.render('challOffuscation.ejs');
 }
 
-function loadChallenge3(req, res) {
-    res.render('chall3.ejs');
+function loadChallengeFormulaireBloque(req, res) {
+    res.render('challFormulaireBloque.ejs');
 }
 
-function loadChallenge4(req, res) {
-    res.render('chall4.ejs');
+function loadChallengeFormulaireDesactive(req, res) {
+    res.render('challFormulaireDesactive.ejs');
 }
 
 function loadChallengeXSSReflechi(req, res) {
@@ -252,6 +252,45 @@ function loadChallengeXSSReflechi(req, res) {
     var idChallenge = req.params.idChallenge;
     var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
     var nomImageServeur = "challengexssreflechi_image";
+
+    async.series([
+        // Vérification que le conteneur n'a pas déjà été lancé (Serveur Web)
+        function(callback) {
+            inspect(callback, nomConteneurServeur, object, 0);
+        },
+        // Si le conteneur a déjà été créé mais est stoppé (Serveur)
+        function(callback) {
+            removeContainer(callback, nomConteneurServeur, res, object, 0);
+        },
+        // Lancement conteneur si le conteneur n'a pas été créé (Serveur)
+        function(callback) {
+            runContainerServeur(callback, nomConteneurServeur, nomImageServeur, res, object);
+        },
+        // Récupération du port où le conteneur tourne (Serveur)
+        function(callback) {
+            getPortContainer(callback, nomConteneurServeur, res, object);
+        },
+        // Attente que le conteneur (Serveur) soit prêt
+        function(callback) {
+            waitForContainerServeur(callback, object.portServeur);
+        }
+    ], function(err) { //This function gets called after all the tasks have called their "task callbacks"
+        if (err) {
+            return next(err);
+        }
+        res.status(200).send({port: object.portServeur, adresse: config.host});
+    });
+}
+
+function loadChallengeCRLF(req, res) {
+    res.render('challCRLF.ejs');
+}
+
+function loadChallengeUpload(req, res) {
+    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
+    var idChallenge = req.params.idChallenge;
+    var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
+    var nomImageServeur = "challengeupload_image";
 
     async.series([
         // Vérification que le conteneur n'a pas déjà été lancé (Serveur Web)
@@ -475,18 +514,26 @@ module.exports = {
         }
         // Offuscation
         if (idChallenge == 7) {
-            loadChallenge2(req, res);
+            loadChallengeOffuscation(req, res);
         }
         // Formulaire bloqué : champs vides
         if (idChallenge == 5) {
-            loadChallenge3(req, res);
+            loadChallengeFormulaireBloque(req, res);
         }
         // Formulaire bloqué : bouton désactivé
         if (idChallenge == 8) {
-            loadChallenge4(req, res);
+            loadChallengeFormulaireDesactive(req, res);
         }
         // XSS offusqué
         if (idChallenge == 6) {
+            res.render('loading.ejs', {idChallenge: idChallenge});
+        }
+        // CRLF
+        if (idChallenge == 9) {
+            loadChallengeCRLF(req, res);
+        }
+        // Upload
+        if (idChallenge == 10) {
             res.render('loading.ejs', {idChallenge: idChallenge});
         }
     },
@@ -499,7 +546,11 @@ module.exports = {
         }
         // XSS réfléchi
         if (idChallenge == 6) {
-            loadChallengeXSSReflechi(req, res)
+            loadChallengeXSSReflechi(req, res);
+        }
+        // File Uploads
+        if (idChallenge == 10) {
+            loadChallengeUpload(req, res);
         }
     }
 }

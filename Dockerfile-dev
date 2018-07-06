@@ -7,4 +7,3 @@ RUN chmod +x test.sh
 RUN npm install
 
 ENTRYPOINT ["npm", "run", "start"]
-
