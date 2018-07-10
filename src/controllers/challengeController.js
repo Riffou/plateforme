@@ -17,6 +17,7 @@ function escapeHtml(text) {
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
+// Docker stuff
 function inspect(callback, nomConteneur, object, whichServer) {
     console.log("Docker inspect");
     exec('docker inspect -f {{.State.Running}} ' + nomConteneur, function(error, stdout, stderr) {
@@ -180,6 +181,7 @@ function waitForContainerBDD(callback, nomConteneurBDD, res) {
     });
 }
 
+// Load challenges
 function loadChallengeSQL(req, res) {
     var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
     var idChallenge = req.params.idChallenge;
@@ -321,6 +323,61 @@ function loadChallengeUpload(req, res) {
     });
 }
 
+function loadChallengeXSSStockee(req, res) {
+    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
+    var idChallenge = req.params.idChallenge;
+    var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
+    var nomConteneurBDD = nomConteneurServeur + '_db';
+    var nomImageServeur = "challengexssstocke_image";
+    var nomImageBDD = "challengexssstocke_db_image";
+
+    async.series([
+        // Vérification que le conteneur n'a pas déjà été lancé (Serveur Web)
+        function(callback) {
+            console.log(object);
+            inspect(callback, nomConteneurServeur, object, 0);
+        },
+        // Vérification que le conteneur n'a pas déjà été lancé (BDD)
+        function(callback) {
+            inspect(callback, nomConteneurBDD, object, 1);
+        },
+        // Si le conteneur a déjà été créé mais est stoppé (Serveur)
+        function(callback) {
+            removeContainer(callback, nomConteneurServeur, res, object, 0);
+        },
+        // Si le conteneur a déjà été créé mais est stoppé (BDD)
+        function(callback) {
+            removeContainer(callback, nomConteneurBDD, res, object, 1);
+        },
+        // Lancement conteneur si le conteneur n'a pas été créé (BDD)
+        function(callback) {
+            runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object);
+        },
+        // Lancement conteneur si le conteneur n'a pas été créé (Serveur)
+        function(callback) {
+            runContainerServeurLinkedBDD(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object);
+        },
+        // Récupération du port où le conteneur tourne (Serveur)
+        function(callback) {
+            getPortContainer(callback, nomConteneurServeur, res, object);
+        },
+        // Attente que le conteneur (Serveur) soit prêt
+        function(callback) {
+            waitForContainerServeur(callback, object.portServeur);
+        },
+        // Attente que le conteneur (BDD) soit prêt
+        function(callback) {
+            waitForContainerBDD(callback, nomConteneurBDD, res);
+        }
+    ], function(err) { //This function gets called after all the tasks have called their "task callbacks"
+        if (err) {
+            return next(err);
+        }
+        console.log(object.portServeur);
+        res.status(200).send({port: object.portServeur, adresse: config.host});
+    });
+}
+
 module.exports = {
     run: function (req, res) {
         var idChallenge = req.params.idChallenge;
@@ -440,13 +497,23 @@ module.exports = {
                     challengesModel.getSolutionsOfChallenge(idChallenge, function(data, error) {
                         if (error == null) {
                             // Mise en forme de la solution
-                            var solution = "<div class=\"card\">\n" +
-                                "  <div class=\"card-body\">\n";
 
+                            var solution = "<textarea class=\"form-control rounded-0\" id=\"exampleFormControlTextarea1\" rows=\"12\">";
+                            solution += escapeHtml(data[0].solution);
+                            solution += "</textarea>";
+
+                            /*var solution = "<div class=\"card\">\n" +
+                                "  <div class=\"card-body\">\n";
                             solution += escapeHtml(data[0].solution);
                             solution += "  </div>\n" +
-                                "</div><br>";
+                                "</div><br>";*/
                             for (var i = 0; i < data[1].length; i++) {
+                                solution += '<br>';
+                                solution += escapeHtml(data[1][i].identifiant + ' propose : ');
+                                solution += "<textarea class=\"form-control rounded-0\" id=\"exampleFormControlTextarea1\" rows=\"12\">";
+                                solution += escapeHtml(data[1][i].solution);
+                                solution += "</textarea>";
+                                /*
                                 solution += "<div class=\"card\">\n" +
                                     "  <div class=\"card-body\">\n";
                                 solution += escapeHtml(data[1][i].identifiant + ' propose : ');
@@ -455,6 +522,7 @@ module.exports = {
                                 solution += "  </div>\n" +
                                     "</div>";
                                 solution += '<br>';
+                                */
                             }
                             res.status(200).send(solution);
                         }
@@ -524,7 +592,7 @@ module.exports = {
         if (idChallenge == 8) {
             loadChallengeFormulaireDesactive(req, res);
         }
-        // XSS offusqué
+        // XSS réléchi
         if (idChallenge == 6) {
             res.render('loading.ejs', {idChallenge: idChallenge});
         }
@@ -534,6 +602,10 @@ module.exports = {
         }
         // Upload
         if (idChallenge == 10) {
+            res.render('loading.ejs', {idChallenge: idChallenge});
+        }
+        // XSS stockée
+        if (idChallenge == 11) {
             res.render('loading.ejs', {idChallenge: idChallenge});
         }
     },
@@ -551,6 +623,10 @@ module.exports = {
         // File Uploads
         if (idChallenge == 10) {
             loadChallengeUpload(req, res);
+        }
+        //
+        if (idChallenge == 11) {
+            loadChallengeXSSStockee(req, res);
         }
     }
 }
