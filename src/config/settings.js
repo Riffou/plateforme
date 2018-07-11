@@ -45,4 +45,3 @@ module.exports = {
         return configdb[mode || process.argv[2] || 'local'] || configdb.local;
     }
 }
-

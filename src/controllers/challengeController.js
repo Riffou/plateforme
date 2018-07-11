@@ -157,6 +157,7 @@ function getPortContainer(callback, nomConteneur, res, object) {
 }
 
 function waitForContainerServeur(callback, portServeur) {
+    console.log(portServeur);
     console.log('waitForContainerServeur');
     var isAlreadyPassed = false;
     var interval = setInterval(function () {

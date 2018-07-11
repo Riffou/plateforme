@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/config/settings.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/config/settings.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -20,8 +21,8 @@
       <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="57" column="18" lean-forward="true" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+            <state relative-caret-position="255">
+              <caret line="161" column="32" lean-forward="true" selection-start-line="161" selection-start-column="32" selection-end-line="161" selection-end-column="32" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
                 <element signature="n#!!block;n#inspect#0" />
@@ -29,10 +30,18 @@
                 <element signature="n#!!block;n#loadChallengeOffuscation#0" />
                 <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
                 <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
-                <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
                 <element signature="n#!!block;n#loadChallengeCRLF#0" />
                 <element signature="n#!!block;n#loadChallengeUpload#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/config/settings.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -68,7 +77,7 @@
     <findStrings>
       <find>updateInfosCa</find>
       <find>Docker</find>
-      <find>lignes à re</find>
+      <find />
       <find>host</find>
       <find>hostURL</find>
       <find>challenge1_db</find>
@@ -88,13 +97,13 @@
       <find>textarea</find>
       <find>c</find>
       <find>res.render</find>
-      <find>self =</find>
+      <find />
       <find>INSERT</find>
       <find>challengx</find>
       <find>typeof</find>
       <find>process.env.</find>
       <find>cookie</find>
-      <find>INSERT INTO</find>
+      <find />
       <find>load/cha</find>
     </findStrings>
     <replaceStrings>
@@ -172,7 +181,6 @@
         <option value="$PROJECT_DIR$/src/routes/base/base.js" />
         <option value="$PROJECT_DIR$/src/views/home.ejs" />
         <option value="$PROJECT_DIR$/src/bin/www" />
-        <option value="$PROJECT_DIR$/src/config/settings.js" />
         <option value="$PROJECT_DIR$/src/public/js/loading.js" />
         <option value="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" />
         <option value="$PROJECT_DIR$/src/views/challFormulaireBloque.ejs" />
@@ -189,6 +197,7 @@
         <option value="$PROJECT_DIR$/src/bin/selenium.js" />
         <option value="$PROJECT_DIR$/src/views/connexion.ejs" />
         <option value="$PROJECT_DIR$/src/bin/cron.js" />
+        <option value="$PROJECT_DIR$/src/config/settings.js" />
         <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
       </list>
     </option>
@@ -229,6 +238,12 @@
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -387,14 +402,7 @@
       <workItem from="1531121410867" duration="18461000" />
       <workItem from="1531208621250" duration="10169000" />
       <workItem from="1531294154133" duration="821000" />
-      <workItem from="1531298579318" duration="1061000" />
-    </task>
-    <task id="LOCAL-00032" summary="Reinitialisation mdp">
-      <created>1523374266148</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1523374266148</updated>
+      <workItem from="1531298579318" duration="1694000" />
     </task>
     <task id="LOCAL-00033" summary="Suivi utilisateurs global cours + global unités + certification">
       <created>1524046161358</created>
@@ -732,11 +740,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531233274296</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Docker images challenges">
+      <created>1531299651518</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1531299651518</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="775924000" />
+    <option name="totallyTimeSpent" value="776557000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -765,6 +780,7 @@
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Console" order="8" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49375" weight="0.39700806" />
@@ -775,7 +791,6 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1150,13 +1165,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/bin/www">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="414">
@@ -1171,10 +1179,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="24" lean-forward="true" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="57" column="18" lean-forward="true" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
+        <state relative-caret-position="255">
+          <caret line="161" column="32" lean-forward="true" selection-start-line="161" selection-start-column="32" selection-end-line="161" selection-end-column="32" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
             <element signature="n#!!block;n#inspect#0" />
@@ -1182,7 +1197,6 @@
             <element signature="n#!!block;n#loadChallengeOffuscation#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
-            <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
           </folding>
