@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/bin/cron.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/bin/selenium.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/connexion.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/connexion.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -24,18 +20,11 @@
       <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="245" column="1" lean-forward="true" selection-start-line="245" selection-start-column="1" selection-end-line="245" selection-end-column="1" />
+            <state relative-caret-position="270">
+              <caret line="57" column="18" lean-forward="true" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
                 <element signature="n#!!block;n#inspect#0" />
-                <element signature="n#!!block;n#removeContainer#0" />
-                <element signature="n#!!block;n#runContainerBDD#0" />
-                <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
-                <element signature="n#!!block;n#runContainerServeur#0" />
-                <element signature="n#!!block;n#getPortContainer#0" />
-                <element signature="n#!!block;n#waitForContainerServeur#0" />
-                <element signature="n#!!block;n#waitForContainerBDD#0" />
                 <element signature="n#!!block;n#loadChallengeSQL#0" />
                 <element signature="n#!!block;n#loadChallengeOffuscation#0" />
                 <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
@@ -43,14 +32,6 @@
                 <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
                 <element signature="n#!!block;n#loadChallengeCRLF#0" />
                 <element signature="n#!!block;n#loadChallengeUpload#0" />
-                <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
-                <element signature="e#14666#16739#0" />
-                <element signature="e#16784#18859#0" />
-                <element signature="e#18906#19637#0" />
-                <element signature="e#19687#22533#0" />
-                <element signature="e#22576#23751#0" />
-                <element signature="e#23799#24900#0" />
-                <element signature="e#25010#25501#0" />
               </folding>
             </state>
           </provider>
@@ -59,8 +40,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+            <state relative-caret-position="1648">
+              <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
             </state>
           </provider>
         </entry>
@@ -68,8 +49,8 @@
       <file leaf-file-name="www" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/bin/www">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+            <state relative-caret-position="414">
+              <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -228,16 +209,15 @@
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-1" />
-    <option name="y" value="240" />
-    <option name="width" value="642" />
-    <option name="height" value="241" />
+    <option name="y" value="19" />
+    <option name="width" value="1026" />
+    <option name="height" value="411" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -250,22 +230,11 @@
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -416,21 +385,9 @@
       <workItem from="1530862953445" duration="5283000" />
       <workItem from="1531121351634" duration="23000" />
       <workItem from="1531121410867" duration="18461000" />
-      <workItem from="1531208621250" duration="8667000" />
-    </task>
-    <task id="LOCAL-00030" summary="makeFile indentation">
-      <created>1523346530630</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1523346530630</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Reinitialisation mdp">
-      <created>1523367005623</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1523367005623</updated>
+      <workItem from="1531208621250" duration="10169000" />
+      <workItem from="1531294154133" duration="821000" />
+      <workItem from="1531298579318" duration="1061000" />
     </task>
     <task id="LOCAL-00032" summary="Reinitialisation mdp">
       <created>1523374266148</created>
@@ -761,11 +718,25 @@
       <option name="project" value="LOCAL" />
       <updated>1530879748968</updated>
     </task>
-    <option name="localTasksCounter" value="79" />
+    <task id="LOCAL-00079" summary="Docker images challenges">
+      <created>1531233060285</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1531233060286</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Docker images challenges">
+      <created>1531233274296</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1531233274296</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="772540000" />
+    <option name="totallyTimeSpent" value="775924000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -784,20 +755,19 @@
       <window_info id="DB Browser" order="2" weight="0.32994652" />
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5593583" side_tool="true" weight="0.5163399" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4406417" weight="0.32681242" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4406417" weight="0.32681242" />
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.21568628" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18770054" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1919786" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="bottom" id="Console" order="8" />
-      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49375" weight="0.39700806" />
       <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49375" weight="0.39700806" />
       <window_info anchor="bottom" id="TypeScript" order="12" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -805,6 +775,7 @@
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" sideWeight="0.48958334" weight="0.3254902" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1127,10 +1098,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="713">
           <caret line="71" column="16" lean-forward="true" selection-start-line="71" selection-start-column="16" selection-end-line="71" selection-end-column="16" />
-          <folding>
-            <element signature="e#2286#2308#0#HTML" expanded="true" />
-            <element signature="e#2692#2713#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1190,34 +1157,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.js">
+    <entry file="file://$PROJECT_DIR$/src/bin/www">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+        <state relative-caret-position="414">
+          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/bin/www">
+    <entry file="file://$PROJECT_DIR$/src/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="23" column="3" lean-forward="true" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
+        <state relative-caret-position="1648">
+          <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="245" column="1" lean-forward="true" selection-start-line="245" selection-start-column="1" selection-end-line="245" selection-end-column="1" />
+        <state relative-caret-position="270">
+          <caret line="57" column="18" lean-forward="true" selection-start-line="57" selection-start-column="18" selection-end-line="57" selection-end-column="18" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
             <element signature="n#!!block;n#inspect#0" />
-            <element signature="n#!!block;n#removeContainer#0" />
-            <element signature="n#!!block;n#runContainerBDD#0" />
-            <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
-            <element signature="n#!!block;n#runContainerServeur#0" />
-            <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#waitForContainerServeur#0" />
-            <element signature="n#!!block;n#waitForContainerBDD#0" />
             <element signature="n#!!block;n#loadChallengeSQL#0" />
             <element signature="n#!!block;n#loadChallengeOffuscation#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
@@ -1225,14 +1185,6 @@
             <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
-            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
-            <element signature="e#14666#16739#0" />
-            <element signature="e#16784#18859#0" />
-            <element signature="e#18906#19637#0" />
-            <element signature="e#19687#22533#0" />
-            <element signature="e#22576#23751#0" />
-            <element signature="e#23799#24900#0" />
-            <element signature="e#25010#25501#0" />
           </folding>
         </state>
       </provider>

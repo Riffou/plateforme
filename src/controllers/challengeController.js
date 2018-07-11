@@ -89,6 +89,7 @@ function removeContainer(callback, nomConteneur, res, object, whichServer) {
 }
 
 function runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object) {
+    console.log('runContainerBDD');
     if (object.containerBDDAlreadyRunning === false) {
         exec('docker run -d -p 5432 --name ' + nomConteneurBDD + ' -e POSTGRES_PASSWORD=postgres ' + nomImageBDD
             , function (error, stdout, stderr) {
@@ -105,7 +106,9 @@ function runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object) {
 }
 
 function runContainerServeurLinkedBDD(callback, nomConteneurServeur, nomConteneurBDD, nomImageServeur, res, object) {
+    console.log('runContainerServeurLinkedBDD');
     console.log(object);
+
     if (object.containerServerAlreadyRunning === false) {
         exec('docker run -d -P --name ' + nomConteneurServeur + ' --link ' + nomConteneurBDD + ':alias -e NOM_CONTENEUR_BDD=' + nomConteneurBDD + ' ' + nomImageServeur
     , function (error, stdout, stderr) {
@@ -122,6 +125,7 @@ function runContainerServeurLinkedBDD(callback, nomConteneurServeur, nomConteneu
 }
 
 function runContainerServeur(callback, nomConteneurServeur, nomImageServeur, res, object) {
+    console.log('runContainerServeur');
     console.log(object);
     if (object.containerServerAlreadyRunning === false) {
         exec('docker run -d -P --name '+ nomConteneurServeur + ' ' + nomImageServeur
@@ -139,6 +143,7 @@ function runContainerServeur(callback, nomConteneurServeur, nomImageServeur, res
 }
 
 function getPortContainer(callback, nomConteneur, res, object) {
+    console.log('getPortContainer');
     exec('docker inspect ' + nomConteneur + ' | grep "HostPort"', function(error, stdout, stderr) {
         if (error == null) {
             object.portServeur = stdout.match(/\d+/)[0];
@@ -152,6 +157,7 @@ function getPortContainer(callback, nomConteneur, res, object) {
 }
 
 function waitForContainerServeur(callback, portServeur) {
+    console.log('waitForContainerServeur');
     var isAlreadyPassed = false;
     var interval = setInterval(function () {
         var adresse = config.host;
@@ -170,6 +176,7 @@ function waitForContainerServeur(callback, portServeur) {
 }
 
 function waitForContainerBDD(callback, nomConteneurBDD, res) {
+    console.log('waitForContainerBDD');
     exec('until docker run --rm --link ' + nomConteneurBDD + ':pg postgres pg_isready -U postgres -h pg; do sleep 1; done', function(error, stdout, stderr) {
         if (error == null) {
             callback();
