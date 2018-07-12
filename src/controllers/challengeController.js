@@ -138,7 +138,8 @@ function runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object) {
 function runSeleniumContainer(callback, nomConteneurSelenium, res, object) {
     console.log('runSeleniumServer');
     if (object.containerSeleniumAlreadyRunning === false) {
-        exec('docker run -d --name ' + nomConteneurSelenium + ' -p 4444:4444 selenium/standalone-chrome', function (error, stdout, stderr) {
+        // Change Here
+        exec('docker run -d --name ' + nomConteneurSelenium + ' -P 4444 selenium/standalone-chrome', function (error, stdout, stderr) {
             if (error != null) {
                 console.log("Erreur : " + error);
                 res.status(500).send(error);
