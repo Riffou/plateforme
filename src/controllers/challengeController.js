@@ -139,7 +139,7 @@ function runSeleniumContainer(callback, nomConteneurSelenium, res, object) {
     console.log('runSeleniumServer');
     if (object.containerSeleniumAlreadyRunning === false) {
         // Change Here
-        exec('docker run -d --name ' + nomConteneurSelenium + ' -P 4444 selenium/standalone-chrome', function (error, stdout, stderr) {
+        exec('docker run -d --name ' + nomConteneurSelenium + ' -p 4444 selenium/standalone-chrome', function (error, stdout, stderr) {
             if (error != null) {
                 console.log("Erreur : " + error);
                 res.status(500).send(error);
@@ -206,7 +206,7 @@ function getPortContainer(callback, nomConteneur, res, object) {
 
 function runCronServeur(callback, portServeurWeb, nomConteneurCron, nomConteneurSelenium, res) {
     console.log('runCronServeur');
-    exec('docker run -d -p --name ' + nomConteneurCron + ' --link ' + nomConteneurSelenium + ':' + nomConteneurSelenium + ' -e PORT_CONTENEUR_SERVEUR_WEB=' + portServeurWeb + ' -e NOM_CONTENEUR_SELENIUM=' + nomConteneurSelenium + ' cron_image', function(error, stdout, stderr) {
+    exec('docker run -d -P --name ' + nomConteneurCron + ' --link ' + nomConteneurSelenium + ':' + nomConteneurSelenium + ' -e PORT_CONTENEUR_SERVEUR_WEB=' + portServeurWeb + ' -e NOM_CONTENEUR_SELENIUM=' + nomConteneurSelenium + ' cron_image', function(error, stdout, stderr) {
         if (error != null) {
             console.log("Erreur : " + error);
             res.status(500).send(error);
