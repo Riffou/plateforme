@@ -29,9 +29,17 @@ function inspect(callback, nomConteneur, object, whichServer) {
                     object.containerServerAlreadyRunning = true;
                     object.containerServerAlreadyCreated = true;
                 }
-                else {
+                else if (whichServer == 1) {
                     object.containerBDDAlreadyCreated = true;
                     object.containerBDDAlreadyRunning = true;
+                }
+                else if (whichServer == 2) {
+                    object.containerSeleniumAlreadyCreated = true;
+                    object.containerSeleniumAlreadyRunning = true;
+                }
+                else if (whichServer == 3) {
+                    object.containerCronAlreadyCreated = true;
+                    object.containerCronAlreadyRunning = true;
                 }
             }
             // S'il n'est pas lancé : on va supprimer le conteneur
@@ -39,8 +47,14 @@ function inspect(callback, nomConteneur, object, whichServer) {
                 if (whichServer === 0) {
                     object.containerServerAlreadyCreated = true;
                 }
-                else {
+                else if (whichServer === 1){
                     object.containerBDDAlreadyCreated = true;
+                }
+                else if (whichServer === 2){
+                    object.containerSeleniumAlreadyCreated = true;
+                }
+                else if (whichServer === 3){
+                    object.containerCronAlreadyCreated = true;
                 }
             }
             callback();
@@ -61,9 +75,19 @@ function removeContainer(callback, nomConteneur, res, object, whichServer) {
         containerAlreadyRunning = object.containerServerAlreadyRunning;
     }
     // Serveur BDD
-    else {
+    else if (whichServer === 1) {
         containerAlreadyCreated = object.containerBDDAlreadyCreated;
         containerAlreadyRunning = object.containerBDDAlreadyRunning;
+    }
+    // Serveur Selenium
+    else if (whichServer === 2) {
+        containerAlreadyCreated = object.containerSeleniumAlreadyCreated;
+        containerAlreadyRunning = object.containerSeleniumAlreadyRunning;
+    }
+    // Serveur Cron
+    else if (whichServer === 3) {
+        containerAlreadyCreated = object.containerCronAlreadyCreated;
+        containerAlreadyRunning = object.containerCronAlreadyRunning;
     }
 
     if (containerAlreadyCreated === true && containerAlreadyRunning === false) {
@@ -72,8 +96,14 @@ function removeContainer(callback, nomConteneur, res, object, whichServer) {
                 if (whichServer === 0) {
                     object.containerServerAlreadyCreated = false;
                 }
-                else {
+                else if (whichServer === 1) {
                     object.containerBDDAlreadyCreated = false;
+                }
+                else if (whichServer === 2) {
+                    object.containerSeleniumAlreadyCreated = false;
+                }
+                else if (whichServer === 3) {
+                    object.containerCronAlreadyCreated = false;
                 }
                 callback();
             }
@@ -99,6 +129,22 @@ function runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object) {
                 }
                 callback();
             });
+    }
+    else {
+        callback();
+    }
+}
+
+function runSeleniumContainer(callback, nomConteneurSelenium, res, object) {
+    console.log('runSeleniumServer');
+    if (object.containerSeleniumAlreadyRunning === false) {
+        exec('docker run -d --name ' + nomConteneurSelenium + ' -p 4444:4444 selenium/standalone-chrome', function (error, stdout, stderr) {
+            if (error != null) {
+                console.log("Erreur : " + error);
+                res.status(500).send(error);
+            }
+            callback();
+        });
     }
     else {
         callback();
@@ -153,6 +199,18 @@ function getPortContainer(callback, nomConteneur, res, object) {
             res.status(500).send(error);
         }
         callback();
+
+    });
+}
+
+function runCronServeur(callback, portServeurWeb, nomConteneurSelenium, res) {
+    console.log('runCronServeur');
+    exec('docker run -d -P --name cron --link ' + nomConteneurSelenium + ':' + nomConteneurSelenium + ' -e PORT_CONTENEUR_SERVEUR_WEB=' + portServeurWeb + ' -e NOM_CONTENEUR_SELENIUM=' + nomConteneurSelenium + ' cron_image', function(error, stdout, stderr) {
+        if (error != null) {
+            console.log("Erreur : " + error);
+            res.status(500).send(error);
+        }
+        callback();
     });
 }
 
@@ -179,13 +237,11 @@ function waitForContainerServeur(callback, portServeur) {
 function waitForContainerBDD(callback, nomConteneurBDD, res) {
     console.log('waitForContainerBDD');
     exec('until docker run --rm --link ' + nomConteneurBDD + ':pg postgres pg_isready -U postgres -h pg; do sleep 1; done', function(error, stdout, stderr) {
-        if (error == null) {
-            callback();
-        }
-        else {
+        if (error != null) {
             console.log("Erreur : " + error);
             res.status(500).send(error);
         }
+        callback();
     });
 }
 
@@ -332,9 +388,10 @@ function loadChallengeUpload(req, res) {
 }
 
 function loadChallengeXSSStockee(req, res) {
-    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
+    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, containerSeleniumAlreadyRunning: false, containerSeleniumAlreadyCreated: false, containerCronAlreadyCreated: false, containerCronAlreadyRunning: false,portServeur:""};
     var idChallenge = req.params.idChallenge;
     var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
+    var nomConteneurSelenium = nomConteneurServeur + '_selenium';
     var nomConteneurBDD = nomConteneurServeur + '_db';
     var nomImageServeur = "challengexssstocke_image";
     var nomImageBDD = "challengexssstocke_db_image";
@@ -349,6 +406,14 @@ function loadChallengeXSSStockee(req, res) {
         function(callback) {
             inspect(callback, nomConteneurBDD, object, 1);
         },
+        // Vérification que le conteneur n'a pas déjà été lancé (Selenium)
+        function(callback) {
+            inspect(callback, nomConteneurBDD, object, 2);
+        },
+        // Vérification que le conteneur n'a pas déjà été lancé (Cron)
+        function(callback) {
+            inspect(callback, nomConteneurBDD, object, 3);
+        },
         // Si le conteneur a déjà été créé mais est stoppé (Serveur)
         function(callback) {
             removeContainer(callback, nomConteneurServeur, res, object, 0);
@@ -357,9 +422,21 @@ function loadChallengeXSSStockee(req, res) {
         function(callback) {
             removeContainer(callback, nomConteneurBDD, res, object, 1);
         },
+        // Si le conteneur a déjà été créé mais est stoppé (Selenium)
+        function(callback) {
+            removeContainer(callback, nomConteneurServeur, res, object, 2);
+        },
+        // Si le conteneur a déjà été créé mais est stoppé (Cron)
+        function(callback) {
+            removeContainer(callback, nomConteneurBDD, res, object, 3);
+        },
         // Lancement conteneur si le conteneur n'a pas été créé (BDD)
         function(callback) {
             runContainerBDD(callback, nomConteneurBDD, nomImageBDD, res, object);
+        },
+        // Lancement du serveur Selenium
+        function(callback) {
+            runSeleniumContainer(callback, nomConteneurSelenium, res, object);
         },
         // Lancement conteneur si le conteneur n'a pas été créé (Serveur)
         function(callback) {
@@ -368,6 +445,10 @@ function loadChallengeXSSStockee(req, res) {
         // Récupération du port où le conteneur tourne (Serveur)
         function(callback) {
             getPortContainer(callback, nomConteneurServeur, res, object);
+        },
+        // Lancement du serveur cron
+        function(callback) {
+            runCronServeur(callback, object.portServeur, nomConteneurSelenium, res);
         },
         // Attente que le conteneur (Serveur) soit prêt
         function(callback) {
