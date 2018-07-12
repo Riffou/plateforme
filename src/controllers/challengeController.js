@@ -203,9 +203,9 @@ function getPortContainer(callback, nomConteneur, res, object) {
     });
 }
 
-function runCronServeur(callback, portServeurWeb, nomConteneurSelenium, res) {
+function runCronServeur(callback, portServeurWeb, nomConteneurCron, nomConteneurSelenium, res) {
     console.log('runCronServeur');
-    exec('docker run -d -P --name cron --link ' + nomConteneurSelenium + ':' + nomConteneurSelenium + ' -e PORT_CONTENEUR_SERVEUR_WEB=' + portServeurWeb + ' -e NOM_CONTENEUR_SELENIUM=' + nomConteneurSelenium + ' cron_image', function(error, stdout, stderr) {
+    exec('docker run -d -P --name ' + nomConteneurCron + ' --link ' + nomConteneurSelenium + ':' + nomConteneurSelenium + ' -e PORT_CONTENEUR_SERVEUR_WEB=' + portServeurWeb + ' -e NOM_CONTENEUR_SELENIUM=' + nomConteneurSelenium + ' cron_image', function(error, stdout, stderr) {
         if (error != null) {
             console.log("Erreur : " + error);
             res.status(500).send(error);
@@ -393,6 +393,7 @@ function loadChallengeXSSStockee(req, res) {
     var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
     var nomConteneurSelenium = nomConteneurServeur + '_selenium';
     var nomConteneurBDD = nomConteneurServeur + '_db';
+    var nomConteneurCron = nomConteneurServeur + '_cron';
     var nomImageServeur = "challengexssstocke_image";
     var nomImageBDD = "challengexssstocke_db_image";
 
@@ -448,7 +449,7 @@ function loadChallengeXSSStockee(req, res) {
         },
         // Lancement du serveur cron
         function(callback) {
-            runCronServeur(callback, object.portServeur, nomConteneurSelenium, res);
+            runCronServeur(callback, object.portServeur,  nomConteneurCron, nomConteneurSelenium, res);
         },
         // Attente que le conteneur (Serveur) soit prêt
         function(callback) {

@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/routes/base/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/base/base.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,14 +16,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-275">
-              <caret line="221" column="34" lean-forward="true" selection-start-line="221" selection-start-column="34" selection-end-line="221" selection-end-column="34" />
+            <state relative-caret-position="224">
+              <caret line="142" column="39" selection-start-line="142" selection-start-column="39" selection-end-line="142" selection-end-column="39" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
-                <element signature="n#!!block;n#runSeleniumContainer#0" />
                 <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
                 <element signature="n#!!block;n#runContainerServeur#0" />
                 <element signature="n#!!block;n#getPortContainer#0" />
@@ -37,8 +35,18 @@
                 <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
                 <element signature="n#!!block;n#loadChallengeCRLF#0" />
                 <element signature="n#!!block;n#loadChallengeUpload#0" />
+                <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
                 <element signature="e#15474#26342#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -81,8 +89,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>loadChallenge</find>
-      <find>challengesql</find>
       <find>localhost</find>
       <find>config.</find>
       <find>dbconfig</find>
@@ -111,6 +117,8 @@
       <find>ubuntu</find>
       <find>runCronServe</find>
       <find>runSeleniumC</find>
+      <find>runSeleniu</find>
+      <find>lignes à retir</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -184,7 +192,6 @@
         <option value="$PROJECT_DIR$/src/controllers/adminController.js" />
         <option value="$PROJECT_DIR$/src/public/js/connexion.js" />
         <option value="$PROJECT_DIR$/src/views/formCours.ejs" />
-        <option value="$PROJECT_DIR$/src/routes/base/base.js" />
         <option value="$PROJECT_DIR$/src/views/home.ejs" />
         <option value="$PROJECT_DIR$/src/bin/www" />
         <option value="$PROJECT_DIR$/src/public/js/loading.js" />
@@ -205,6 +212,7 @@
         <option value="$PROJECT_DIR$/src/bin/cron.js" />
         <option value="$PROJECT_DIR$/src/config/settings.js" />
         <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
+        <option value="$PROJECT_DIR$/src/routes/base/base.js" />
       </list>
     </option>
   </component>
@@ -250,18 +258,6 @@
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="bin" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
@@ -440,14 +436,7 @@
       <workItem from="1531208621250" duration="10169000" />
       <workItem from="1531294154133" duration="821000" />
       <workItem from="1531298579318" duration="13933000" />
-      <workItem from="1531379839438" duration="5568000" />
-    </task>
-    <task id="LOCAL-00034" summary="Modification check validation challenge + obtention certificat">
-      <created>1524058592979</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1524058592979</updated>
+      <workItem from="1531379839438" duration="6770000" />
     </task>
     <task id="LOCAL-00035" summary="SPRINT 5 DONE">
       <created>1524232743725</created>
@@ -785,11 +774,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531300280560</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Docker images challenges">
+      <created>1531390522538</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1531390522540</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="794364000" />
+    <option name="totallyTimeSpent" value="795566000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -801,7 +797,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="28" width="1922" height="1019" extended-state="6" />
+    <frame x="-1" y="28" width="1922" height="915" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49893048" weight="0.32911393" />
@@ -809,11 +805,11 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5593583" side_tool="true" weight="0.5163399" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.287687" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.3267974" />
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.21568628" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19411765" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19411765" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -880,7 +876,6 @@
           <caret line="401" lean-forward="true" selection-start-line="401" selection-end-line="401" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#runSeleniumContainer#0" />
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
@@ -893,6 +888,7 @@
             <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
+            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
             <element signature="e#15474#26342#0" />
           </folding>
         </state>
@@ -937,13 +933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="31" column="30" lean-forward="true" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -1234,11 +1223,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="221" column="34" lean-forward="true" selection-start-line="221" selection-start-column="34" selection-end-line="221" selection-end-column="34" />
+        <state relative-caret-position="224">
+          <caret line="142" column="39" selection-start-line="142" selection-start-column="39" selection-end-line="142" selection-end-column="39" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#runSeleniumContainer#0" />
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
@@ -1251,8 +1239,16 @@
             <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
+            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
             <element signature="e#15474#26342#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
         </state>
       </provider>
     </entry>
