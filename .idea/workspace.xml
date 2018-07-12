@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/routes/base/base.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/base/base.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,23 +16,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="142" column="39" selection-start-line="142" selection-start-column="39" selection-end-line="142" selection-end-column="39" />
+            <state relative-caret-position="214">
+              <caret line="215" column="1" lean-forward="true" selection-start-line="215" selection-start-column="1" selection-end-line="215" selection-end-column="1" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
-                <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
-                <element signature="n#!!block;n#runContainerServeur#0" />
-                <element signature="n#!!block;n#getPortContainer#0" />
-                <element signature="n#!!block;n#runCronServeur#0" />
                 <element signature="n#!!block;n#waitForContainerBDD#0" />
                 <element signature="n#!!block;n#loadChallengeSQL#0" />
                 <element signature="n#!!block;n#loadChallengeOffuscation#0" />
                 <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
                 <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
-                <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
                 <element signature="n#!!block;n#loadChallengeCRLF#0" />
                 <element signature="n#!!block;n#loadChallengeUpload#0" />
                 <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
@@ -42,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
+            <state relative-caret-position="180">
+              <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -89,9 +84,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>localhost</find>
-      <find>config.</find>
-      <find>dbconfig</find>
       <find>config.hos</find>
       <find>config</find>
       <find>db</find>
@@ -119,6 +111,9 @@
       <find>runSeleniumC</find>
       <find>runSeleniu</find>
       <find>lignes à retir</find>
+      <find>--name cron</find>
+      <find>4444</find>
+      <find>nomConteneurSelenium</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -211,8 +206,8 @@
         <option value="$PROJECT_DIR$/src/views/connexion.ejs" />
         <option value="$PROJECT_DIR$/src/bin/cron.js" />
         <option value="$PROJECT_DIR$/src/config/settings.js" />
-        <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
         <option value="$PROJECT_DIR$/src/routes/base/base.js" />
+        <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
       </list>
     </option>
   </component>
@@ -436,21 +431,7 @@
       <workItem from="1531208621250" duration="10169000" />
       <workItem from="1531294154133" duration="821000" />
       <workItem from="1531298579318" duration="13933000" />
-      <workItem from="1531379839438" duration="6770000" />
-    </task>
-    <task id="LOCAL-00035" summary="SPRINT 5 DONE">
-      <created>1524232743725</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1524232743725</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Suivi sprint 4 + suivi utilisateurs + début panel admin">
-      <created>1524577581378</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1524577581379</updated>
+      <workItem from="1531379839438" duration="8370000" />
     </task>
     <task id="LOCAL-00037" summary="BackOffice">
       <created>1524842402287</created>
@@ -781,11 +762,25 @@
       <option name="project" value="LOCAL" />
       <updated>1531390522540</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Docker images challenges">
+      <created>1531398337298</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1531398337298</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Docker images challenges">
+      <created>1531398517994</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1531398517994</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="795566000" />
+    <option name="totallyTimeSpent" value="797166000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -866,7 +861,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="32" />
+      <option name="time" value="34" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -876,16 +871,11 @@
           <caret line="401" lean-forward="true" selection-start-line="401" selection-end-line="401" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
-            <element signature="n#!!block;n#runContainerServeur#0" />
-            <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#runCronServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
             <element signature="n#!!block;n#loadChallengeSQL#0" />
             <element signature="n#!!block;n#loadChallengeOffuscation#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
-            <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
             <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
@@ -1221,34 +1211,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="142" column="39" selection-start-line="142" selection-start-column="39" selection-end-line="142" selection-end-column="39" />
+        <state relative-caret-position="214">
+          <caret line="215" column="1" lean-forward="true" selection-start-line="215" selection-start-column="1" selection-end-line="215" selection-end-column="1" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
-            <element signature="n#!!block;n#runContainerServeur#0" />
-            <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#runCronServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
             <element signature="n#!!block;n#loadChallengeSQL#0" />
             <element signature="n#!!block;n#loadChallengeOffuscation#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
-            <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
             <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
             <element signature="e#15474#26342#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="39" column="25" lean-forward="true" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
         </state>
       </provider>
     </entry>
