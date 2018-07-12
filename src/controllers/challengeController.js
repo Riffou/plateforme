@@ -29,15 +29,15 @@ function inspect(callback, nomConteneur, object, whichServer) {
                     object.containerServerAlreadyRunning = true;
                     object.containerServerAlreadyCreated = true;
                 }
-                else if (whichServer == 1) {
+                else if (whichServer === 1) {
                     object.containerBDDAlreadyCreated = true;
                     object.containerBDDAlreadyRunning = true;
                 }
-                else if (whichServer == 2) {
+                else if (whichServer === 2) {
                     object.containerSeleniumAlreadyCreated = true;
                     object.containerSeleniumAlreadyRunning = true;
                 }
-                else if (whichServer == 3) {
+                else if (whichServer === 3) {
                     object.containerCronAlreadyCreated = true;
                     object.containerCronAlreadyRunning = true;
                 }
@@ -410,11 +410,11 @@ function loadChallengeXSSStockee(req, res) {
         },
         // Vérification que le conteneur n'a pas déjà été lancé (Selenium)
         function(callback) {
-            inspect(callback, nomConteneurBDD, object, 2);
+            inspect(callback, nomConteneurSelenium, object, 2);
         },
         // Vérification que le conteneur n'a pas déjà été lancé (Cron)
         function(callback) {
-            inspect(callback, nomConteneurBDD, object, 3);
+            inspect(callback, nomConteneurCron, object, 3);
         },
         // Si le conteneur a déjà été créé mais est stoppé (Serveur)
         function(callback) {
@@ -426,11 +426,11 @@ function loadChallengeXSSStockee(req, res) {
         },
         // Si le conteneur a déjà été créé mais est stoppé (Selenium)
         function(callback) {
-            removeContainer(callback, nomConteneurServeur, res, object, 2);
+            removeContainer(callback, nomConteneurSelenium, res, object, 2);
         },
         // Si le conteneur a déjà été créé mais est stoppé (Cron)
         function(callback) {
-            removeContainer(callback, nomConteneurBDD, res, object, 3);
+            removeContainer(callback, nomConteneurCron, res, object, 3);
         },
         // Lancement conteneur si le conteneur n'a pas été créé (BDD)
         function(callback) {

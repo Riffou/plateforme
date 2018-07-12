@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,8 +20,8 @@
       <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="215" column="1" lean-forward="true" selection-start-line="215" selection-start-column="1" selection-end-line="215" selection-end-column="1" />
+            <state relative-caret-position="299">
+              <caret line="450" column="36" lean-forward="true" selection-start-line="450" selection-start-column="36" selection-end-line="450" selection-end-column="36" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
                 <element signature="n#!!block;n#waitForContainerBDD#0" />
@@ -28,9 +29,9 @@
                 <element signature="n#!!block;n#loadChallengeOffuscation#0" />
                 <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
                 <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
+                <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
                 <element signature="n#!!block;n#loadChallengeCRLF#0" />
                 <element signature="n#!!block;n#loadChallengeUpload#0" />
-                <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
                 <element signature="e#15474#26342#0" />
               </folding>
             </state>
@@ -431,28 +432,7 @@
       <workItem from="1531208621250" duration="10169000" />
       <workItem from="1531294154133" duration="821000" />
       <workItem from="1531298579318" duration="13933000" />
-      <workItem from="1531379839438" duration="8370000" />
-    </task>
-    <task id="LOCAL-00037" summary="BackOffice">
-      <created>1524842402287</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1524842402287</updated>
-    </task>
-    <task id="LOCAL-00038" summary="BackOffice">
-      <created>1526549603312</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1526549603312</updated>
-    </task>
-    <task id="LOCAL-00039" summary="BackOffice done">
-      <created>1526637951122</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1526637951122</updated>
+      <workItem from="1531379839438" duration="9221000" />
     </task>
     <task id="LOCAL-00040" summary="BackOffice done">
       <created>1526646844740</created>
@@ -776,11 +756,32 @@
       <option name="project" value="LOCAL" />
       <updated>1531398517994</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Docker images challenges">
+      <created>1531400367066</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1531400367066</updated>
+    </task>
+    <task id="LOCAL-00087" summary="Docker images challenges">
+      <created>1531400534643</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1531400534643</updated>
+    </task>
+    <task id="LOCAL-00088" summary="Docker images challenges">
+      <created>1531400662074</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1531400662074</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="797166000" />
+    <option name="totallyTimeSpent" value="798017000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -876,9 +877,9 @@
             <element signature="n#!!block;n#loadChallengeOffuscation#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
+            <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
-            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
             <element signature="e#15474#26342#0" />
           </folding>
         </state>
@@ -1220,8 +1221,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="215" column="1" lean-forward="true" selection-start-line="215" selection-start-column="1" selection-end-line="215" selection-end-column="1" />
+        <state relative-caret-position="299">
+          <caret line="450" column="36" lean-forward="true" selection-start-line="450" selection-start-column="36" selection-end-line="450" selection-end-column="36" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
@@ -1229,9 +1230,9 @@
             <element signature="n#!!block;n#loadChallengeOffuscation#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
             <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
+            <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
-            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
             <element signature="e#15474#26342#0" />
           </folding>
         </state>
