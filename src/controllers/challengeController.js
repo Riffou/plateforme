@@ -204,15 +204,20 @@ function getPortContainer(callback, nomConteneur, res, object) {
     });
 }
 
-function runCronServeur(callback, portServeurWeb, nomConteneurCron, nomConteneurSelenium, res) {
+function runCronServeur(callback, portServeurWeb, nomConteneurCron, nomConteneurSelenium, res, object) {
     console.log('runCronServeur');
-    exec('docker run -d -P --name ' + nomConteneurCron + ' --link ' + nomConteneurSelenium + ':' + nomConteneurSelenium + ' -e PORT_CONTENEUR_SERVEUR_WEB=' + portServeurWeb + ' -e NOM_CONTENEUR_SELENIUM=' + nomConteneurSelenium + ' cron_image', function(error, stdout, stderr) {
-        if (error != null) {
-            console.log("Erreur : " + error);
-            res.status(500).send(error);
-        }
+    if (object.containerCronAlreadyRunning === false) {
+        exec('docker run -d -P --name ' + nomConteneurCron + ' --link ' + nomConteneurSelenium + ':' + nomConteneurSelenium + ' -e PORT_CONTENEUR_SERVEUR_WEB=' + portServeurWeb + ' -e NOM_CONTENEUR_SELENIUM=' + nomConteneurSelenium + ' cron_image', function (error, stdout, stderr) {
+            if (error != null) {
+                console.log("Erreur : " + error);
+                res.status(500).send(error);
+            }
+            callback();
+        });
+    }
+    else {
         callback();
-    });
+    }
 }
 
 function waitForContainerServeur(callback, portServeur) {
@@ -450,7 +455,7 @@ function loadChallengeXSSStockee(req, res) {
         },
         // Lancement du serveur cron
         function(callback) {
-            runCronServeur(callback, object.portServeur,  nomConteneurCron, nomConteneurSelenium, res);
+            runCronServeur(callback, object.portServeur,  nomConteneurCron, nomConteneurSelenium, res, object);
         },
         // Attente que le conteneur (Serveur) soit prêt
         function(callback) {
