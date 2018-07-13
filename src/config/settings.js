@@ -30,7 +30,7 @@ var configdb = {
     },
     preprod: {
         host: 'localhost',
-        port: 5432,
+        port: 5433,
         database: 'nicolas',
         user: 'nicolas',
         password: 'solutec'
