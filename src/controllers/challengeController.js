@@ -260,7 +260,7 @@ function stopAndRemoveContainer(nomConteneur, res, callback) {
             if (stdout.includes("true")) {
                 exec('docker stop ' + nomConteneur, function (error, stdout, stderr) {
                     if (error == null) {
-                        exec('docker rm ' + nomConteneur, function (error, stdout, stderr) {
+                        exec('docker rm -f ' + nomConteneur, function (error, stdout, stderr) {
                             if (error == null) {
                                 callback(null);
                             }
@@ -802,5 +802,5 @@ var self = module.exports = {
         if (idChallenge == 11) {
             loadChallengeXSSStockee(req, res);
         }
-    }
+    },
 }

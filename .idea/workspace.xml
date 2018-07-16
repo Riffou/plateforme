@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/services/cron.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/bin/www" beforeDir="false" afterPath="$PROJECT_DIR$/src/bin/www" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -17,11 +19,38 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cron.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/services/cron.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="www" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/bin/www">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-576">
+              <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1260">
+              <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="763" column="56" lean-forward="true" selection-start-line="763" selection-start-column="56" selection-end-line="763" selection-end-column="56" />
+            <state relative-caret-position="72">
+              <caret line="4" column="9" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="9" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
                 <element signature="n#!!block;n#removeContainer#0" />
@@ -29,6 +58,7 @@
                 <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
                 <element signature="n#!!block;n#runContainerServeur#0" />
                 <element signature="n#!!block;n#getPortContainer#0" />
+                <element signature="n#!!block;n#runCronServeur#0" />
                 <element signature="n#!!block;n#waitForContainerServeur#0" />
                 <element signature="n#!!block;n#waitForContainerBDD#0" />
                 <element signature="n#!!block;n#stopAndRemoveContainer#0" />
@@ -39,14 +69,18 @@
                 <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
                 <element signature="n#!!block;n#loadChallengeCRLF#0" />
                 <element signature="n#!!block;n#loadChallengeUpload#0" />
-                <element signature="e#18959#21032#0" />
-                <element signature="e#21077#23152#0" />
-                <element signature="e#23199#23930#0" />
-                <element signature="e#23980#26826#0" />
-                <element signature="e#26869#28044#0" />
-                <element signature="e#28092#29193#0" />
-                <element signature="e#29303#29794#0" />
+                <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
+                <element signature="e#20146#33237#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="adminChallengesController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controllers/adminChallengesController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="75" column="76" lean-forward="true" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="76" />
             </state>
           </provider>
         </entry>
@@ -80,11 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cookie</find>
-      <find>INSERT INTO</find>
-      <find>load/cha</find>
-      <find>getPortContai</find>
-      <find>waitFo</find>
       <find>config.host</find>
       <find>getPortCo</find>
       <find>ubuntu</find>
@@ -110,6 +139,11 @@
       <find>error.e</find>
       <find>_cron</find>
       <find>object.containerCronAl</find>
+      <find>stopAndRe</find>
+      <find>stopAndRemoveCont</find>
+      <find>async.</find>
+      <find>async</find>
+      <find>cron</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -154,7 +188,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/views/inscription.ejs" />
         <option value="$PROJECT_DIR$/src/views/reinitialiseMDP.ejs" />
         <option value="$PROJECT_DIR$/src/views/confirmationReinitialisation.ejs" />
         <option value="$PROJECT_DIR$/src/views/admin.ejs" />
@@ -183,7 +216,6 @@
         <option value="$PROJECT_DIR$/src/public/js/connexion.js" />
         <option value="$PROJECT_DIR$/src/views/formCours.ejs" />
         <option value="$PROJECT_DIR$/src/views/home.ejs" />
-        <option value="$PROJECT_DIR$/src/bin/www" />
         <option value="$PROJECT_DIR$/src/public/js/loading.js" />
         <option value="$PROJECT_DIR$/src/views/dashboardChallenges.ejs" />
         <option value="$PROJECT_DIR$/src/views/challFormulaireBloque.ejs" />
@@ -205,6 +237,8 @@
         <option value="$PROJECT_DIR$/src/views/challenge.ejs" />
         <option value="$PROJECT_DIR$/src/routes/challenges.js" />
         <option value="$PROJECT_DIR$/src/controllers/challengeController.js" />
+        <option value="$PROJECT_DIR$/src/bin/www" />
+        <option value="$PROJECT_DIR$/src/services/cron.js" />
       </list>
     </option>
   </component>
@@ -248,13 +282,25 @@
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="bin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
+              <item name="plateforme" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="plateforme" type="b2602c69:ProjectViewProjectNode" />
               <item name="plateforme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="routes" type="462c0819:PsiDirectoryNode" />
+              <item name="services" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -416,14 +462,7 @@
       <workItem from="1531298579318" duration="13933000" />
       <workItem from="1531379839438" duration="14976000" />
       <workItem from="1531468972277" duration="3464000" />
-      <workItem from="1531728754170" duration="7614000" />
-    </task>
-    <task id="LOCAL-00049" summary="1er cours">
-      <created>1527239521016</created>
-      <option name="number" value="00049" />
-      <option name="presentableId" value="LOCAL-00049" />
-      <option name="project" value="LOCAL" />
-      <updated>1527239521016</updated>
+      <workItem from="1531728754170" duration="13902000" />
     </task>
     <task id="LOCAL-00050" summary="1er cours">
       <created>1527239999276</created>
@@ -761,11 +800,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531743751382</updated>
     </task>
-    <option name="localTasksCounter" value="98" />
+    <task id="LOCAL-00098" summary="Docker images challenges">
+      <created>1531744224908</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1531744224908</updated>
+    </task>
+    <option name="localTasksCounter" value="99" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="814850000" />
+    <option name="totallyTimeSpent" value="821138000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -785,11 +831,11 @@
       <window_info anchor="bottom" id="DB Execution Console" order="7" sideWeight="0.49791667" weight="0.32924107" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5593583" side_tool="true" weight="0.5163399" />
       <window_info anchor="bottom" id="Version Control" order="10" sideWeight="0.4983957" weight="0.32911393" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.3267974" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4406417" visible="true" weight="0.3267974" />
       <window_info id="npm" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49893048" weight="0.21568628" />
       <window_info anchor="right" id="FAQ Robot" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19935691" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19935691" />
       <window_info id="Project Explorer" order="3" weight="0.32994652" />
       <window_info id="Job Explorer" order="4" />
       <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
@@ -846,49 +892,10 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="36" />
+      <option name="time" value="37" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7218">
-          <caret line="401" lean-forward="true" selection-start-line="401" selection-end-line="401" />
-          <folding>
-            <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#removeContainer#0" />
-            <element signature="n#!!block;n#runContainerBDD#0" />
-            <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
-            <element signature="n#!!block;n#runContainerServeur#0" />
-            <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#waitForContainerServeur#0" />
-            <element signature="n#!!block;n#waitForContainerBDD#0" />
-            <element signature="n#!!block;n#stopAndRemoveContainer#0" />
-            <element signature="n#!!block;n#loadChallengeSQL#0" />
-            <element signature="n#!!block;n#loadChallengeOffuscation#0" />
-            <element signature="n#!!block;n#loadChallengeFormulaireBloque#0" />
-            <element signature="n#!!block;n#loadChallengeFormulaireDesactive#0" />
-            <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
-            <element signature="n#!!block;n#loadChallengeCRLF#0" />
-            <element signature="n#!!block;n#loadChallengeUpload#0" />
-            <element signature="e#18959#21032#0" />
-            <element signature="e#21077#23152#0" />
-            <element signature="e#23199#23930#0" />
-            <element signature="e#23980#26826#0" />
-            <element signature="e#26869#28044#0" />
-            <element signature="e#28092#29193#0" />
-            <element signature="e#29303#29794#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/cours.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="376" column="37" lean-forward="true" selection-start-line="376" selection-start-column="37" selection-end-line="376" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/formCours.ejs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1029,13 +1036,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controllers/adminChallengesController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-72">
-          <caret line="135" column="44" selection-start-line="135" selection-start-column="44" selection-end-line="135" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/models/challenges.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2790">
@@ -1082,13 +1082,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="39" column="51" selection-start-line="39" selection-start-column="51" selection-end-line="39" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1648">
-          <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -1153,13 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/routes/base/base.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1178,13 +1164,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
           <caret line="62" column="26" selection-start-line="62" selection-start-column="26" selection-end-line="62" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/bin/www">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="23" column="3" selection-start-line="23" selection-start-column="3" selection-end-line="23" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -1223,10 +1202,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/config/settings.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="10" column="28" lean-forward="true" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/utilisateurController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-595">
+          <folding>
+            <element signature="e#1195#3620#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="124" column="26" selection-start-line="124" selection-start-column="26" selection-end-line="124" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controllers/adminChallengesController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="75" column="76" lean-forward="true" selection-start-line="75" selection-start-column="24" selection-end-line="75" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="763" column="56" lean-forward="true" selection-start-line="763" selection-start-column="56" selection-end-line="763" selection-end-column="56" />
+        <state relative-caret-position="72">
+          <caret line="4" column="9" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="9" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
             <element signature="n#!!block;n#removeContainer#0" />
@@ -1234,6 +1243,7 @@
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
+            <element signature="n#!!block;n#runCronServeur#0" />
             <element signature="n#!!block;n#waitForContainerServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
             <element signature="n#!!block;n#stopAndRemoveContainer#0" />
@@ -1244,14 +1254,23 @@
             <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
-            <element signature="e#18959#21032#0" />
-            <element signature="e#21077#23152#0" />
-            <element signature="e#23199#23930#0" />
-            <element signature="e#23980#26826#0" />
-            <element signature="e#26869#28044#0" />
-            <element signature="e#28092#29193#0" />
-            <element signature="e#29303#29794#0" />
+            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
+            <element signature="e#20146#33237#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/bin/www">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-576">
+          <caret line="10" column="31" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/services/cron.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="24" column="60" lean-forward="true" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="60" />
         </state>
       </provider>
     </entry>
