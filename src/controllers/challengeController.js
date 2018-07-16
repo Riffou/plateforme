@@ -753,7 +753,16 @@ var self = module.exports = {
                 if (typeof nomConteneurBDD != "undefined") {
                     stopAndRemoveContainer(nomConteneurBDD, res, function (error) {
                         if (error == null) {
-                            // Stop and remove cron !!!
+                            if (idChallenge == 11) {
+                                stopAndRemoveContainer(nomConteneurServeur + '_cron', res, function (error) {
+                                    if (error == null) {
+                                        self.loadingPageChallenge(req, res);
+                                    }
+                                    else {
+                                        res.render('error.ejs', {message: error, error: error});
+                                    }
+                                });
+                            }
                             self.loadingPageChallenge(req, res);
                         }
                         else {
