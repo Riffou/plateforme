@@ -20,18 +20,15 @@
       <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="733" column="49" lean-forward="true" selection-start-line="733" selection-start-column="49" selection-end-line="733" selection-end-column="49" />
+            <state relative-caret-position="233">
+              <caret line="763" column="56" lean-forward="true" selection-start-line="763" selection-start-column="56" selection-end-line="763" selection-end-column="56" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
-                <element signature="n#!!block;n#inspect#0" />
                 <element signature="n#!!block;n#removeContainer#0" />
                 <element signature="n#!!block;n#runContainerBDD#0" />
-                <element signature="n#!!block;n#runSeleniumContainer#0" />
                 <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
                 <element signature="n#!!block;n#runContainerServeur#0" />
                 <element signature="n#!!block;n#getPortContainer#0" />
-                <element signature="n#!!block;n#runCronServeur#0" />
                 <element signature="n#!!block;n#waitForContainerServeur#0" />
                 <element signature="n#!!block;n#waitForContainerBDD#0" />
                 <element signature="n#!!block;n#stopAndRemoveContainer#0" />
@@ -42,13 +39,13 @@
                 <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
                 <element signature="n#!!block;n#loadChallengeCRLF#0" />
                 <element signature="n#!!block;n#loadChallengeUpload#0" />
-                <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
                 <element signature="e#18959#21032#0" />
                 <element signature="e#21077#23152#0" />
                 <element signature="e#23199#23930#0" />
                 <element signature="e#23980#26826#0" />
                 <element signature="e#26869#28044#0" />
                 <element signature="e#28092#29193#0" />
+                <element signature="e#29303#29794#0" />
               </folding>
             </state>
           </provider>
@@ -83,8 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>typeof</find>
-      <find>process.env.</find>
       <find>cookie</find>
       <find>INSERT INTO</find>
       <find>load/cha</find>
@@ -113,6 +108,8 @@
       <find>Démarrer</find>
       <find>load</find>
       <find>error.e</find>
+      <find>_cron</find>
+      <find>object.containerCronAl</find>
     </findStrings>
     <replaceStrings>
       <replace>idUnite</replace>
@@ -419,35 +416,7 @@
       <workItem from="1531298579318" duration="13933000" />
       <workItem from="1531379839438" duration="14976000" />
       <workItem from="1531468972277" duration="3464000" />
-      <workItem from="1531728754170" duration="4618000" />
-    </task>
-    <task id="LOCAL-00045" summary="Test SonarQube">
-      <created>1526996486646</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1526996486646</updated>
-    </task>
-    <task id="LOCAL-00046" summary="1er cours">
-      <created>1527238515870</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1527238515871</updated>
-    </task>
-    <task id="LOCAL-00047" summary="1er cours">
-      <created>1527238876558</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1527238876558</updated>
-    </task>
-    <task id="LOCAL-00048" summary="1er cours">
-      <created>1527239073320</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1527239073320</updated>
+      <workItem from="1531728754170" duration="7614000" />
     </task>
     <task id="LOCAL-00049" summary="1er cours">
       <created>1527239521016</created>
@@ -764,11 +733,39 @@
       <option name="project" value="LOCAL" />
       <updated>1531733930620</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Docker images challenges">
+      <created>1531734677222</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1531734677222</updated>
+    </task>
+    <task id="LOCAL-00095" summary="Docker images challenges">
+      <created>1531743086361</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1531743086362</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Docker images challenges">
+      <created>1531743306102</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1531743306102</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Docker images challenges">
+      <created>1531743751382</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1531743751382</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="811854000" />
+    <option name="totallyTimeSpent" value="814850000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -849,7 +846,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="34" />
+      <option name="time" value="36" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -859,14 +856,11 @@
           <caret line="401" lean-forward="true" selection-start-line="401" selection-end-line="401" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#inspect#0" />
             <element signature="n#!!block;n#removeContainer#0" />
             <element signature="n#!!block;n#runContainerBDD#0" />
-            <element signature="n#!!block;n#runSeleniumContainer#0" />
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#runCronServeur#0" />
             <element signature="n#!!block;n#waitForContainerServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
             <element signature="n#!!block;n#stopAndRemoveContainer#0" />
@@ -877,13 +871,13 @@
             <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
-            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
             <element signature="e#18959#21032#0" />
             <element signature="e#21077#23152#0" />
             <element signature="e#23199#23930#0" />
             <element signature="e#23980#26826#0" />
             <element signature="e#26869#28044#0" />
             <element signature="e#28092#29193#0" />
+            <element signature="e#29303#29794#0" />
           </folding>
         </state>
       </provider>
@@ -1231,18 +1225,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="733" column="49" lean-forward="true" selection-start-line="733" selection-start-column="49" selection-end-line="733" selection-end-column="49" />
+        <state relative-caret-position="233">
+          <caret line="763" column="56" lean-forward="true" selection-start-line="763" selection-start-column="56" selection-end-line="763" selection-end-column="56" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
-            <element signature="n#!!block;n#inspect#0" />
             <element signature="n#!!block;n#removeContainer#0" />
             <element signature="n#!!block;n#runContainerBDD#0" />
-            <element signature="n#!!block;n#runSeleniumContainer#0" />
             <element signature="n#!!block;n#runContainerServeurLinkedBDD#0" />
             <element signature="n#!!block;n#runContainerServeur#0" />
             <element signature="n#!!block;n#getPortContainer#0" />
-            <element signature="n#!!block;n#runCronServeur#0" />
             <element signature="n#!!block;n#waitForContainerServeur#0" />
             <element signature="n#!!block;n#waitForContainerBDD#0" />
             <element signature="n#!!block;n#stopAndRemoveContainer#0" />
@@ -1253,13 +1244,13 @@
             <element signature="n#!!block;n#loadChallengeXSSReflechi#0" />
             <element signature="n#!!block;n#loadChallengeCRLF#0" />
             <element signature="n#!!block;n#loadChallengeUpload#0" />
-            <element signature="n#!!block;n#loadChallengeXSSStockee#0" />
             <element signature="e#18959#21032#0" />
             <element signature="e#21077#23152#0" />
             <element signature="e#23199#23930#0" />
             <element signature="e#23980#26826#0" />
             <element signature="e#26869#28044#0" />
             <element signature="e#28092#29193#0" />
+            <element signature="e#29303#29794#0" />
           </folding>
         </state>
       </provider>

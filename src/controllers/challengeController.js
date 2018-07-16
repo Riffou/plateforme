@@ -765,7 +765,9 @@ var self = module.exports = {
                                     }
                                 });
                             }
-                            self.loadingPageChallenge(req, res);
+                            else {
+                                self.loadingPageChallenge(req, res);
+                            }
                         }
                         else {
                             res.render('error.ejs', {message: error, error: error});
