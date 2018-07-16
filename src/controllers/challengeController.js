@@ -253,21 +253,32 @@ function waitForContainerBDD(callback, nomConteneurBDD, res) {
 
 function stopAndRemoveContainer(nomConteneur, res, callback) {
     console.log("Stop and remove container");
-    exec('docker stop ' + nomConteneur, function (error, stdout, stderr) {
+    exec('docker inspect -f {{.State.Running}} ' + nomConteneur, function(error, stdout, stderr) {
+        // Docker a trouvé un conteneur associé
         if (error == null) {
-            exec('docker rm ' + nomConteneur, function (error, stdout, stderr) {
-                if (error == null) {
-                    callback(null);
-                }
-                else {
-                    callback(error);
-                }
-            });
-        }
-        else {
-            console.log("Erreur : " + error);
-            res.status(500).send(error);
-            callback(error);
+            // On vérifie qu'il est lancé
+            if (stdout.includes("true")) {
+                exec('docker stop ' + nomConteneur, function (error, stdout, stderr) {
+                    if (error == null) {
+                        exec('docker rm ' + nomConteneur, function (error, stdout, stderr) {
+                            if (error == null) {
+                                callback(null);
+                            }
+                            else {
+                                callback(error);
+                            }
+                        });
+                    }
+                    else {
+                        console.log("Erreur : " + error);
+                        res.status(500).send(error);
+                        callback(error);
+                    }
+                });
+            }
+            else {
+                callback(null);
+            }
         }
     });
 }
@@ -742,6 +753,7 @@ var self = module.exports = {
                 if (typeof nomConteneurBDD != "undefined") {
                     stopAndRemoveContainer(nomConteneurBDD, res, function (error) {
                         if (error == null) {
+                            // Stop and remove cron !!!
                             self.loadingPageChallenge(req, res);
                         }
                         else {
