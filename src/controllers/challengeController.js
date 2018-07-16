@@ -280,6 +280,9 @@ function stopAndRemoveContainer(nomConteneur, res, callback) {
                 callback(null);
             }
         }
+        else {
+            callback(null);
+        }
     });
 }
 
