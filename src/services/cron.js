@@ -20,7 +20,7 @@ module.exports = {
                         exec('docker inspect --format=\'{{.State.StartedAt}}\' ' + nomConteneur + ' | xargs date +%s -d ', function(error, stdout, stderr) {
                             if (error == null) {
                                 // Si le conteneur a été lancé il y a plus de deux heures
-                                if ((Date.now() - parseInt(stdout)) > 2*3600*1000) {
+                                if ((Date.now()/1000 - parseInt(stdout)) > 2*3600) {
                                     exec('docker stop ' + nomConteneur, function (error, stdout, stderr) {
                                         if (error == null) {
                                             exec('docker rm -f ' + nomConteneur, function (error, stdout, stderr) {
