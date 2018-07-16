@@ -426,7 +426,7 @@ function loadChallengeUpload(req, res) {
 }
 
 function loadChallengeXSSStockee(req, res) {
-    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, containerSeleniumAlreadyRunning: false, containerSeleniumAlreadyCreated: false, containerCronAlreadyCreated: false, containerCronAlreadyRunning: false,portServeur:""};
+    var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, containerSeleniumAlreadyRunning: false, containerSeleniumAlreadyCreated: false, containerCronAlreadyCreated: false, containerCronAlreadyRunning: false, portServeur:""};
     var idChallenge = req.params.idChallenge;
     var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
     var nomConteneurSelenium = nomConteneurServeur + '_selenium';
@@ -745,6 +745,7 @@ var self = module.exports = {
         var idChallenge = req.params.idChallenge;
         var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
         var nomConteneurBDD;
+        var nomConteneurCron;
         if (idChallenge == 4 || idChallenge == 11) {
             nomConteneurBDD = nomConteneurServeur + '_db';
         }
@@ -754,7 +755,8 @@ var self = module.exports = {
                     stopAndRemoveContainer(nomConteneurBDD, res, function (error) {
                         if (error == null) {
                             if (idChallenge == 11) {
-                                stopAndRemoveContainer(nomConteneurServeur + '_cron', res, function (error) {
+                                nomConteneurCron = nomConteneurServeur + '_cron';
+                                stopAndRemoveContainer(nomConteneurCron, res, function (error) {
                                     if (error == null) {
                                         self.loadingPageChallenge(req, res);
                                     }
