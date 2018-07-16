@@ -735,7 +735,7 @@ var self = module.exports = {
         var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
         var nomConteneurBDD;
         if (idChallenge == 4 || idChallenge == 11) {
-            nomConteneurBDD = nomConteneurServeur + 'db';
+            nomConteneurBDD = nomConteneurServeur + '_db';
         }
         stopAndRemoveContainer(nomConteneurServeur, res, function (error) {
             if (error == null) {

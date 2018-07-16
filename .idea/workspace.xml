@@ -4,8 +4,6 @@
     <list default="true" id="81e8c498-2f71-4328-820c-087aca68882d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/challengeController.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/challengeController.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/challenges.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/challenges.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/challenge.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/challenge.ejs" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +20,8 @@
       <file leaf-file-name="challengeController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="380" lean-forward="true" selection-start-line="380" selection-end-line="380" />
+            <state relative-caret-position="151">
+              <caret line="733" column="49" lean-forward="true" selection-start-line="733" selection-start-column="49" selection-end-line="733" selection-end-column="49" />
               <folding>
                 <element signature="n#!!block;n#escapeHtml#0" />
                 <element signature="n#!!block;n#inspect#0" />
@@ -51,7 +49,6 @@
                 <element signature="e#23980#26826#0" />
                 <element signature="e#26869#28044#0" />
                 <element signature="e#28092#29193#0" />
-                <element signature="e#31123#31541#0" />
               </folding>
             </state>
           </provider>
@@ -422,14 +419,7 @@
       <workItem from="1531298579318" duration="13933000" />
       <workItem from="1531379839438" duration="14976000" />
       <workItem from="1531468972277" duration="3464000" />
-      <workItem from="1531728754170" duration="4001000" />
-    </task>
-    <task id="LOCAL-00044" summary="Test SonarQube">
-      <created>1526995806902</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1526995806902</updated>
+      <workItem from="1531728754170" duration="4618000" />
     </task>
     <task id="LOCAL-00045" summary="Test SonarQube">
       <created>1526996486646</created>
@@ -767,11 +757,18 @@
       <option name="project" value="LOCAL" />
       <updated>1531473190110</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Docker images challenges">
+      <created>1531733930619</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1531733930620</updated>
+    </task>
+    <option name="localTasksCounter" value="94" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="811237000" />
+    <option name="totallyTimeSpent" value="811854000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -887,7 +884,6 @@
             <element signature="e#23980#26826#0" />
             <element signature="e#26869#28044#0" />
             <element signature="e#28092#29193#0" />
-            <element signature="e#31123#31541#0" />
           </folding>
         </state>
       </provider>
@@ -1235,8 +1231,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="380" lean-forward="true" selection-start-line="380" selection-end-line="380" />
+        <state relative-caret-position="151">
+          <caret line="733" column="49" lean-forward="true" selection-start-line="733" selection-start-column="49" selection-end-line="733" selection-end-column="49" />
           <folding>
             <element signature="n#!!block;n#escapeHtml#0" />
             <element signature="n#!!block;n#inspect#0" />
@@ -1264,7 +1260,6 @@
             <element signature="e#23980#26826#0" />
             <element signature="e#26869#28044#0" />
             <element signature="e#28092#29193#0" />
-            <element signature="e#31123#31541#0" />
           </folding>
         </state>
       </provider>
