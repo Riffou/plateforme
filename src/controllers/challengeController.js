@@ -251,6 +251,27 @@ function waitForContainerBDD(callback, nomConteneurBDD, res) {
     });
 }
 
+function stopAndRemoveContainer(nomConteneur, res, callback) {
+    console.log("Stop and remove container");
+    exec('docker stop ' + nomConteneur, function (error, stdout, stderr) {
+        if (error == null) {
+            exec('docker rm ' + nomConteneur, function (error, stdout, stderr) {
+                if (error == null) {
+                    callback(null);
+                }
+                else {
+                    callback(error);
+                }
+            });
+        }
+        else {
+            console.log("Erreur : " + error);
+            res.status(500).send(error);
+            callback(error);
+        }
+    });
+}
+
 // Load challenges
 function loadChallengeSQL(req, res) {
     var object = {containerServerAlreadyRunning:false, containerServerAlreadyCreated:false, containerBDDAlreadyRunning:false, containerBDDAlreadyCreated:false, portServeur:""};
@@ -474,7 +495,7 @@ function loadChallengeXSSStockee(req, res) {
     });
 }
 
-module.exports = {
+var self = module.exports = {
     run: function (req, res) {
         var idChallenge = req.params.idChallenge;
         var identifiant = req.user.identifiant;
@@ -488,7 +509,25 @@ module.exports = {
                                   if (error == null) {
                                       challengesModel.getDescription(idChallenge, function(description, error) {
                                          if (error == null) {
-                                             res.render('challenge.ejs', {idChallenge: idChallenge, nomChallenge: nom, validate: validatedBoolean, indice: indice, description: description});
+                                             if (idChallenge == 4 || idChallenge == 6 || idChallenge == 10 || idChallenge == 11 || idChallenge == 12) {
+                                                 res.render('challenge.ejs', {
+                                                     idChallenge: idChallenge,
+                                                     nomChallenge: nom,
+                                                     validate: validatedBoolean,
+                                                     indice: indice,
+                                                     description: description,
+                                                     docker: true
+                                                 });
+                                             }
+                                             else {
+                                                 res.render('challenge.ejs', {
+                                                     idChallenge: idChallenge,
+                                                     nomChallenge: nom,
+                                                     validate: validatedBoolean,
+                                                     indice: indice,
+                                                     description: description
+                                                 });
+                                             }
                                          }
                                          else {
                                              res.render('error.ejs', {message: error, error: error});
@@ -598,27 +637,12 @@ module.exports = {
                             solution += escapeHtml(data[0].solution);
                             solution += "</textarea>";
 
-                            /*var solution = "<div class=\"card\">\n" +
-                                "  <div class=\"card-body\">\n";
-                            solution += escapeHtml(data[0].solution);
-                            solution += "  </div>\n" +
-                                "</div><br>";*/
                             for (var i = 0; i < data[1].length; i++) {
                                 solution += '<br>';
                                 solution += escapeHtml(data[1][i].identifiant + ' propose : ');
                                 solution += "<textarea class=\"form-control rounded-0\" id=\"exampleFormControlTextarea1\" rows=\"12\">";
                                 solution += escapeHtml(data[1][i].solution);
                                 solution += "</textarea>";
-                                /*
-                                solution += "<div class=\"card\">\n" +
-                                    "  <div class=\"card-body\">\n";
-                                solution += escapeHtml(data[1][i].identifiant + ' propose : ');
-                                solution += '<br>';
-                                solution += escapeHtml(data[1][i].solution);
-                                solution += "  </div>\n" +
-                                    "</div>";
-                                solution += '<br>';
-                                */
                             }
                             res.status(200).send(solution);
                         }
@@ -704,6 +728,35 @@ module.exports = {
         if (idChallenge == 11) {
             res.render('loading.ejs', {idChallenge: idChallenge});
         }
+    },
+    // Stop les conteneurs et en relance de nouveau
+    resetChallenge: function(req, res) {
+        var idChallenge = req.params.idChallenge;
+        var nomConteneurServeur = req.user.identifiant + '_' + idChallenge;
+        var nomConteneurBDD;
+        if (idChallenge == 4 || idChallenge == 11) {
+            nomConteneurBDD = nomConteneurServeur + 'db';
+        }
+        stopAndRemoveContainer(nomConteneurServeur, res, function (error) {
+            if (error == null) {
+                if (typeof nomConteneurBDD != "undefined") {
+                    stopAndRemoveContainer(nomConteneurBDD, res, function (error) {
+                        if (error == null) {
+                            self.loadingPageChallenge(req, res);
+                        }
+                        else {
+                            res.render('error.ejs', {message: error, error: error});
+                        }
+                    });
+                }
+                else {
+                    self.loadingPageChallenge(req, res);
+                }
+            }
+            else {
+                res.render('error.ejs', {message: error, error: error});
+            }
+        });
     },
     // Redirection vers la bonne fonction de chargement du challenge
     loadChallenge : function(req, res) {

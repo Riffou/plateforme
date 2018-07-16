@@ -14,6 +14,9 @@
         <p><%= description %></p>
 
         <a class="btn btn-custom" target="_blank" href="load/<%= idChallenge%>" role="button">Démarrer le challenge</a>
+        <% if (typeof docker != "undefined") {%>
+            <a class="btn btn-custom" target="_blank" href="reset/<%= idChallenge%>" role="button">Réinitialiser le challenge</a>
+        <%}%>
 
         <br><br><br>
 
