@@ -147,6 +147,7 @@ var self = module.exports = {
         });
     },
     validateReadLesson: function(req, res) {
+        console.log("Validate REad Lesson");
         var idCours = req.params.idCours;
         var idUnite = req.params.idUnite;
         var identifiant = req.user.identifiant;

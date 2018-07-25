@@ -436,7 +436,7 @@ ALTER TABLE ONLY public.unites ALTER COLUMN id SET DEFAULT nextval('public.unite
 --
 
 COPY public.administrateurs (identifiant, email, mdp, dateinscription, lastconnection, lastfailedconnection) FROM stdin;
-admin	admin@hotmail.fr	e140b8f9a3f6235f1cc8f44b3204126078a5228385b244433737de635f4c79c3	1524237393762	1529921659379	\N
+adminSec	admin@hotmail.fr	66c16e8368164821274132bd34af50b81e6a559a4105cb1f5b45128558d26a2b	1524237393762	1529921659379	\N
 \.
 
 

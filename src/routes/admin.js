@@ -8,7 +8,6 @@ router.get('/', base.isAlreadyLoggedAdmin, function(req, res) {
     res.render('admin.ejs');
 });
 
-
 router.post('/', base.isAlreadyLoggedAdmin, administrateurs.runConnexion);
 
 router.get('/dashboard/', base.requireLoginAdmin, administrateurs.runDashboard);
