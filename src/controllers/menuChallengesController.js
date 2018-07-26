@@ -1,5 +1,6 @@
 var challengesModel = require('../models/challenges');
 var utilisateurModel = require('../models/utilisateurs');
+var config = require('../config/settings').config();
 
 module.exports = {
     run: function (req, res) {
@@ -27,17 +28,31 @@ module.exports = {
                                });
                            }
                            else {
-                               res.render('error.ejs', {message: error, error: error});
-                           }
+                               if (config.mode == 'local') {
+                                   res.render('error.ejs', {message: error, error: error});
+                               }
+                               else {
+                                   res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                               }                           }
                        });
                    }
                    else {
-                       res.render('error.ejs', {message: error, error: error});
+                       if (config.mode == 'local') {
+                           res.render('error.ejs', {message: error, error: error});
+                       }
+                       else {
+                           res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                       }
                    }
                 });
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     }

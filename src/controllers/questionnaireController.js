@@ -1,6 +1,7 @@
 var coursModel = require('../models/cours');
 var async = require('async');
 var fs = require('fs');
+var config = require('../config/settings').config();
 
 var self = module.exports = {
     run: function(req, res) {
@@ -45,13 +46,23 @@ var self = module.exports = {
                             res.render('questionnaire.ejs', {unitesArray: unitesArray, globalJSON: globalJSON})
                         }
                         else {
-                            res.render('error.ejs', { message: error, error: error });
+                            if (config.mode == 'local') {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                            else {
+                                res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                            }
                         }
                     }
                 );
             }
             else {
-                res.render('error.ejs', { message: error, error: error });
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     },
@@ -78,12 +89,22 @@ var self = module.exports = {
                         res.redirect('/?questionnaire=ok')
                     }
                     else {
-                        res.render('error.ejs', { message: error, error: error });
+                        if (config.mode == 'local') {
+                            res.render('error.ejs', {message: error, error: error});
+                        }
+                        else {
+                            res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                        }
                     }
                 });
             }
             else {
-                res.render('error.ejs', { message: error, error: error });
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         })
     }

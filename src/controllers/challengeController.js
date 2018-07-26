@@ -13,7 +13,6 @@ function escapeHtml(text) {
         '"': '&quot;',
         "'": '&#039;'
     };
-
     return text.replace(/[&<>"']/g, function(m) { return map[m]; });
 }
 
@@ -544,27 +543,47 @@ var self = module.exports = {
                                              }
                                          }
                                          else {
-                                             res.render('error.ejs', {message: error, error: error});
+                                             if (config.mode == 'local') {
+                                                 res.render('error.ejs', {message: error, error: error});
+                                             }
+                                             else {
+                                                 res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                             }
                                          }
                                       });
                                   }
                                   else {
-                                      res.render('error.ejs', {message: error, error: error});
+                                      if (config.mode == 'local') {
+                                          res.render('error.ejs', {message: error, error: error});
+                                      }
+                                      else {
+                                          res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                      }
                                   }
                                });
                            }
                            else {
-                               res.render('error.ejs', {message: error, error: error});
+                               if (config.mode == 'local') {
+                                   res.render('error.ejs', {message: error, error: error});
+                               }
+                               else {
+                                   res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                               }
                            }
                        });
                    }
                    else {
-                       res.render('error.ejs', {message: error, error: error});
+                       if (config.mode == 'local') {
+                           res.render('error.ejs', {message: error, error: error});
+                       }
+                       else {
+                           res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                       }
                    }
                 });
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                res.render('404.ejs');
             }
         });
     },
@@ -764,8 +783,12 @@ var self = module.exports = {
                                         self.loadingPageChallenge(req, res);
                                     }
                                     else {
-                                        res.render('error.ejs', {message: error, error: error});
-                                    }
+                                        if (config.mode == 'local') {
+                                            res.render('error.ejs', {message: error, error: error});
+                                        }
+                                        else {
+                                            res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                        }                                    }
                                 });
                             }
                             else {
@@ -773,8 +796,12 @@ var self = module.exports = {
                             }
                         }
                         else {
-                            res.render('error.ejs', {message: error, error: error});
-                        }
+                            if (config.mode == 'local') {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                            else {
+                                res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                            }                        }
                     });
                 }
                 else {
@@ -782,7 +809,12 @@ var self = module.exports = {
                 }
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     },

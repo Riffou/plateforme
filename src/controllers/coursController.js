@@ -1,6 +1,7 @@
 var fs = require('fs');
 var coursModel = require('../models/cours');
 var utilisateurModel = require('../models/utilisateurs');
+var config = require('../config/settings').config();
 
 function getTexteCours (idCours, callback) {
     fs.readFile('src/public/cours/' + idCours + '.html', function(err, data) {
@@ -112,27 +113,52 @@ var self = module.exports = {
                                                                });
                                                            }
                                                            else {
-                                                               res.render('error.ejs', {message: error, error: error});
+                                                               if (config.mode == 'local') {
+                                                                   res.render('error.ejs', {message: error, error: error});
+                                                               }
+                                                               else {
+                                                                   res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                                               }
                                                            }
                                                        });
                                                    }
                                                    else {
-                                                       res.render('error.ejs', {message: error, error: error});
+                                                       if (config.mode == 'local') {
+                                                           res.render('error.ejs', {message: error, error: error});
+                                                       }
+                                                       else {
+                                                           res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                                       }
                                                    }
                                                });
                                            }
                                            else {
-                                               res.render('error.ejs', {message: error, error: error});
+                                               if (config.mode == 'local') {
+                                                   res.render('error.ejs', {message: error, error: error});
+                                               }
+                                               else {
+                                                   res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                               }
                                            }
                                         });
                                     }
                                     else {
-                                        res.render('error.ejs', {message: error, error: error});
+                                        if (config.mode == 'local') {
+                                            res.render('error.ejs', {message: error, error: error});
+                                        }
+                                        else {
+                                            res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                        }
                                     }
                                 });
                             }
                             else {
-                                res.render('error.ejs', {message: error, error: error});
+                                if (config.mode == 'local') {
+                                    res.render('error.ejs', {message: error, error: error});
+                                }
+                                else {
+                                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                }
                             }
                         });
                     });
@@ -142,7 +168,12 @@ var self = module.exports = {
                 }
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     },
@@ -171,19 +202,32 @@ var self = module.exports = {
                                     res.redirect('/unites/' + idUnite + '/' + idCours);
                                 }
                                 else {
-                                    res.render('error.ejs', {message: error, error: error});
-                                }
+                                    if (config.mode == 'local') {
+                                        res.render('error.ejs', {message: error, error: error});
+                                    }
+                                    else {
+                                        res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                                    }                                }
                             });
 
                         }
                         else {
-                            res.render('error.ejs', {message: error, error: error});
-                        }
+                            if (config.mode == 'local') {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                            else {
+                                res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                            }                        }
                     })
                 }
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         })
     }

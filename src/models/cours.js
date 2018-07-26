@@ -112,6 +112,20 @@ var self = module.exports = {
                 callback(null, error);
             })
     },
+    doesUniteExist: function(idUnite, callback) {
+        db.one('SELECT COUNT(nom) FROM unites WHERE id = $1', [idUnite])
+            .then(function(data) {
+                if (data.count == 1) {
+                    callback(true, null);
+                }
+                else {
+                    callback(false, null);
+                }
+            })
+            .catch(function(error) {
+                callback(null, error);
+            })
+    },
     getOrdreFromIdUnite: function(idUnite, callback) {
         db.one('SELECT ordre FROM unites WHERE id = $1', [idUnite])
             .then(function(data) {

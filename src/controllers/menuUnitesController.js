@@ -1,5 +1,6 @@
 var coursModel = require('../models/cours');
 var utilisateurModel = require('../models/utilisateurs');
+var config = require('../config/settings').config();
 
 var getDataForMenuUnites = function(identifiant, callback) {
     // Retrieve data from DB
@@ -83,7 +84,12 @@ module.exports = {
                 res.render('menuUnites.ejs', {data: dataUnites, arrayUnitesLus: arrayUnitesLus, arrayUnitesSize: arrayUnitesSize});
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     }

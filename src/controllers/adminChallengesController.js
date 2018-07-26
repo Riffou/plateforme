@@ -1,5 +1,6 @@
 var challengesModel = require('../models/challenges');
 var async = require('async');
+var config = require('../config/settings').config();
 
 
 function getChallenges(callback) {
@@ -122,7 +123,12 @@ var self = module.exports = {
                 res.render('dashboardChallenges.ejs', data);
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     },
@@ -145,7 +151,12 @@ var self = module.exports = {
                             });
                         }
                         else {
-                            res.render('error.ejs', {message: error, error: error});
+                            if (config.mode == 'local') {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                            else {
+                                res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                            }
                         }
                     });
                 }
@@ -155,7 +166,12 @@ var self = module.exports = {
                 }
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     },
@@ -194,12 +210,22 @@ var self = module.exports = {
                             res.redirect('/admin/challenges/');
                         }
                         else {
-                            res.render('error.ejs', {message: error, error: error});
+                            if (config.mode == 'local') {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                        else {
+                                res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                            }
                         }
                     });
                 }
                 else {
-                    res.render('error.ejs', {message: error, error: error});
+                    if (config.mode == 'local') {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                    else {
+                        res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                    }
                 }
             });
         }
@@ -235,12 +261,22 @@ var self = module.exports = {
                            res.redirect('/admin/challenges/');
                        }
                        else {
-                           res.render('error.ejs', {message: error, error: error});
+                           if (config.mode == 'local') {
+                               res.render('error.ejs', {message: error, error: error});
+                           }
+                           else {
+                               res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                           }
                        }
                    });
                }
                else {
-                   res.render('error.ejs', {message: error, error: error});
+                   if (config.mode == 'local') {
+                       res.render('error.ejs', {message: error, error: error});
+                   }
+                   else {
+                       res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                   }
                }
             });
         }
@@ -254,12 +290,22 @@ var self = module.exports = {
                         res.redirect('/admin/challenges');
                     }
                     else {
-                        res.render('error.ejs', {message: error, error: error});
+                        if (config.mode == 'local') {
+                            res.render('error.ejs', {message: error, error: error});
+                        }
+                        else {
+                            res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                        }
                     }
                 });
             }
             else {
-                res.render('error.ejs', {message: error, error: error});
+                if (config.mode == 'local') {
+                    res.render('error.ejs', {message: error, error: error});
+                }
+                else {
+                    res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                }
             }
         });
     },

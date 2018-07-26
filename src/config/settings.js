@@ -10,6 +10,11 @@ var config = {
         mode: 'preprod',
         host: '10.1.48.114',
         port: '80'
+    },
+    prod: {
+        mode: 'prod',
+        host: '10.1.48.114',
+        port: '80'
     }
 };
 
@@ -29,6 +34,13 @@ var configdb = {
         password: 'solutec'
     },
     preprod: {
+        host: 'localhost',
+        port: 5433,
+        database: 'nicolas',
+        user: 'nicolas',
+        password: 'solutec'
+    },
+    prod: {
         host: 'localhost',
         port: 5433,
         database: 'nicolas',
