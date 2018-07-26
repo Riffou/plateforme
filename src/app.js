@@ -82,12 +82,22 @@ app.use(function(req, res, next) {
                             next();
                         }
                         else {
-                            res.render('error.ejs', {message: error, error: error});
+                            if (config.mode == 'local') {
+                                res.render('error.ejs', {message: error, error: error});
+                            }
+                            else {
+                                res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                            }
                         }
                     });
                 }
                 else {
-                    res.render('error.ejs', {message: error, error: error});
+                    if (config.mode == 'local') {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                    else {
+                        res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                    }
                 }
             });
         }
@@ -97,7 +107,12 @@ app.use(function(req, res, next) {
                     next();
                 }
                 else {
-                    res.render('error.ejs', {message: error, error: error});
+                    if (config.mode == 'local') {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                    else {
+                        res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                    }
                 }
             });
         }
@@ -107,7 +122,12 @@ app.use(function(req, res, next) {
                     next();
                 }
                 else {
-                    res.render('error.ejs', {message: error, error: error});
+                    if (config.mode == 'local') {
+                        res.render('error.ejs', {message: error, error: error});
+                    }
+                    else {
+                        res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+                    }
                 }
             });
         }
@@ -140,7 +160,12 @@ app.use(function(err, req, res, next) {
 
  // render the error page
  res.status(err.status || 500);
- res.render('error.ejs', {erreurMessage:err.message});
+ if (config.mode == 'local') {
+     res.render('error.ejs', {message: error, error: error});
+ }
+ else {
+     res.render('error.ejs', {message: 'Une erreur est survenue.', error:"Une erreur est survenue."})
+ }
 });
 
 
