@@ -12,6 +12,7 @@ var challenges = require('./routes/challenges');
 var cours = require('./routes/cours');
 var profil = require('./routes/profil');
 var admin = require('./routes/admin');
+var config = require('./config/settings').config();
 
 var app = express();
 
